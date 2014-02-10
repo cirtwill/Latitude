@@ -1,0 +1,90 @@
+import sys
+import os
+import re
+import random
+import networkx
+from decimal import *
+from math import *
+
+#look up tools to build webs.
+
+
+def food_web_properties(webfile):
+
+  print 'hi'
+  sys.exit()
+  rowdict={}
+  goodrowdict={}
+
+  f=open(webfile,'r')
+  for line in f:
+    newline=line.split('\n')[0] #Trims off extraneous newline
+    items=newline.split(',')
+    if '' not in items[1:]:
+      rowdict[items[0]]=items[1:]
+  f.close()
+
+  for row in rowdict:
+    for item in rowdict[row]:
+      try:
+        item = int(item)
+      except:
+        predators = row
+  
+  predpreydict={}
+  specieslist=set()
+
+  for item in rowdict[predators]:
+    specieslist.add(item)
+    preylist=[]
+    position = rowdict[predators].index(item)
+    for row in rowdict:
+      specieslist.add(row)
+      if row != predators:
+        if rowdict[row][position]!='0':
+          preylist.append(row)
+    predpreydict[item]=preylist
+
+  numberdict={}
+  i = 1
+  for species in specieslist:
+    numberdict[species]=i
+    i=i+1
+
+  webname=re.findall(r'(WEB\d+)',webfile)[0]
+
+  g=open('Food-web-database/pred-prey-lists/'+webname,'w')
+  for pred in rowdict[predators]:
+    for prey in predpreydict[pred]:
+      g.write(str(numberdict[pred])+'\t'+str(numberdict[prey])+'\n')
+  g.close()
+
+def websorter(metafile,directory):
+  uselist=[]
+  f=open(metafile)
+  print 'go!'
+  for line in f:
+    newline=line.split('\n')[0]
+    items=newline.split('*')
+    if items[16][:3] in ['Use','use']:
+      webno=int(items[0])
+      webfile='WEB'+str(webno)
+      uselist.append(webfile)
+
+  for item in sorted(uselist):
+    if item in os.listdir(directory):
+      pass
+      #food_web_properties(webfile)
+    else:
+      print 'aggregated?'
+      print item
+
+def main():
+  
+  directory = 'Food-web-database/pred-prey-lists-to-use'
+  metafile = 'food_web_notes.csv'
+
+  websorter(metafile,directory)
+
+if __name__ == '__main__':
+  main()
