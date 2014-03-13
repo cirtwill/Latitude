@@ -5,6 +5,7 @@ import random
 import networkx as nx
 from decimal import *
 from math import *
+import role_dictionary_maker as RD
 
 #look up tools to build webs.
 
@@ -212,7 +213,10 @@ def food_web_properties(directory,item):
     stroutput.append(str(thing))
   return stroutput 
 
-def websorter(metafile,directory):
+def websorter(metafile,directory,motifdir):
+  roledictionary=RD.wrapper(motifdir)
+  motifs=sorted(roledictionary['WEB197'].keys())
+
   Ruzicka=['WEB320','WEB321','WEB322','WEB323','WEB324']
   Fryer=['WEB33','WEB38','WEB39','WEB204']
   Dexter=['WEB51','WEB110','WEB111','WEB112','WEB113']
@@ -271,9 +275,10 @@ def websorter(metafile,directory):
           'pInt',
           'pTop',
           'pHerb',
-          'pOmni'] 
+          'pOmni']
+  header=header+motifs
 
-  outfile=open('Food-web-database/summary-properties.tsv','w')
+  outfile=open('../mod_data/summary-properties.tsv','w')
   outfile.write('\t'.join(header))
   outfile.write('\n')
 
@@ -285,6 +290,9 @@ def websorter(metafile,directory):
       outfile.write('\t'.join(info))
       outfile.write('\t')
       outfile.write('\t'.join(outputs))
+      for motif in motifs:
+        outfile.write('\t')
+        outfile.write(roledictionary[item][motif])
       outfile.write('\n')
     else:
       pass
@@ -300,16 +308,21 @@ def websorter(metafile,directory):
         outfile.write('\t'.join(info))
         outfile.write('\t')
         outfile.write('\t'.join(outputs))
+        for motif in motifs:
+          outfile.write('\t')
+          outfile.write(roledictionary[item][motif])
         outfile.write('\n')
 
+  outfile.close()
            # extfile.write('\t'.join(map(str,[eval(item) for item in extheader])))
 
 def main():
   
-  directory = 'Food-web-database/pred-prey-lists-to-use/'
-  metafile = 'food_web_notes.csv'
+  metafile = '../mod_data/sup_data/food_web_notes.csv'
+  directory = '../mod_data/lists/pred-prey-lists-to-use/'
+  motifdir = '../mod_data/Roles/'
 
-  websorter(metafile,directory)
+  websorter(metafile,directory,motifdir)
 
 if __name__ == '__main__':
   main()
