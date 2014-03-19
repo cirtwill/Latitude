@@ -56,18 +56,33 @@ x98_scale=glm(X98~(Latitude+Ecotype)*(log10(Connectance)+log10(Species))+(1|Year
 
 #Dredging in now.
 
-linkSD_dredged=glm(log10(LinkSD)~Ecotype*log10(Connectance)+log10(Species)+(1|Year_pub))
-gen_dredged=glm(log10(Gen)~(Latitude*log10(Species)+Ecotype+log10(Connectance))+(1|Year_pub))
-# 5 (very small) webs with 0 Generality is messing with this. Eliminating  1  4 30 84 85 for this model.
-genSD_dredged=with(Gendata,glm(GenSD~log10(Connectance)+log10(Species)+(1|Year_pub)))
-vul_dredged=glm(log10(Vul)~log10(Connectance)+log10(Species)+(1|Year_pub))
-vulSD_dredged=glm(log10(VulSD)~Latitude+Ecotype+log10(Connectance)+log10(Species)+(1|Year_pub))
+The scaling relationships of many food-web properties changed across latitude.
+(need to look up difference between change in slope and change in int.) Mean
+trophic level scaled with species but not connectance and had both slope and
+intercept effects of latitude and ecotype. Maximum trophic level scaled with
+both species-richness and connectance, with the species-richness relationship
+having both slope and intercept effects of latitude while the connectance
+relationship had both slope and intercept effects of ecotype. Similarly, the
+scaling of generality with species-richness has both slope and intercept
+effects of latitude, as well as an intercept effect of ecotype.
+
+
 mean_SWTL_dredged=glm(log10(mean_SWTL)~(Latitude+Ecotype)*log10(Species)+(1|Year_pub))
 max_SWTL_dredged=glm(log10(max_SWTL)~Latitude*log10(Species)+Ecotype*log10(Connectance)+(1|Year_pub))
-path_dredged=glm(log10(Path)~Latitude+Ecotype*log10(Connectance)+(1|Year_pub))
-basal_dredged=glm(pBas~(1|Year_pub),family='binomial')
 int_dredged=glm(pInt~Latitude*(log10(Connectance)+log10(Species))+(1|Year_pub),family='binomial')
+gen_dredged=glm(log10(Gen)~(Latitude*log10(Species)+Ecotype+log10(Connectance))+(1|Year_pub))
+# 5 (very small) webs with 0 Generality is messing with this. Eliminating  1  4 30 84 85 for this model.
+vulSD_dredged=glm(log10(VulSD)~Latitude+Ecotype+log10(Connectance)+log10(Species)+(1|Year_pub))
+path_dredged=glm(log10(Path)~Latitude+Ecotype*log10(Connectance)+(1|Year_pub))
+
+linkSD_dredged=glm(log10(LinkSD)~Ecotype*log10(Connectance)+log10(Species)+(1|Year_pub))
+
+genSD_dredged=with(Gendata,glm(GenSD~log10(Connectance)+log10(Species)+(1|Year_pub)))
+vul_dredged=glm(log10(Vul)~log10(Connectance)+log10(Species)+(1|Year_pub))
+
 top_dredged=glm(pTop~log10(Connectance)+(1|Year_pub),family='binomial')
+
+basal_dredged=glm(pBas~(1|Year_pub),family='binomial')
 herb_dredged=glm(pHerb~(1|Year_pub),family='binomial')
 omni_dredged=glm(pOmni~(1|Year_pub),family='binomial')
 
@@ -90,4 +105,13 @@ x6_dredged=glm(X6~log10(Connectance)+log10(Species)+(1|Year_pub))
 x108_dredged=glm(X108~Latitude*log10(Connectance)+(1|Year_pub))
 
 
-
+The scaling of motif frequencies with connectance varied across ecotypes for
+most motifs (specifically motifs 102, 108, 110, 14, 238, 46, 74, and 78) with
+both intercept and slope effects. Scaling relationships with species-richness
+did not change. Latitude had not effect on the scaling relationships of these
+motifs. For three motifs (12, 36, and 6), scaling was not associated with
+either latitude or ecotype. The frequency of the remaining motif (108) did not
+scale with species richness. The scaling of this motif's frequency with
+connectance did vary with latitude, although this relationship was not
+significant.  Overall, therefore, we conclude that motif structure does not
+change across latitude.
