@@ -12,14 +12,14 @@ def printroles(infile,stoufferIDs=True):
   roles=pymfinder.motif_roles(infile) #Motif roles for each species
 
   name=infile.split('/')[-1]
-  pymfinder.print_roles(roles,3,outFile='Food-web-database/Roles/'+name+'.roles')
+  pymfinder.print_roles(roles,3,outFile='../mod_data/Roles2/'+name+'.roles')
 
-def printmotifsummary(infile,stoufferIDs=True):
+def printmotifsummary(infile,stoufferIDs=True): #List of motifs for each web
   motifs=pymfinder.motif_structure(infile)
 
   name=infile.split('/')[-1]
   print name
-  outy='Food-web-database/Roles/'+name+'.motifs'
+  outy='../mod_data/Motifs2/'+name+'.motifs'
   pymfinder.print_motif_structure(motifs,outFile=outy)
 
 
@@ -27,7 +27,7 @@ def printmotifsummary(infile,stoufferIDs=True):
 def printlinks(infile,stoufferIDs=True):
   linkroles=pymfinder.link_roles(infile) #Motif roles for each link.
   name=infile.split('/')[-1]
-  pymfinder.print_link_roles(linkroles,3,outfile='Food-web-database/Roles/'+name+'.link_roles')
+  pymfinder.print_link_roles(linkroles,3,outfile='../mod_data/Roles/'+name+'.link_roles')
 
   #Achieve output by running python test.py >../Data/allroles.dat
 
@@ -39,7 +39,7 @@ def wrapper(directory):
 
 
 def main():
-  directory='Food-web-database/pred-prey-lists-to-use'
+  directory='../mod_data/lists/pred-prey-lists/'
 
   wrapper(directory)
 
