@@ -57,16 +57,6 @@ x98_scale=glm(X98~(Latitude*Ecotype)*(log10(Connectance)+log10(Species))+(1|Year
 
 #Dredging in now.
 
-# The scaling relationships of many food-web properties changed across latitude.
-# (need to look up difference between change in slope and change in int.) Mean
-# trophic level scaled with species but not connectance and had both slope and
-# intercept effects of latitude and ecotype. Maximum trophic level scaled with
-# both species-richness and connectance, with the species-richness relationship
-# having both slope and intercept effects of latitude while the connectance
-# relationship had both slope and intercept effects of ecotype. Similarly, the
-# scaling of generality with species-richness has both slope and intercept
-# effects of latitude, as well as an intercept effect of ecotype.
-
 mean_SWTL_dredged=glm(log10(mean_SWTL)~(Latitude+Ecotype)*log10(Species)+(1|Year_pub))
 max_SWTL_dredged=glm(log10(max_SWTL)~Latitude*log10(Species)+Ecotype*log10(Connectance)+(1|Year_pub))
 int_dredged=glm(pInt~Latitude*(log10(Connectance)+log10(Species))+(1|Year_pub),family='binomial')
@@ -107,15 +97,3 @@ x6_dredged=glm(X6~log10(Connectance)+log10(Species)+(1|Year_pub))
 
 #Latitude
 x108_dredged=glm(X108~Latitude*log10(Connectance)+(1|Year_pub))
-
-
-# The scaling of motif frequencies with connectance varied across ecotypes for
-# most motifs (specifically motifs 102, 108, 110, 14, 238, 46, 74, and 78) with
-# both intercept and slope effects. Scaling relationships with species-richness
-# did not change. Latitude had not effect on the scaling relationships of these
-# motifs. For three motifs (12, 36, and 6), scaling was not associated with
-# either latitude or ecotype. The frequency of the remaining motif (108) did not
-# scale with species richness. The scaling of this motif's frequency with
-# connectance did vary with latitude, although this relationship was not
-# significant.  Overall, therefore, we conclude that motif structure does not
-# change across latitude.
