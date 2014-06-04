@@ -78,7 +78,6 @@ omni_dredged=glm(pOmni~(1|Year_pub),family='binomial')
 # Logged motifs don't work.
 
 
-
 # Non-logged motifs
 #Ecotype
 x102_dredged=glm(X102~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
