@@ -1,0 +1,5 @@
+"x"
+"(Intercept)" -144.909837092923
+"log10(Connectance)" 1100.58341331142
+"log10(Species)" 1030.34531782054
+"1 | Year_pubTRUE" NA

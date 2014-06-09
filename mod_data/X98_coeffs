@@ -1,0 +1,32 @@
+"x"
+"(Intercept)" -2.38818013009282e-13
+"Latitude" 5.46964603593368e-15
+"Ecotypelake" 1.78495162114889e-13
+"Ecotypemarine" -1.74634828156991
+"Ecotypestream" 2.41426079847307e-13
+"Ecotypeterrestrial" 3.17925200794481e-13
+"log10(Connectance)" -4.63220427799516e-13
+"log10(Species)" -1.78926314937984e-13
+"1 | Year_pubTRUE" NA
+"Latitude:Ecotypelake" -4.05035925422254e-15
+"Latitude:Ecotypemarine" 0.031052254474943
+"Latitude:Ecotypestream" -5.53451203938177e-15
+"Latitude:Ecotypeterrestrial" -7.87137070865341e-15
+"Latitude:log10(Connectance)" 1.03034258042757e-14
+"Latitude:log10(Species)" 3.89447430062318e-15
+"Ecotypelake:log10(Connectance)" 7.24648282968109e-13
+"Ecotypemarine:log10(Connectance)" 9.07889077307956
+"Ecotypestream:log10(Connectance)" 4.57528917170783e-13
+"Ecotypeterrestrial:log10(Connectance)" 5.58806327245085e-13
+"Ecotypelake:log10(Species)" 4.37484326353724e-13
+"Ecotypemarine:log10(Species)" 7.83267617973057
+"Ecotypestream:log10(Species)" 1.76165803460884e-13
+"Ecotypeterrestrial:log10(Species)" 1.97673276725863e-13
+"Latitude:Ecotypelake:log10(Connectance)" -1.57843663866295e-14
+"Latitude:Ecotypemarine:log10(Connectance)" -0.216538885201861
+"Latitude:Ecotypestream:log10(Connectance)" -1.02131283837754e-14
+"Latitude:Ecotypeterrestrial:log10(Connectance)" -1.34539660992283e-14
+"Latitude:Ecotypelake:log10(Species)" -9.51021477173172e-15
+"Latitude:Ecotypemarine:log10(Species)" -0.178184504635665
+"Latitude:Ecotypestream:log10(Species)" -3.84211943367371e-15
+"Latitude:Ecotypeterrestrial:log10(Species)" -4.68397645753127e-15

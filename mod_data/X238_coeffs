@@ -1,0 +1,17 @@
+"x"
+"(Intercept)" -4.59436014071372e-14
+"Ecotypelake" -7.76176635893475
+"Ecotypemarine" 3.62622007079403e-14
+"Ecotypestream" 2.96716443870521e-14
+"Ecotypeterrestrial" 1.47395560451938
+"log10(Connectance)" 9.33365817268111e-14
+"log10(Species)" 6.87192669078039e-14
+"1 | Year_pubTRUE" NA
+"Ecotypelake:log10(Connectance)" 25.9274846429801
+"Ecotypemarine:log10(Connectance)" -8.94766544786333e-14
+"Ecotypestream:log10(Connectance)" -9.06370239704495e-14
+"Ecotypeterrestrial:log10(Connectance)" 2.9708466821175
+"Ecotypelake:log10(Species)" 26.5829885152025
+"Ecotypemarine:log10(Species)" -6.94143137590916e-14
+"Ecotypestream:log10(Species)" -6.58052951690022e-14
+"Ecotypeterrestrial:log10(Species)" 1.39096218695293

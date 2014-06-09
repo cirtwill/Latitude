@@ -7,7 +7,7 @@ attach(data)
 ##################################
 ##################################
 
-#Including year published as a randtom effect
+#Including year published as a random effect
 
 species_latbytype = glm(log10(Species)~Latitude*(Ecotype-1)+(1|Year_pub))
 links_latbytype = glm(log10(LS)~Latitude*(Ecotype-1)+(1|Year_pub))
@@ -79,6 +79,8 @@ omni_dredged=glm(pOmni~(1|Year_pub),family='binomial')
 
 
 # Non-logged motifs
+x98_dredged=x98_scale
+
 #Ecotype
 x102_dredged=glm(X102~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
 x108_dredged=glm(X108~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
@@ -88,6 +90,7 @@ x238_dredged=glm(X238~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
 x46_dredged=glm(X46~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
 x74_dredged=glm(X74~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
 x78_dredged=glm(X78~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
+x38_dredged=glm(X38~Ecotype*(log10(Connectance)+log10(Species))+(1|Year_pub))
 
 #No predictor
 x12_dredged=glm(X12~log10(Connectance)+log10(Species)+(1|Year_pub))
