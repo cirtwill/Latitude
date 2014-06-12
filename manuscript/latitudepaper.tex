@@ -1,108 +1,71 @@
 \section*{Introduction}
 
-[[Shorten this up]]
-
-
-Creating networks describing ecologically important interactions (e.g. food
-webs composed of feeding links) provides a powerful way to explore differences
-in community structure as networks provide a rich set of metrics that can be
-used to compare structure across ecosystems (Williams & Martinez, 2000, Olesen
-& Jordano, 2002, Stouffer et al., 2005, Reide et al., 2010). Such comparisons
+Food webs (networks of feeding links between species) have been used for decades to summarize the structure of ecological communities \citep{Martinez2000,earlierwork}.
+Comparisons of community structure around the world and across ecosystem types 
 have revealed that the structure of biological networks is generally tightly
 constrained, particularly by relationships between species richness or connectance
-(the proportion of possible links that are realized)
-which suggest scale-depence (Riede et al., 2010), which here refers to the
+(the proportion of possible links that are realized) and other food-web properties \citep{Riede2010}.
+These relationships have suggested that the structure of food webs is highly scale-depended which here refers to the
 strong dependence of network properties, such as fractions of
 species in different trophic groups, on the species richness or connectance of
-the networks. Therefore it is likely that much variation in network structure
+the networks \citep{Riede2010}. Therefore it is likely that much variation in network structure
 can be explained by variation in these two properties (Vermaat et al., 2009).
 
 
-Species-richness in turn depends strongly on latitude via effects of
-productivity and temperature (Brown et al., 2004, Cardillo et al., 2005,
-Thompson & Townsend, 2005, Davies et al., 2007).  The strength and generality
-of this pattern has generated a range of explanatory models (Whittaker et al.,
-2001). Higher primary productivity has been shown emprically to affect species
-richness at small and large scales  (Thompson & Townsend, 2005; Apellaniz
-\emph{et al.}, 2012). Mechanistically, higher solar input (and therefor
-higher productivity) may cause higher species richness (Brown et al., 2004,
-Davies et al., 2007) by broadening the niche space, lessening competition
-(Davies et al., 2007). Some have proposed that species' niches are generally
-narrower in the tropics, and this greater specialization is what permits
-higher species richness. This hypothesis is only equivocally supported
-(Vazquez & Stevens, 2004) but even if niche sizes are similar at all latitudes
-an increase in productivity, and by extension niche space, would be expected
-to reduce competition and permit diversification. Adaptive radiation in the
-tropics may also be facilitated (Cardillo et al., 2005) by the greater genetic
-diversity btween populations, as well as between species, that has been
-observed (Eo \emph{et al.}, 2008).
+As changes in species richness and connectance can explain much of the variation in network structure \citep{Vermaat2009}, 
+it follows that drivers of change in these two properties may also affect other properties. Species richness in particular 
+exhibits a strong latitudinal gradient, believed to be driven by varying productivity and temperature at different latitudes 
+\citep{Brown2004,Cardillo2005,Thompson2005,Davies2007}. An alternative view
+posits that species' niches are narrower in the tropics, 
+reducing competition and permitting greater adaptive radiation \citep{}. Although this view is only equivocally supported 
+\citep{Vazquez2004}, it is also possible that the higher productivity of the tropics \citep{Brown2004} may result in a broader 
+niche space \citep{Davies2007} which could also allow greater diversification even if niche sizes are globally similar.
 
 
-In addition to these potential effects of the changing magnitude of solar
-radiation and productivity across latitudes,   both temperature (Field et al.,
-1998) and primary productivity (Paine, 1966, Huston & Wolverton, 2011) are
-more \emph{stable} at the equator than at higher latitudes. This lack of
-seasonality in temperature and productivity is associated with lower
-extinction rates, and therefore is also a potential mechanism for greater
-species richness at lower latitudes (Krug \emph{et al.}, 2009). Less seasonality may also lead to greater specialization, as species do not need to switch food sources througout the year.[but can I support it?]
+In addition to species richness, there are general and robust latitudinal gradients in metabolic rates \citep{Stegen2012} and 
+rates and intensities of species interactions \citep{Marquis2005,Schemske2009}. These gradients, together with the strength and 
+generality of associations between biological processes and environmental variables, suggest that variation in network structure 
+may also be explained by ecological gradients \citep{Baiser2011}. Importantly, some of these gradients may act directly 
+on food-web properties such that they change over latitude beyond the expected changes due to changing species richness. For 
+example, if niche sizes vary with latitude then generality (mean number of prey per predator), vulnerability (mean number of 
+predators per prey), and mean number of links per species may all vary with latitude beyond variation due to changes in species
+richness.
 
 
+%% Useful for discussion:
+% These explanations for latitudinal gradients in species richness  suggest that
+% other network properties should also vary over temperature and/or
+% productivity, independent of species richness. Temperature affects the rate at
+% which chemical reactions proceed, including metabolic reactions in organisms
+% (Gillooly et al., 2001). A faster metabolism implies greater energy demands on
+% an organism and therefore higher rates of herbivory, predation, and
+% decomposition (Brown et al., 2004, Schemske et al., 2009). This greater
+% activity tends to result in interactions with more species (Waser et al.,
+% 1996, Bascompte & Jordano, 2007), increasing the number of links per species
+% and connectance at higher temperatures. Reduced competition due to either
+% narrower niches or a broader niche space (Davies et al., 2007) could also lead
+% to higher numbers of links per species and connectance, as species are free to
+% pursue links with many partners rather than being restricted to the most
+% profitable links. Specialist consumers tend to be more efficient at ingesting
+% and assimilating prey (Montoya et al., 2006), suggesting that specialization
+% is also likely at higher latitudes where productivity is low for much of the
+% year (Field et al., 1998). Higher productivity is expected to result in longer
+% food chains by relaxing the upper limits set by the inefficiency of energy
+% transfer across trophic levels (Brown et al., 2004). This should produce a web
+% with a lower proportion of basal species and more intermediate and top
+% predators in food webs. Bitrophic networks should also show more higher-
+% trophic-level and animal species, since they should experience the same
+% relaxed productivity in their feeding links, even if those links are not
+% explicitly considered in the networks used here.
 
-Due to the strength and generality of associations between biological
-processes and environmental variables, variation in network structure may also
-be explained by ecological gradients (Baiser et al., 2011). Predictable
-changes in species richness (Davies et al., 2007, Schemske et al., 2009),
-metabolic rates (Stegen et al., 2012), and rates and intensities of species
-interactions (Marquis, 2005, Schemske et al., 2009) along latitudinal
-gradients are among the most general and robust ecological patterns that have
-been identified.
-
-
-
-
-These explanations for latitudinal gradients in species richness  suggest that
-other network properties should also vary over temperature and/or
-productivity, independent of species richness. Temperature affects the rate at
-which chemical reactions proceed, including metabolic reactions in organisms
-(Gillooly et al., 2001). A faster metabolism implies greater energy demands on
-an organism and therefore higher rates of herbivory, predation, and
-decomposition (Brown et al., 2004, Schemske et al., 2009). This greater
-activity tends to result in interactions with more species (Waser et al.,
-1996, Bascompte & Jordano, 2007), increasing the number of links per species
-and connectance at higher temperatures. Reduced competition due to either
-narrower niches or a broader niche space (Davies et al., 2007) could also lead
-to higher numbers of links per species and connectance, as species are free to
-pursue links with many partners rather than being restricted to the most
-profitable links. Specialist consumers tend to be more efficient at ingesting
-and assimilating prey (Montoya et al., 2006), suggesting that specialization
-is also likely at higher latitudes where productivity is low for much of the
-year (Field et al., 1998). Higher productivity is expected to result in longer
-food chains by relaxing the upper limits set by the inefficiency of energy
-transfer across trophic levels (Brown et al., 2004). This should produce a web
-with a lower proportion of basal species and more intermediate and top
-predators in food webs. Bitrophic networks should also show more higher-
-trophic-level and animal species, since they should experience the same
-relaxed productivity in their feeding links, even if those links are not
-explicitly considered in the networks used here.
-
-
-To test whether variability in the network structure of ecological networks
-can be reduced to a few ecologically meaningful dimensions, and whether these
-dimensions are associated with potential environmental drivers, we preformed
-principal components analyses on 97 multitrophic predator-prey (n=52) and
-bitrophic parasite-host and mutualist networks (n=45) that range across a
-latitudinal gradient from 52.35°S to 81.82°N. We ran additional analyses for
-network properties that had been standardized for differences in species
-richness and connectance to examine scale-independent variation in network
-structure. We hypothesized that, in the analyses of scale-dependent network
-properties, species richness and connectance would explain much of the
-variation in network structure and that, because of this, temperature and
-productivity would be strongly associated with major axes of variation.
-Networks were expected to contain more species at higher trophic levels and
-feature higher connectance and links per species closer to the equator. We
-expected these trends to continue in the standardized network properties, as
-many of the explanations for increasing species richness at lower latitudes
-should also affect other network properties directly.
+Here we examine the effect of latitude on food-web structure by examining
+its impact on the scaling relationships of food-web properties with species
+richness and connectance. We expect that food-web structure will scale strongly
+with both species richness and connectance, and that the scaling relationships
+of properties measuring degree of specialization (i.e., generality, vulnerability, and
+links per species) will change over latitude. The scaling relationships of other
+properties (for example the proportions of top, intermediate, and basal resources) may
+be less affected by latitude.
 
 
 \section*{Methods}
@@ -111,25 +74,26 @@ We compiled a list of XX published food webs from [database details]. We
 included only food webs with a clearly defined study site that did not cover
 more than 10 degrees of latitude. Source and sink webs were also excluded as
 they are likely to have different food web properties than webs attempting to
-describe the entire community of a site. Also excluded were webs with poor
-resolution, describing highly modified or artificial ecosystems, or including
-humans.
+describe the entire community of a site. We also excluded webs describing highly
+modified or artificial ecosystems, and those including humans, as these could also
+have different structural properties to more ``natural'' food webs.
 
 
 We then converted each web to a trophic-species version by aggregating species
 with the same predators and prey. This helps to reduce variation in resolution
 across different studies. We then classified them both according to latitude
-and ecosystem type (terrestrial, freshwater, marine, estuary). We analysed XX
+and ecosystem type (terrestrial, [[stream, lake (lump?)]], marine, estuary). We analysed XX
 food-web properties for each web (Table 1).
 
 
-In our analysis, we first addressed whether the diversity or complexity of our
-published food webs varies over latitude (expressed as degrees away from the
+In our analysis, we first addressed whether the diversity (S) or complexity (C, L/S) of our
+published food webs varied over latitude (expressed as degrees away from the
 equator regardless of direction) or factorial ecosystem type. We also included
 year published as in independent variable to control for changing standards
 for food web studies over time. We fit independent generalized linear models
 for each of the logarithms of species richness, mean links per species, and
-connectance.
+connectance. These models were used to determine any latitudinal gradients in the food-web
+properties known to drive scaling relationships with other properties.
 
 
 Second, we analysed the scaling relationships between the remaining XX food-
@@ -139,19 +103,15 @@ and latitude, ecosystem type, and their interactions with connectance and
 species richness as independent variables. (parameter ~
 latitude*ecotype*(log10(connectance)+log10(species richness))). For food web
 properties that were proportions, we used general linear models with a
-binomial distribution. All other food web properties were log-transformed.
+binomial error distribution. All other food web properties were log-transformed with a normal error distribution.
 When modelling the standard deviation of generality, this
 required the removal of 5 webs, all with 12 or fewer species, which had
 standard deviations of generality of 0. These full models were then
 systematically reduced using R function dredge \cite{} in package MuMIn
 \cite{} in order to isolate the model with the highest AIC. These best-fitting models were 
-then examined in detail.
-
-
-Significant slopes in the reduced models were taken to indicate scaling
-relationships with species richness or connectance. Significant interactions
-indicated differences in the scaling relationships over latitude. Different
-intercepts indicated differences between ecosystem types.
+then examined in detail. Significant slopes over species-richness or connectance were taken to indicate scaling
+relationships. Significant interactions with latitude indicated that these scaling relationships varied from the tropics
+to the poles. Different intercepts indicated differences between ecosystem types.
 
 
 \section*{Results}
