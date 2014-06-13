@@ -138,7 +138,7 @@ def plotter(fw_prop):
       linedata[webtype].append(point)
 
   
-  grace=Grace(colors=ColorBrewerScheme('Spectral'))
+  grace=Grace(colors=ColorBrewerScheme('Paired'))
   graph=grace.add_graph()
 
   for webtype in linedata:
@@ -149,26 +149,27 @@ def plotter(fw_prop):
     data=graph.add_dataset(linedata[webtype],type='xy')
     data.symbol.shape=0
     if webtype=='marine':
-      colo=2
+      colo=3
     elif webtype=='stream':
-      colo=4
+      colo=11
     elif webtype=='estuary':
-      colo=6
+      colo=9
     elif webtype=='lake':
-      colo=8
+      colo=7
     else:
-      colo=10
+      colo=5
     data.legend=webtype
     data.line.configure(color=colo,linewidth=2)
 
     really=graph.add_dataset(realpoints,type='xy')
     really.line.type=0
-    really.symbol.color=colo
+    really.symbol.configure(color=colo,fill_color=colo)
 
 
   graph.world.xmax=90
   graph.world.xmin=0
   graph.world.ymax=int(sorted(realdata['marine'][fw_prop])[-1])+2
+  graph.legend.configure(loc=(1.1,.5),loctype='view')
 
   graph.xaxis.label.configure(text='Degrees from equator',char_size=1)
   graph.xaxis.tick.configure(major=10,major_size=1,minor_size=.7)

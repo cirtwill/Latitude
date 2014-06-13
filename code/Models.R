@@ -60,6 +60,7 @@ x98_scale=glm(X98~(Latitude*Ecotype)*(log10(Connectance)+log10(Species))+(1|Year
 mean_SWTL_dredged=glm(log10(mean_SWTL)~(Latitude+Ecotype)*log10(Species)+(1|Year_pub))
 max_SWTL_dredged=glm(log10(max_SWTL)~Latitude*log10(Species)+Ecotype*log10(Connectance)+(1|Year_pub))
 int_dredged=glm(pInt~Latitude*(log10(Connectance)+log10(Species))+(1|Year_pub),family='binomial')
+
 gen_dredged=glm(log10(Gen)~(Latitude*log10(Species)+Ecotype+Ecotype:log10(Species)+log10(Connectance))+(1|Year_pub))
 
 vulSD_dredged=glm(log10(VulSD)~Latitude+Ecotype+log10(Connectance)+log10(Species)+(1|Year_pub))
