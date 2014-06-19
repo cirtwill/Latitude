@@ -45,12 +45,15 @@ omni_scale=glm(pOmni~(Latitude*Ecotype2)*(log10(Connectance)+log10(Species))+(1|
 mean_SWTL_dredged=glm(log10(mean_SWTL)~(Latitude+Ecotype2)*log10(Species)+(1|Year_pub))
 gen_dredged=glm(log10(Gen)~(Latitude*log10(Species)+Ecotype2+Ecotype2:log10(Species)+log10(Connectance))+(1|Year_pub))
 
-int_dredged=glm(pInt~Latitude*(log10(Connectance)+log10(Species))+(1|Year_pub),family='binomial') #No sig. scaling.
-
+#NS
 vul_dredged=glm(log10(Vul)~Latitude*log10(Species)+log10(Connectance)+(1|Year_pub))
+int_dredged=glm(pInt~Latitude*(log10(Connectance)+log10(Species))+(1|Year_pub),family='binomial') #No sig. scaling.
 vulSD_dredged=glm(log10(VulSD)~Latitude+log10(Species)+log10(Connectance)+Ecotype2+(1|Year_pub))
+
+#Lat sig but doesn't affect scaling.
 path_dredged=glm(log10(Path)~Latitude+Ecotype2*log10(Connectance)+(1|Year_pub))
 
+#Ecoype only
 linkSD_dredged=glm(log10(LinkSD)~Ecotype2*log10(Connectance)+log10(Species)+(1|Year_pub))
 
 genSD_dredged=with(Gendata,glm(GenSD~log10(Connectance)+log10(Species)+(1|Year_pub)))
