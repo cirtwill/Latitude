@@ -248,14 +248,19 @@ def websorter(metafile,directory,motifdir):
       webfile='WEB'+str(webno)
       uselist.append(webfile)
       ecotype=items[3]
+      if ecotype in ['lake','stream']:
+        ecotype2='freshwater'
+      else:
+        ecotype2=ecotype
       year=items[6]
       latitude=items[10]
-      info=[ecotype,year,latitude]
+      info=[ecotype,ecotype2,year,latitude]
       infodict[webfile]=info
   f.close()
 
   header=['Web',
           'Ecotype',
+          'Ecotype2',
           'Year_pub',
           'Latitude',
           'Species',
