@@ -184,12 +184,12 @@ level did not include a connectance term. The increase in mean trophic level wit
 estuarine food webs ($\beta$=0.633, $p$<0.001) and lower for freshwater ($\beta$=0.259, $p$=0.002), terrestrial 
 ($\beta$=0.234, $p$=0.005), and marine food webs ($\beta$=0.152, $p$<0.001). For food webs with high species richness, 
 trophic level declined with latitude while trophic level in species-poor webs showed the opposite trend 
-(Fig. \ref{TLfig}). The number of species for which the slope of trophic level over latitude changed from negative to 
+(Fig. \ref{TL_all}). The number of species for which the slope of trophic level over latitude changed from negative to 
 positive varied across ecosystem types.
 
 
 Generality showed the opposite trend, increasing with latitude for webs with high species richness and decreasing with
-latitude for species-poor webs (Fig. \ref{genfig}).
+latitude for species-poor webs (Fig. \ref{gen_all}).
 This increase was driven by a positive interaction between latitude and species richness ($\beta$=0.014, $p$=0.002), as 
 the main effect of latitude was negative ($\beta$=-0.018, $p$=0.002). Generality also decreased with species richness 
 for estuarine food webs ($\beta$=-0.150, $p$=0.002) but increased with species richness for freshwater, terrestrial, 
@@ -273,6 +273,7 @@ Path & Path length & Characteristic path length, the mean shortest food chain be
 \hline
 \end{tabular}
 \end{table}
+\end{center}
 % NODF & Average Nestedness & Degree to which interactions among specialists are subsets or interactions among generalists \\
 % Chain & Chain length & Mean food chain length \\
 % Cluster & Clustering coefficient & Mean clustering coefficient (probability that two taxa linked to the same taxon are also linked) \\
@@ -283,22 +284,39 @@ Path & Path length & Characteristic path length, the mean shortest food chain be
 \label{symbols}
 \begin{tabular}{c c c c c c c}
 \hline
- & \multicolumn{2}{S} & \multicolumn{2}{C} & \multicolumn{2}{LS} \\
+ & \multicolumn{2}{c}{S} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{LS} \\
 \hline
 Effect & Estimate & $p$-value & Estimate & $p$-value & Estimate & $p$-value \\
 \hline
-Latitude 			& 0.002  & 0.870  & -0.006 & 0.460  & -0.004 & 0.6115 \\ 
-Estuary 			& 1.078  & 0.018  & -0.809 & 0.008  & 0.269 & 0.363 \\
-Lake 				& 1.351  & 0.002  & -1.069 & <0.001 & 0.282 & 0.315 \\
-Marine 				& 1.127  & <0.001 & -0.761 & <0.001 & 0.366 & 0.012 \\
-Stream 				& 1.319  & <0.001 & -1.260 & <0.001 & 
-Terrestrial 		& 1.097  & <0.001 & -0.919 & <0.001 & 
-Latitude:Lake 		& -0.004 & 0.796  & 0.011  & 0.314  & 
-Latitude:Marine 	& 0.003  & 0.842  & 0.001  & 0.896  & 
-Latitude:Stream 	& 0.004  & 0.780  & 0.009  & 0.310  & 
-Latitude:Terrestrial & 0.001 & 0.920  & 0.003  & 0.712  & 
+Latitude 			& 0.002  & 0.873  & -0.006 & 0.480  & -0.004 & 0.613 \\ 
+Estuary 			& 1.078  & 0.022  & -0.809 & 0.012  & 0.269 & 0.362 \\
+Freshwater 			& 1.347  & \textless0.001  & -1.229 & \textless0.001 & 0.118 & 0.394 \\
+Marine 				& 1.127  & \textless0.001 & -0.761 & \textless0.001 & 0.366 & 0.012 \\
+Terrestrial 		& 1.097  & \textless0.001 & -0.919 & \textless0.001 & 0.178 & 0.354\\
+Latitude:Freshwater & 0.002  & 0.902  & 0.010  & 0.299  & 0.012 & 0.194\\
+Latitude:Marine 	& 0.003  & 0.847  & 0.001  & 0.902  & 0.004 & 0.662 \\
+Latitude:Terrestrial & 0.001 & 0.923  & 0.003  & 0.724  & 0.005 & 0.597 \\
+\end{tabular}
+\end{table}
+\end{center}
 
 \newpage
+
+\section*{Figures}
+
+\begin{figure}[!h]
+\label{gen_all}
+\includegraphics[width=.9\textwidth]{Figures/gen_all.eps}
+\caption{Relationships between mean generality and latitude for food webs with moderate connectance (0.1, mean of empirical webs) at high (S=109, solid line), moderate (S=36, dashed line), and low (S=5, dotted line) species richness.}
+\end{figure}
+
+
+\begin{figure}[!h]
+\label{TL_all}
+\includegraphics[width=.9\textwidth]{Figures/TL_all.eps}
+\caption{Relationships between mean trophic level and latitude for food webs with moderate connectance (0.1, mean of empirical webs) at high (S=109, solid line), moderate (S=36, dashed line), and low (S=5, dotted line) species richness.}
+\end{figure}
+
 
 \bibliographystyle{jae}%Compile with jae.bst style file
 \bibliography{noISN}
