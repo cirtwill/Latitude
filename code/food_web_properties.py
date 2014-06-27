@@ -7,8 +7,6 @@ from decimal import *
 from math import *
 import role_dictionary_maker as RD
 
-
-
 #For new .csv's, make lists.
 #For new lists, calculate properties.
 #For all webs, add site label to summary_properties.
@@ -17,13 +15,6 @@ import role_dictionary_maker as RD
 
 
 #Now you can re-run the analysis, then re-write the paper. Aren't you happy?
-
-
-
-
-
-#look up tools to build webs.
-
 
 def create_web(directory,item):
   predprey=set()
@@ -232,25 +223,6 @@ def websorter(metafile,directory,motifdir):
   roledictionary=RD.wrapper(motifdir)
   motifs=sorted(roledictionary['WEB197'].keys())
 
-  Ruzicka=['WEB320','WEB321','WEB322','WEB323','WEB324']
-  Fryer=['WEB33','WEB38','WEB39','WEB204']
-  Dexter=['WEB51','WEB110','WEB111','WEB112','WEB113']
-  Alcorlo_Pinol=['WEB334','WEB336']
-  Alcorlo_Muerta=['WEB335','WEB337']
-  Closs = ['WEB297','WEB298','WEB299','WEB300','WEB301','WEB302','WEB303','WEB304','WEB305','WEB306','WEB307','WEB308']
-  Parker_spring = ['WEB273','WEB275']
-  Parker_stream = ['WEB274','WEB276']
-  Kelleway_Gingham=['WEB327','WEB330']
-  Kelleway_Gwydir=['WEB328','WEB331']
-  Yanez=['WEB44','WEB57']
-  Erichsen=['WEB34','WEB206']
-  Minshall=['WEB35','WEB209']
-  Summerhayes=['WEB61','WEB62']
-  Walsh=['WEB14','WEB15','WEB36']
-
-  aggregators=[Ruzicka,Fryer,Dexter,Alcorlo_Muerta,Alcorlo_Pinol,Closs,Parker_stream,Parker_spring,Kelleway_Gwydir,Kelleway_Gingham,Erichsen,Minshall,Summerhayes,Walsh]
-  agglist=Ruzicka+Fryer+Dexter+Alcorlo_Pinol+Alcorlo_Muerta+Closs+Parker_spring+Parker_stream+Kelleway_Gingham+Kelleway_Gwydir+Erichsen+Minshall+Summerhayes+Walsh
-
   infodict={}
   uselist=[]
   f=open(metafile)
@@ -259,7 +231,7 @@ def websorter(metafile,directory,motifdir):
     newline=line.split('\n')[0]
     items=newline.split('*')
     if items[17][:3] in ['Use','use']:
-      webno=int(items[0])
+      webno=items[0]
       webfile='WEB'+str(webno)
       uselist.append(webfile)
       ecotype=items[3]
@@ -271,12 +243,15 @@ def websorter(metafile,directory,motifdir):
       latitude=items[10]
       info=[ecotype,ecotype2,year,latitude]
       infodict[webfile]=info
+      
   f.close()
 
   header=['Web',
           'Ecotype',
           'Ecotype2',
           'Year_pub',
+          'Humans',
+          'Site',
           'Latitude',
           'Species',
           'Links',
