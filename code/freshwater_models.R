@@ -1,5 +1,32 @@
 data=read.table('../mod_data/summary-properties.tsv',sep='\t',header=TRUE)
 
+###Binary codings for ecotypes
+
+data$Estuary=0
+data$Lake=0
+data$Marine=0
+data$Stream=0
+data$Terr=0
+
+for(i in 1:length(data$Ecotype)){
+  if(data$Ecotype[i]=='estuary'){
+    data$Estuary[i]=1  }}
+
+for(i in 1:length(data$Ecotype)){
+  if(data$Ecotype[i]=='lake'){
+    data$Lake[i]=1  }}
+
+for(i in 1:length(data$Ecotype)){
+  if(data$Ecotype[i]=='marine'){
+    data$Marine[i]=1  }}
+
+for(i in 1:length(data$Ecotype)){
+  if(data$Ecotype[i]=='stream'){
+    data$Stream[i]=1  }}
+
+for(i in 1:length(data$Ecotype)){
+  if(data$Ecotype[i]=='terrestrial'){
+    data$Terr[i]=1  }}
 
 ## Testing which is better for LS, log or nls:
 
@@ -15,13 +42,13 @@ y=data$LS
 
 
 LS_full=with(data,glm(log10(LS)~log10(Species)+log10(Species):Latitude+log10(Species):(Fresh+Marine+Terr)+log10(Species):Latitude:(Fresh+Marine+Terr)+Year_pub))
-LS_min=with(data,glm(log10(LS)~log10(Species)+log10(Species):Fresh+log10(Species):Marine+log10(Species):Latitude+log10(Species):Latitude:Fresh))
+LS_min=with(data,glm(log10(LS)~log10(Species)+log10(Species):Lake+log10(Species):Stream+log10(Species):Marine+log10(Species):Latitude+log10(Species):Latitude:Lake+log10(Species):Latitude:Stream)
 
-Gen_full=with(data,glm(log10(Gen)~log10(Species)+log10(Species):Latitude+log10(Species):(Fresh+Marine+Terr)+log10(Species):Latitude:(Fresh+Marine+Terr)+Year_pub))
-Gen_min=with(data,glm(log10(Gen)~log10(Species)+log10(Species):Fresh+log10(Species):Latitude+log10(Species):Latitude:Fresh+Year_pub))
+Gen_full=with(data,glm(log10(Gen)~log10(Species)+log10(Species):Latitude+log10(Species):(Lake+Stream+Marine+Terr)+log10(Species):Latitude:(Lake+Stream+Marine+Terr)+Year_pub))
+Gen_min=with(data,glm(log10(Gen)~log10(Species)+log10(Species):(Lake+Stream)+log10(Species):Latitude+log10(Species):Latitude:(Lake+Stream)+Year_pub))
 
-Vul_full=with(data,glm(log10(Vul)~log10(Species)+log10(Species):Latitude+log10(Species):(Fresh+Marine+Terr)+log10(Species):Latitude:(Fresh+Marine+Terr)+Year_pub))
-Vul_min=with(data,glm(log10(Vul)~log10(Species)+log10(Species):Fresh+log10(Species):Marine+log10(Species):Latitude+log10(Species):Latitude:Fresh))
+Vul_full=with(data,glm(log10(Vul)~log10(Species)+log10(Species):Latitude+log10(Species):(Lake+Stream+Marine+Terr)+log10(Species):Latitude:(Lake+Stream+Marine+Terr)+Year_pub))
+Vul_min=with(data,glm(log10(Vul)~log10(Species)+log10(Species):(Lake+Stream)+log10(Species):Marine+log10(Species):Latitude+log10(Species):Latitude:(Lake+Stream)))
 
 
 
