@@ -54,6 +54,28 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 \vspace{0.4 in}
 
 
+I want to know: Does latitude affect scaling of generality with species richness? 
+
+Considerations: Data quality (S<5 for some webs), model (log, nls, nlme)
+
+
+2) Add more webs (Riede 2010).
+    - pred-prey components of 7 parasite estuary webs
+    - Baird\&Ulanowicz - will need to be entered by hand (old pdf) - good quant web for concomitant project
+    - Heymans - look carefully at which webs to include, aggregate
+    - 
+3) Gen probably doesn't need to include connectance (LS doesn't, plus I don't actually care)
+5) LS, Gen (to compare more directly w mutualists) first. 
+
+
+
+
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -62,7 +84,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 
 \section*{Introduction}
 
-Food webs (networks of feeding links between species) have been used for decades to summarize the structure of ecological communities \citep{Martinez2000,earlierwork}.
+Food webs (networks of feeding links between species) have been used for decades to summarize the structure of ecological communities \citep{Williams2000,earlierwork}.
 Comparisons of community structure around the world and across ecosystem types 
 have revealed that the structure of biological networks is generally tightly
 constrained, particularly by relationships between species richness or connectance
@@ -76,7 +98,7 @@ the networks \citep{Vermaat2009,Riede2010}.
 As changes in species richness and connectance can explain much of the variation in network structure \citep{Vermaat2009}, 
 it follows that drivers of change in these two properties may also affect other properties. Species richness in particular 
 exhibits a strong latitudinal gradient, believed to be driven by varying productivity and temperature at different latitudes 
-\citep{Brown2004,Cardillo2005,Thompson2005,Davies2007}. An alternative view
+\citep{Hawkins2004,Cardillo2005,Thompson2005,Davies2007}. An alternative view
 posits that species' niches are narrower in the tropics, 
 reducing competition and permitting greater adaptive radiation \citep{}. Although this view is only equivocally supported 
 \citep{Vazquez2004}, it is also possible that the higher productivity of the tropics \citep{Brown2004} may result in a broader 
@@ -86,7 +108,7 @@ niche space \citep{Davies2007} which could also allow greater diversification ev
 In addition to species richness, there are general and robust latitudinal gradients in metabolic rates \citep{Stegen2012} and 
 rates and intensities of species interactions \citep{Marquis2005,Schemske2009}. These gradients, together with the strength and 
 generality of associations between biological processes and environmental variables, suggest that variation in network structure 
-may also be explained by ecological gradients \citep{Baiser2011}. Importantly, some of these gradients may act directly 
+may also be explained by ecological gradients \citep{Baiser2012}. Importantly, some of these gradients may act directly 
 on food-web properties such that they change over latitude beyond the expected changes due to changing species richness. For 
 example, if niche sizes vary with latitude then mean numbers of predators, prey, and links per species may also vary with 
 latitude. Some of this variation may be explained by variation in species richness, but as niche sizes are believed to be 
@@ -106,11 +128,30 @@ be less affected by latitude.
 
 \section*{Methods}
 
-We compiled a list of 89 published food webs from the University of Canberra's GlobalWeb database (www.globalwebdb.com) \citep{}. We
-included only food webs with a clearly defined study site that did not cover
-more than 10 degrees of latitude. Source and sink webs were also excluded as
-they are likely to have different food web properties than webs attempting to
-describe the entire community of a site. We also excluded webs describing highly
+We compiled a list of 345 food webs from the University of Canberra's GlobalWeb database (www.globalwebdb.com) 
+\citep{}. Of these, 302 webs had accessible original sources. 
+18 source and sink webs, which describe links to or from a focal taxon, were excluded as they are likely 
+to have different food web properties than webs attempting to
+describe the entire community of a site \citep{Williams2002}, as were 8 plant-pollinator, 34 host-parasitoid, and 2 
+competition-focused networks
+\citep{Riede2010}. Of the remaining 230 food webs, we excluded two paleowebs (comprised of probable interactions 
+between extinct or prehistoric species) \citep{Simenstad1978} and five ``generalized schemes'' 
+\citep{Nybakken1982,Percival1929,Swan1961,Landry1977,Petipa1979,Harrison1963}, as 
+we wished to measure
+directly observed rather than inferred interactions. We further excluded a food web aggregated from several sites in 
+the Pacific Ocean which were widely spread in both latitude and longitude and at markedly different successional stages
+\citep{Vinogradov1978}, such that it is not clear which site the food web represents. [[[SI table of rejected webs, and why]]] 
+[Explain Thompson, Preston, Amundsen separate from Dunne.]
+This left 223 food webs with widely varying levels of taxonomic resolution, 11 of which contained humans. 
+We supplemented these networks with the free-living components of eight high-resolution estuarine food webs \citep{Dunne2013,Thompson2005} and two lake food web \citep{Preston2012,Amundsen2013} that 
+included parasites, as well as XX webs that have been used in previous studies of food-web scaling. 
+
+
+Where the latitude of a study site was not 
+explicitly stated, latitude was inferred based on Google Earth \citep{} coordinates of the described site.
+
+
+. We also excluded webs describing highly
 modified or artificial ecosystems, and those including humans, as these could also
 have different structural properties to more ``natural'' food webs.
 Where several food webs were constructed from the same study site, without obvious boundaries between ``sites'' (e.g. three food

@@ -1,0 +1,48 @@
+# R files #
+######################
+*.Rdata
+*.Rout
+.Rdata
+
+# Image files *
+####################
+*.pdf
+*.dvi
+*.ps
+*.log
+*.out
+*.aux
+*.blg
+*.bbl
+*.tex.bak
+*.nav
+*.snm
+*.toc
+manuscript/*.png
+manuscript/*.db
+manuscript/Zapallar
+manuscript/*.pdf
+manuscript/*.dvi
+manuscript/*.ps
+manuscript/*.log
+manuscript/*.out
+manuscript/*.aux
+manuscript/*.blg
+
+# Talk figures junk
+########################
+manuscript/talkfigs/*.jpg
+manuscript/talkfigs/*.png
+manuscript/talkfigs/*.nav
+manuscript/talkfigs/*.snm
+manuscript/talkfigs/*.toc
+
+# Editor generated files #
+##########################
+*~
+*.swp
+
+# Compiled source #
+###################
+*.pyc
+

@@ -7,6 +7,21 @@ from decimal import *
 from math import *
 import role_dictionary_maker as RD
 
+
+
+#For new .csv's, make lists.
+#For new lists, calculate properties.
+#For all webs, add site label to summary_properties.
+#For FL-only webs, make a check.
+#For new webs, get latitudes, sitenames.
+
+
+#Now you can re-run the analysis, then re-write the paper. Aren't you happy?
+
+
+
+
+
 #look up tools to build webs.
 
 
