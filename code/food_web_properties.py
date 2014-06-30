@@ -7,7 +7,6 @@ from decimal import *
 from math import *
 import role_dictionary_maker as RD
 
-#For new .csv's, make lists.
 #For new lists, calculate properties.
 #For all webs, add site label to summary_properties.
 #For FL-only webs, make a check.
@@ -97,37 +96,6 @@ def clustering(directory,item):
   Clus=float(sum(ratios)/len(ratios))
   return Clus
 
-def trophic_levels(G):
-  N=len(G.nodes())
-  L=len(G.edges())
-  LS=Decimal(L)/Decimal(N)
-
-  TLdict={}
-  preydict={}
-
-  for node in G.nodes():
-    prey=G.successors(node)
-    if prey==[]:
-      TLdict[node]=set([1])
-    preydict[node]=prey
-
-  for i in range(0,10):
-    for node in preydict:
-      if node not in TLdict:
-        for prey in preydict[node]:
-          if prey in TLdict:
-            try:
-              TLdict[node].add(TLdict[prey]+1)
-            except KeyError:
-              try:
-                TLdict[node]=set([TLdict[prey]+1])
-              except TypeError:
-                TLdict[node]=set([sorted(TLdict[prey])[0]+1])
-            except TypeError:
-              TLdict[node].add(sorted(TLdict[prey])[0]+1)
-
-  return TLdict
-
 def food_web_properties(directory,item):
   Clus=clustering(directory,item)
 
@@ -136,20 +104,6 @@ def food_web_properties(directory,item):
   L=len(G.edges())
   LS=Decimal(L)/Decimal(N)
   C=Decimal(L)/Decimal(N**2)
-
-  TLdict=trophic_levels(G)
-
-  basal=set()
-  herb=set()
-  omni=set()
-
-  for species in TLdict:
-    if TLdict[species]==1:
-      basal.add(species)
-    elif TLdict[species]==2:
-      herb.add(species)
-    if len(TLdict[species])!=1:
-      omni.add(species)
 
   links=[]
   number_predators=[]
@@ -163,17 +117,6 @@ def food_web_properties(directory,item):
     prey=len(G.successors(node))
     number_prey.append(prey)
     links.append(pred+prey)
-    if prey!=0:
-      if pred==0:
-        top.add(node)
-      else:
-        inter.add(node)
-
-  pBas=Decimal(len(basal))/Decimal(N)
-  pHerb=Decimal(len(herb))/Decimal(N)
-  pInt=Decimal(len(inter))/Decimal(N)
-  pTop=Decimal(len(top))/Decimal(N)
-  pOmni=Decimal(len(omni))/Decimal(N)
 
   nonzeroprey=[]
   for preycount in number_prey:
@@ -207,21 +150,14 @@ def food_web_properties(directory,item):
     print item, 'not connected'
     Path=sum(paths)/len(paths)
 
-  SWTLdict={}
-  for species in TLdict:
-    SWTLdict[species]=sorted(TLdict[species])[0]
-  max_SWTL=sorted(SWTLdict.values())[-1]
-  mean_SWTL=Decimal(sum(SWTLdict.values()))/Decimal(len(SWTLdict.values()))
-
   stroutput=[]
-  outputs = [N,L,C,LS,LinkSD,Gen,GenSD,Vul,VulSD,mean_SWTL,max_SWTL,Path,Clus,pBas,pInt,pTop,pHerb,pOmni] 
+  outputs = [N,L,C,LS,LinkSD,Gen,GenSD,Vul,VulSD,Path,Clus] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
 
 def websorter(metafile,directory,motifdir):
   roledictionary=RD.wrapper(motifdir)
-  motifs=sorted(roledictionary['WEB197'].keys())
 
   infodict={}
   uselist=[]
@@ -246,6 +182,11 @@ def websorter(metafile,directory,motifdir):
       
   f.close()
 
+  print uselist
+  sys.exit()
+
+
+
   header=['Web',
           'Ecotype',
           'Ecotype2',
@@ -262,51 +203,22 @@ def websorter(metafile,directory,motifdir):
           'GenSD',
           'Vul',
           'VulSD',
-          'mean_SWTL',
-          'max_SWTL',
           'Path',
-          'Clus',
-          'pBas',
-          'pInt',
-          'pTop',
-          'pHerb',
-          'pOmni']
-  header=header+motifs
+          'Clus']
+  header=header
 
   outfile=open('../mod_data/summary-properties.tsv','w')
   outfile.write('\t'.join(header))
   outfile.write('\n')
 
   for item in uselist:
-    if item not in agglist:
-      outputs=food_web_properties(directory,item)
-      info=infodict[item]
-      outfile.write(item+'\t')
-      outfile.write('\t'.join(info))
-      outfile.write('\t')
-      outfile.write('\t'.join(outputs))
-      for motif in motifs:
-        outfile.write('\t')
-        outfile.write(roledictionary[item][motif])
-      outfile.write('\n')
-    else:
-      pass
-
-  for fillist in aggregators:
-    for web in fillist:
-      code=int(web[3:])+1000
-      webcode='WEB'+str(code)
-      if webcode in os.listdir(directory):
-        outputs=food_web_properties(directory,webcode)
-        info=infodict[web]
-        outfile.write(web+'\t')
-        outfile.write('\t'.join(info))
-        outfile.write('\t')
-        outfile.write('\t'.join(outputs))
-        for motif in motifs:
-          outfile.write('\t')
-          outfile.write(roledictionary[item][motif])
-        outfile.write('\n')
+    outputs=food_web_properties(directory,item)
+    info=infodict[item]
+    outfile.write(item+'\t')
+    outfile.write('\t'.join(info))
+    outfile.write('\t')
+    outfile.write('\t'.join(outputs))
+    outfile.write('\n')
 
   outfile.close()
            # extfile.write('\t'.join(map(str,[eval(item) for item in extheader])))

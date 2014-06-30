@@ -22,9 +22,11 @@ def create_predprey_list(webfile):
         item = int(item)
       except:
         predators = row
-  
+
   predpreydict={}
   specieslist=set()
+
+  print webfile
 
   for item in rowdict[predators]:
     specieslist.add(item)
@@ -37,7 +39,7 @@ def create_predprey_list(webfile):
           if rowdict[row][position]!='0':
             preylist.append(row)
         except:
-          print webfile, rowdict[predators][position]
+          print webfile, rowdict[predators][position], 'error'
     predpreydict[item]=preylist
 
   numberdict={}
@@ -46,14 +48,17 @@ def create_predprey_list(webfile):
     numberdict[species]=i
     i=i+1
 
-  webname=re.findall(r'(WEB\w+)',webfile)[0]
+  try:
+    webname=re.findall(r'(WEB\w+)',webfile)[0]
+  except:
+    webname='Carpinteria2006' 
 
-  decodefile=open('Food-web-database/species-keys/all-webs/'+webname,'w')
+  decodefile=open('../mod_data/species-keys/all-webs/'+webname,'w')
   for species in specieslist:
     decodefile.write(species+'\t'+str(numberdict[species])+'\n')
   decodefile.close()  
 
-  g=open('Food-web-database/pred-prey-lists-to-use/'+webname,'w')
+  g=open('../mod_data/lists/pred-prey-lists-to-use/'+webname,'w')
   for pred in rowdict[predators]:
     for prey in predpreydict[pred]:
       g.write(str(numberdict[pred])+'\t'+str(numberdict[prey])+'\n')
@@ -61,9 +66,10 @@ def create_predprey_list(webfile):
 
 def weblister(directory):
   filelist=os.listdir(directory)
-  if directory == '../Original_Database/Webs':
-    for fil in filelist not in os.listdir('../mod_data/lists/pred-prey-lists-to-use'):
-      create_predprey_list(directory+'/'+filename)
+  if directory == '../mod_data/webs':
+    for fil in filelist:
+      if fil not in os.listdir('../mod_data/lists/pred-prey-lists-to-use'):
+        create_predprey_list(directory+'/'+fil)
   else:
     for fil in filelist:
       if fil.split('.')[1]!='web':
@@ -88,8 +94,8 @@ def dupchecker(dirname):
 
 
 def main():
-  
-  for directory in ['../Original_Database/Webs','../Original_Database/Riede_Webs']:
+
+  for directory in ['../mod_data/webs']:
     weblister(directory)
 
   directory2 = '../mod_data/lists/pred-prey-lists-to-use'
