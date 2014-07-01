@@ -151,33 +151,44 @@ Where the latitude of a study site was not
 explicitly stated, latitude was inferred based on Google Earth \citep{} coordinates of the described site.
 
 
-. We also excluded webs describing highly
-modified or artificial ecosystems, and those including humans, as these could also
-have different structural properties to more ``natural'' food webs.
-Where several food webs were constructed from the same study site, without obvious boundaries between ``sites'' (e.g. three food
-webs from Lake Nyasa), we aggregated the webs to form one summary web for the site. That is, we included all species and
-interactions observed in any of the the original webs for that site in the summary web.
-Similarly, we aggregated food webs created for the same location in different years. Both types of
-aggregation should help to combat a known problem with food webs, namely that infrequent interactions and
-rare species tend to be under-represented.
-
-
 We then converted each web to a trophic-species version by aggregating species
 with the same predators and prey. This helps to reduce variation in resolution
-across different studies.
+across different studies \citep{Dunne2013}.
 We then classified them both according to latitude
-and ecosystem type (terrestrial, freshwater, marine, or estuary). We then calculated 17
-food-web properties for each web (Table \ref{symboltable}).
+and ecosystem type (terrestrial, lake, stream, marine, or estuary). For each web, we calculated the 
+number of species (S), number of links (L), mean
+number of links per species (Z = L/S), mean generality (G, number of prey per consumer), and 
+mean vulnerability (V, number of predators per prey).
 
 
-In our analysis, we first addressed whether the diversity (S) or complexity (C, L/S) of our
-published food webs varied over latitude (expressed as degrees away from the
-equator regardless of direction) or factorial ecosystem type. We also included
-year published as in independent variable to control for changing standards
-for food web studies over time. We fit independent generalized linear models
-for each of the logarithms of species richness, mean links per species, and
-connectance. These models were used to determine any latitudinal gradients in the food-web
-properties known to drive scaling relationships with other properties.
+We were then able to assess the scaling relationships between Z, G, and V with S. Note that although most other food web
+properties scale with both species richness and connectance ($C = L/S^{2}$), Z can be expressed in terms of S
+alone \citep{Riede2010}. This is due to the fact that both C and Z are calculated using the same information. Since G and V are
+closely related to Z, they should also be explored in terms of S rather than S and C.
+
+
+Given the scaling relationship
+
+\begin{equation}
+
+	p = \alpha S^{\beta} \,,
+
+\end{equation}
+
+two methods of analysis are possible. One may analyse the equation on the original scale of measurement, assuming that error is normally and additively distributed. Alternatively, one may log-transform the equation to linearize it. An additive error term in the log-transformed equation would therefore correspond to a log-normal, multiplicative error term in the original formulation. As both types of error are common in biological power laws \citep{Xiao}, and lacking strong intuition about the true error distribution in our data, we fit and compared both types of models.
+
+
+There are also two possible ways to examine the effect of latitude on food-web properties. Latitude might have an effect independent of scaling with species richness, or it might affect the scaling relationship itself. The former question is analogous to regressing the residuals of the property against latitude while the latter examines the effect of latitude on the exponent $\beta$. In order to assess both possibilites, we examined the model
+
+\begin{equation}
+
+p_{w} = \alpha S_{w}^{\beta + \gamma \Delta_{w}0} + \rho \Delta_{w} + \eta_{w} \.,
+
+\end{equation}
+
+where $\Delta_{w}$ is the absolute latitude of food web $w$.
+
+[Log or normal, based on Xiao.]
 
 
 Second, we analysed the scaling relationships between the remaining 14 food-
@@ -186,7 +197,7 @@ generalized linear models with a food-web parameter as the dependent variable
 and latitude, ecosystem type, and their interactions with connectance and
 species richness as independent variables. (parameter ~
 latitude*ecotype*(log10(connectance)+log10(species richness))). For food web
-properties that were proportions, we used general linear models with a
+properties that were proportions, we used general linear models with a11111111
 binomial error distribution. All other food web properties were log-transformed with a normal error distribution.
 When modelling the standard deviation of generality, this
 required the removal of 5 webs, all with 12 or fewer species, which had
