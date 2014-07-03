@@ -146,7 +146,10 @@ def food_web_properties(directory,item):
   except nx.exception.NetworkXError:
     for g in nx.connected_component_subgraphs(G.to_undirected()):
       paths=[]
-      paths.append(nx.average_shortest_path_length(g,weight=None))
+      try:
+        paths.append(nx.average_shortest_path_length(g,weight=None))
+      except:
+        paths.append(0)
     print item, 'not connected'
     Path=sum(paths)/len(paths)
 
@@ -168,7 +171,10 @@ def websorter(metafile,directory,motifdir):
     items=newline.split('*')
     if items[17][:3] in ['Use','use']:
       webno=items[0]
-      webfile='WEB'+str(webno)
+      try:
+        webfile='WEB'+str(int(webno))+'.web'
+      except:
+        webfile=webno+'.web'
       uselist.append(webfile)
       ecotype=items[3]
       if ecotype in ['lake','stream']:
@@ -179,13 +185,7 @@ def websorter(metafile,directory,motifdir):
       latitude=items[10]
       info=[ecotype,ecotype2,year,latitude]
       infodict[webfile]=info
-      
   f.close()
-
-  print uselist
-  sys.exit()
-
-
 
   header=['Web',
           'Ecotype',
