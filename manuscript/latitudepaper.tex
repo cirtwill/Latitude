@@ -53,29 +53,6 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
  
 \vspace{0.4 in}
 
-
-I want to know: Does latitude affect scaling of generality with species richness? 
-
-Considerations: Data quality (S<5 for some webs), model (log, nls, nlme)
-
-
-2) Add more webs (Riede 2010).
-    - pred-prey components of 7 parasite estuary webs
-    - Baird\&Ulanowicz - will need to be entered by hand (old pdf) - good quant web for concomitant project
-    - Heymans - look carefully at which webs to include, aggregate
-    - 
-3) Gen probably doesn't need to include connectance (LS doesn't, plus I don't actually care)
-5) LS, Gen (to compare more directly w mutualists) first. 
-
-
-
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -84,46 +61,59 @@ Considerations: Data quality (S<5 for some webs), model (log, nls, nlme)
 
 \section*{Introduction}
 
+%Food webs are a thing. (Mention gen, vul, LS.) %Food webs have strong scaling structure.
 Food webs (networks of feeding links between species) have been used for decades to summarize the structure of ecological communities \citep{Williams2000,earlierwork}.
-Comparisons of community structure around the world and across ecosystem types 
-have revealed that the structure of biological networks is generally tightly
-constrained, particularly by relationships between species richness or connectance
-(the proportion of possible links that are realized) and other food-web properties \citep{Riede2010}.
-These relationships have suggested that the structure of food webs is highly scale-dependent. 
-Specifically, network properties such as fractions of species in different trophic groups 
-have been shown to strongly depend on the species richness or connectance of
-the networks \citep{Vermaat2009,Riede2010}. 
+One of the earliest goals of constructing food webs was to measure the relationship between the species richness of
+a community and its stability \citep{Dunne2006}, a goal which is still pursued today \citep{robustness studies}.
+Some authors have recognized the potential for environmental effects to influence stability \citep{Shurin2007}, as well as other food web properties such as food chain length \citep{Townsend1998,Thompson2003,2004c,Young2013,Digel2014}.
+Latitude is a particularly intruiging contender for an environmental influence on food web structure \citep{Shurin2007},
+as latitudinal gradients in temperature \citep{}, primary productivity \citep{}, body size \citep{}, and 
+species richness \citep{Schemske2009a} are among the most robust patterns in ecology[[back up from original draft]]. 
 
 
-As changes in species richness and connectance can explain much of the variation in network structure \citep{Vermaat2009}, 
-it follows that drivers of change in these two properties may also affect other properties. Species richness in particular 
-exhibits a strong latitudinal gradient, believed to be driven by varying productivity and temperature at different latitudes 
-\citep{Hawkins2004,Cardillo2005,Thompson2005,Davies2007}. An alternative view
-posits that species' niches are narrower in the tropics, 
-reducing competition and permitting greater adaptive radiation \citep{}. Although this view is only equivocally supported 
-\citep{Vazquez2004}, it is also possible that the higher productivity of the tropics \citep{Brown2004} may result in a broader 
+Latitude's strong influence on species richness, however, presents a problem for the analysis of food web structure.
+Although it was initially thought that food-web structure was small-world and scale invariant \citep{}, further 
+analyses with higher-quality data have revealed that most food-web structural properties scale strongly with species 
+richness, connectance (the proportion of possible links that are realized), or both \citep{Riede2010} 
+(see \citet{Dunne2006} for a review of the history of scaling laws in food web theory). This means that relationships
+between latitude and food-web structure must be considered in light of the latitudinal gradient in species richness.
+This is especially true for food-web properties that both scale with species richness and are related to candidate
+explanations for the latitudinal diversity gradient.
+
+
+% Explain niche space hypothesis, Schemske, Vazquez. Then make clear that niche space suggests opposite gradient to ~S^B.
+%Then give hypotheses.
+Here, we are particularly interested in the potential effects of latitude on scaling relationships for the number of
+links per species, generality (the number of prey per predator), and vulnerability (the number of predators per prey).
+We focus on these properties because they are related to one of leading candidates for a mechanism behind the 
+latitudinal species-richness gradient: namely that species' niches are narrow in the tropics, reducing competition
+and permitting greater adaptive radiation (reviewed in \citet{Vazquez2004}). Alternatively, it is  possible that the
+higher productivity of the tropics \citep{Brown2004} may result in a broader 
 niche space \citep{Davies2007} which could also allow greater diversification even if niche sizes are globally similar.
+In either case, if there is less competition at lower latitudes, there should also be less generality. A higher 
+proportion of non-competing specialists should also result in lower vulnerability.
+Importantly, these trends (lower generality, vulnerability, and hence links per species in the tropics) are opposite
+to those based on the positive scaling relationship between links per species and species richness \citep{Riede2010}.
+If, therefore, there is a latitudinal effect on generality and vulnerability beyond that of the latitudinal diversity
+gradient, the scaling relationships between species richness and links per species, generality, and vulnerability 
+should vary over latitude. 
 
 
-In addition to species richness, there are general and robust latitudinal gradients in metabolic rates \citep{Stegen2012} and 
-rates and intensities of species interactions \citep{Marquis2005,Schemske2009}. These gradients, together with the strength and 
-generality of associations between biological processes and environmental variables, suggest that variation in network structure 
-may also be explained by ecological gradients \citep{Baiser2012}. Importantly, some of these gradients may act directly 
-on food-web properties such that they change over latitude beyond the expected changes due to changing species richness. For 
-example, if niche sizes vary with latitude then mean numbers of predators, prey, and links per species may also vary with 
-latitude. Some of this variation may be explained by variation in species richness, but as niche sizes are believed to be 
-related directly to latitude it is reasonable to expect that there may also be latitudinal effects unrelated to those of 
-changing species richness.
+
+%Among other things, a constant scaling between S and C implies that species tend to eat the same number of prey regarless of diversity \citep{Dunne2006,Pimm1982} - rephrase a bit more, this is very close.
 
 
-Here we examine the effect of latitude on food-web structure by examining
-its impact on the scaling relationships of food-web properties with species
-richness and connectance. We expect that food-web structure will scale strongly
-with both species richness and connectance, and that the scaling relationships
-of properties measuring degree of specialization (i.e., generality, vulnerability, and
-links per species) will change over latitude. The scaling relationships of other
-properties (for example the proportions of top, intermediate, and basal resources) may
-be less affected by latitude.
+
+% In addition to species richness, there are general and robust latitudinal gradients in metabolic rates \citep{Stegen2012} and 
+% rates and intensities of species interactions \citep{Marquis2005,Schemske2009}. These gradients, together with the strength and 
+% generality of associations between biological processes and environmental variables, suggest that variation in network structure 
+% may also be explained by ecological gradients \citep{Baiser2012}. Importantly, some of these gradients may act directly 
+% on food-web properties such that they change over latitude beyond the expected changes due to changing species richness. For 
+% example, if niche sizes vary with latitude then mean numbers of predators, prey, and links per species may also vary with 
+% latitude. Some of this variation may be explained by variation in species richness, but as niche sizes are believed to be 
+% related directly to latitude it is reasonable to expect that there may also be latitudinal effects unrelated to those of 
+% changing species richness.
+
 
 
 \section*{Methods}

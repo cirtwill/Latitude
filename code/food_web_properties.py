@@ -154,7 +154,7 @@ def food_web_properties(directory,item):
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [N,L,C,LS,LinkSD,Gen,GenSD,Vul,VulSD,Path,Clus] 
+  outputs = [int(N),int(L),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus)] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
@@ -177,13 +177,15 @@ def websorter(metafile,directory,motifdir):
         webfile=webno+'.web'
       uselist.append(webfile)
       ecotype=items[3]
+      Humans=items[19]
+      Site=items[21]
       if ecotype in ['lake','stream']:
         ecotype2='freshwater'
       else:
         ecotype2=ecotype
       year=items[6]
       latitude=items[10]
-      info=[ecotype,ecotype2,year,latitude]
+      info=[ecotype,ecotype2,year,Humans,Site,latitude]
       infodict[webfile]=info
   f.close()
 
