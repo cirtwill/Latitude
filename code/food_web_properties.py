@@ -146,12 +146,15 @@ def food_web_properties(directory,item):
   except nx.exception.NetworkXError:
     for g in nx.connected_component_subgraphs(G.to_undirected()):
       paths=[]
-      paths.append(nx.average_shortest_path_length(g,weight=None))
+      try:
+        paths.append(nx.average_shortest_path_length(g,weight=None))
+      except:
+        paths.append(0)
     print item, 'not connected'
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [N,L,C,LS,LinkSD,Gen,GenSD,Vul,VulSD,Path,Clus] 
+  outputs = [int(N),int(L),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus)] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
@@ -168,24 +171,23 @@ def websorter(metafile,directory,motifdir):
     items=newline.split('*')
     if items[17][:3] in ['Use','use']:
       webno=items[0]
-      webfile='WEB'+str(webno)
+      try:
+        webfile='WEB'+str(int(webno))+'.web'
+      except:
+        webfile=webno+'.web'
       uselist.append(webfile)
       ecotype=items[3]
+      Humans=items[19]
+      Site=items[21]
       if ecotype in ['lake','stream']:
         ecotype2='freshwater'
       else:
         ecotype2=ecotype
       year=items[6]
       latitude=items[10]
-      info=[ecotype,ecotype2,year,latitude]
+      info=[ecotype,ecotype2,year,Humans,Site,latitude]
       infodict[webfile]=info
-      
   f.close()
-
-  print uselist
-  sys.exit()
-
-
 
   header=['Web',
           'Ecotype',

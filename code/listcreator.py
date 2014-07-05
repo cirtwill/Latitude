@@ -49,9 +49,9 @@ def create_predprey_list(webfile):
     i=i+1
 
   try:
-    webname=re.findall(r'(WEB\w+)',webfile)[0]
+    webname=re.findall(r'(WEB\w+)',webfile)[0]+'.web'
   except:
-    webname='Carpinteria2006' 
+    webname='Carpinteria2006.web' 
 
   decodefile=open('../mod_data/species-keys/all-webs/'+webname,'w')
   for species in specieslist:
