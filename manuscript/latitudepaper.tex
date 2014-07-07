@@ -42,8 +42,8 @@
 \footskip 1.0cm
 
 
-\title{Scaling laws of trophic level and generality vary across latitude}
-\author{Alyssa Cirtwill, Tamara Romanuk?}
+\title{Generality in food webs scales with species richness, not latitude}
+\author{Alyssa Cirtwill, Tamara Romanuk?, Daniel Stouffer?}
 \date{$^1$School of Biological Sciences\\University of Canterbury\\
 Private Bag 4800\\Christchurch 8140, New Zealand}
 
@@ -62,10 +62,12 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 \section*{Introduction}
 
 %Food webs are a thing. (Mention gen, vul, LS.) %Food webs have strong scaling structure.
-Food webs (networks of feeding links between species) have been used for decades to summarize the structure of ecological communities \citep{Williams2000,earlierwork}.
+Food webs (networks of feeding links between species) have been used for decades to summarize the structure of 
+ecological communities \citep{Williams2000,earlierwork}.
 One of the earliest goals of constructing food webs was to measure the relationship between the species richness of
 a community and its stability \citep{Dunne2006}, a goal which is still pursued today \citep{robustness studies}.
-Some authors have recognized the potential for environmental effects to influence stability \citep{Shurin2007}, as well as other food web properties such as food chain length \citep{Townsend1998,Thompson2003,2004c,Young2013,Digel2014}.
+Some authors have recognized the potential for environmental effects to influence both stability \citep{Shurin2007} and 
+other food web properties such as food chain length \citep{Townsend1998,Thompson2003,2004c,Young2013,Digel2014}.
 Latitude is a particularly intruiging contender for an environmental influence on food web structure \citep{Shurin2007},
 as latitudinal gradients in temperature \citep{}, primary productivity \citep{}, body size \citep{}, and 
 species richness \citep{Schemske2009a} are among the most robust patterns in ecology[[back up from original draft]]. 
@@ -78,30 +80,29 @@ richness, connectance (the proportion of possible links that are realized), or b
 (see \citet{Dunne2006} for a review of the history of scaling laws in food web theory). This means that relationships
 between latitude and food-web structure must be considered in light of the latitudinal gradient in species richness.
 This is especially true for food-web properties that both scale with species richness and are related to candidate
-explanations for the latitudinal diversity gradient.
+explanations for the latitudinal diversity gradient, such as measures of specialization.
 
 
 % Explain niche space hypothesis, Schemske, Vazquez. Then make clear that niche space suggests opposite gradient to ~S^B.
 %Then give hypotheses.
-Here, we are particularly interested in the potential effects of latitude on scaling relationships for the number of
-links per species, generality (the number of prey per predator), and vulnerability (the number of predators per prey).
-We focus on these properties because they are related to one of leading candidates for a mechanism behind the 
-latitudinal species-richness gradient: namely that species' niches are narrow in the tropics, reducing competition
-and permitting greater adaptive radiation (reviewed in \citet{Vazquez2004}). Alternatively, it is  possible that the
-higher productivity of the tropics \citep{Brown2004} may result in a broader 
-niche space \citep{Davies2007} which could also allow greater diversification even if niche sizes are globally similar.
-In either case, if there is less competition at lower latitudes, there should also be less generality. A higher 
-proportion of non-competing specialists should also result in lower vulnerability.
-Importantly, these trends (lower generality, vulnerability, and hence links per species in the tropics) are opposite
-to those based on the positive scaling relationship between links per species and species richness \citep{Riede2010}.
-If, therefore, there is a latitudinal effect on generality and vulnerability beyond that of the latitudinal diversity
-gradient, the scaling relationships between species richness and links per species, generality, and vulnerability 
-should vary over latitude. 
+A latitudinal gradient in specialization lies behind the ``latitude-niche breadth hypothesis'' \citep{Vazquez2004}.
+This hypothesis predicts that decreased seasonality in the tropics should lead to more stable populations, which in
+turn should evolve smaller niches \citep{Vazquez2004}. These narrow niches should therefore allow more species to 
+coexist in the tropics than can at higher latitudes. Alternatively, higher productivity of the tropics \citep{Brown2004}
+may result in a broader niche space \citep{Davies2007} which could also allow greater diversification even if niche 
+sizes are globally similar. Although the assumptions of the latitude-niche breadth hypothesis are only equivocably 
+supported \citep{Vazquez2004}, it remains a compelling potential mechanism for the latitudinal gradient in species 
+richness \citep{Lappalainen2006,Krasnov2008,Slove2010}. 
 
 
-
-%Among other things, a constant scaling between S and C implies that species tend to eat the same number of prey regarless of diversity \citep{Dunne2006,Pimm1982} - rephrase a bit more, this is very close.
-
+Importantly, the expectation of the latitude niche-breadth hypothesis that higher species richness is associated with 
+reduced competition is contary to the expected increase in the mean number of interactions per species (one potential 
+measure of specialization) as species richness increases \citep{Dunne2006,Riede2010}. If, therefore, there is a
+distinct effect of latitude on specialization then this effect should be visible in changing scaling relationships.
+Here, we tested the effect of latitude on scaling relationships between species richness and mean links per species, 
+mean generality (number of prey per predator), and mean vulnerability (number of predators per prey). Together, these
+properties provide a measure a species' biotic specialization - that is, its specialization in terms of interactions 
+with other species.
 
 
 % In addition to species richness, there are general and robust latitudinal gradients in metabolic rates \citep{Stegen2012} and 
@@ -118,74 +119,99 @@ should vary over latitude.
 
 \section*{Methods}
 
-We compiled a list of 345 food webs from the University of Canberra's GlobalWeb database (www.globalwebdb.com) 
-\citep{}. Of these, 302 webs had accessible original sources. 
-18 source and sink webs, which describe links to or from a focal taxon, were excluded as they are likely 
-to have different food web properties than webs attempting to
-describe the entire community of a site \citep{Williams2002}, as were 8 plant-pollinator, 34 host-parasitoid, and 2 
-competition-focused networks
-\citep{Riede2010}. Of the remaining 230 food webs, we excluded two paleowebs (comprised of probable interactions 
-between extinct or prehistoric species) \citep{Simenstad1978} and five ``generalized schemes'' 
-\citep{Nybakken1982,Percival1929,Swan1961,Landry1977,Petipa1979,Harrison1963}, as 
-we wished to measure
-directly observed rather than inferred interactions. We further excluded a food web aggregated from several sites in 
-the Pacific Ocean which were widely spread in both latitude and longitude and at markedly different successional stages
-\citep{Vinogradov1978}, such that it is not clear which site the food web represents. [[[SI table of rejected webs, and why]]] 
-[Explain Thompson, Preston, Amundsen separate from Dunne.]
-This left 223 food webs with widely varying levels of taxonomic resolution, 11 of which contained humans. 
-We supplemented these networks with the free-living components of eight high-resolution estuarine food webs \citep{Dunne2013,Thompson2005} and two lake food web \citep{Preston2012,Amundsen2013} that 
-included parasites, as well as XX webs that have been used in previous studies of food-web scaling. 
+\subsection*{Data Set}
+We compiled a list of XX empirical food webs from an online database (GlobalWeb webs \citep{GlobalWeb}), supplemented 
+with XX food webs used to study the relationship between consumer and resource body sizes (SizeWebs \citep{Brose2006})
+and seven food webs used to study the impact of parasites on network structure (ParWebs \citep{Dunne2013}).
+Of the GlobalWeb webs, XX were rejected because their original source could not be found (XX), they were source or sink
+webs rather than descriptions of an entire community (XX), were focused on plant-pollinator, host-parasitoid, or 
+competitive interactions (XX), described inferred interactions in an extinct community (2), were ``generalized 
+schemes'' rather than being based on empirical observation (5), or because it was not clear which of a variety of 
+described sites the published food web represented (1). (See Table S1 for a list of rejected webs and reasons for their
+exclusion.) For three GlobalWeb webs which included parasites as a minor component of the community, as well as the 
+seven ParWebs webs, we included a modified version of each web which included only free-living species and the 
+interactions between them \citep{Dunne2013}. For each of the XXX webs included in the final database, we recorded the
+study site latitude if possible or, where no latitude was given, obtained estimated coordinates of the described
+study site using Google Earth \citep{GoogleEarth}. Webs were also classified according to ecosystem type (terrestrial,
+lake, stream, estuary, or marine), year of publication (to control for changing standards of data collection over time \citep{Dunne2006}), and whether or not humans were included (11 webs included humans).
 
 
-Where the latitude of a study site was not 
-explicitly stated, latitude was inferred based on Google Earth \citep{} coordinates of the described site.
+We then converted each web to a trophic-species web by aggregating species with identical predator and prey sets.
+Using trophic species webs helps to reduce variation in resolution across different studies and across taxa within
+a study \citep{Martinez1991,Vermaat2009,Dunne2004,Dunne2013}. The number of species ($S$) and links ($L$) in each 
+trophic species
+web were counted and used to calculate mean links per species ($Z$), generality ($G$), and vulnerability ($V$).
 
 
-. We also excluded webs describing highly
-modified or artificial ecosystems, and those including humans, as these could also
-have different structural properties to more ``natural'' food webs.
-Where several food webs were constructed from the same study site, without obvious boundaries between ``sites'' (e.g. three food
-webs from Lake Nyasa), we aggregated the webs to form one summary web for the site. That is, we included all species and
-interactions observed in any of the the original webs for that site in the summary web.
-Similarly, we aggregated food webs created for the same location in different years. Both types of
-aggregation should help to combat a known problem with food webs, namely that infrequent interactions and
-rare species tend to be under-represented.
+\subsection*{Scaling Relationships with S}
+
+We were then able to examine the form of the scaling relationship between each property ($Z$, $G$, and $V$) and $S$.
+The scaling relationship between $Z$ and $S$ has been shown to be a power law \citep{Riede2010} of the form 
+
+\begin{equation}
+\label{Power}
+$Z=\alpha S^{\beta} + \epsilon $ \,,
+\end{equation}
+
+which is often re-expreseed in logarithmic form 
+
+\begin{equation}
+\label{Loglog}
+$log(Z) = log(\alpha) + \beta log(S) + \epsilon $ \,.
+\end{equation}
+
+However, the two forms of the relationship imply different error structures: normally-distributed, additive error in 
+\ref{Power} and lognormal, multiplicative error in \ref{Loglog}. As there is no intuitive reason to believe that our
+data have one error distribution over another, we follow the recommendations in \citet{Xiao2011} and compared the two
+model formulations explicitly. The model with the error distribution most resembling that observed in the empirical
+data was then used to test for potential effects of latitude.
 
 
-We then converted each web to a trophic-species version by aggregating species
-with the same predators and prey. This helps to reduce variation in resolution
-across different studies.
-We then classified them both according to latitude
-and ecosystem type (terrestrial, freshwater, marine, or estuary). We then calculated 17
-food-web properties for each web (Table \ref{symboltable}).
+Although scaling relationships between $S$, $G$, and $V$ have not been explicitly examined (but see scaling 
+relationships for the standard devaitions of each property in \citet{Riede2010}), we expect that they will follow
+power laws similar to that of the relationship between $S$ and $Z$. This is because the links taken into account in
+calculating $G$ and $V$ are subsets of the total links included when calculating $Z$. As with $Z$, we explicitly 
+compared the error distributions of models for $G$ and $V$ using both the power-law and logarithmic formulations. 
 
 
-In our analysis, we first addressed whether the diversity (S) or complexity (C, L/S) of our
-published food webs varied over latitude (expressed as degrees away from the
-equator regardless of direction) or factorial ecosystem type. We also included
-year published as in independent variable to control for changing standards
-for food web studies over time. We fit independent generalized linear models
-for each of the logarithms of species richness, mean links per species, and
-connectance. These models were used to determine any latitudinal gradients in the food-web
-properties known to drive scaling relationships with other properties.
+\subsection*{Effect of Latitude}
+
+Logarithm of a sum is awful:   log(a+c) = log(a) + log(1+b^[log(c)-log(a)]) But can probably feed that into R...
 
 
-Second, we analysed the scaling relationships between the remaining 14 food-
-web parameters and connectance and species richness. We used a series of
-generalized linear models with a food-web parameter as the dependent variable
-and latitude, ecosystem type, and their interactions with connectance and
-species richness as independent variables. (parameter ~
-latitude*ecotype*(log10(connectance)+log10(species richness))). For food web
-properties that were proportions, we used general linear models with a
-binomial error distribution. All other food web properties were log-transformed with a normal error distribution.
-When modelling the standard deviation of generality, this
-required the removal of 5 webs, all with 12 or fewer species, which had
-standard deviations of generality of 0. These full models were then
-systematically reduced using R function dredge \cite{} in package MuMIn
-\cite{} in order to isolate the model with the highest AIC. These best-fitting models were 
-then examined in detail. Significant slopes over species-richness or connectance were taken to indicate scaling
-relationships. Significant interactions with latitude indicated that these scaling relationships varied from the tropics
-to the poles. Different intercepts indicated differences between ecosystem types.
+Once the best formulation of the relationship between each property and $S$ had been determined, we then assessed
+the impact of latitude on this relationship. There are two ways that properties might be affected by latitude:
+1) the slope of the scaling relationship with $S$ might vary over latitude or 2) the residuals $\epsilon$ might
+vary over latitude. In order to test both possibilities, we used models of the form 
+
+\begin{equation}
+
+$Z=\alpha S^{\beta_{0}+\beta_{1}\delta} + \gamma\delta + \epsilon $ \,,
+
+\end{equation}
+
+where $\delta$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction), ....
+
+
+
+
+% of  the University of Canberra's GlobalWeb database (www.globalwebdb.com) 
+% \citep{}. Of these, 302 webs had accessible original sources. 
+% 18 source and sink webs, which describe links to or from a focal taxon, were excluded as they are likely 
+% to have different food web properties than webs attempting to
+% describe the entire community of a site \citep{Williams2002}, as were 8 plant-pollinator, 34 host-parasitoid, and 2 
+% competition-focused networks
+% \citep{Riede2010}. Of the remaining 230 food webs, we excluded two paleowebs (comprised of probable interactions 
+% between extinct or prehistoric species) \citep{Simenstad1978} and five ``generalized schemes'' 
+% \citep{Nybakken1982,Percival1929,Swan1961,Landry1977,Petipa1979,Harrison1963}, as 
+% we wished to measure
+% directly observed rather than inferred interactions. We further excluded a food web aggregated from several sites in 
+% the Pacific Ocean which were widely spread in both latitude and longitude and at markedly different successional stages
+% \citep{Vinogradov1978}, such that it is not clear which site the food web represents. 
+% This left 223 food webs with widely varying levels of taxonomic resolution, 11 of which contained humans. 
+
+
+
 
 
 \section*{Results}
