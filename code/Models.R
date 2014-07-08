@@ -2,6 +2,7 @@
 ## Power analysis function from http://www.esapubs.org/archive/ecol/E092/160/Sup_2_Guidelines.r
 ## Loading required packages. May need to be installed from CRAN.
 library(nlrwr)
+library(lmerTest)
 library(boot)
 ## Function to carry out the analytical process described in General Guidelines
 ## Input: x - vector, explanatory variable

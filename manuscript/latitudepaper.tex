@@ -176,22 +176,51 @@ compared the error distributions of models for $G$ and $V$ using both the power-
 
 \subsection*{Effect of Latitude}
 
-Logarithm of a sum is awful:   log(a+c) = log(a) + log(1+b^[log(c)-log(a)]) But can probably feed that into R...
+% Logarithm of a sum is awful:   log(a+c) = log(a) + log(1+b^[log(c)-log(a)]) But can probably feed that into R...
 
 
 Once the best formulation of the relationship between each property and $S$ had been determined, we then assessed
 the impact of latitude on this relationship. There are two ways that properties might be affected by latitude:
 1) the slope of the scaling relationship with $S$ might vary over latitude or 2) the residuals $\epsilon$ might
-vary over latitude. In order to test both possibilities, we used models of the form 
+vary over latitude. We were primarily interested in the first possibility, and so included a term for the effect of 
+latitude on the scaling exponent $\beta$ in equation \ref{Power}. In addition, as other studies have suggested that 
+food webs in different ecosystem types have characteristic structural differences, we included a dummy variable for 
+each ecosystem type (stream, lake, terrestrial, or marine, with estuary used as the `intercept' ecosystem type). 
+We also considered other trends in the data that could affect relationships between latitude and species richness.
+To account for changing standards in data collection over time \citep{Dunne2006} we included an effect of year of
+publication. As 11 of our XX webs included humans, and therefore might have different properties than other networks,
+we included a factorial effect of the presence of humans. Finally, some of our webs describe the same area in different
+seasons or different years. To account for likely correlation among these webs, we included a random effect of site ID.
+
+
+We therefore began by considering models of the form:
 
 \begin{equation}
-
-$Z=\alpha S^{\beta_{0}+\beta_{1}\delta} + \gamma\delta + \epsilon $ \,,
+\label{PowerLat}
+$Z_{i}=\alpha S^{\beta_{0}+\beta_{1}\delta_{i}+\beta_{2}\Ecotype+\beta_{X}\delta_{i}\Ecotype}\Year_{i}\Humans_{i} + \epsilon_{i} $ \,,
 
 \end{equation}
 
-where $\delta$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction), ....
+where $\delta$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction), 
+$\beta_{1}$ represents the effect of latitude on the scaling exponent $\beta$ in equation \ref{Power}. If the scaling
+relationship with S for a property suggested that lognormal error was more appropriate, we used the logarithmic re-
+expression:
 
+\begin{equation}
+\label{LogLat}
+$Z_{i}= log(\alpha)+\beta_{0}log(S) + \beta_{1}log(S)\delta_{i} +\beta_{2}log(S)Ecotype + \beta_{X}log(S)\delta_{i}Ecotype +log(year_{i}) +log(Humans_{i})  +\epsilon_{i} $ \,.
+
+\end{equation}
+
+
+We calculated the AIC of the chosen maximal model, as well as the AIC's of a suite of candidate simplified models.
+Simplified models were obtained by systematically removing all possible combinations of terms from the full model.
+The term for species richness was not removed from a model if any of the terms affecting the exponent $\beta$ were 
+included in the model. The model with the lowest AIC was selected as the best-fitting model. For power-law formulations
+this simplification was performed by hand. For logarithmic formulations, this simplification was performed using the
+R \citep{R} function dredge from package MuMIn \citep{MuMIn}. We then used the R \citep{R} function lmer
+from the package lmerTest \citep{lmerTest} to estimate the standardized effects ($\beta$s) for each fixed effect in the 
+best-fitting models, as well as their corresponding $p$-values. 
 
 
 
@@ -215,6 +244,26 @@ where $\delta$ is the absolute latitude of food web $i$ (degrees from the equato
 
 
 \section*{Results}
+
+\subsection*{Scaling Relationships with S}
+
+For models of $Z$, $G$, and $V$, the assumption of multiplicative log-normal error was better supported (Table \ref{Errorfits}). We therefore use only models with logarithmic form for the remainder of the paper.
+
+\begin{tabular}
+
+\label{Errorfits}
+\caption{AIC's for model \ref{Power}, assuming normal error, and model \ref{Loglog}, assuming lognormal error.}
+\begin{table}{l | l l | c}
+Property & Normal error & Lognormal error & Model selected \\
+\hline
+$Z$ & 1151 &  767 & \ref{Loglog} \\
+$G$ & 1266 & 1037 & \ref{Loglog} \\
+$V$ & 1151 & 767 & \ref{Loglog} \\
+\end{table}
+\end{tabular}
+
+
+
 
 In this data set, none of the best fit models for species richness, connectance, or links per species included an 
 effect of latitude, although all three properties varied across ecosystem types (Table 2). 
