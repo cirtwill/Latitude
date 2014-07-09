@@ -143,11 +143,9 @@ web were counted and used to calculate mean links per species ($Z$), generality 
 
 We first examined simple linear relationships between latitude and $S$, $Z$, $G$, and $V$. We fit models of the form
 
-\begin{equation}
-
-$S_{i} = \alpha_{0} + \alpha_{1}\Delta_{i}+\epsilon_{i}$ \,,
-
-\end{equation}
+\begin{eqnarray}
+S_{i} = \alpha_{0} + \alpha_{1} \Delta_{i} + \epsilon_{i} 
+\end{eqnarray}
 
 where $S_{i}$ is the species richness of web $i$, $\Delta_{i}$ its absolute latitude (degrees north or south 
 regardless of direction), and $\epsilon_{i}$ a residual error term.
@@ -161,14 +159,14 @@ The scaling relationship between $Z$ and $S$ has been shown to be a power law \c
 
 \begin{equation}
 \label{Power}
-$Z=\alpha S^{\beta} + \epsilon $ \,,
+Z_{i}=\alpha S_{i}^{\beta} + \epsilon_{i} 
 \end{equation}
 
 which is often re-expreseed in logarithmic form 
 
 \begin{equation}
 \label{Loglog}
-$log(Z) = log(\alpha) + \beta log(S) + \epsilon $ \,.
+log(Z_{i}) = log(\alpha) + \beta log(S_{i}) + \epsilon_{i}  
 \end{equation}
 
 However, the two forms of the relationship imply different error structures: normally-distributed, additive error in 
@@ -208,17 +206,18 @@ We therefore began by considering models of the form:
 
 \begin{equation}
 \label{PowerLat}
-$Z_{i}=\alpha S^{\beta_{0}+\beta_{1}\Delta_{i}+\beta_{3}\Sigma_{i} + \beta_{4}\Lambda_{i} + \beta_{5}\Tau_{i} + \beta_{6}\Mu_{i} 
-+ \beta_{7}\Delta_{i}\Sigma_{i} + \beta_{8}\Delta_{i}\Lambda_{i} + \beta_{9}\Delta_{i}\Tau_{i} + \beta_{10}\Delta_{i}\Mu_{i}}
-+ \rho{1}\Delta_{i} + \rho_{2}\Upsilon_{i} + \rho_{3}\Eta_{i} + P_{i} + \epsilon_{i} $ \,,
+
+Z_{i}=\alpha S^{\beta_{0}+\beta_{1}\Delta_{i}+\beta_{3}\Sigma_{i} + \beta_{4}\Lambda_{i} + \beta_{5}T_{i} + \beta_{6}M_{i} 
++ \beta_{7}\Delta_{i}\Sigma_{i} + \beta_{8}\Delta_{i}\Lambda_{i} + \beta_{9}\Delta_{i}T_{i} + \beta_{10}\Delta_{i}M_{i}}
++ \rho{1}\Delta_{i} + \rho_{2}\Upsilon_{i} + \rho_{3}H_{i} + P_{i} + \epsilon_{i} 
 \end{equation}
 
 where $\delta$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction),
-$\Sigma_{i}$, $\Lambda_{i}$, $\Tau_{i}$, and $\Mu_{i}$ are 
+$\Sigma_{i}$, $\Lambda_{i}$, $T_{i}$, and $M_{i}$ are 
 factors indicating whether web $i$ is a stream, lake, 
 terrestrial, or marine food web (e.g., $\Sigma_{i}$=1 for 
-a stream food web, 0 otherwise). If $\Sigma_{i}$, $\Lambda_{i}$, $\Tau_{i}$, and $\Mu_{i}$ are all 0, web $i$ 
-describes an estuary food web. $\Upsilon_{i}$ is the year web $i$ was published, $\Eta_{i}=1$ if web $i$ contains humans, 0 otherwise, and $P_{i}$ is a random effect of 
+a stream food web, 0 otherwise). If $\Sigma_{i}$, $\Lambda_{i}$, $T_{i}$, and $M_{i}$ are all 0, web $i$ 
+describes an estuary food web. $\Upsilon_{i}$ is the year web $i$ was published, $H_{i}=1$ if web $i$ contains humans, 0 otherwise, and $P_{i}$ is a random effect of 
 site ID. Note that all fixed effects $\beta$ refer to factors acting on the scaling exponent between $Z$ and $S$
 while fixed effects $\rho$ refer to factors acting on the residual error.
 
@@ -227,9 +226,9 @@ The logarithmic formulation of this model is:
 
 \begin{equation}
 \label{LogLat}
-$Z_{i}= log(\alpha)+\beta_{0}log(S) + \beta_{1}\Delta_{i}log(S) +\beta_{3}\Sigma_{i}log(S) + \beta_{4}\Lambda_{i}log(S)  + \beta_{5}\Tau_{i}log(S)  + \beta_{6}\Mu_{i}log(S)  
-+ \beta_{7}\Delta_{i}\Sigma_{i}log(S)  + \beta_{8}\Delta_{i}\Lambda_{i}log(S)  + \beta_{9}\Delta_{i}\Tau_{i}log(S)  + \beta_{10}\Delta_{i}\Mu_{i}log(S) 
-+ \rho_{1}\Delta_{i} + \rho_{2}\Upsilon_{i}) + \rho_{3}\Eta_{i} +\epsilon_{i} $ \,.
+Z_{i}= log(\alpha)+\beta_{0}log(S) + \beta_{1}\Delta_{i}log(S) +\beta_{3}\Sigma_{i}log(S) + \beta_{4}\Lambda_{i}log(S)  + \beta_{5}T_{i}log(S)  + \beta_{6}M_{i}log(S)  
++ \beta_{7}\Delta_{i}\Sigma_{i}log(S)  + \beta_{8}\Delta_{i}\Lambda_{i}log(S)  + \beta_{9}\Delta_{i}T_{i}log(S)  + \beta_{10}\Delta_{i}M_{i}log(S) 
++ \rho_{1}\Delta_{i} + \rho_{2}\Upsilon_{i}) + \rho_{3}H_{i} +\epsilon_{i}
 
 \end{equation}
 
