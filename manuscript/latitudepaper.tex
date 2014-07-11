@@ -66,11 +66,12 @@ Food webs (networks of feeding links between species) have been used for decades
 ecological communities \citep{Williams2000,earlierwork} and to understand how that structure relates to environmental variables 
 such as land use \citep{Townsend1998,Townsend2004c,Digel2014}, primary productivity \citep{}, temperature?, latitude?. 
 Latitude is of particular interest as an environmental driver of food-web structure because it entails gradients in 
-temperature \citep{}, primary productivity \citep{}, and seasonality \citep{}. Importantly, there is also a strong
-latitudinal gradient in species richness for most taxa \citep{Schemske2009a}.
+temperature \citep{}, primary productivity \citep{}, and seasonality \citep{}. Indeed, each of these latitudinal 
+environmental gradients has been put forward as a driver for the latitudinal gradient in species richness, one of
+the most general and robust patterns in ecology \citep{Schemske2009a,,}.
 
 
-This effect of latitude on species richness, however, presents a problem for the analysis of food web structure.
+This effect of latitude on species richness, however, presents a problem for the analysis of other aspects of food-web structure.
 Although it was initially thought that food-web structure was small-world and scale invariant \citep{}, further 
 analyses with higher-quality data have revealed that most food-web structural properties scale strongly with species 
 richness, connectance (the proportion of possible links that are realized), or both \citep{Riede2010} 
@@ -92,7 +93,7 @@ supported \citep{Vazquez2004}, it remains a compelling potential mechanism for t
 richness \citep{Lappalainen2006,Krasnov2008,Slove2010}. 
 
 
-Importantly, the expectation of the latitude niche-breadth hypothesis that higher species richness is associated with 
+Importantly, the expectation of the latitude-niche breadth hypothesis that higher species richness is associated with 
 reduced competition is contary to the expected increase in the mean number of interactions per species (one potential 
 measure of specialization) as species richness increases \citep{Dunne2006,Riede2010}. If, therefore, there is a
 distinct effect of latitude on specialization then this effect should be visible in changing scaling relationships.
@@ -117,17 +118,17 @@ with other species.
 \section*{Methods}
 
 \subsection*{Data Set}
-We compiled a list of XX empirical food webs from an online database (GlobalWeb webs \citep{GlobalWeb}), supplemented 
-with XX food webs used to study the relationship between consumer and resource body sizes (SizeWebs \citep{Brose2006})
+We compiled a list of 347 empirical food webs from an online database (GlobalWeb webs \citep{GlobalWeb}), supplemented 
+with 31 food webs used to study the relationship between consumer and resource body sizes (SizeWebs \citep{Brose2006})
 and seven food webs used to study the impact of parasites on network structure (ParWebs \citep{Dunne2013}).
-Of the GlobalWeb webs, XX were rejected because their original source could not be found (XX), they were source or sink
-webs rather than descriptions of an entire community (XX), were focused on plant-pollinator, host-parasitoid, or 
-competitive interactions (XX), described inferred interactions in an extinct community (2), were ``generalized 
-schemes'' rather than being based on empirical observation (5), or because it was not clear which of a variety of 
-described sites the published food web represented (1). (See Table S1 for a list of rejected webs and reasons for their
+Of the GlobalWeb webs, 122 were rejected because their original source could not be found or was unpublished (53), they were source or sink
+webs rather than descriptions of an entire community (13), were focused on plant-pollinator, host-parasitoid, or 
+competitive interactions (8+34+2=44), described inferred interactions in an extinct community (2), were ``generalized 
+schemes'' rather than being based on empirical observation (8), or because it was not clear which of a variety of 
+described sites the published food web represented (2). (See Table S1 for a list of rejected webs and reasons for their
 exclusion.) For three GlobalWeb webs which included parasites as a minor component of the community, as well as the 
 seven ParWebs webs, we included a modified version of each web which included only free-living species and the 
-interactions between them \citep{Dunne2013}. For each of the XXX webs included in the final database, we recorded the
+interactions between them \citep{Dunne2013}. For each of the 263 webs included in the final database, we recorded the
 study site latitude if possible or, where no latitude was given, obtained estimated coordinates of the described
 study site using Google Earth \citep{GoogleEarth}. Webs were also classified according to ecosystem type (terrestrial,
 lake, stream, estuary, or marine), year of publication (to control for changing standards of data collection over time \citep{Dunne2006}), and whether or not humans were included (11 webs included humans).
@@ -206,7 +207,6 @@ We therefore began by considering models of the form:
 
 \begin{equation}
 \label{PowerLat}
-
 Z_{i}=\alpha S^{\beta_{0}+\beta_{1}\Delta_{i}+\beta_{3}\Sigma_{i} + \beta_{4}\Lambda_{i} + \beta_{5}T_{i} + \beta_{6}M_{i} 
 + \beta_{7}\Delta_{i}\Sigma_{i} + \beta_{8}\Delta_{i}\Lambda_{i} + \beta_{9}\Delta_{i}T_{i} + \beta_{10}\Delta_{i}M_{i}}
 + \rho{1}\Delta_{i} + \rho_{2}\Upsilon_{i} + \rho_{3}H_{i} + P_{i} + \epsilon_{i} 
@@ -215,7 +215,7 @@ Z_{i}=\alpha S^{\beta_{0}+\beta_{1}\Delta_{i}+\beta_{3}\Sigma_{i} + \beta_{4}\La
 where $\delta$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction),
 $\Sigma_{i}$, $\Lambda_{i}$, $T_{i}$, and $M_{i}$ are 
 factors indicating whether web $i$ is a stream, lake, 
-terrestrial, or marine food web (e.g., $\Sigma_{i}$=1 for 
+terrestrial, or marine food web respectively (e.g., $\Sigma_{i}$=1 for 
 a stream food web, 0 otherwise). If $\Sigma_{i}$, $\Lambda_{i}$, $T_{i}$, and $M_{i}$ are all 0, web $i$ 
 describes an estuary food web. $\Upsilon_{i}$ is the year web $i$ was published, $H_{i}=1$ if web $i$ contains humans, 0 otherwise, and $P_{i}$ is a random effect of 
 site ID. Note that all fixed effects $\beta$ refer to factors acting on the scaling exponent between $Z$ and $S$
@@ -229,7 +229,6 @@ The logarithmic formulation of this model is:
 Z_{i}= log(\alpha)+\beta_{0}log(S) + \beta_{1}\Delta_{i}log(S) +\beta_{3}\Sigma_{i}log(S) + \beta_{4}\Lambda_{i}log(S)  + \beta_{5}T_{i}log(S)  + \beta_{6}M_{i}log(S)  
 + \beta_{7}\Delta_{i}\Sigma_{i}log(S)  + \beta_{8}\Delta_{i}\Lambda_{i}log(S)  + \beta_{9}\Delta_{i}T_{i}log(S)  + \beta_{10}\Delta_{i}M_{i}log(S) 
 + \rho_{1}\Delta_{i} + \rho_{2}\Upsilon_{i}) + \rho_{3}H_{i} +\epsilon_{i}
-
 \end{equation}
 
 As in the power-law formulation, fixed effects $\beta$ 
@@ -270,46 +269,61 @@ best-fitting models, as well as their corresponding $p$-values.
 
 \subsection*{Relationships with Latitude}
 
-$S$ and $G$ both increased with increasing latitude, contrary to expected latitudinal gradients (Table \ref{Latlms}). $G$ and $V$ were not significantly correlated with latitude. 
+$S$ and $G$ both increased with increasing latitude, contrary to expected latitudinal gradients (Table \ref{Latlms}). 
+$G$ and $V$ were not significantly correlated with latitude. 
 
-\begin{tabular}
-
-\label{Latlms}
+\begin{table}[!h]
 \caption{Intercepts and slopes for simple linear regressions of food web properties against absolute latitude.}
-\begin{table}{l | l l l l}
-\multirow{2}Property & \multicolumn{2}{c}{Intercept} & \multicolumn{2}{c}{Slope} \\
- & $\alpha$ & $p$-value & $\alpha$ & $p$-value \\
+\label{Latlms}
+\begin{tabular}{l | l l | l l}
+
+\multirow{2}{*}Property & \multicolumn{2}{|c}{Intercept} & \multicolumn{2}{|c}{Slope} \\
+                      & $\alpha$ & $p$-value & $\alpha$ & $p$-value \\
 \hline
 $S$ & 23.10 & \textless0.001 & 0.284 & 0.040 \\
 $Z$ & 2.566 & \textless0.001 & 0.020 & 0.180 \\
 $G$ & 3.269 & \textless0.001 & 0.049 & 0.014 \\
 $V$ & 2.566 & \textless0.001 & 0.020 & 0.180 \\
-\end{table}
 \end{tabular}
+\end{table}
 
 
 \subsection*{Scaling Relationships with S}
 
 For models of $Z$, $G$, and $V$, the assumption of multiplicative log-normal error was better supported (Table \ref{Errorfits}). We therefore use only models with logarithmic form for the remainder of the paper.
 
-\begin{tabular}
+\begin{table}[!t]
 
-\label{Errorfits}
 \caption{AIC's for model \ref{Power}, assuming normal error, and model \ref{Loglog}, assuming lognormal error.}
-\begin{table}{l | l l | c}
+\label{Errorfits}
+\begin{tabular}{l | l l | c}
 Property & Normal error & Lognormal error & Model selected \\
 \hline
 $Z$ & 1151 &  767 & \ref{Loglog} \\
 $G$ & 1266 & 1037 & \ref{Loglog} \\
 $V$ & 1151 & 767 & \ref{Loglog} \\
-\end{table}
 \end{tabular}
+\end{table}
 
 
 In this data set, none of the best fit models for species richness, connectance, or links per species included an 
-effect of latitude on either the scaling exponent or residual (Table \ref{bestfits}). 
-$G$ increased slightly in more recent webs ($\rho{2}$=0.005, $p$<0.001), but the best-fit models for $V$ and $Z$ did not include a term for year of publication. 
-In contrast, $Z$ and $V$ were higher in lake food webs ($\beta_{4}$=0.10, $p$<0.001 and $\beta_{4}$=0.10, $p$<0.001, respectively) while the best-fit model for $G$ did not include an effect for any ecosystem type.
+effect of latitude on either the scaling exponent or residual (Table \ref{Bestfits}). 
+$G$ increased slightly in more recent webs ($\rho_{2}$=0.005, $p$\textless0.001), but the best-fit models for $V$ and $Z$ did not include a term for year of publication. 
+In contrast, $Z$ and $V$ were higher in lake food webs ($\beta_{4}$=0.10, $p$\textless0.001 and $\beta_{4}$=0.10, $p$\textless0.001, respectively) while the best-fit model for $G$ did not include an effect for any ecosystem type.
+
+\begin{table}[!h]
+
+\caption{Standard effects and their $p$-values for the best-fitting models of $Z$, $G$, and $V$.}
+\label{Bestfits}
+\begin{tabular}{l | l l | l l | l l | l l }
+\multirow{2}{*}{Property} & \multicolumn{2}{c}{Intercept} & \multicolumn{2}{c}{log(Species)} & \multicolumn{2}{c}{log(Species)$\Lambda$} & \multicolumn{2}{c}{$\Upsilon$} \\
+& $\beta$ & $p$-value &  $\beta$ & $p$-value &  $\beta$ & $p$-value &  $\beta$ & $p$-value  \\
+\hline
+$Z$ & -0.516 & \textless0.001 & 0.662 & \textless0.001 & 0.099 & \textless0.001 & \multicolumn{2}{c}{NA} \\
+$G$ & -9.999 & \textless0.001 & 0.547 & \textless0.001 & \multicolumn{2}{c}{NA} & 0.005 & \textless0.001 \\
+$V$ & -0.516 & \textless0.001 & 0.662 & \textless0.001 & 0.099 & \textless0.001 & \multicolumn{2}{c}{NA} \\
+\end{tabular}
+\end{table}
 
 
 \section*{Discussion}
