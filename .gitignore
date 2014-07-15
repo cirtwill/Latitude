@@ -41,6 +41,8 @@ manuscript/talkfigs/*.toc
 ##########################
 *~
 *.swp
+*.py~
+code/*.py~
 
 # Compiled source #
 ###################
