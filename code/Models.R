@@ -203,7 +203,7 @@ LS_full=with(data,lmer(log10(LS)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +Latitude+Year_pub+Humans+(1|Site)
+  +(1|Site)
   ,na.action=na.fail))
 LS_min =with(data,lmer(log10(LS)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
 
@@ -212,16 +212,16 @@ Gen_full=with(data,lmer(log10(Gen)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +Latitude+Year_pub+Humans+(1|Site)
+  +(1|Site)
   ,na.action=na.fail))
-Gen_min=with(data,lmer(log10(Gen)~log10(Species)+Year_pub+(1|Site),na.action=na.fail))
+Gen_min=with(data,lmer(log10(Gen)~log10(Species)+log10(Species):Terr+(1|Site),na.action=na.fail))
 
 
 Vul_full=with(data,lmer(log10(Vul)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +Latitude+Year_pub+Humans+(1|Site)
+  +(1|Site)
   ,na.action=na.fail))
 Vul_min =with(data,lmer(log10(Vul)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
 
