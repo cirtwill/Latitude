@@ -2,6 +2,7 @@
 ## Power analysis function from http://www.esapubs.org/archive/ecol/E092/160/Sup_2_Guidelines.r
 ## Loading required packages. May need to be installed from CRAN.
 library(nlrwr)
+library(lmerTest)
 library(boot)
 ## Function to carry out the analytical process described in General Guidelines
 ## Input: x - vector, explanatory variable
@@ -198,28 +199,34 @@ power_analysis(data$Species,data$Vul)   #To determine whether scaling of Vul~S i
                       #It is lognormal, AIC=766.9 vs 1150.6
 
 #Therefore using lognormal with confidence for modified models.
-LS_full=with(data,lmer(log10(LS)~log10(Species)+log10(Species):Latitude+log10(Species):(Stream+Lake+Marine+Terr)+log10(Species):Latitude:(Stream+Lake+Marine+Terr)+Year_pub+Humans+(1|Site),na.action=na.fail))
+LS_full=with(data,lmer(log10(LS)~log10(Species)
+  +log10(Species):Latitude
+  +log10(Species):(Stream+Lake+Marine+Terr)
+  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  +(1|Site)
+  ,na.action=na.fail))
 LS_min =with(data,lmer(log10(LS)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
-LS_min2 =with(data,lmer(log10(LS)~log10(Species)+log10(Species):Lake+Latitude+(1|Site),na.action=na.fail)) 
-#Lat gets dredged out.
 
 
-Gen_full=with(data,lmer(log10(Gen)~log10(Species)+log10(Species):Latitude+log10(Species):(Lake+Stream+Marine+Terr)+log10(Species):Latitude:(Lake+Stream+Marine+Terr)+Year_pub+Humans+(1|Site),na.action=na.fail))
-Gen_min=with(data,lmer(log10(Gen)~log10(Species)+Year_pub+(1|Site),na.action=na.fail))
-Gen_min2=with(data,lmer(log10(Gen)~log10(Species)+Year_pub+Latitude+(1|Site),na.action=na.fail))
-#Lat gets dredged out.
+Gen_full=with(data,lmer(log10(Gen)~log10(Species)
+  +log10(Species):Latitude
+  +log10(Species):(Stream+Lake+Marine+Terr)
+  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  +(1|Site)
+  ,na.action=na.fail))
+Gen_min=with(data,lmer(log10(Gen)~log10(Species)+log10(Species):Terr+(1|Site),na.action=na.fail))
 
-Vul_full=with(data,lmer(log10(Vul)~log10(Species)+log10(Species):Latitude+log10(Species):(Lake+Stream+Marine+Terr)+log10(Species):Latitude:(Lake+Stream+Marine+Terr)+Year_pub+Humans+(1|Site),na.action=na.fail))
+
+Vul_full=with(data,lmer(log10(Vul)~log10(Species)
+  +log10(Species):Latitude
+  +log10(Species):(Stream+Lake+Marine+Terr)
+  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  +(1|Site)
+  ,na.action=na.fail))
 Vul_min =with(data,lmer(log10(Vul)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
-Vul_min2=with(data,lmer(log10(Vul)~log10(Species)+log10(Species):Lake+Latitude+(1|Site),na.action=na.fail))
-#Lat gets dredged out.
 
 
-#Kinda suggests I should look at other properties maybe?
-
-
-Gen_latdirect=(with(data,lm(log10(Gen)~Latitude+Year_pub+Humans,na.action=na.fail)))
-Sp_latdirect=(with(data,lm(log10(Species)~Latitude+Year_pub+Humans,na.action=na.fail)))
-
-#Species by lat and Gen by lat are almost identical. Lm for both is significant for latitude. So latitude 'effects' really just due to S.
-
+Sp_latdirect=(with(data,lm(Species~Latitude,na.action=na.fail)))
+LS_latdirect=(with(data,lm(LS~Latitude,na.action=na.fail)))
+Gen_latdirect=(with(data,lm(Gen~Latitude,na.action=na.fail)))
+Vul_latdirect=(with(data,lm(Vul~Latitude,na.action=na.fail)))
