@@ -4,6 +4,7 @@
 library(nlrwr)
 library(lmerTest)
 library(boot)
+library(MuMIn)
 ## Function to carry out the analytical process described in General Guidelines
 ## Input: x - vector, explanatory variable
 ##        y - vector, response variable
@@ -188,9 +189,6 @@ y=data$Gen
 z=data$Vul         
 
 
-
-
-
 power_analysis(data$Species,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
                       #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
 power_analysis(data$Species,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
@@ -199,34 +197,108 @@ power_analysis(data$Species,data$Vul)   #To determine whether scaling of Vul~S i
                       #It is lognormal, AIC=766.9 vs 1150.6
 
 #Therefore using lognormal with confidence for modified models.
-LS_full=with(data,lmer(log10(LS)~log10(Species)
+LS_full=with(data,lm(log10(LS)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +(1|Site)
   ,na.action=na.fail))
-LS_min =with(data,lmer(log10(LS)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
+ls_dredge=dredge(LS_full,rank=AIC)
+LS_min =with(data,lm(log10(LS)~log10(Species)
+  +log10(Species):(Lake+Marine+Stream)
+  +log10(Species):Latitude
+  +log10(Species):Latitude:Lake
+  +log10(Species):Latitude:Stream
+  ,na.action=na.fail))
 
 
-Gen_full=with(data,lmer(log10(Gen)~log10(Species)
+Gen_full=with(data,lm(log10(Gen)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +(1|Site)
   ,na.action=na.fail))
-Gen_min=with(data,lmer(log10(Gen)~log10(Species)+log10(Species):Terr+(1|Site),na.action=na.fail))
+g_dredge=dredge(Gen_full,rank=AIC)
+Gen_min=with(data,lm(log10(Gen)~log10(Species)
+  +log10(Species):(Lake+Marine+Stream)
+  +log10(Species):Latitude
+  +log10(Species):Latitude:Lake
+  +log10(Species):Latitude:Stream
+  ,na.action=na.fail))
 
 
-Vul_full=with(data,lmer(log10(Vul)~log10(Species)
+Vul_full=with(data,lm(log10(Vul)~log10(Species)
   +log10(Species):Latitude
   +log10(Species):(Stream+Lake+Marine+Terr)
   +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  +(1|Site)
   ,na.action=na.fail))
-Vul_min =with(data,lmer(log10(Vul)~log10(Species)+log10(Species):Lake+(1|Site),na.action=na.fail))
+v_dredge=dredge(Vul_full,rank=AIC)
+Vul_min=with(data,lm(log10(Vul)~log10(Species)
+  +log10(Species):(Lake+Marine+Stream)
+  +log10(Species):Latitude
+  +log10(Species):Latitude:Lake
+  +log10(Species):Latitude:Stream
+  ,na.action=na.fail))
 
 
+# What's the basic correlation with latitude?
 Sp_latdirect=(with(data,lm(Species~Latitude,na.action=na.fail)))
 LS_latdirect=(with(data,lm(LS~Latitude,na.action=na.fail)))
 Gen_latdirect=(with(data,lm(Gen~Latitude,na.action=na.fail)))
 Vul_latdirect=(with(data,lm(Vul~Latitude,na.action=na.fail)))
+
+
+# Make some predictions for plotting
+# Observed species range is 3!-169.
+
+# Want species on the x-axis, properties on y. 
+# Maybe 3 levels of latitude.
+# Range is 0 - 78 degrees.
+# 0, 45, 75 == equatorial, temperate, arctic
+newdata=matrix(nrow=200*3*4,ncol=5)
+k=1
+for(j in c("Lake","Marine","Stream","Other")){
+  for(latitude in c(0,45,75)){
+    for(i in 1:200){
+    newdata[k,1]=i
+    newdata[k,2]=latitude
+    newdata[k,3]=0
+    newdata[k,4]=0
+    newdata[k,5]=0
+    if(j=="Lake"){
+      newdata[k,3]=1
+      newdata[k,4]=0
+      newdata[k,5]=0} 
+    if(j=="Marine"){
+      newdata[k,3]=0
+      newdata[k,4]=1
+      newdata[k,5]=0}
+    if(j=="Stream"){
+      newdata[k,3]=0
+      newdata[k,4]=0
+      newdata[k,5]=1}
+    k=k+1
+}}}
+colnames(newdata)=c("Species","Latitude","Lake","Marine","Stream")
+newdata=as.data.frame(newdata)
+
+# No link function, so no type="response"
+LS_preds=predict(LS_min,newdata=newdata)
+Gen_preds=predict(Gen_min,newdata=newdata)
+Vul_preds=predict(Vul_min,newdata=newdata)
+
+LS_fake=cbind(newdata,LS_preds)
+Gen_fake=cbind(newdata,Gen_preds)
+Vul_fake=cbind(newdata,Vul_preds)
+
+colnames(LS_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+colnames(Gen_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+colnames(Vul_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+
+write.table(LS_fake,file='../mod_data/predictions/LS.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
+write.table(Gen_fake,file='../mod_data/predictions/Gen.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
+write.table(Vul_fake,file='../mod_data/predictions/Vul.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
+
+write.table(summary(LS_min)$coefficients,file='../mod_data/coefficients/LS_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
+write.table(summary(Gen_min)$coefficients,file='../mod_data/coefficients/Gen_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
+write.table(summary(Vul_min)$coefficients,file='../mod_data/coefficients/Vul_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
+
+
