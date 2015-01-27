@@ -11,186 +11,77 @@ from PyGrace.dataset import SYMBOLS
 from PyGrace.Extensions.panel import Panel,MultiPanelGrace
 from PyGrace.drawing_objects import DrawText
 
+# Think I want plots of the raw data (S, LS, G, V vs. lat) with slope lines
+# Plus predictions for LS, G, V vs S (with corrected obs.)
 
-mean_C=0.1
-min_C=0.025
-max_C=0.25
+def datareader(rawdatafile):
+  points={'S':{'estuary':[],'lake':[],'marine':[],'stream':[],'terrestrial':[]},
+  'LS':{'estuary':[],'lake':[],'marine':[],'stream':[],'terrestrial':[]},
+  'G':{'estuary':[],'lake':[],'marine':[],'stream':[],'terrestrial':[]},  
+  'V'{'estuary':[],'lake':[],'marine':[],'stream':[],'terrestrial':[]}}
 
-mean_S=36
-min_S=5
-max_S=109
-
-#Mean dist from centroids
-def linereader(fw_prop):
-  linefile="../mod_data/"+fw_prop+"_coeffs"
-  linetab=open(linefile,'r')
-  lines={}
-  for line in linetab:
-    if len(line.split())==5:
-      effect=line.split()[0][1:-1]
-      beta=float(line.split()[1])
-      lines[effect]=beta
-  return lines
-
-def datareader(fw_prop):
-  datafile="../mod_data/summary-properties.tsv"
-  f=open(datafile,'r')
-  datadict={'estuary':{},'lake':{},'terrestrial':{},'marine':{},'stream':{}}
+  f=open(rawdatafile,'r')
   for line in f:
-    if line.split()[0]=='Web':
-      heads=line.split()[1:]
-    else:
-      web=line.split()[0]
-      data=line.split()[1:]
-      Ecotype=line.split()[1]
-      if Ecotype in datadict:
-        datadict[Ecotype][web]={}
-        for term in range(0,len(heads)):
-          if term!='Ecotype':
-            datadict[Ecotype][web][heads[term]]=data[term]
-  return datadict
+    if line.split()[0]!='Web':
+      Latitude=float(line.split()[6])
+      Species=int(line.split()[7])
+      LS=float(line.split()[10])
+      G=float(line.split()[12])
+      V=float(line.split()[14])
+      ecotype=line.split()[1]
 
-def plotter(fw_prop):
-  datadict=datareader(fw_prop)
-  lines=linereader(fw_prop)
+      points['S'][ecotype].append((Latitude,Species))
+      points['LS'][ecotype].append((Latitude,LS))
+      points['G'][ecotype].append((Latitude,G))
+      points['V'][ecotype].append((Latitude,V))
+  f.close()
+  return points
 
-  realdata={}
-  for webtype in datadict:
-    realdata[webtype]={'Species':[],'Connectance':[],'Latitude':[],fw_prop:[]}
-    for web in datadict[webtype]:
-      for term in realdata[webtype]:
-        realdata[webtype][term].append(float(datadict[webtype][web][term]))
+def predictionreader(predfile):
 
-  #Since I'm talking about things over latitude, Lat is the x-axis
-  linedata={}
-  for webtype in realdata:
-    linedata[webtype]=[]
-    for i in range(0,90):
-      Latitude=i
-      Species=mean_S
-      Connectance=mean_C
+  predpoints={'Lake':{0:[],45:[],75:[]},
+              'Marine':{0:[],45:[],75:[]},
+              'Stream':{0:[],45:[],75:[]},
+              'other':{0:[],45:[],75:[]}}
 
-      type_dependent=[]
-      interactions=[]
-
-      if 'log10(Connectance)' in lines:
-        con=math.log(Connectance,10)*lines['log10(Connectance)']
+  f=open(predfile,'r')
+  for line in f:
+    if line.split()[0]!='Species':
+      S=int(line.split()[0])
+      Lat=int(line.split()[1])
+      pred=float(line.split()[-1])
+      if line.split()[2]==1:
+        ecotype='Lake'
+      elif line.split()[3]==1:
+        ecotype='Marine'
+      elif line.split()[4]==1:
+        ecotype='Stream'
       else:
-        con=0
-      if 'log10(Species)' in lines:
-        sp=math.log(Species,10)*lines['log10(Species)']
-      else:
-        sp=0
-      if 'Latitude' in lines:
-        lat=Latitude*lines['Latitude']
-      else:
-        lat=0
-      inter=lines['(Intercept)']
+        ecotype='other'
+      predpoints[ecotype][Lat].append((S,pred))
+  f.close()
 
-      for term in lines:
-        if 'Ecotype' in term:
-          if webtype in term:
-            type_dependent.append(term)
-        else:
-          if len(term.split(':'))>1:
-            interactions.append(term)
+  return predpoints
 
-      for term in type_dependent:
-        if len(term.split(':'))==1:
-          inter=inter+lines[term]
-        else:
-          if 'Species' in term and 'Connectance' not in term:
-            sp=sp+math.log(Species,10)*lines[term]
-          elif 'Connectance' in term and 'Species' not in term:
-            con=con+math.log(Connectance,10)*lines[term]
-          elif 'species' in term and 'Connectance' in term:
-            print 'thats a big one'
-            sys.exit()
-          elif 'Latitude' in term:
-            if 'Species' not in term and 'Connectance' not in term:
-              lat=lat+Latitude*lines[term]
-            else:
-              print term
-              print 'more work yet to do'
-              sys.exit()
+def latplots(rawdatafile):
+  outfile1='../manuscript/Figures/properties_vs_lat.eps'
+  outfile2='../manuscript/Figures/properties_vs_lat.jpg'
 
-      y=inter+lat+sp+con
+  data=datareader(rawdatafile)
 
-      for term in interactions:
-        if len(term.split(':'))==2:
-          if 'Species' in term and 'Latitude' in term:
-            add=Latitude*math.log(Species,10)*lines[term]
-          elif 'Connectance' in term and 'Latitude' in term:
-            add=Latitude*math.log(Connectance,10)*lines[term]
-          else:
-            add=math.log(Connectance,10)*math.log(Species,10)*lines[term]
-          y=y+add
-        else:
-          print term, 'too big'
-          sys.exit()
+  grace=MultiPanelGrace()
+  for prop in ['S','LS','G','V']:
+    graph=grace.add_graph(panel)
 
-      try:
-        float(fw_prop)
-        point=(Latitude,y)
-      except:
-        point=(Latitude,10**y)
-
-      linedata[webtype].append(point)
-
-  
-  grace=Grace(colors=ColorBrewerScheme('Paired'))
-  graph=grace.add_graph()
-
-  for webtype in linedata:
-    realpoints=[]
-    for i in range(0,len(realdata[webtype]['Latitude'])):
-      realpoints.append((realdata[webtype]['Latitude'][i],realdata[webtype][fw_prop][i]))
-
-    data=graph.add_dataset(linedata[webtype],type='xy')
-    data.symbol.shape=0
-    if webtype=='marine':
-      colo=3
-    elif webtype=='stream':
-      colo=11
-    elif webtype=='estuary':
-      colo=9
-    elif webtype=='lake':
-      colo=7
-    else:
-      colo=5
-    data.legend=webtype
-    data.line.configure(color=colo,linewidth=2)
-
-    really=graph.add_dataset(realpoints,type='xy')
-    really.line.type=0
-    really.symbol.configure(color=colo,fill_color=colo)
-
-
-  graph.world.xmax=90
-  graph.world.xmin=0
-  graph.world.ymax=int(sorted(realdata['marine'][fw_prop])[-1])+2
-  graph.legend.configure(loc=(1.1,.5),loctype='view')
-
-  graph.xaxis.label.configure(text='Degrees from equator',char_size=1)
-  graph.xaxis.tick.configure(major=10,major_size=1,minor_size=.7)
-  graph.xaxis.ticklabel.configure(char_size=.8)
-  graph.yaxis.label.configure(text=fw_prop,char_size=1)
-  if graph.world.ymax<10:
-    graph.yaxis.tick.configure(major=1,major_size=1,minor_size=.7)
-  else:
-    graph.yaxis.tick.configure(major=5,major_size=1,minor_size=.7)
-
-  graph.yaxis.ticklabel.configure(char_size=.8)
-
-  grace.write_file('../manuscript/Figures/'+fw_prop+'_medium.eps')
-
+    estdata=graph.add_dataset(data[prop]['estuary'])
+    terrdata=graph.add_dataset(data[prop]['terrestrial'])
+    
 
 
 def main():
-  for fw_prop in ["LinkSD","Gen","GenSD","Vul","VulSD","mean_SWTL","max_SWTL",
-                  "Path","pBas","pInt","pTop","pHerb","pOmni","102","108",
-                  "110","12","14","238","36","38","46","6","74","78","98"]:
-    plotter(fw_prop)
+  rawdatafile='../mod_data/summary-properties.tsv'
+  predfolder='../mod_data/predictions/'
+
 
 if __name__ == '__main__':
   main()
