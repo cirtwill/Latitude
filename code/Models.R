@@ -240,10 +240,17 @@ Vul_min=with(data,lm(log10(Vul)~log10(Species)
 
 
 # What's the basic correlation with latitude?
-Sp_latdirect=(with(data,lm(Species~Latitude,na.action=na.fail)))
-LS_latdirect=(with(data,lm(LS~Latitude,na.action=na.fail)))
-Gen_latdirect=(with(data,lm(Gen~Latitude,na.action=na.fail)))
-Vul_latdirect=(with(data,lm(Vul~Latitude,na.action=na.fail)))
+Sp_latdirect=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+LS_latdirect=(with(data,lm(LS~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+Gen_latdirect=(with(data,lm(Gen~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+Vul_latdirect=(with(data,lm(Vul~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+# Latitude x ecotype isn't sig in any of these.
+Sp_latdirect=(with(data,lm(Species~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+LS_latdirect=(with(data,lm(LS~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+Gen_latdirect=(with(data,lm(Gen~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+Vul_latdirect=(with(data,lm(Vul~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+
+
 
 
 # Make some predictions for plotting
@@ -256,7 +263,7 @@ Vul_latdirect=(with(data,lm(Vul~Latitude,na.action=na.fail)))
 newdata=matrix(nrow=200*3*4,ncol=5)
 k=1
 for(j in c("Lake","Marine","Stream","Other")){
-  for(latitude in c(0,45,75)){
+  for(latitude in c(0,30,60)){
     for(i in 1:200){
     newdata[k,1]=i
     newdata[k,2]=latitude

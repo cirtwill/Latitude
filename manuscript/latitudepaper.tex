@@ -157,12 +157,16 @@ web were counted and used to calculate mean links per species ($Z$), generality 
 We first examined simple linear relationships between latitude and $S$, $Z$, $G$, and $V$. We fit models of the form
 
 \begin{eqnarray}
-S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \epsilon_{i} 
+S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} 
 \end{eqnarray}
 
-where $S_{i}$ is the species richness of web $i$, $\Lambda_{i}$ its absolute latitude (degrees north or south 
-regardless of direction), and $\epsilon_{i}$ a residual error term.
-These simple linear models, fit using the function lm in R \citep{R} package stats, were used to confirm that there are indeed latitudinal gradients in food-web structure in this data set.
+where $S_{i}$ is the species richness of web $i$, $\Lambda_{i}$ its absolute
+latitude (degrees north or south  regardless of direction), $E_{i}$ is the
+ecosystem type of network $i$ and $\epsilon_{i}$ a residual error term. If the
+interaction between latitude and ecosystem type was not significant, this term
+was removed and the model re-fit. These simple linear models, fit using the
+function lm in R \citep{R} package stats, were used to determine whether there
+were latitudinal gradients in food-web structure in this data set.
 
 
 \subsection*{Scaling Relationships with S}
@@ -277,8 +281,7 @@ For relationships of $Z$, $G$, and $V$ to S, the assumption of multiplicative lo
 (Table \ref{Errorfits}). We therefore use only models with logarithmic form for the remainder of the paper.
 
 
-Contrary to expected latitudinal gradients, $S$ and $G$ both increased with increasing latitude(Table \ref{Latlms}). 
-$G$ and $V$ were not significantly correlated with latitude. 
+Contrary to expected latitudinal gradients, $S$, $Z$, $G$ and $V$ did not vary significantly over latitude, although $S$ and $G$ did vary over ecosystem types (Table~\ref{Latlms}, Fig.~\ref{Latfigs}).
 
 \begin{table}[!t]
 
@@ -302,21 +305,23 @@ $V$ & 1151 & 767 & \ref{Loglog} \\
 \multirow{2}{*}{Property} & \multicolumn{2}{|c}{Intercept} & \multicolumn{2}{|c}{Slope} \\
                       & $\alpha_{0}$ & $p$-value & $\alpha_{1}$ & $p$-value \\
 \hline
-$S$ & 23.10 & \textless0.001 & 0.284 & 0.040 \\
-$Z$ & 2.566 & \textless0.001 & 0.020 & 0.180 \\
-$G$ & 3.269 & \textless0.001 & 0.049 & 0.014 \\
-$V$ & 2.566 & \textless0.001 & 0.020 & 0.180 \\
+$S$ & 29.42 & \textless0.001 & 0.188 & 0.167 \\
+$Z$ & 2.724 & 0.002          & 0.017 & 0.283 \\
+$G$ & 3.095 & 0.006          & 0.035 & 0.080 \\
+$V$ & 2.724 & 0.002          & 0.017 & 0.283 \\
 \end{tabular}
 \end{table}
 
 
 \subsection*{Effect of Latitude on Scaling with S}
 
-The effect of latitude on scaling relationships varied across ecosystem types (Table~\ref{Bestfits}). 
-In lakes and streams, the scaling exponent for species richness increased with latitude (although this 
-increase was not significant for lakes and generality). For other types of ecosystems, the scaling 
-exponent for species richness did not change significantly with latitude. 
-[[Some more description after figures.]]
+The effect of latitude on scaling relationships varied across ecosystem types
+(Table~\ref{Bestfits}, Fig.~\ref{scalingfig}).  In lakes and streams, the
+scaling exponent for species richness increased with latitude (although this
+increase was not significant for lakes and generality). For other types of
+ecosystems, the scaling  exponent for species richness decreased, but not significantly,
+with latitude. Despite these overal trends, the observed networks displayed a great deal
+of variability in each property. 
 
 \begin{table}[!h]
 
@@ -335,6 +340,7 @@ log(species):Latitude   & -0.001 & 0.081          & -0.001 & 0.273          & -0
 log(species):Lat:Lake   &  0.006 & \textless0.001 &  0.006 & \textless0.001 &  0.006 & \textless0.001 \\
 log(species):Lat:Stream &  0.004 & 0.018          &  0.003 & 0.059          &  0.004 & 0.018 \\
 \hline
+$R^{2} (adjusted)$   & \multicolumn{2}{c}{0.706} & \multicolumn{2}{c}{0.658} & \multicolumn{2}{c}{0.706} \\
 \end{tabular}
 \end{table}
 
