@@ -53,12 +53,12 @@ def fixed_reader(coefffile):
   f.close()
   return fixed_effects
 
-def correct_raw_obs(rawdatafile,coefffile):
+def heatmappoints(rawdatafile,coefffile):
   # Would probably be more helpful to do a heatmap of observed latitudes.
-  corrected_obs={'Lake':{'tropical':[],'temperate':[],'arctic':[]},
-                'Stream':{'tropical':[],'temperate':[],'arctic':[]},
-                'Marine':{'tropical':[],'temperate':[],'arctic':[]},
-                'other':{'tropical':[],'temperate':[],'arctic':[]}}
+  corrected_obs={'Lake':{},
+                'Stream':{},
+                'Marine':{},
+                'other':{}}
   fixed_effects=fixed_reader(coefffile)
   prop=coefffile.split('/')[-1].split('_')[0]
   f=open(rawdatafile,'r')
@@ -79,23 +79,17 @@ def correct_raw_obs(rawdatafile,coefffile):
       else:
         ecotype='other'
 
-      if Latitude<23.437:
-        corrected_obs[ecotype]['tropical'].append((Species,eval(prop)))
-      elif 23.437<=Latitude<66.563:
-        corrected_obs[ecotype]['temperate'].append((Species,eval(prop)))
-      elif Latitude>=66.563:
-        corrected_obs[ecotype]['arctic'].append((Species,eval(prop)))
-
+      corrected_obs[ecotype][(Species,eval(prop))]=Latitude
   f.close()
   return corrected_obs
 
 def predictionreader(predfile):
   # Add slopelines (separate slopes for each type?)
 
-  predpoints={'Lake':{0:[],45:[],75:[]},
-              'Marine':{0:[],45:[],75:[]},
-              'Stream':{0:[],45:[],75:[]},
-              'other':{0:[],45:[],75:[]}}
+  predpoints={'Lake':{0:[],30:[],60:[]},
+              'Marine':{0:[],30:[],60:[]},
+              'Stream':{0:[],30:[],60:[]},
+              'other':{0:[],30:[],60:[]}}
 
   f=open(predfile,'r')
   for line in f:
@@ -136,24 +130,24 @@ def latplots(rawdatafile):
       # lakedata.line.linestyle=0
       # strdata.line.linestyle=0
 
+      dataset.symbol.configure(shape=1,color=1,fill_color=3,linewidth=.5)
       if ecotype=='estuary':
-        dataset.symbol.configure(shape=1,color=3,fill_color=0)
         if prop=='S':
           graph.xaxis.label.configure(text='Estuary',place='opposite',char_size=.75)
       elif ecotype=='terrestrial':
-        dataset.symbol.configure(shape=2,color=5,fill_color=0)
+        # dataset.symbol.configure(shape=2,color=5,fill_color=0)
         if prop=='S':
           graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
       elif ecotype=='marine':
-        dataset.symbol.configure(shape=3,color=7,fill_color=0)
+        # dataset.symbol.configure(shape=3,color=7,fill_color=0)
         if prop=='S':
           graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
       elif ecotype=='lake':
-        dataset.symbol.configure(shape=4,color=9,fill_color=0)
+        # dataset.symbol.configure(shape=4,color=9,fill_color=0)
         if prop=='S':
           graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
       else:
-        dataset.symbol.configure(shape=5,color=11,fill_color=0)
+        # dataset.symbol.configure(shape=5,color=11,fill_color=0)
         if prop=='S':
           graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
 
@@ -161,7 +155,7 @@ def latplots(rawdatafile):
       graph.world.xmin=0
       graph.world.xmax=80
       graph.xaxis.tick.configure(major=20,minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.xaxis.ticklabel.configure(char_size=.5)
+      graph.xaxis.ticklabel.configure(char_size=.75)
       # graph.xaxis.label.configure(text="Absolute latitude (degrees)",char_size=.75)
 
       graph.world.ymin=0
@@ -169,7 +163,7 @@ def latplots(rawdatafile):
         graph.world.ymax=200
         graph.yaxis.tick.major=50
         if ecotype=='estuary':
-          graph.yaxis.label.text="Species richness"
+          graph.yaxis.label.text="Species"
       else:
         graph.world.ymax=30
         graph.yaxis.tick.major=10
@@ -181,63 +175,65 @@ def latplots(rawdatafile):
           graph.yaxis.label.text="Vulnerability"
 
       graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.yaxis.ticklabel.configure(char_size=.5)
-      graph.yaxis.label.configure(char_size=.75)
+      graph.yaxis.ticklabel.configure(char_size=.75)
+      graph.yaxis.label.configure(char_size=1)
       graph.panel_label.configure(char_size=0)
-
-  grace.multi(rows=4,cols=5,vgap=.05,hgap=.02)
-  grace.set_row_xaxislabel(row=3,colspan=(0,4),label='Absolute latitude (degrees)',place='normal',just=2,char_size=.75,perpendicular_offset=0.05)
+      graph.frame.linewidth=1
+      graph.xaxis.bar.linewidth=1
+      graph.yaxis.bar.linewidth=1
+  grace.multi(rows=4,cols=5,vgap=.05,hgap=.04)
+  grace.set_row_xaxislabel(row=3,colspan=(0,4),label='Absolute latitude (degrees)',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   grace.write_file(outfile1)
+  grace.write_file(outfile2)
 
 def scaleplots(rawdatafile,predfolder):
 
-  xwidth=2
-  ywidth=.5
+  xwidth=10
+  ywidth=1.5
 
   outfile1='../manuscript/Figures/scaling_with_S.eps'
   outfile2='../manuscript/Figures/scaling_with_S.jpg'
 
   rawdata=datareader(rawdatafile)
 
-  grace=MultiPanelGrace(colors=ColorBrewerScheme('Blues'))
+  dummygrace=MultiPanelGrace(colors=ColorBrewerScheme('RdYlBu',reverse=True,n=253))
+  colorbar = dummygrace.add_graph(ElLinColorBar,domain=(0,80),scale=LINEAR_SCALE,autoscale=False)
+
+  grace=MultiPanelGrace(colors=ColorBrewerScheme('RdYlBu',reverse=True,n=253))
 
   for prop in ['LS','Gen','Vul']:
     coefffile='../mod_data/coefficients/'+prop+'_co.tsv'
     preddata=predictionreader(predfolder+prop+'.tsv')
     fixed=fixed_reader(coefffile)
+    heatpoints=heatmappoints(rawdatafile,coefffile)
 
     for ecotype in ['other','Marine','Lake','Stream']:
       graph=grace.add_graph(Panel)
+      datadict=heatpoints[ecotype]
 
-      temppoints=graph.add_dataset(correct_raw_obs(rawdatafile,coefffile)[ecotype]['temperate'])
-      troppoints=graph.add_dataset(correct_raw_obs(rawdatafile,coefffile)[ecotype]['tropical'])
-      arctpoints=graph.add_dataset(correct_raw_obs(rawdatafile,coefffile)[ecotype]['arctic'])
-
-      troppoints.line.linestyle=0
-      temppoints.line.linestyle=0
-      arctpoints.line.linestyle=0
-
-      troppoints.symbol.configure(size=.5,color=5,fill_color=5)
-      temppoints.symbol.configure(size=.5,color=8,fill_color=8)
-      arctpoints.symbol.configure(size=.5,color=10,fill_color=10)
+      for d in datadict:
+        color=colorbar.z2color(datadict[d])
+        dat=graph.add_dataset([(d[0],d[1])])
+        dat.symbol.configure(fill_color=color,color=1,shape=1,linewidth=.5)
+          # [(d[0]-0.5*xwidth,d[1]-0.5*ywidth), (d[0]+0.5*xwidth,d[1]+0.5*ywidth)], SolidRectangle, color)
 
       preddataset1=graph.add_dataset(preddata[ecotype][0])
-      preddataset2=graph.add_dataset(preddata[ecotype][45])
-      preddataset3=graph.add_dataset(preddata[ecotype][75])
+      preddataset2=graph.add_dataset(preddata[ecotype][30])
+      preddataset3=graph.add_dataset(preddata[ecotype][60])
 
       preddataset1.symbol.shape=0
       preddataset2.symbol.shape=0
       preddataset3.symbol.shape=0
 
-      preddataset1.line.configure(linestyle=1,color=5)
-      preddataset2.line.configure(linestyle=1,color=8)
-      preddataset3.line.configure(linestyle=1,color=10)
+      preddataset1.line.configure(linestyle=1,color=colorbar.z2color(0))
+      preddataset2.line.configure(linestyle=1,color=colorbar.z2color(30))
+      preddataset3.line.configure(linestyle=1,color=colorbar.z2color(60))
 
       if ecotype=='other':
         if prop=='LS':
-          graph.xaxis.label.configure(text='Estuary & Terrestrial',place='opposite',char_size=.75)
+          graph.xaxis.label.configure(text='Estuarine & Terrestrial',place='opposite',char_size=.75)
       elif ecotype=='Marine':
         if prop=='LS':
           graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
@@ -247,19 +243,16 @@ def scaleplots(rawdatafile,predfolder):
       else:
         if prop=='LS':
           graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
-          preddataset1.legend='0 degrees'
-          preddataset2.legend='45 degrees'
-          preddataset3.legend='75 degrees'
+          # preddataset1.legend='0 degrees'
+          # preddataset2.legend='45 degrees'
+          # preddataset3.legend='75 degrees'
 
-          troppoints.legend='Tropical networks'
-          temppoints.legend='Temperate networks'
-          arctpoints.legend='Arctic networks'
           graph.legend.configure(loc=(210,30),loctype='world',char_size=.75)
           graph.legend.box_linestyle=0
       graph.world.xmin=0
       graph.world.xmax=200
       graph.xaxis.tick.configure(major=50,minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.xaxis.ticklabel.configure(char_size=.5)
+      graph.xaxis.ticklabel.configure(char_size=.75)
       graph.frame.linewidth=1
       graph.xaxis.bar.linewidth=1
       graph.yaxis.bar.linewidth=1
@@ -275,16 +268,29 @@ def scaleplots(rawdatafile,predfolder):
         graph.yaxis.label.text="Vulnerability"
 
       graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.yaxis.ticklabel.configure(char_size=.5)
-      graph.yaxis.label.configure(char_size=.75)
+      graph.yaxis.ticklabel.configure(char_size=.75)
+      graph.yaxis.label.configure(char_size=1)
       graph.panel_label.configure(char_size=0)
 
-  grace.multi(rows=3,cols=4,vgap=.05,hgap=.02)
-  grace.set_row_xaxislabel(row=2,colspan=(0,3),label='Species richness',place='normal',just=2,char_size=.75,perpendicular_offset=0.05)
+
+  grace.multi(rows=3,cols=4,vgap=.05,hgap=.04)
+  grace.set_row_xaxislabel(row=2,colspan=(0,3),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
+
+  showbar = grace.add_graph(ElLinColorBar,domain=(0,80),scale=LINEAR_SCALE,autoscale=False)
+  showbar.frame.linewidth=1
+  showbar.xaxis.bar.linewidth=1
+  showbar.yaxis.bar.linewidth=1
+  showbar.yaxis.tick.configure(major_linewidth=1,minor_linewidth=1,major_size=.5,minor_size=.3)
+  showbar.yaxis.ticklabel.configure(char_size=.75)
+
+  showbar.autoticky()
+  showbar.set_view(1.268,0.3688,1.318,0.889)
+  grace.add_drawing_object(DrawText,text='Degrees from equator', x=1.38, y=.6289, rot=270,char_size=.75,just=2)
+
   grace.write_file(outfile1)
- 
+  grace.write_file(outfile2) 
 
 def main():
   rawdatafile='../mod_data/summary-properties.tsv'
