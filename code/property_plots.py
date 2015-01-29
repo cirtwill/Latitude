@@ -188,20 +188,24 @@ def latplots(rawdatafile):
   grace.write_file(outfile1)
   grace.write_file(outfile2)
 
-def scaleplots(rawdatafile,predfolder):
+def scaleplots(rawdatafile,predfolder,colorscheme):
 
   xwidth=10
   ywidth=1.5
 
-  outfile1='../manuscript/Figures/scaling_with_S.eps'
-  outfile2='../manuscript/Figures/scaling_with_S.jpg'
+  if colorscheme=='RdYlBu':
+    outfile1='../manuscript/Figures/scaling_with_S.eps'
+    outfile2='../manuscript/Figures/scaling_with_S.jpg'
+  else:
+    outfile1='../manuscript/Figures/scaling_with_S_grey.eps'
+    outfile2='../manuscript/Figures/scaling_with_S_grey.jpg'
 
   rawdata=datareader(rawdatafile)
 
-  dummygrace=MultiPanelGrace(colors=ColorBrewerScheme('RdYlBu',reverse=True,n=253))
+  dummygrace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=True,n=253))
   colorbar = dummygrace.add_graph(ElLinColorBar,domain=(0,80),scale=LINEAR_SCALE,autoscale=False)
 
-  grace=MultiPanelGrace(colors=ColorBrewerScheme('RdYlBu',reverse=True,n=253))
+  grace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=True,n=253))
 
   for prop in ['LS','Gen','Vul']:
     coefffile='../mod_data/coefficients/'+prop+'_co.tsv'
@@ -298,7 +302,8 @@ def main():
 
   # datareader(rawdatafile)
   latplots(rawdatafile)
-  scaleplots(rawdatafile,predfolder)
+  for colorscheme in ['PuOr','RdYlBu']:
+    scaleplots(rawdatafile,predfolder,colorscheme)
 
 if __name__ == '__main__':
   main()
