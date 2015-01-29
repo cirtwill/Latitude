@@ -96,10 +96,9 @@ def clustering(directory,item):
   Clus=float(sum(ratios)/len(ratios))
   return Clus
 
-def food_web_properties(directory,item):
+def food_web_properties(directory,item,G):
   Clus=clustering(directory,item)
 
-  G=trophic_species_web(directory,item)
   N=len(G.nodes())
   L=len(G.edges())
   LS=Decimal(L)/Decimal(N)
@@ -159,9 +158,7 @@ def food_web_properties(directory,item):
     stroutput.append(str(thing))
   return stroutput 
 
-def websorter(metafile,directory,motifdir):
-  roledictionary=RD.wrapper(motifdir)
-
+def websorter(metafile,directory):
   infodict={}
   uselist=[]
   f=open(metafile)
@@ -214,7 +211,7 @@ def websorter(metafile,directory,motifdir):
   outfile.write('\n')
 
   for item in uselist:
-    outputs=food_web_properties(directory,item)
+    outputs=food_web_properties(directory,item,trophic_species_web(directory,item))
     info=infodict[item]
     outfile.write(item+'\t')
     outfile.write('\t'.join(info))
@@ -225,13 +222,30 @@ def websorter(metafile,directory,motifdir):
   outfile.close()
            # extfile.write('\t'.join(map(str,[eval(item) for item in extheader])))
 
+  out2=open('../non_TS/summary-properties.tsv','w')
+  out2.write('\t'.join(header))
+  out2.write('\n')
+
+  for item in uselist:
+    snoutputs=food_web_properties(directory,item,create_web(directory,item))
+    info=infodict[item]
+    out2.write(item+'\t')
+    out2.write('\t'.join(info))
+    out2.write('\t')
+    out2.write('\t'.join(snoutputs))
+    out2.write('\n')
+
+  outfile.close()
+
+
+
 def main():
   
   metafile = '../mod_data/sup_data/food_web_notes.csv'
   directory = '../mod_data/lists/pred-prey-lists-to-use/'
   motifdir = '../mod_data/Roles/'
 
-  websorter(metafile,directory,motifdir)
+  websorter(metafile,directory)
 
 if __name__ == '__main__':
   main()

@@ -147,165 +147,213 @@ power_analysis = function (x, y, CI_boot = TRUE, diagno = TRUE, output_plot = FA
 
 ##############################################################################################
 ##############################################################################################
-data=read.delim('../mod_data/summary-properties.tsv',sep='\t',header=TRUE,stringsAsFactors=FALSE)
-data$Connectance=as.numeric(as.character(data$Connectance))
-data$LS=as.numeric(as.character(data$LS))
-data$Gen=as.numeric(as.character(data$Gen))
-data$Vul=as.numeric(as.character(data$Vul))
-data$Ecotype=as.factor(data$Ecotype)
-data$Ecotype2=as.factor(data$Ecotype2)
-data$Humans=as.factor(data$Humans)
-data$Site=as.factor(data$Site)
+for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properties.tsv')){
 
-data$Estuary=0
-data$Lake=0
-data$Marine=0
-data$Stream=0
-data$Terr=0
+  data=read.delim(infile,sep='\t',header=TRUE,stringsAsFactors=FALSE)
+  data$Connectance=as.numeric(as.character(data$Connectance))
+  data$LS=as.numeric(as.character(data$LS))
+  data$Gen=as.numeric(as.character(data$Gen))
+  data$Vul=as.numeric(as.character(data$Vul))
+  data$Ecotype=as.factor(data$Ecotype)
+  data$Ecotype2=as.factor(data$Ecotype2)
+  data$Humans=as.factor(data$Humans)
+  data$Site=as.factor(data$Site)
 
-for(i in 1:length(data$Ecotype)){
-  if(data$Ecotype[i]=='estuary'){
-    data$Estuary[i]=1  }}
+  data$Estuary=0
+  data$Lake=0
+  data$Marine=0
+  data$Stream=0
+  data$Terr=0
 
-for(i in 1:length(data$Ecotype)){
-  if(data$Ecotype[i]=='lake'){
-    data$Lake[i]=1  }}
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='estuary'){
+      data$Estuary[i]=1  }}
 
-for(i in 1:length(data$Ecotype)){
-  if(data$Ecotype[i]=='marine'){
-    data$Marine[i]=1  }}
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='lake'){
+      data$Lake[i]=1  }}
 
-for(i in 1:length(data$Ecotype)){
-  if(data$Ecotype[i]=='stream'){
-    data$Stream[i]=1  }}
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='marine'){
+      data$Marine[i]=1  }}
 
-for(i in 1:length(data$Ecotype)){
-  if(data$Ecotype[i]=='terrestrial'){
-    data$Terr[i]=1  }}
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='stream'){
+      data$Stream[i]=1  }}
 
-q=data$Species
-x=data$LS
-y=data$Gen
-z=data$Vul         
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='terrestrial'){
+      data$Terr[i]=1  }}
 
-
-power_analysis(data$Species,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
-                      #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
-power_analysis(data$Species,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
-                      #It is lognormal, AIC=1037.4 vs 1265.9 with nonlinear.
-power_analysis(data$Species,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
-                      #It is lognormal, AIC=766.9 vs 1150.6
-
-#Therefore using lognormal with confidence for modified models.
-LS_full=with(data,lm(log10(LS)~log10(Species)
-  +log10(Species):Latitude
-  +log10(Species):(Stream+Lake+Marine+Terr)
-  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  ,na.action=na.fail))
-ls_dredge=dredge(LS_full,rank=AIC)
-LS_min =with(data,lm(log10(LS)~log10(Species)
-  +log10(Species):(Lake+Marine+Stream)
-  +log10(Species):Latitude
-  +log10(Species):Latitude:Lake
-  +log10(Species):Latitude:Stream
-  ,na.action=na.fail))
+  q=data$Species
+  x=data$LS
+  y=data$Gen
+  z=data$Vul         
 
 
-Gen_full=with(data,lm(log10(Gen)~log10(Species)
-  +log10(Species):Latitude
-  +log10(Species):(Stream+Lake+Marine+Terr)
-  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  ,na.action=na.fail))
-g_dredge=dredge(Gen_full,rank=AIC)
-Gen_min=with(data,lm(log10(Gen)~log10(Species)
-  +log10(Species):(Lake+Marine+Stream)
-  +log10(Species):Latitude
-  +log10(Species):Latitude:Lake
-  +log10(Species):Latitude:Stream
-  ,na.action=na.fail))
+  power_analysis(data$Species,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
+  power_analysis(data$Species,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=1037.4 vs 1265.9 with nonlinear.
+  power_analysis(data$Species,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=766.9 vs 1150.6
 
+  #Therefore using lognormal with confidence for modified models.
+  LS_full=with(data,lm(log10(LS)~log10(Species)
+    +log10(Species):Latitude
+    +log10(Species):(Stream+Lake+Marine+Terr)
+    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+    ,na.action=na.fail))
+  ls_dredge=dredge(LS_full,rank=AIC)
+  if(infile=='../mod_data/summary-properties.tsv'){
+    LS_min =with(data,lm(log10(LS)~log10(Species)
+    +log10(Species):(Lake+Marine+Stream)
+    +log10(Species):Latitude
+    +log10(Species):Latitude:Lake
+    +log10(Species):Latitude:Stream
+    ,na.action=na.fail))    } else {
+    LS_min=with(data,lm(log10(LS)~log10(Species)
+    +log10(Species):(Lake+Marine+Terr)
+    +log10(Species):Latitude
+    +log10(Species):Latitude:Marine
+    +log10(Species):Latitude:Terr,
+    na.action=na.fail))    }
 
-Vul_full=with(data,lm(log10(Vul)~log10(Species)
-  +log10(Species):Latitude
-  +log10(Species):(Stream+Lake+Marine+Terr)
-  +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
-  ,na.action=na.fail))
-v_dredge=dredge(Vul_full,rank=AIC)
-Vul_min=with(data,lm(log10(Vul)~log10(Species)
-  +log10(Species):(Lake+Marine+Stream)
-  +log10(Species):Latitude
-  +log10(Species):Latitude:Lake
-  +log10(Species):Latitude:Stream
-  ,na.action=na.fail))
+  Gen_full=with(data,lm(log10(Gen)~log10(Species)
+    +log10(Species):Latitude
+    +log10(Species):(Stream+Lake+Marine+Terr)
+    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+    ,na.action=na.fail))
+  g_dredge=dredge(Gen_full,rank=AIC)
+  if(infile=='../mod_data/summary-properties.tsv'){
+    Gen_min=with(data,lm(log10(Gen)~log10(Species)
+      +log10(Species):(Lake+Marine+Stream)
+      +log10(Species):Latitude
+      +log10(Species):Latitude:Lake
+      +log10(Species):Latitude:Stream
+      ,na.action=na.fail)) } else {
+    Gen_min=with(data,lm(log10(Gen)~log10(Species)
+      +log10(Species):(Lake+Marine+Terr)
+      +log10(Species):Latitude
+      +log10(Species):Latitude:Lake
+      ,na.action=na.fail))
+    }
 
+  Vul_full=with(data,lm(log10(Vul)~log10(Species)
+    +log10(Species):Latitude
+    +log10(Species):(Stream+Lake+Marine+Terr)
+    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+    ,na.action=na.fail))
+  v_dredge=dredge(Vul_full,rank=AIC)
+  if(infile=='../mod_data/summary-properties.tsv'){
+    Vul_min=with(data,lm(log10(Vul)~log10(Species)
+      +log10(Species):(Lake+Marine+Stream)
+      +log10(Species):Latitude
+      +log10(Species):Latitude:Lake
+      +log10(Species):Latitude:Stream
+      ,na.action=na.fail)) } else {
+    Vul_min=with(data,lm(log10(Vul)~log10(Species)
+      +log10(Species):(Lake+Marine+Terr)
+      +log10(Species):Latitude
+      +log10(Species):Latitude:Marine
+      +log10(Species):Latitude:Terr
+      ,na.action=na.fail))  }
 
-# What's the basic correlation with latitude?
-Sp_latdirect=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-LS_latdirect=(with(data,lm(LS~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-Gen_latdirect=(with(data,lm(Gen~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-Vul_latdirect=(with(data,lm(Vul~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-# Latitude x ecotype isn't sig in any of these.
-Sp_latdirect=(with(data,lm(Species~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-LS_latdirect=(with(data,lm(LS~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-Gen_latdirect=(with(data,lm(Gen~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-Vul_latdirect=(with(data,lm(Vul~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  # What's the basic correlation with latitude?
+  Sp_latdirect=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  LS_latdirect=(with(data,lm(LS~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Gen_latdirect=(with(data,lm(Gen~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Vul_latdirect=(with(data,lm(Vul~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  # Latitude x ecotype isn't sig in any of these.
+  Sp_latdirect=(with(data,lm(Species~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  LS_latdirect=(with(data,lm(LS~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Gen_latdirect=(with(data,lm(Gen~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Vul_latdirect=(with(data,lm(Vul~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
 
+  # Make some predictions for plotting
+  # Observed species range is 3!-169.
 
+  # Want species on the x-axis, properties on y. 
+  # Maybe 3 levels of latitude.
+  # Range is 0 - 78 degrees.
+  # 0, 45, 75 == equatorial, temperate, arctic
+  if(infile=='../mod_data/summary-properties.tsv'){
+    newdata=matrix(nrow=200*3*4,ncol=5)
+    k=1
+    for(j in c("Lake","Marine","Stream","Other")){
+      for(latitude in c(0,30,60)){
+        for(i in 1:200){
+        newdata[k,1]=i
+        newdata[k,2]=latitude
+        newdata[k,3]=0
+        newdata[k,4]=0
+        newdata[k,5]=0
+        if(j=="Lake"){
+          newdata[k,3]=1
+          newdata[k,4]=0
+          newdata[k,5]=0} 
+        if(j=="Marine"){
+          newdata[k,3]=0
+          newdata[k,4]=1
+          newdata[k,5]=0}
+        if(j=="Stream"){
+          newdata[k,3]=0
+          newdata[k,4]=0
+          newdata[k,5]=1}
+        k=k+1
+    }}}
+    colnames(newdata)=c("Species","Latitude","Lake","Marine","Stream") } else {
+    newdata=matrix(nrow=200*3*4,ncol=5)
+    k=1
+    for(j in c("Lake","Marine","Terr","Other")){
+      for(latitude in c(0,30,60)){
+        for(i in 1:200){
+        newdata[k,1]=i
+        newdata[k,2]=latitude
+        newdata[k,3]=0
+        newdata[k,4]=0
+        newdata[k,5]=0
+        if(j=="Lake"){
+          newdata[k,3]=1
+          newdata[k,4]=0
+          newdata[k,5]=0} 
+        if(j=="Marine"){
+          newdata[k,3]=0
+          newdata[k,4]=1
+          newdata[k,5]=0}
+        if(j=="Terr"){
+          newdata[k,3]=0
+          newdata[k,4]=0
+          newdata[k,5]=1}
+        k=k+1
+    }}}
+    colnames(newdata)=c("Species","Latitude","Lake","Marine","Terr")    }
 
+  newdata=as.data.frame(newdata) 
+  # No link function, so no type="response"
+  LS_preds=predict(LS_min,newdata=newdata)
+  Gen_preds=predict(Gen_min,newdata=newdata)
+  Vul_preds=predict(Vul_min,newdata=newdata)
 
-# Make some predictions for plotting
-# Observed species range is 3!-169.
+  LS_fake=cbind(newdata,LS_preds)
+  Gen_fake=cbind(newdata,Gen_preds)
+  Vul_fake=cbind(newdata,Vul_preds)
 
-# Want species on the x-axis, properties on y. 
-# Maybe 3 levels of latitude.
-# Range is 0 - 78 degrees.
-# 0, 45, 75 == equatorial, temperate, arctic
-newdata=matrix(nrow=200*3*4,ncol=5)
-k=1
-for(j in c("Lake","Marine","Stream","Other")){
-  for(latitude in c(0,30,60)){
-    for(i in 1:200){
-    newdata[k,1]=i
-    newdata[k,2]=latitude
-    newdata[k,3]=0
-    newdata[k,4]=0
-    newdata[k,5]=0
-    if(j=="Lake"){
-      newdata[k,3]=1
-      newdata[k,4]=0
-      newdata[k,5]=0} 
-    if(j=="Marine"){
-      newdata[k,3]=0
-      newdata[k,4]=1
-      newdata[k,5]=0}
-    if(j=="Stream"){
-      newdata[k,3]=0
-      newdata[k,4]=0
-      newdata[k,5]=1}
-    k=k+1
-}}}
-colnames(newdata)=c("Species","Latitude","Lake","Marine","Stream")
-newdata=as.data.frame(newdata)
+  colnames(LS_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+  colnames(Gen_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+  colnames(Vul_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
 
-# No link function, so no type="response"
-LS_preds=predict(LS_min,newdata=newdata)
-Gen_preds=predict(Gen_min,newdata=newdata)
-Vul_preds=predict(Vul_min,newdata=newdata)
+  if(infile=='../mod_data/summary-properties.tsv'){
+    outdir='../mod_data/'  } else {
+      outdir='../non_TS/'     }
 
-LS_fake=cbind(newdata,LS_preds)
-Gen_fake=cbind(newdata,Gen_preds)
-Vul_fake=cbind(newdata,Vul_preds)
+  save.image(file=paste(outdir,'Models.RData',sep=''))
+  write.table(LS_fake,file=paste(outdir,'predictions/LS.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
+  write.table(Gen_fake,file=paste(outdir,'predictions/Gen.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
+  write.table(Vul_fake,file=paste(outdir,'predictions/Vul.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
 
-colnames(LS_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
-colnames(Gen_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
-colnames(Vul_fake)=c("Species","Latitude","Lake","Marine","Stream","pred")
+  write.table(summary(LS_min)$coefficients,file=paste(outdir,'coefficients/LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(Gen_min)$coefficients,file=paste(outdir,'coefficients/Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(Vul_min)$coefficients,file=paste(outdir,'coefficients/Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
 
-write.table(LS_fake,file='../mod_data/predictions/LS.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
-write.table(Gen_fake,file='../mod_data/predictions/Gen.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
-write.table(Vul_fake,file='../mod_data/predictions/Vul.tsv',col.names=TRUE,row.names=FALSE,sep='\t')
-
-write.table(summary(LS_min)$coefficients,file='../mod_data/coefficients/LS_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
-write.table(summary(Gen_min)$coefficients,file='../mod_data/coefficients/Gen_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
-write.table(summary(Vul_min)$coefficients,file='../mod_data/coefficients/Vul_co.tsv',col.names=TRUE,row.names=TRUE,sep='\t')
-
-
+}

@@ -41,7 +41,6 @@ def datareader(rawdatafile):
   f.close()
   return points
 
-
 def fixed_reader(coefffile):
   fixed_effects={}
   f=open(coefffile,'r')
@@ -53,10 +52,16 @@ def fixed_reader(coefffile):
   f.close()
   return fixed_effects
 
-def heatmappoints(rawdatafile,coefffile):
+def heatmappoints(rawdatafile,coefffile,webtype):
   # Would probably be more helpful to do a heatmap of observed latitudes.
-  corrected_obs={'Lake':{},
+  if webtype=='ts':
+    corrected_obs={'Lake':{},
                 'Stream':{},
+                'Marine':{},
+                'other':{}}
+  else:
+    corrected_obs={'Lake':{},
+                'Terrestrial':{},
                 'Marine':{},
                 'other':{}}
   fixed_effects=fixed_reader(coefffile)
@@ -74,8 +79,10 @@ def heatmappoints(rawdatafile,coefffile):
         ecotype='Lake'
       elif ecotype=='marine':
         ecotype='Marine'
-      elif ecotype=='stream':
+      elif ecotype=='stream' and webtype=='ts':
         ecotype='Stream'
+      elif ecotype=='terrestrial' and webtype=='nonts':
+        ecotype='Terrestrial'
       else:
         ecotype='other'
 
@@ -83,13 +90,18 @@ def heatmappoints(rawdatafile,coefffile):
   f.close()
   return corrected_obs
 
-def predictionreader(predfile):
-  # Add slopelines (separate slopes for each type?)
-
-  predpoints={'Lake':{0:[],30:[],60:[]},
+def predictionreader(predfile,webtype):
+  if webtype=='ts':
+    predpoints={'Lake':{0:[],30:[],60:[]},
               'Marine':{0:[],30:[],60:[]},
               'Stream':{0:[],30:[],60:[]},
               'other':{0:[],30:[],60:[]}}
+  else:
+    predpoints={'Lake':{0:[],30:[],60:[]},
+              'Marine':{0:[],30:[],60:[]},
+              'Terrestrial':{0:[],30:[],60:[]},
+              'other':{0:[],30:[],60:[]}}
+
 
   f=open(predfile,'r')
   for line in f:
@@ -102,7 +114,10 @@ def predictionreader(predfile):
       elif line.split()[3]=='1':
         ecotype='Marine'
       elif line.split()[4]=='1':
-        ecotype='Stream'
+        if webtype=='ts':
+          ecotype='Stream'
+        else:
+          ecotype='Terrestrial'
       else:
         ecotype='other'
       predpoints[ecotype][Lat].append((S,10**pred))
@@ -188,32 +203,40 @@ def latplots(rawdatafile):
   grace.write_file(outfile1)
   grace.write_file(outfile2)
 
-def scaleplots(rawdatafile,predfolder,colorscheme):
+def scaleplots(rawdatafile,colorscheme,webtype):
 
+  if webtype=='ts':
+    ecotypes=['other','Marine','Lake','Stream']
+    sourcefolder='../mod_data/'
+  else:
+    ecotypes=['other','Marine','Lake','Terrestrial']
+    sourcefolder='../non_TS/'
   xwidth=10
   ywidth=1.5
 
   if colorscheme=='RdYlBu':
-    outfile1='../manuscript/Figures/scaling_with_S.eps'
-    outfile2='../manuscript/Figures/scaling_with_S.jpg'
+    outfile1='../manuscript/Figures/'+webtype+'_scaling_with_S.eps'
+    outfile2='../manuscript/Figures/'+webtype+'_scaling_with_S.jpg'
   else:
-    outfile1='../manuscript/Figures/scaling_with_S_grey.eps'
-    outfile2='../manuscript/Figures/scaling_with_S_grey.jpg'
+    outfile1='../manuscript/Figures/'+webtype+'_scaling_with_S_grey.eps'
+    outfile2='../manuscript/Figures/'+webtype+'_scaling_with_S_grey.jpg'
 
   rawdata=datareader(rawdatafile)
+  rev=True
+  if colorscheme=='Greys':
+    rev=False
+  dummygrace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=rev,n=253))
+  colorbar = dummygrace.add_graph(ElLinColorBar,domain=(0,90),scale=LINEAR_SCALE,autoscale=False)
 
-  dummygrace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=True,n=253))
-  colorbar = dummygrace.add_graph(ElLinColorBar,domain=(0,80),scale=LINEAR_SCALE,autoscale=False)
-
-  grace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=True,n=253))
+  grace=MultiPanelGrace(colors=ColorBrewerScheme(colorscheme,reverse=rev,n=253))
 
   for prop in ['LS','Gen','Vul']:
-    coefffile='../mod_data/coefficients/'+prop+'_co.tsv'
-    preddata=predictionreader(predfolder+prop+'.tsv')
+    coefffile=sourcefolder+'coefficients/'+prop+'_co.tsv'
+    preddata=predictionreader(sourcefolder+'predictions/'+prop+'.tsv',webtype)
     fixed=fixed_reader(coefffile)
-    heatpoints=heatmappoints(rawdatafile,coefffile)
+    heatpoints=heatmappoints(rawdatafile,coefffile,webtype)
 
-    for ecotype in ['other','Marine','Lake','Stream']:
+    for ecotype in ecotypes:
       graph=grace.add_graph(Panel)
       datadict=heatpoints[ecotype]
 
@@ -236,8 +259,10 @@ def scaleplots(rawdatafile,predfolder,colorscheme):
       preddataset3.line.configure(linestyle=1,color=colorbar.z2color(60))
 
       if ecotype=='other':
-        if prop=='LS':
+        if prop=='LS' and webtype=='ts':
           graph.xaxis.label.configure(text='Estuarine & Terrestrial',place='opposite',char_size=.75)
+        elif prop=='LS' and webtype=='nonts':
+          graph.xaxis.label.configure(text='Estuarine & Stream',place='opposite',char_size=.75)
       elif ecotype=='Marine':
         if prop=='LS':
           graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
@@ -245,8 +270,11 @@ def scaleplots(rawdatafile,predfolder,colorscheme):
         if prop=='LS':
           graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
       else:
-        if prop=='LS':
+        if prop=='LS' and webtype=='ts':
           graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
+        elif prop=='LS' and webtype=='nonts':
+          graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
+
           # preddataset1.legend='0 degrees'
           # preddataset2.legend='45 degrees'
           # preddataset3.legend='75 degrees'
@@ -282,7 +310,7 @@ def scaleplots(rawdatafile,predfolder,colorscheme):
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
 
-  showbar = grace.add_graph(ElLinColorBar,domain=(0,80),scale=LINEAR_SCALE,autoscale=False)
+  showbar = grace.add_graph(ElLinColorBar,domain=(0,90),scale=LINEAR_SCALE,autoscale=False)
   showbar.frame.linewidth=1
   showbar.xaxis.bar.linewidth=1
   showbar.yaxis.bar.linewidth=1
@@ -298,12 +326,12 @@ def scaleplots(rawdatafile,predfolder,colorscheme):
 
 def main():
   rawdatafile='../mod_data/summary-properties.tsv'
-  predfolder='../mod_data/predictions/'
 
   # datareader(rawdatafile)
   latplots(rawdatafile)
-  for colorscheme in ['PuOr','RdYlBu']:
-    scaleplots(rawdatafile,predfolder,colorscheme)
+  for webtype in ['ts','nonts']:
+    for colorscheme in ['Greys','RdYlBu']:
+      scaleplots(rawdatafile,colorscheme,webtype)
 
 if __name__ == '__main__':
   main()
