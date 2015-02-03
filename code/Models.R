@@ -260,15 +260,20 @@ for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properti
       ,na.action=na.fail))  }
 
   # What's the basic correlation with latitude?
-  Sp_latdirect=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  LS_latdirect=(with(data,lm(LS~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  Gen_latdirect=(with(data,lm(Gen~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  Vul_latdirect=(with(data,lm(Vul~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  # Latitude x ecotype isn't sig in any of these.
-  Sp_latdirect=(with(data,lm(Species~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  LS_latdirect=(with(data,lm(LS~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  Gen_latdirect=(with(data,lm(Gen~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
-  Vul_latdirect=(with(data,lm(Vul~Latitude+(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Sp_latdirect_full=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  LS_latdirect_full=(with(data,lm(LS~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Gen_latdirect_full=(with(data,lm(Gen~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+  Vul_latdirect_full=(with(data,lm(Vul~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
+
+  sld=dredge(Sp_latdirect_full,rank=AIC)
+  lld=dredge(LS_latdirect_full,rank=AIC)
+  gld=dredge(Gen_latdirect_full,rank=AIC)
+  vld=dredge(Vul_latdirect_full,rank=AIC)
+
+  Sp_latdirect=(with(data,lm(Species~Stream),na.action=na.fail))
+  LS_latdirect=(with(data,lm(LS~1),na.action=na.fail))
+  Gen_latdirect=(with(data,lm(Gen~Terr+Lake),na.action=na.fail))
+  Vul_latdirect=(with(data,lm(Vul~1),na.action=na.fail))
 
   # Make some predictions for plotting
   # Observed species range is 3!-169.

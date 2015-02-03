@@ -138,14 +138,14 @@ links in each web and used these to calculate the mean number of links per speci
 
 \subsection*{Relationships with Latitude}
 
-[[re-run with dredge]]
 To determine whether there were latitudinal gradients in food-web structure,
 we first examined simple linear relationships between latitude and $S$, $Z$, $G$, and $V$. 
 We fit models of the form
 
-\begin{eqnarray}
+\begin{equation}
+\label{Latfull}
 S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} 
-\end{eqnarray}
+\end{equation}
 
 where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
 latitude (degrees north or south  regardless of direction), $E_{i}$ is the
@@ -155,7 +155,10 @@ We then simplified these maximal models. To do this, we calculated the AIC
 of the chosen maximal model, as well as the AIC's of a suite of candidate simplified models identified
 using R~\citep{R} function dredge from packages MuMIn~\citep{MuMIn}. Simplified models were obtained by
 systematically removing all possible combinations of terms from the full model.
-The best-fitting model was then determined to be the model with the fewest terms where $\delta$AIC<2. 
+The best-fitting model was then determined to be the model with the fewest terms 
+where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
+and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
+model.
 
 
 \subsection*{Scaling Relationships with S}
@@ -200,26 +203,26 @@ species richness.
 % Logarithm of a sum is awful:   log(a+c) = log(a) + log(1+b^[log(c)-log(a)]) But can probably feed that into R...
 
 
-We then assessed
-the impact of latitude on this relationship; specifically, the effect of latitude on the scaling exponent $\beta$. 
-In addition to latitude, we included a factorial variable for ecosystem type (stream, lake, terrestrial, marine, or estuary) to account for recognized variation in food web structure across ecosystem types \citep{}.
-% We also considered other trends in the data that could affect relationships between latitude and species richness.
-% To account for changing standards in data collection over time \citep{Dunne2006} we included an effect of year of
-% publication. As 11 of our XX webs included humans, and therefore might have different properties than other networks,
-% we included a factorial effect of the presence of humans. 
-Note that some of our webs describe the same area in different
-seasons or different years. 
-% [[removed the site-level random effect because I don't want it to steal latitude information.]]
+We then assessed the impact of latitude on the scaling relationships between $Z$, $G$, $V$, and $S$. 
+Even if there is no direct effect of latitude on specialization, perhaps due to contrasting effects
+on species richness as described above, there may still be an effect of latitude on the scaling of
+each property with species richness. In fact, if the species-rich tropics truly have narrower 
+niches~\citep{Brown2004}, then we would expect to see less increase in mean numbers of links, 
+predators, and prey with increasing species richness in the tropics.
+In the context of the scaling relationships above, we wish to determine the effect of latitude on
+the scaling exponent $\beta$. As when examining the relationships between latitude and each food 
+web property directly, we included a factorial variable for ecosystem type (stream, lake, 
+terrestrial, marine, or estuary), as well as interactions between food web type and latitude.
 
 
 We therefore began by considering models of the form:
 
 \begin{equation}
 \label{PowerLat}
-Z_{i}=\alpha S_{i}^{\beta_{0}+\beta_{1}L_{i}+\beta_{3}E_{i}} + \epsilon_{i} 
+Z_{i}=\alpha S_{i}^{\beta_{0}+\beta_{1}L_{i}+\beta_{2}E_{i}+\beta_{3}LE_{i}} + \epsilon_{i} 
 \end{equation}
 
-where $L_{i}$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction),
+where $S_{i}$ is the number of species in food web $i$, $L_{i}$ is the absolute latitude of food web $i$ (degrees from the equator, regardless of direction),
 $E_{i}$ indicates the ecosystem type of food web $i$.
 
 
@@ -227,24 +230,19 @@ The logarithmic formulation of this model is:
 
 \begin{equation}
 \label{LogLat}
-1log(Z_{i})= log(\alpha)+\beta_{0}log(S_{i}) + \beta_{1}L*log(S_{i}) +\beta_{3}E*log(S_{i}) +\epsilon_{i}
+\log{Z_{i}} = \log{\alpha}+\beta_{0}\log{S_{i}} + \beta_{1}L\log{S_{i}} +\beta_{2}E\log{S_{i}} +\beta_{3}LE\log{S_{i}} +\epsilon_{i}
 \end{equation}
 
-
-We fit equation \ref{LogLat}, as well as similar equations for $G$ and $V$ using R \citep{R} function lm from package stats
-\citep{stats}.
-We calculated the AIC of the chosen maximal model, as well as the AIC's of a suite of candidate simplified models.
-Simplified models were obtained by systematically removing all possible combinations of terms from the full model.
-The term for species richness was not removed from a model if any of the terms affecting the exponent $\beta$ were 
-included in the model. The best-fitting model was then determined to be the model with the fewest terms where $\delta$AIC<2. 
-
-The model with the lowest AIC was selected as the best-fitting model. 
-This simplification was performed using the
-R \citep{R} function dredge from package MuMIn \citep{MuMIn}. We then used the R \citep{R} function lm
-to estimate the standardized effects ($\beta$s ) for each fixed effect in the 
-best-fitting models, as well as their corresponding $p$-values. 
-
-
+For each property in $Z$, $G$, and $V$, we used the form of the equation that was best supported
+when describing the scaling of the property with species richness alone~\citep{Xiao2011}.
+We then simplified the model. As with the models describing the relationships between latitude and food-web
+properties, we calculated the AIC of the maximal and all reduced models, created by systematically removing
+all possible combinations of terms. Note that if an interaction term was included in a reduced model, all
+associated main effects were also retained. $S$ was included in all reduced models. Reduced models were
+identified using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. The best-fitting model
+was then determined to be the model with the fewest terms where $\Delta$AIC<2. Where there were several
+models with the fewest terms where $\Delta$AIC<2, the model with the lowest AIC in this set was chosen as
+the best-fitting model. The best-fitting model was then fit using R~\citep{R} function lm from package stats~\citep{stats}.
 
 % of  the University of Canberra's GlobalWeb database (www.globalwebdb.com) 
 % \citep{}. Of these, 302 webs had accessible original sources. 
@@ -266,26 +264,45 @@ best-fitting models, as well as their corresponding $p$-values.
 
 \section*{Results}
 
-\subsection*{Scaling Relationships with S and Latitude}
+\subsection*{Scaling Relationships with $S$ and Latitude}
 
-For relationships of $Z$, $G$, and $V$ to S, the assumption of multiplicative log-normal error was better supported
-(Table \ref{Errorfits}). We therefore use only models with logarithmic form for the remainder of the paper.
+For relationships of $Z$, $G$, and $V$ to $S$, equation~\ref{LogLog} had a lower AIC than the corresponding
+equation~\ref{Power}. This indicates that the data support an assumption of multiplicative log-normal
+error better than an assumption of additive normal error. That is, [[but what does it mean?]] . 
+We therefore used logarithmic-form models when assessing the effect of latitude on scaling relationships 
+with $S$. 
 
 
-Contrary to expected latitudinal gradients, $S$, $Z$, $G$ and $V$ did not vary significantly over latitude, although $S$ and $G$ did vary over ecosystem types (Table~\ref{Latlms}, Fig.~\ref{Latfigs}).
+Contrary to the expected latitudinal gradient, the best-fit version of equation~\ref{Latfull} for $S$
+did not include a term for latitude or any of its interactions with ecosystem type. Species richness was
+higher for stream ecosystems ($\alpha_{2:Stream}$=22.4, $p$\textless0.001) than other ecosystem types. 
+Similarly, the best-fit version of equation~\ref{Latfull} for $G$ did not include 
+any terms for latitude or interactions between latitude and ecosystem type. $G$ was lower in terrestrial
+and lake food webs than in other ecosystem types ($\alpha_{2:Terrestrial}$=-3.77, $p$\textless0.001 and 
+$\alpha_{2:Lake}$=-1.98, $p$=0.044). The best-fit models for $Z$ and $V$ did not include any terms for
+latitude, ecosystem type, or their interactions.
+the best-fit version of equation~\ref{Latfull} for $Z$ did not include a term for latitude,
+ecosystem type, or any of their interactions. Food webs tended to contain about 3.53 links per species
+($p$\textless0.001), with the average species being preyed upon by 3.53 predators ($p$\textless0.001).
 
 
 \subsection*{Effect of Latitude on Scaling with S}
 
-The effect of latitude on scaling relationships varied across ecosystem types
-(Table~\ref{Bestfits}, Fig.~\ref{scalingfig}).  In lakes and streams, the
-scaling exponent for species richness increased with latitude (although this
-increase was not significant for lakes and generality). For other types of
-ecosystems, the scaling  exponent for species richness decreased, but not significantly,
-with latitude. Despite these overal trends, the observed networks displayed a great deal
-of variability in each property. 
-
-
+The effect of latitude on scaling relationships varied across ecosystem types.
+Overall, specialization in marine and terrestrial food webs increased towards the poles, 
+while specialization in lake food webs increased towards the equator (Fig.~\ref{scalinfig}). 
+In estuarine and stream food webs, there was a great deal of variation, with links per species
+and vulnerability increasing towards the poles and generality increasing towards the equator.
+More specifically, the scaling of mean links per species with species richness increased with
+increasing latitude ($\beta_{Latitude}$=0.004, $p$\textless0.001; Table~\ref{Bestfits}). This
+increase, however, was reversed for marine and terrestrial food webs
+($\beta_{Latitude:Marine}$=-0.005, $p$=0.007 and
+$\beta_{Latitude:Terrestrial}$=-0.005, $p$=0.001). Scaling of mean vulnerability with
+species richness showed the same pattern ($\beta_{Latitude}$=0.004, $p$\textless0.001;
+$\beta_{Latitude:Marine}$=-0.005, $p$=0.007; and $\beta_{Latitude:Terrestrial}$=-0.005, $p$=0.002).
+In contrast, scaling of mean generality with species richnesss increased with latitude 
+for lake food webs ($\beta_{Latitude:Lake}$=0.006, $p$=0.002) but did not vary with latitude for
+other ecosystem types ($\beta_{Latitude}$=-0.001, $p$=0.199).
 
 \section*{Discussion}
 
@@ -343,59 +360,73 @@ variable climates.
 
 \section*{Tables}
 
-\begin{center}
 \begin{table}[!h]
-\caption{Symbols for and descriptions of food-web properties.}
-\label{symboltable}
-\begin{tabular}{c l l}
-\hline
-Symbol      & Name & Description \\
-\hline
-$S$ & Species richness & Number of trophic species \\
-$Z$ & Links per species & Mean number of links per taxon \\
-$G$ & Generality & Mean number of resources per taxon \\
-$V$ & Vulnerability & Mean number of consumers per taxon \\
-\hline
-\end{tabular}
-\end{table}
-\end{center}
-
-
-\begin{table}[!t]
-
-\caption{AIC's for model \ref{Power}, assuming normal error, and model \ref{Loglog}, assuming lognormal error.}
-\label{Errorfits}
-\begin{tabular}{l | l l | c}
-Property & Normal error & Lognormal error & Model selected \\
-\hline
-$Z$ & 1151 &  767 & \ref{Loglog} \\
-$G$ & 1266 & 1037 & \ref{Loglog} \\
-$V$ & 1151 & 767 & \ref{Loglog} \\
-\end{tabular}
-\end{table}
-
-
-\begin{table}[!h]
-\caption{Intercepts and slopes for simple linear regressions of food web properties against absolute latitude.}
+\caption{Intercepts and slopes for the best-fitting model describing the relationship between species-richness, mean links per species, mean generality, and mean vulnerability and latitude. Note that none
+of the best-fitting models included a term for latitude or an interaction between latitude and ecosystem type. Each `NA' indicates a term that was not included in the corresponding best-fit model.}
 \label{Latlms}
-\begin{tabular}{l | l l | l l}
+\begin{tabular}{l | l l  l l  l l  l l}
 
-\multirow{2}{*}{Property} & \multicolumn{2}{|c}{Intercept} & \multicolumn{2}{|c}{Slope} \\
-                      & $\alpha_{0}$ & $p$-value & $\alpha_{1}$ & $p$-value \\
 \hline
-$S$ & 29.42 & \textless0.001 & 0.188 & 0.167 \\
-$Z$ & 2.724 & 0.002          & 0.017 & 0.283 \\
-$G$ & 3.095 & 0.006          & 0.035 & 0.080 \\
-$V$ & 2.724 & 0.002          & 0.017 & 0.283 \\
+\multirow{2}{*}{Property} & \multicolumn{2}{|c}{Intercept} & \multicolumn{2}{|c}{Stream} & \multicolumn{2}{|c}{Lake} & \multicolumn{2}{|c}{Terrestrial}\\
+& $\alpha_{0}$ & $p$-value & $\alpha_{2}$ & $p$-value & $\alpha_{2}$ & $p$-value & $\alpha_{2}$ &$p$-value\\
+\hline
+Species richness  & 34.6 & \textless0.001 & 22.4 & 0.167 \textless0.001 & NA & NA & NA & NA \\
+Links per species & 3.53 & \textless0.001 & NA & NA & NA & NA & NA & NA \\
+Generality        & 7.32 & \textless0.001 & NA & NA & -1.98 & 0.044 & -3.77 & \textless0.001 \\
+Vulnerability     & 3.53 & \textless0.001 & NA & NA & NA & NA & NA & NA \\
+\hline
 \end{tabular}
 \end{table}
 
 \begin{table}[!h]
+\caption{Intercepts and slopes for the best-fitting model describing the relationship between species-richness, mean links per species, mean generality, and mean vulnerability and latitude in trophic-species versions of food webs. Note that none
+of the best-fitting models included a term for latitude or an interaction between latitude and ecosystem type. `NA' a term that was not included in the corresponding best-fit model.}
+\label{Latlms}
+\begin{tabular}{l | l l  l l  l l  l l}
 
-\caption{Standard effects and their $p$-values for the best-fitting models of links per species ($Z$), generality ($G$), and vulnerability ($V$).}
+\hline
+\multirow{2}{*}{Property} & \multicolumn{2}{|c}{Intercept} & \multicolumn{2}{|c}{Stream} & \multicolumn{2}{|c}{Lake} & \multicolumn{2}{|c}{Terrestrial}\\
+& $\alpha_{0}$ & $p$-value & $\alpha_{2}$ & $p$-value & $\alpha_{2}$ & $p$-value & $\alpha_{2}$ &$p$-value\\
+\hline
+Species richness  & 34.6 & \textless0.001 & 22.4 & 0.167 \textless0.001 & NA & NA & NA & NA \\
+Links per species & 3.53 & \textless0.001 & NA & NA & NA & NA & NA & NA \\
+Generality        & 7.32 & \textless0.001 & NA & NA & -1.98 & 0.044 & -3.77 & \textless0.001 \\
+Vulnerability     & 3.53 & \textless0.001 & NA & NA & NA & NA & NA & NA \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!h]
+\caption{Intercepts and slopes for best-fit models describing the effect of latitude on the scaling of mean links per species, mean generality, and mean vulnerability with species richness. Each `NA' indicates a term that was not included in the corresponding best-fit model. These models refer to the original versions of food webs. }
 \label{Bestfits}
-\begin{tabular}{l | l l | l l | l l }
-Effect          & \multicolumn{2}{c|}{$Z$} & \multicolumn{2}{c|}{$G$} & \multicolumn{2}{c}{$V$}\\
+\begin{tabular}{l | l l  l l  l l }
+Effect          & \multicolumn{2}{c|}{Links per species} & \multicolumn{2}{c|}{Generality} 
+                & \multicolumn{2}{c}{Vulnerability}\\
+                & $\beta$ & $p$-value     &  $\beta$ & $p$-value    &  $\beta$ & $p$-value  \\
+\hline
+Intercept               &-0.453 & \textless0.001 & -0.249 & \textless0.001 & -0.453 & \textless0.001 \\
+log(species)            & 0.419 & \textless0.001 &  0.663 & \textless0.001 &  0.419 & \textless0.001 \\
+log(species):Lake       & 0.119 & \textless0.001 & -0.185 & 0.016          &  0.119 & \textless0.001 \\
+log(species):Marine     & 0.255 & \textless0.001 &  0.090 & 0.002          &  0.255 & \textless0.001 \\
+log(species):Terrestrial& 0.207 & 0.002          & -0.122 & \textless0.001 &  0.207 & 0.002 \\
+log(species):Latitude   & 0.004 & \textless0.001 & -0.001 & 0.199          &  0.003 & \textless0.001 \\
+log(species):Latitude:Marine&-0.004 & 0.007      &  NA    &  NA            & -0.005 & 0.007 \\
+log(species):Latitude:Terrestrial&-0.005 & 0.002 &  NA    &  NA            & -0.005 & 0.002 \\
+log(species):Latitude:Lake & NA & NA             &  0.006 & 0.002          &  NA    & NA    \\
+\hline
+$R^{2} (adjusted)$   & \multicolumn{2}{c|}{0.706} & \multicolumn{2}{c|}{0.658} & \multicolumn{2}{c}{0.706} \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!h]
+\caption{Intercepts and slopes for best-fit models describing the effect of latitude on the scaling of mean links per species, mean generality, and mean vulnerability with species richness. Each `NA' indicates a term that was not included in the corresponding best-fit model. These models refer to the trophic species versions of food webs. }
+\label{Bestfits}
+\begin{tabular}{l | l l  l l  l l }
+Effect          & \multicolumn{2}{c|}{Links per species} & \multicolumn{2}{c|}{Generality} 
+                & \multicolumn{2}{c}{Vulnerability}\\
                 & $\beta$ & $p$-value     &  $\beta$ & $p$-value    &  $\beta$ & $p$-value  \\
 \hline
 Intercept               & -0.561 & \textless0.001 & -0.299 & \textless0.001 & -0.561 & \textless0.001 \\
@@ -408,6 +439,7 @@ log(species):Lat:Lake   &  0.006 & \textless0.001 &  0.006 & \textless0.001 &  0
 log(species):Lat:Stream &  0.004 & 0.018          &  0.003 & 0.059          &  0.004 & 0.018 \\
 \hline
 $R^{2} (adjusted)$   & \multicolumn{2}{c|}{0.706} & \multicolumn{2}{c|}{0.658} & \multicolumn{2}{c}{0.706} \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -415,17 +447,21 @@ $R^{2} (adjusted)$   & \multicolumn{2}{c|}{0.706} & \multicolumn{2}{c|}{0.658} &
 
 \section*{Figures}
 
-\begin{figure}[!h]
-\label{Latfigs}
-\includegraphics[width=.9\textwidth]{Figures/properties_vs_lat.eps}
-\caption{Relationships between latitude and species richness, mean links per species, mean generality, and mean vulnerability. No food web property showed a significant latitudinal gradient in this dataset (N=259 food webs).}
-\end{figure}
-
+% \begin{figure}[!h]
+% \label{Latfigs}
+% \includegraphics[width=.9\textwidth]{Figures/properties_vs_lat.eps}
+% \caption{Relationships between latitude and species richness, mean links per species, mean generality, and mean vulnerability. No food web property showed a significant latitudinal gradient in this dataset (N=259 food webs).}
+% \end{figure}
 
 \begin{figure}[!h]
 \label{scalingfig}
 \includegraphics[width=.9\textwidth]{Figures/scaling_with_S_grey.eps}
-\caption{Relationships between species richness and mean links per species, mean generality, and mean vulnerability (N=259 food webs). In estuarine, terrestrial, and marine communities the scaling relationship with species-richness did not vary significantly across latitude for any food-web property. In lake and stream communities, each food-web property showed stronger scaling with species richness as latitude increased (N=259 food webs). }
+\caption{Relationships between species richness and mean links per species, mean generality, and mean 
+vulnerability (N=259 food webs). Scaling of mean links per species and mean vulnerability with species 
+richness strengthened with latitude for estuarine, stream, and lake food webs. This strengthening was
+reversed for marine and terrestrial food webs. Scaling of mean generality with species richness 
+strengthened with latitude for lake food webs, but did not significantly vary with latitude for other
+ecosystem types (N=259 food webs). }
 \end{figure}
 
 

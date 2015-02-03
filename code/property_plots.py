@@ -319,7 +319,7 @@ def scaleplots(rawdatafile,colorscheme,webtype):
 
   showbar.autoticky()
   showbar.set_view(1.268,0.3688,1.318,0.889)
-  grace.add_drawing_object(DrawText,text='Degrees from equator', x=1.38, y=.6289, rot=270,char_size=.75,just=2)
+  grace.add_drawing_object(DrawText,text='Latitude (degrees from equator)', x=1.38, y=.6289, rot=270,char_size=.75,just=2)
 
   grace.write_file(outfile1)
   grace.write_file(outfile2) 
