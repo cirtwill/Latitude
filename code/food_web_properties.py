@@ -5,7 +5,7 @@ import random
 import networkx as nx
 from decimal import *
 from math import *
-import role_dictionary_maker as RD
+# import role_dictionary_maker as RD
 
 #For new lists, calculate properties.
 #For all webs, add site label to summary_properties.
@@ -103,6 +103,28 @@ def food_web_properties(directory,item,G):
   L=len(G.edges())
   LS=Decimal(L)/Decimal(N)
   C=Decimal(L)/Decimal(N**2)
+
+  B=[]
+  T=[]
+  H=[]
+  I=[]
+
+  for node in G.nodes():
+    if len(G.predecessors(node))==0:
+      T.append(node) # Cannibals are intermediate.
+    if len(G.successors(node))==0:
+      B.append(node)
+
+  for node in G.nodes():
+    if node not in B and node not in T:
+      if set(G.successors(node))&set(B)!=set(G.successors(node)):
+        I.append(node)
+      else:
+        H.append(node)
+
+  print 'Basal: ', B
+  print 'Herbivores: ',H
+  print 'Top: ', T
 
   links=[]
   number_predators=[]
