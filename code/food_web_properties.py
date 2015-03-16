@@ -122,15 +122,15 @@ def food_web_properties(directory,item,G):
       else:
         H.append(node)
 
-  print 'Basal: ', B
-  print 'Herbivores: ',H
-  print 'Top: ', T
-
   links=[]
   number_predators=[]
   number_prey=[]
-  top=set()
-  inter=set()
+  top=float(float(len(T))/N)
+  inter=float(float(len(I))/N)
+  herbs=float(float(len(H))/N)
+  basal=float(float(len(B))/N)
+
+  print basal
 
   for node in G.nodes():
     pred=len(G.predecessors(node))
@@ -175,7 +175,7 @@ def food_web_properties(directory,item,G):
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [int(N),int(L),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus)] 
+  outputs = [int(N),int(L),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus),basal,herbs,inter,top] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
@@ -225,7 +225,11 @@ def websorter(metafile,directory):
           'Vul',
           'VulSD',
           'Path',
-          'Clus']
+          'Clus',
+          'Basal',
+          'Herbivores',
+          'Intermediate',
+          'Toppreds']
   header=header
 
   outfile=open('../mod_data/summary-properties.tsv','w')

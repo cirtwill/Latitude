@@ -158,6 +158,10 @@ for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properti
   data$Ecotype2=as.factor(data$Ecotype2)
   data$Humans=as.factor(data$Humans)
   data$Site=as.factor(data$Site)
+  data$Basal=as.numeric(as.character(data$Basal))
+  data$Herbivores=as.numeric(as.character(data$Herbivores))
+  data$Intermediate=as.numeric(as.character(data$Intermediate))
+  data$Toppreds=as.numeric(as.character(data$Toppreds))
 
   data$Estuary=0
   data$Lake=0
