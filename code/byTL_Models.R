@@ -5,45 +5,79 @@ library(lmerTest)
 library(boot)
 library(MuMIn)
 
-source('Models.R')  # Load the other models, power_analysis
-
-
-# Set up for proportions and numbers, proportions first.
-
-
+# source('Models.R')  # Load the other models, format the data
 
 ##############################################################################################
 ##############################################################################################
-for(infile in c('../non_TS/summary-properties.tsv')){
 
+infile='../non_TS/summary-properties.tsv'
+format='proportions'
+power_analysis=FALSE
+# For proportions and numbers, everything is log-normal.
+
+  # for(infile in c('../non_TS/summary-properties.tsv')){
   # c('../mod_data/summary-properties.tsv','../non_TS/summary-properties.tsv')){
 
+  data=read.delim(infile,sep='\t',header=TRUE,stringsAsFactors=FALSE)
+  data$Connectance=as.numeric(as.character(data$Connectance))
+  data$LS=as.numeric(as.character(data$LS))
+  data$Gen=as.numeric(as.character(data$Gen))
+  data$Vul=as.numeric(as.character(data$Vul))
+  data$Ecotype=as.factor(data$Ecotype)
+  data$Ecotype2=as.factor(data$Ecotype2)
+  data$Humans=as.factor(data$Humans)
+  data$Site=as.factor(data$Site)
+  data$Basal=as.numeric(as.character(data$Basal))
+  data$Herbivores=as.numeric(as.character(data$Herbivores))
+  data$Intermediate=as.numeric(as.character(data$Intermediate))
+  data$Toppreds=as.numeric(as.character(data$Toppreds))
+
+  data$Estuary=0
+  data$Lake=0
+  data$Marine=0
+  data$Stream=0
+  data$Terr=0
+
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='estuary'){
+      data$Estuary[i]=1  }}
+
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='lake'){
+      data$Lake[i]=1  }}
+
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='marine'){
+      data$Marine[i]=1  }}
+
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='stream'){
+      data$Stream[i]=1  }}
+
+  for(i in 1:length(data$Ecotype)){
+    if(data$Ecotype[i]=='terrestrial'){
+      data$Terr[i]=1  }}
+
+  data=as.data.frame(data)
   data=subset(data,data$Basal>0)
   data=subset(data,data$Intermediate>0)
   data=subset(data,data$Toppreds>0)
   # Eliminate zeros. Don't care so much about herbies
 
-  q=data$Species
-  x=data$LS
-  y=data$Gen
-  z=data$Vul         
-
-  # Not working because of zeros...
-  power_analysis(data$Species,data$Basal)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-141 vs -112 with nonlinear.
-  # power_analysis(data$Species,data$Herbivores)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
-  # Too many zeros.
-  power_analysis(data$Species,data$Intermediate)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-121.4 vs -72.6
-  power_analysis(data$Species,data$Toppreds)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-163.5 vs -138.7
-
   source('recreate_with_subset.R')
 
   if(format=='proportion'){
     source('property_models_proportions.R')
+    save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
+
   } else {
     source('property_models_numbers.R')
+    save.image(file=paste(outdir,'number_Models.RData',sep=''))
+  }
+
+
+  if(power_analysis==TRUE){
+    source('power_analyses.R')
   }
 
 
@@ -57,30 +91,35 @@ for(infile in c('../non_TS/summary-properties.tsv')){
   # Maybe 3 levels of latitude.
   # Range is 0 - 78 degrees.
   # 0, 45, 75 == equatorial, temperate, arctic
-  newdata=matrix(nrow=200*3*5,ncol=6)
+  newdata=matrix(nrow=200*3*5*3,ncol=7)
   k=1
   for(j in c("Lake","Marine","Stream","Terr","Other")){
     for(latitude in c(0,30,60)){
-      for(i in 1:200){
-      newdata[k,1]=i
-      newdata[k,2]=latitude
-      newdata[k,3]=0
-      newdata[k,4]=0
-      newdata[k,5]=0
-      newdata[k,6]=0
-      if(j=="Lake"){
-        newdata[k,3]=1 }
-      if(j=="Marine"){
-        newdata[k,4]=1 }
-      if(j=="Stream"){
-        newdata[k,5]=1 }
-      if(j=="Terr"){
-        newdata[k,6]=1 }
-      k=k+1
-  }}}
-  colnames(newdata)=c("Species","Latitude","Lake","Marine","Stream","Terr")  
+      for(proportion in c(0.01,0.5,0.8)){
+        for(i in 1:200){
+        newdata[k,1]=i
+        newdata[k,2]=latitude
+        newdata[k,3]=0
+        newdata[k,4]=0
+        newdata[k,5]=0
+        newdata[k,6]=0
+        if(j=="Lake"){
+          newdata[k,3]=1 }
+        if(j=="Marine"){
+          newdata[k,4]=1 }
+        if(j=="Stream"){
+          newdata[k,5]=1 }
+        if(j=="Terr"){
+          newdata[k,6]=1 }
+        newdata[k,7]=proportion
+        k=k+1
+  }}}}
+  colnames(newdata)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal")  
 
   newdata=as.data.frame(newdata) 
+  newdata$Intermediate=newdata$Basal  # Because there's no interaction
+  newdata$Toppreds=newdata$Basal  # I can just use the same values for each pred
+
   # No link function, so no type="response"
   LS_preds=predict(LS_min,newdata=newdata)
   Gen_preds=predict(Gen_min,newdata=newdata)
@@ -115,28 +154,27 @@ for(infile in c('../non_TS/summary-properties.tsv')){
   VI_fake=cbind(newdata,VI_preds)
   VT_fake=cbind(newdata,VT_preds)
 
-  colnames(LS_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(Gen_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(Vul_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
+  colnames(LS_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(Gen_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(Vul_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
 
-  colnames(LB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(LI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(LT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
+  colnames(LB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(LI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(LT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
 
-  colnames(GB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(GI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(GT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
+  colnames(GB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(GI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(GT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
 
-  colnames(VB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(VI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
-  colnames(VT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","pred")
+  colnames(VB_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(VI_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
+  colnames(VT_fake)=c("Species","Latitude","Lake","Marine","Stream","Terr","Basal","Intermediate","Toppreds","pred")
  
 
   if(infile=='../mod_data/summary-properties.tsv'){
-    outdir='../mod_data/subset/'  } else {
-      outdir='../non_TS/subset/'     }
+    outdir='../mod_data/'  } else {
+      outdir='../non_TS/'     }
 
-  save.image(file=paste(outdir,'Models.RData',sep=''))
   write.table(LS_fake,file=paste(outdir,'subset/predictions/LS.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
   write.table(Gen_fake,file=paste(outdir,'subset/predictions/Gen.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
   write.table(Vul_fake,file=paste(outdir,'subset/predictions/Vul.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
@@ -144,6 +182,10 @@ for(infile in c('../non_TS/summary-properties.tsv')){
   write.table(summary(LS_min)$coefficients,file=paste(outdir,'subset/coefficients/LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
   write.table(summary(Gen_min)$coefficients,file=paste(outdir,'subset/coefficients/Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
   write.table(summary(Vul_min)$coefficients,file=paste(outdir,'subset/coefficients/Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+
+  if(infile=='../mod_data/summary-properties.tsv'){
+    outdir=paste('../mod_data/',format,'/',sep='')  } else {
+      outdir=paste('../non_TS/',format,'/',sep='')     }
 
   write.table(LB_fake,file=paste(outdir,'predictions/LB.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   
   write.table(LI_fake,file=paste(outdir,'predictions/LI.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   
@@ -157,17 +199,16 @@ for(infile in c('../non_TS/summary-properties.tsv')){
   write.table(VI_fake,file=paste(outdir,'predictions/VI.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   
   write.table(VT_fake,file=paste(outdir,'predictions/VT.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   
 
-  write.table(summary(LB_fake)$coefficients,file=paste(outdir,'coefficients/LB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(LI_fake)$coefficients,file=paste(outdir,'coefficients/LI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(LT_fake)$coefficients,file=paste(outdir,'coefficients/LT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(LS_B_min)$coefficients,file=paste(outdir,'coefficients/LB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(LS_I_min)$coefficients,file=paste(outdir,'coefficients/LI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(LS_T_min)$coefficients,file=paste(outdir,'coefficients/LT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
 
-  write.table(summary(GB_fake)$coefficients,file=paste(outdir,'coefficients/GB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(GI_fake)$coefficients,file=paste(outdir,'coefficients/GI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(GT_fake)$coefficients,file=paste(outdir,'coefficients/GT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Gen_B_min)$coefficients,file=paste(outdir,'coefficients/GB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Gen_I_min)$coefficients,file=paste(outdir,'coefficients/GI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Gen_T_min)$coefficients,file=paste(outdir,'coefficients/GT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
 
-  write.table(summary(VB_fake)$coefficients,file=paste(outdir,'coefficients/VB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(VI_fake)$coefficients,file=paste(outdir,'coefficients/VI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
-  write.table(summary(VT_fake)$coefficients,file=paste(outdir,'coefficients/VT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Vul_B_min)$coefficients,file=paste(outdir,'coefficients/VB_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Vul_I_min)$coefficients,file=paste(outdir,'coefficients/VI_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
+  write.table(summary(Vul_T_min)$coefficients,file=paste(outdir,'coefficients/VT_co.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')    
 
 
-}
