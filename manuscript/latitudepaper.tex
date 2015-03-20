@@ -280,11 +280,16 @@ the best-fitting model. The best-fitting model was then fit using R~\citep{R} fu
 
 \subsection*{Scaling Relationships with $S$ and Latitude}
 
-For relationships of $Z$, $G$, and $V$ to $S$, equation~\ref{LogLog} had a lower AIC than the corresponding
-equation~\ref{Power}. This indicates that the data support an assumption of multiplicative log-normal
-error better than an assumption of additive normal error. That is, [[but what does it mean?]] . 
-We therefore used logarithmic-form models when assessing the effect of latitude on scaling relationships 
-with $S$. 
+For relationships of $Z$, $G$, $V$, $B$, $I$, and $T$ to $S$, equation~\ref{LogLog} had a
+lower AIC than the corresponding equation~\ref{Power}. This indicates that the
+data support an assumption of multiplicative log-normal error better than an
+assumption of additive normal error. That is, models where $\epsilon$ is
+modelled as an exponent to a multiplicative term (that is, an additive term on
+the logarithmic scale) provide a better description of the data than models
+where $\epsiolon$ is modelled as an additive term on the arithmetic scale
+[[That's what this means... not sure if explaining it actually adds anything
+though]] .  We therefore used logarithmic-form models when assessing the
+effect of latitude on scaling relationships  with $S$.
 
 
 Contrary to the expected latitudinal gradient, the best-fit version of equation~\ref{Latfull} for $S$
@@ -298,6 +303,15 @@ latitude, ecosystem type, or their interactions.
 the best-fit version of equation~\ref{Latfull} for $Z$ did not include a term for latitude,
 ecosystem type, or any of their interactions. Food webs tended to contain about 3.53 links per species
 ($p$\textless0.001), with the average species being preyed upon by 3.53 predators ($p$\textless0.001).
+
+
+Considering only the subset of webs with at least one basal resource,
+intermediate consumer, and top predator present, $S$, $Z$, and $V$ decreased with
+latitude in stream webs but did not vary with latitude in other ecosystem types.
+However, the relationships with latitude in stream webs [[Are they actually due to outliers?]]
+The proportion of top predators in a food web decreased with increasing latitude in lake and
+stream webs, while the proportion of basal resources increased with latitude in stream webs
+[[Are these robust to outliers?]]
 
 
 \subsection*{Effect of Latitude on Scaling with S}
@@ -317,6 +331,28 @@ $\beta_{Latitude:Marine}$=-0.005, $p$=0.007; and $\beta_{Latitude:Terrestrial}$=
 In contrast, scaling of mean generality with species richnesss increased with latitude 
 for lake food webs ($\beta_{Latitude:Lake}$=0.006, $p$=0.002) but did not vary with latitude for
 other ecosystem types ($\beta_{Latitude}$=-0.001, $p$=0.199).
+
+
+\subsection*{Effect of Latitude on Scaling with B, I, and T}
+
+As with scaling relationships with $S$, the effect of latitude on scaling relationships
+with the proportions of basal resources, intermediate consumers, and top predators
+varied across ecosystem types. Scaling of $Z$ with $B$ was stronger towards the equator in terrestrial
+ecosystems, stronger towards the pole in lake, stream, and estuarine ecosystems, and did not vary
+with latitude in Mairne ecosystems. Scaling of $Z$ with $I$ was not affected by latitude in any
+ecosystem type, and scaling of $Z$ with $T$ was stronger towards the equator in stream and terrestrial
+ecosystems but weaker towards the equator in all other ecosystem types. The differences in scaling
+relationships over latitude were most dramatic in stream ecosystems.
+
+
+Similar to the patterns observed for $Z$, scaling of $G$ with $B$ was stronger towards the poles
+in stream, lake, and estuarine webs while marine and terrestrial webs showed very weak changes
+in scaling relationships over latitude. Scaling of $G$ with $I$ was stronger towards the poles in stream
+webs, but there was little effect of changing latitude on the scaling of $G$ with $I$ in other ecosystem
+types. Scaling of $G$ with $T$ did not vary with latitude.
+
+
+
 
 \section*{Discussion}
 
