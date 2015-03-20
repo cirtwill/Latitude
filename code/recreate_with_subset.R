@@ -70,9 +70,9 @@
   gld=dredge(Gen_latdirect_full,rank=AIC)
   vld=dredge(Vul_latdirect_full,rank=AIC)
 
-  Sp_latdirect=(with(data,lm(Species~Stream),na.action=na.fail))
-  LS_latdirect=(with(data,lm(LS~1),na.action=na.fail))
-  Gen_latdirect=(with(data,lm(Gen~Terr+Lake),na.action=na.fail))
-  Vul_latdirect=(with(data,lm(Vul~1),na.action=na.fail))
+  Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail))
+  LS_latdirect=(with(data,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
+  Gen_latdirect=(with(data,lm(Gen~Marine+Stream),na.action=na.fail))
+  Vul_latdirect=(with(data,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
 
  
