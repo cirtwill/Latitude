@@ -114,7 +114,7 @@
   vld=dredge(Vul_latdirect_full,rank=AIC)
 
   if(infile=='../mod_data/summary-properties.tsv'){
-    Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine+Terr),na.action=na.fail)) }
+    Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine+Terr),na.action=na.fail)) 
     } else {
     Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail)) }
 

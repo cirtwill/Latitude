@@ -12,12 +12,11 @@
     +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     lbdredge=dredge(LS_B_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      LS_B_min=with(data,lm(log10(LS)~log10(Basal)
-        +log10(Basal):Latitude
-        +log10(Basal):(Marine+Stream+Terr)
-        +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
-    }
+    # Same in both infiles :)
+    LS_B_min=with(data,lm(log10(LS)~log10(Basal)
+      +log10(Basal):Latitude
+      +log10(Basal):(Marine+Stream+Terr)
+      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
     LS_I_full=with(data,lm(log10(LS)~log10(Intermediate)
     +log10(Intermediate):Latitude
@@ -28,6 +27,9 @@
     if(infile=='../non_TS/summary-properties.tsv'){
       LS_I_min=with(data,lm(log10(LS)~log10(Intermediate)
         +log10(Intermediate):(Lake+Stream), na.action=na.fail   ))
+    } else {
+      LS_I_min=with(data,lm(log10(LS)~log10(Intermediate)
+        +log10(Intermediate):Stream, na.action=na.fail   ))
     }
 
     LS_T_full=with(data,lm(log10(LS)~log10(Toppreds)
@@ -36,12 +38,12 @@
     +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     ltdredge=dredge(LS_T_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      LS_T_min=with(data,lm(log10(LS)~log10(Toppreds)
-      +log10(Toppreds):(Lake+Marine+Stream+Terr)
-      +log10(Toppreds):Latitude
-      +log10(Toppreds):Latitude:(Stream+Terr) ))
-    }
+    # Same on both input files :)
+    LS_T_min=with(data,lm(log10(LS)~log10(Toppreds)
+    +log10(Toppreds):(Lake+Marine+Stream+Terr)
+    +log10(Toppreds):Latitude
+    +log10(Toppreds):Latitude:(Stream+Terr) ))
+
 
 ##########################################################################################
 ##########################################################################################
@@ -56,12 +58,12 @@
     +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     gbdredge=dredge(Gen_B_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      Gen_B_min=with(data,lm(log10(Gen)~log10(Basal)
-        +log10(Basal):Latitude
-        +log10(Basal):(Marine+Stream+Terr)
-        +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
-    }
+    # Same for both infiles :)
+    Gen_B_min=with(data,lm(log10(Gen)~log10(Basal)
+      +log10(Basal):Latitude
+      +log10(Basal):(Marine+Stream+Terr)
+      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
+
 
     Gen_I_full=with(data,lm(log10(Gen)~log10(Intermediate)
     +log10(Intermediate):Latitude
@@ -74,6 +76,9 @@
         +log10(Intermediate):Latitude
         +log10(Intermediate):(Lake+Stream+Terr)
         +log10(Intermediate):Latitude:Terr , na.action=na.fail   ))
+    } else {
+      Gen_I_min=with(data,lm(log10(Gen)~log10(Intermediate)
+        +log10(Intermediate):(Marine+Stream), na.action=na.fail   ))
     }
 
     Gen_T_full=with(data,lm(log10(Gen)~log10(Toppreds)
@@ -82,10 +87,9 @@
     +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     gtdredge=dredge(Gen_T_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      Gen_T_min=with(data,lm(log10(Gen)~log10(Toppreds)
+    # Same in both input files :)
+    Gen_T_min=with(data,lm(log10(Gen)~log10(Toppreds)
       +log10(Toppreds):(Marine+Stream) ))
-    }
 
 
 ##########################################################################################
@@ -101,12 +105,12 @@
     +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vbdredge=dredge(Vul_B_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      Vul_B_min=with(data,lm(log10(Vul)~log10(Basal)
-        +log10(Basal):Latitude
-        +log10(Basal):(Marine+Stream+Terr)
-        +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
-    }
+    # Same for both infiles :)
+    Vul_B_min=with(data,lm(log10(Vul)~log10(Basal)
+      +log10(Basal):Latitude
+      +log10(Basal):(Marine+Stream+Terr)
+      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
+
 
     Vul_I_full=with(data,lm(log10(Vul)~log10(Intermediate)
     +log10(Intermediate):Latitude
@@ -117,7 +121,11 @@
     if(infile=='../non_TS/summary-properties.tsv'){
       Vul_I_min=with(data,lm(log10(Vul)~log10(Intermediate)
         +log10(Intermediate):(Lake+Stream), na.action=na.fail   ))
+    } else {
+      Vul_I_min=with(data,lm(log10(Vul)~log10(Intermediate)
+        +log10(Intermediate):Stream, na.action=na.fail   ))
     }
+
 
     Vul_T_full=with(data,lm(log10(Vul)~log10(Toppreds)
     +log10(Toppreds):Latitude
@@ -125,12 +133,11 @@
     +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vtdredge=dredge(Vul_T_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      Vul_T_min=with(data,lm(log10(Vul)~log10(Toppreds)
+    # Same for both infiles :)
+    Vul_T_min=with(data,lm(log10(Vul)~log10(Toppreds)
       +log10(Toppreds):(Lake+Marine+Stream+Terr)
       +log10(Toppreds):Latitude
       +log10(Toppreds):Latitude:(Stream+Terr) ))
-    }
 
 
 ##########################################################################################
@@ -152,9 +159,15 @@
   hld=dredge(H_latdirect_full,rank=AIC)
 
   B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lake),na.action=na.fail))
-  I_latdirect=(with(data,lm(Intermediate~1),na.action=na.fail))
-  T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
-  H_latdirect=(with(data,lm(Herbivores~Latitude+Lake),na.action=na.fail))
 
+  if(infile=='../non_TS/summary-properties.tsv'){
+    I_latdirect=(with(data,lm(Intermediate~1),na.action=na.fail))
+    } else {
+    I_latdirect=(with(data,lm(Intermediate~Latitude*Lake+Stream),na.action=na.fail))
+    }
 
-
+  if(infile=='../non_TS/summary-properties.tsv'){
+    T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
+    } else {
+    T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Latitude:Stream),na.action=na.fail))
+    }
