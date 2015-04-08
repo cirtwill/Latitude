@@ -14,7 +14,7 @@ infile='../non_TS/summary-properties.tsv'
 # format='proportions'
 # format='numbers'
 
-for(format in c('proportions','numbers')){
+for(format in c('proportions')){#,'numbers')){
 power_analysis=FALSE
 # For proportions and numbers, everything is log-normal.
 
@@ -120,7 +120,6 @@ power_analysis=FALSE
         newdata[k,6]=i/500
         newdata[k,7]=(i/500)*200
 
-        proportion
         k=k+1
   }}}
   colnames(newdata)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species")  
