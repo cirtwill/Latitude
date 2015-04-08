@@ -11,10 +11,11 @@ library(MuMIn)
 ##############################################################################################
 
 infile='../non_TS/summary-properties.tsv'
-# format='proportions'
+infile='../mod_data/summary-properties.tsv'
+format='proportions'
 # format='numbers'
 
-for(format in c('proportions','numbers')){
+# for(format in c('proportions','numbers')){
 power_analysis=FALSE
 # For proportions and numbers, everything is log-normal.
 
@@ -120,7 +121,6 @@ power_analysis=FALSE
         newdata[k,6]=i/500
         newdata[k,7]=(i/500)*200
 
-        proportion
         k=k+1
   }}}
   colnames(newdata)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species")  
@@ -234,9 +234,60 @@ power_analysis=FALSE
     write.table(summary(T_latdirect)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }
 
-write.table(summary(Sp_latdirect)$coefficients,file=paste(outdir,'coefficients/S_lat.tsv',sep=''))
-write.table(summary(LS_latdirect)$coefficients,file=paste(outdir,'coefficients/LS_lat.tsv',sep=''))
-write.table(summary(Gen_latdirect)$coefficients,file=paste(outdir,'coefficients/Gen_lat.tsv',sep=''))
-write.table(summary(Vul_latdirect)$coefficients,file=paste(outdir,'coefficients/Vul_lat.tsv',sep=''))
+cutoff<- 4/((nrow(data)-length(B_latdirect$coefficients)-2)) 
+plot(B_latdirect, which=4, cook.levels=cutoff)
+# 56, 81, 120 are outliers.
 
-}
+subset=data[-c(56,81,120),]
+subB=(with(subset,lm(Basal~Latitude*Stream+Lake),na.action=na.fail))
+
+cutoff<- 4/((nrow(data)-length(I_latdirect$coefficients)-2)) 
+plot(I_latdirect, which=4, cook.levels=cutoff)
+# 141, 159, 161 are outliers.
+
+subset=data[-c(141, 159, 161),]
+subI=(with(subset,lm(Intermediate~1),na.action=na.fail))
+
+cutoff<- 4/((nrow(data)-length(T_latdirect$coefficients)-2)) 
+plot(T_latdirect, which=4, cook.levels=cutoff)
+# 20, 38, 149 are outliers.
+
+subset=data[-c(20,38,149),]
+
+subT=(with(subset,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
+
+
+write.table(summary(Sp_latdirect)$coefficients,file=paste(outdir,'coefficients/S_lat.tsv',sep=''))
+cutoff<- 4/((nrow(data)-length(Sp_latdirect$coefficients)-2)) 
+plot(Sp_latdirect, which=4, cook.levels=cutoff)
+# 122, 127, 128 are outliers. Redoing model without them lat:stream still sig.
+
+subset=data[-c(122,127,128),]
+subSp=(with(subset,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail))
+
+
+write.table(summary(LS_latdirect)$coefficients,file=paste(outdir,'coefficients/LS_lat.tsv',sep=''))
+cutoff<- 4/((nrow(data)-length(LS_latdirect$coefficients)-2)) 
+plot(LS_latdirect, which=4, cook.levels=cutoff)
+# 110, 122, 127 are outliers. Redoing model without them, lat:stream not significant.
+
+subset=data[-c(110,122,127),]
+subLS=(with(subset,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
+
+write.table(summary(Gen_latdirect)$coefficients,file=paste(outdir,'coefficients/Gen_lat.tsv',sep=''))
+cutoff<- 4/((nrow(data)-length(Gen_latdirect$coefficients)-2)) 
+plot(Gen_latdirect, which=4, cook.levels=cutoff)
+# 110, 122, 127 are outliers again. 
+
+subGen=(with(subset,lm(Gen~Marine+Stream),na.action=na.fail))
+# Removing outliers, model is similar (only stream significant)
+
+write.table(summary(Vul_latdirect)$coefficients,file=paste(outdir,'coefficients/Vul_lat.tsv',sep=''))
+cutoff<- 4/((nrow(data)-length(Vul_latdirect$coefficients)-2)) 
+plot(Vul_latdirect, which=4, cook.levels=cutoff)
+# 110, 122, 127 are outliers again.
+
+subVul=(with(subset,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
+# Removing outliers, latitude:stream is not significant.
+
+# }
