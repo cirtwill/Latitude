@@ -117,7 +117,17 @@
     Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine+Terr),na.action=na.fail)) 
     } else {
     Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail)) }
+    cutoff<- 4/((nrow(data)-length(Sp_latdirect$coefficients)-2)) 
+    plot(Sp_latdirect, which=4, cook.levels=cutoff)
+    subset=data[-c(122,126,128),]
 
   LS_latdirect=(with(data,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
+    cutoff<- 4/((nrow(data)-length(LS_latdirect$coefficients)-2)) 
+    plot(LS_latdirect, which=4, cook.levels=cutoff)
+    subset=data[-c(110,122,127),]
+
   Gen_latdirect=(with(data,lm(Gen~Marine+Stream),na.action=na.fail))
   Vul_latdirect=(with(data,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
+    cutoff<- 4/((nrow(data)-length(Vul_latdirect$coefficients)-2)) 
+    plot(Vul_latdirect, which=4, cook.levels=cutoff)
+    subset=data[-c(110,122,127),]
