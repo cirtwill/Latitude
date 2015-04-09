@@ -116,10 +116,6 @@ def predictionreader(predfile,TL,Bformat):
 def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
 
   ecotypes=['Estuary','Lake','Marine','Stream','Terrestrial']
-  # if TL in ['B','T']:
-  #   ecotypes=['Estuary','Stream','Terrestrial','Marine']
-  # elif TL in ['I','S']:
-  #   ecotypes=['Estuary','Lake','Stream','Terrestrial']
 
   xwidth=10
   ywidth=1.5
@@ -131,8 +127,6 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys",n=253))
 
-#  for prop in ['LS','Gen','Vul']:
-  # for TL in ['B','I','T','S']:
   for prop in ['LS','Gen','Vul']:
     if TL!='S':
       preddata=predictionreader(predfolder+'/predictions/'+prop[0]+TL+'.tsv',TL,Bformat)
@@ -149,16 +143,6 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
       graph=grace.add_graph(Panel)
       heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
 
-      # datadict=heatpoints[ecotype]
-
-      # for d in datadict:
-      #   color=colorbar.z2color(datadict[d])
-      #   dat=graph.add_dataset([(d[0],d[1])])
-      #   dat.symbol.configure(fill_color=color,color=1,shape=1,linewidth=.5)
-      #     # [(d[0]-0.5*xwidth,d[1]-0.5*ywidth), (d[0]+0.5*xwidth,d[1]+0.5*ywidth)], SolidRectangle, color)
-
-      # for line in [0,10,20,30,40,50,60,70,80,90]:
-      # for line in [0,20,40,60,80]:
       for line in [80,60,40,20,0]:
         preddataset1=graph.add_dataset(preddata[ecotype][line])
 
@@ -168,24 +152,13 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
 
         preddataset1.line.configure(linestyle=linesty,color=colorbar.z2color(line))
 
-        if TL in ['I','S'] and ecotype=='Estuary':
-          preddataset2=graph.add_dataset(preddata['Marine'][line])
-          preddataset2.symbol.shape=0
-          linesty=2
-          preddataset2.line.configure(linestyle=linesty,color=colorbar.z2color(line))
-          # Not actually visible but is being plotted ... Guess the marine intercept doesn't do much.
+      if TL!='S':
+        stars=[(.35,25)]
+      else:
+        stars=[(175,25)]
+      ### Add stars for significant trends
 
-        elif TL == 'B' and ecotype=='Estuary':
-          preddataset2=graph.add_dataset(preddata['Lake'][line])
-          preddataset2.symbol.shape=0
-          linesty=2
-          preddataset2.line.configure(linestyle=linesty,color=colorbar.z2color(line))
-
-        elif TL=='T' and ecotype=='Marine':
-          preddataset2=graph.add_dataset(preddata['Lake'][line])
-          preddataset2.symbol.shape=0
-          linesty=2
-          preddataset2.line.configure(linestyle=linesty,color=colorbar.z2color(line))
+      # if TL=='B' and ecotype in ['Estuary','Lake','Stream']:
 
       if ecotype=='Estuary':
         if prop=='LS':
@@ -196,20 +169,6 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
           yax="Vulnerability"
         
         graph.yaxis.label.configure(text=yax,place='normal',char_size=.75)
-
-      # if TL=='B':
-      #   if ecotype=='Estuary':
-      #     graph.xaxis.label.configure(text='Estuarine',place='opposite',char_size=.75)
-      #   elif ecotype=='Marine':
-      #     graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
-      #   elif ecotype=='Lake':
-      #     graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
-      #   elif ecotype=='Stream':
-      #       graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
-      #   else:
-      #     graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
-      #     graph.legend.configure(loc=(210,30),loctype='world',char_size=.75)
-      #     graph.legend.box_linestyle=0
 
       if prop=='LS':
         if ecotype=='Estuary':
@@ -290,7 +249,6 @@ def main():
   Bformat='proportions'
   rawdatafile='../non_TS/summary-properties.tsv'
   for TL in ['B','I','T','S']:
-  # for prop in ['LS']:#,'Gen','Vul']:
     if rawdatafile=='../non_TS/summary-properties.tsv':
       outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/'+TL+'_latlines_nonts.eps'
       predfolder='../non_TS/'+Bformat
