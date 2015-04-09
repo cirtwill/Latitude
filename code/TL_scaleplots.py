@@ -20,20 +20,6 @@ from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 
 from TL_latplots import datareader
 
-LS_centre=1.092381
-LS_scale=0.7058436
-G_centre=1.411286
-G_scale=0.7577303
-V_centre=1.092381
-V_scale=0.7058436
-
-B_centre=-1.663803
-B_scale=0.8298647
-I_centre=-1.728887
-I_scale=0.9339571
-T_centre=-1.774597
-T_scale=0.8749923
-
 def fixed_reader(coefffile):
   fixed_effects={}
   f=open(coefffile,'r')
@@ -54,6 +40,7 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
               'Estuary':[]}
   fixed_effects=fixed  
 
+
   if TL=='B':
     key='Basal'
   elif TL=='I':
@@ -67,10 +54,10 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
   for line in f:
     if line.split()[0]!='Web':
       Latitude=float(line.split('\t')[6])
-      S=int(line.split('\t')[7])
+      S=float(line.split('\t')[7])
       LS=float(line.split('\t')[10])
-      G=float(line.split('\t')[12])
-      V=float(line.split('\t')[14])
+      Gen=float(line.split('\t')[12])
+      Vul=float(line.split('\t')[14])
       # Correct
       # LS=(math.log(LS)-LS_centre)/LS_scale
       # Gen=(math.log(G)-G_centre)/G_scale
@@ -82,15 +69,28 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
       I=float(line.split('\t')[-2])
       T=float(line.split('\t')[-1])
 
+      # Correct the observed property based on latitude and ecotype effects
+
+      if 'log10('+key+'):'+ecotype in fixed_effects: 
+        delta=fixed_effects['log10('+key+'):'+ecotype]
+      else:   # If there's no intercept effect of ecosystem
+        delta=0
+
+      if 'log10('+key+'):Latitude' in fixed_effects:
+        if 'log10('+key+'):'+ecotype+':Latitude' in fixed_effects:
+         gamma=fixed_effects['log10('+key+'):Latitude']+fixed_effects['log10('+key+'):'+ecotype+':Latitude'] 
+        elif 'log10('+key+'):Latitude:'+ecotype in fixed_effects:
+          gamma=fixed_effects['log10('+key+'):Latitude']+fixed_effects['log10('+key+'):Latitude:'+ecotype]
+        else:  #If there's no lat-by-ecotype interaction
+          gamma=fixed_effects['log10('+key+'):Latitude'] 
+      else: # If there's no latitude effect at all
+        gamma=0
+
+      exponent=delta+Latitude*gamma
+
       if B>0 and I>0 and T>0:
-        num=math.log(eval(prop))-fixed['(Intercept)']
-        den=math.log(eval(TL))
-        y=(num/den)
-
-        if 'log10('+key+'):'+ecotype in fixed:
-          delta=fixed['log10('+key+'):'+ecotype ]
-          y=y-delta
-
+        correction=eval(TL)**exponent
+        y=float(Decimal(eval(prop))/Decimal(correction))
 
         # if Bformat=='numbers':
         #   B=B*S
@@ -100,7 +100,7 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
         # I=(math.log(I)-I_centre)/I_scale
         # T=(math.log(T)-T_centre)/T_scale
 
-        obs[ecotype].append((Latitude,y))
+        obs[ecotype].append((eval(TL),y))
   f.close()
 
   return obs
@@ -166,24 +166,26 @@ def predictionlines(fixed,prop,ecotype,TL):
   else:
     key='Species'
 
-  # print fixed['(Intercept)']
+  alpha=math.exp(fixed['(Intercept)'])
+
   delta=fixed['log10('+key+')']
 
-  if 'log10('+key+'):Latitude' in fixed:
-    if 'log10('+key+'):'+ecotype+':Latitude' in fixed:
-     gamma=fixed['log10('+key+'):Latitude']+fixed['log10('+key+'):'+ecotype+':Latitude'] 
-    elif 'log10('+key+'):Latitude:'+ecotype in fixed:
-      gamma=fixed['log10('+key+'):Latitude']+fixed['log10('+key+'):Latitude:'+ecotype]
-    else:
-      gamma=fixed['log10('+key+'):Latitude']
+  print alpha, delta
+
+  if TL=='S':
+    for S in range(1,200):
+      predy=alpha*(S**delta)
+      ecoline.append((S,predy))
   else:
-    gamma=0
-  for lat in range(0,91):
-    exponent=delta+float(lat)*gamma
-    ecoline.append((lat,exponent))
+    ## Need to do a range of percents
+    for frac in range(1,101):
+      perc=float(frac)/float(100)
+      predy=alpha*(perc**delta)
+      ecoline.append((perc,predy))
+
   return ecoline
 
-def scaleplots(rawdatafile,outfile,Bformat,prop,predfolder):
+def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
   ecotypes=['Lake','Marine','Stream','Terrestrial','Estuary']
 
@@ -191,121 +193,108 @@ def scaleplots(rawdatafile,outfile,Bformat,prop,predfolder):
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Paired"))
 
-  for TL in ['B','I','T','S']:
-    if TL!='S':
-      preddata=predictionreader(predfolder+'/predictions/'+prop[0]+TL+'.tsv',TL,Bformat)
-      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
-    else:
-      if rawdatafile=='../non_TS/summary-properties.tsv':
-        preddata=predictionreader('../non_TS/subset/predictions/'+prop+'.tsv',TL,Bformat)
-        fixed=fixed_reader('../non_TS/subset/coefficients/'+prop+'_co.tsv')
+  for prop in ['LS','Gen','Vul']:
+    for TL in ['B','I','T','S']:
+      if TL!='S':
+        fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
       else:
-        preddata=predictionreader('../mod_data/subset/predictions/'+prop+'.tsv',TL,Bformat)
-        fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_co.tsv')
-
-    graph=grace.add_graph(Panel)
-    print fixed
-    for ecotype in ecotypes:
-      if ecotype=='Estuary':
-        linecol=1
-      elif ecotype=='Lake':
-        linecol=3
-      elif ecotype=='Marine':
-        linecol=5
-      elif ecotype=='Stream':
-        linecol=7
-      else:
-        linecol=11
-
-      heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
-      datadict=heatpoints[ecotype]
-      obspoints=graph.add_dataset(datadict)
-      obspoints.line.configure(linestyle=0)
-      obspoints.symbol.configure(size=.2,shape=1,fill_color=linecol,fill_pattern=1,color=linecol)
-
-      predictions=predictionlines(fixed,prop,ecotype,TL)
-      predline=graph.add_dataset(predictions)
-      predline.symbol.shape=0
-
-      predline.line.configure(linestyle=1,color=linecol)
-      if TL=='S':
-        predline.legend=ecotype
-
-      # preddataset1=graph.add_dataset(preddata[ecotype][0])
-      # preddataset2=graph.add_dataset(preddata[ecotype][30])
-      # preddataset3=graph.add_dataset(preddata[ecotype][60])
-
-      # preddataset1.symbol.shape=0
-      # preddataset2.symbol.shape=0
-      # preddataset3.symbol.shape=0
-
-      # if TL=='B':
-      #   if ecotype=='Estuary':
-      #     graph.xaxis.label.configure(text='Estuarine',place='opposite',char_size=.75)
-      #   elif ecotype=='Marine':
-      #     graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
-      #   elif ecotype=='Lake':
-      #     graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
-      #   elif ecotype=='Stream':
-      #       graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
-      #   else:
-      #     graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
-      if TL=='S':
-        graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
-        graph.legend.box_linestyle=0
-
-      if ecotype=='Terrestrial':
-        if TL=='B':
-          ytex='% Basal'
-        elif TL=='I':
-          ytex='% Intermediate'
-        elif TL=='T':
-          ytex='% Top'
+        if rawdatafile=='../non_TS/summary-properties.tsv':
+          fixed=fixed_reader('../non_TS/subset/coefficients/'+prop+'_co.tsv')
         else:
-          ytex='Species Richness'
-        graph.xaxis.label.configure(text=ytex,place='opposite',char_size=.75)
+          fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_co.tsv')
 
-      graph.world.xmin=0
-      graph.world.xmin=0
-      graph.world.xmax=90
-      graph.xaxis.tick.major=15
+      graph=grace.add_graph(Panel)
+      print fixed
+      for ecotype in ecotypes:
+        if ecotype=='Estuary':
+          linecol=1
+        elif ecotype=='Lake':
+          linecol=3
+        elif ecotype=='Marine':
+          linecol=5
+        elif ecotype=='Stream':
+          linecol=7
+        else:
+          linecol=11
 
-      graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.xaxis.ticklabel.configure(char_size=.75)
-      graph.frame.linewidth=1
-      graph.xaxis.bar.linewidth=1
-      graph.yaxis.bar.linewidth=1
+        heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
+        datadict=heatpoints[ecotype]
+        obspoints=graph.add_dataset(datadict)
+        obspoints.line.configure(linestyle=0)
+        obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=linecol)
 
-      if TL=='B':
-        graph.world.ymin=-2
-        graph.world.ymax=.75
-      elif TL=='I':
-        graph.world.ymax=1
-        graph.world.ymin=-6
-      elif TL=='T':
-        graph.world.ymin=-6
-        graph.world.ymax=.5
-      else:
-        graph.world.ymin=0
-        graph.world.ymax=1
+        predictions=predictionlines(fixed,prop,ecotype,TL)
+        predline=graph.add_dataset(predictions)
+        predline.symbol.shape=0
 
-      graph.world.ymin=-8
-      graph.world.ymax=2
+        # predline.line.configure(linestyle=1,color=linecol)
+        # if TL=='S':
+        #   predline.legend=ecotype
+
+        # preddataset1=graph.add_dataset(preddata[ecotype][0])
+        # preddataset2=graph.add_dataset(preddata[ecotype][30])
+        # preddataset3=graph.add_dataset(preddata[ecotype][60])
+
+        # preddataset1.symbol.shape=0
+        # preddataset2.symbol.shape=0
+        # preddataset3.symbol.shape=0
+
+        # if TL=='B':
+        #   if ecotype=='Estuary':
+        #     graph.xaxis.label.configure(text='Estuarine',place='opposite',char_size=.75)
+        #   elif ecotype=='Marine':
+        #     graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
+        #   elif ecotype=='Lake':
+        #     graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
+        #   elif ecotype=='Stream':
+        #       graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
+        #   else:
+        #     graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
+        if TL=='S':
+          graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
+          graph.legend.box_linestyle=0
+
+        if prop=='LS':
+          if TL=='B':
+            ytex='% Basal'
+          elif TL=='I':
+            ytex='% Intermediate'
+          elif TL=='T':
+            ytex='% Top'
+          else:
+            ytex='Species Richness'
+          graph.xaxis.label.configure(text=ytex,place='opposite',char_size=.75)
+
+        graph.world.xmin=0
+        graph.world.xmin=0
+        if TL=='S':
+          graph.world.xmax=200
+          graph.xaxis.tick.major=50
+          graph.world.ymin=-10
+          graph.world.ymax=300
+          graph.yaxis.tick.major=50
+        else:
+          graph.world.xmax=1
+          graph.xaxis.tick.major=.2
+          graph.world.ymin=-5
+          graph.world.ymax=50
+          graph.yaxis.tick.major=10
+
+        graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+        graph.xaxis.ticklabel.configure(char_size=.75)
+        graph.frame.linewidth=1
+        graph.xaxis.bar.linewidth=1
+        graph.yaxis.bar.linewidth=1
 
 
-      graph.yaxis.tick.major=5
+        graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+        graph.yaxis.ticklabel.configure(char_size=.75)
+        graph.panel_label.configure(char_size=0)
 
-      graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-      graph.yaxis.ticklabel.configure(char_size=.75)
-      graph.panel_label.configure(char_size=0)
+  grace.multi(rows=3,cols=4,vgap=.04,hgap=.06)
 
-
-  grace.multi(rows=1,cols=4,vgap=.04,hgap=.06)
-  # grace.set_row_xaxislabel(row=3,colspan=(0,4),label='Latitude (degrees from equator)',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,4),label='Proportion',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=1,colspan=(0,4),label='Proportion of Intermediate consumers',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=0,colspan=(0,4),label='Proportion of Basal resources',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  grace.add_drawing_object(DrawText,text="Latitude (degrees from equator)",x=.505,y=.725,char_size=1)
+  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  grace.set_row_xaxislabel(row=2,colspan=(0,3),label='Predicted value',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   if prop=='LS':
     yax="Ratio of log(LS)"
@@ -313,7 +302,7 @@ def scaleplots(rawdatafile,outfile,Bformat,prop,predfolder):
     yax="Ratio of Generality"
   elif prop=='Vul':
     yax="Ratio of Vulnerability"
-  grace.set_col_yaxislabel(col=0,rowspan=(0,0),label=yax,place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   print 'changed'
@@ -324,15 +313,14 @@ def main():
 
   for Bformat in ['proportions']:#['numbers','proportions']:
     for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
-      for prop in ['LS']:#,'Gen','Vul']:
-        if rawdatafile=='../non_TS/summary-properties.tsv':
-          outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/'+prop+'_nonts.jpg'
-          predfolder='../non_TS/'+Bformat
-        else:
-          outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/'+prop+'_ts.eps'
-          predfolder='../mod_data/'+Bformat
+      if rawdatafile=='../non_TS/summary-properties.tsv':
+        outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/fitlines_nonts.eps'
+        predfolder='../non_TS/'+Bformat
+      else:
+        outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/fitlines_ts.eps'
+        predfolder='../mod_data/'+Bformat
 
-        scaleplots(rawdatafile,outfile,Bformat,prop,predfolder)
+      scaleplots(rawdatafile,outfile,Bformat,predfolder)
 
  
 if __name__ == '__main__':
