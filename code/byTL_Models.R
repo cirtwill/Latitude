@@ -11,7 +11,7 @@ library(MuMIn)
 ##############################################################################################
 
 infile='../non_TS/summary-properties.tsv'
-infile='../mod_data/summary-properties.tsv'
+# infile='../mod_data/summary-properties.tsv'
 format='proportions'
 # format='numbers'
 
@@ -99,10 +99,10 @@ power_analysis=FALSE
   # Maybe 3 levels of latitude.
   # Range is 0 - 78 degrees.
   # 0, 45, 75 == equatorial, temperate, arctic
-  newdata=matrix(nrow=500*3*5,ncol=7)
+  newdata=matrix(nrow=500*10*5,ncol=7)
   k=1
   for(j in c("Lake","Marine","Stream","Terr","Other")){
-    for(latitude in c(0,30,60)){
+    for(latitude in c(0,10,20,30,40,50,60,70,80,90)){
         for(i in 1:500){
         # newdata[k,1]=i
         newdata[k,1]=latitude
