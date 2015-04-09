@@ -100,14 +100,23 @@ def food_web_properties(directory,item,G):
   Clus=clustering(directory,item)
 
   N=len(G.nodes())
-  L=len(G.edges())
-  LS=Decimal(L)/Decimal(N)
-  C=Decimal(L)/Decimal(N**2)
 
   B=[]
   T=[]
   H=[]
   I=[]
+
+  LinksperS=[]
+  for node in G.nodes():
+    links=[]
+    for edge in G.edges():
+      if node in edge:
+        links.append(edge)
+    ls=len(links)
+    LinksperS.append(ls)
+
+  LS=Decimal(sum(LinksperS))/Decimal(N)
+  C=Decimal(sum(LinksperS))/Decimal(N**2)
 
   for node in G.nodes():
     if len(G.predecessors(node))==0:
@@ -129,8 +138,6 @@ def food_web_properties(directory,item,G):
   inter=float(float(len(I))/N)
   herbs=float(float(len(H))/N)
   basal=float(float(len(B))/N)
-
-  print basal
 
   for node in G.nodes():
     pred=len(G.predecessors(node))
@@ -175,7 +182,7 @@ def food_web_properties(directory,item,G):
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [int(N),int(L),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus),basal,herbs,inter,top] 
+  outputs = [int(N),int(sum(LinksperS)),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus),basal,herbs,inter,top] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
