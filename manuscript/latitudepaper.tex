@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}  
 \usepackage{amsmath}
+\usepackage{gensymb}
 \usepackage{url}
 \usepackage[dvips]{graphicx}
 \usepackage{multirow}
@@ -163,7 +164,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 
   \begin{equation}
   \label{Latfull}
-  S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} .,
+  S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
   \end{equation}
 
   \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
@@ -190,14 +191,14 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 
   \begin{equation}
   \label{Power}
-  Z_{i} \~ \alpha S_{i}^{\beta} .,
+  Z_{i} \sim \alpha S_{i}^{\beta}  ,
   \end{equation}
 
   \noindent which is often re-expressed in logarithmic form 
 
   \begin{equation}
   \label{Loglog}
-  \log{Z_{i}} \~ \log{\alpha} + \beta\log{S_{i}} ..
+  \log{Z_{i}} \sim \log{\alpha} + \beta\log{S_{i}}  .
   \end{equation}
 
 
@@ -238,14 +239,14 @@ Private Bag 4800\\Christchurch 8140, New Zealand}
 
   \begin{equation}
   \label{PowerLat}
-  Z_{i}=\alpha S_{i}^{\beta_{0}+\beta_{1}L_{i}+\beta_{2}E_{i}+\beta_{3}LE_{i}} + \epsilon_{i} .,
+  Z_{i}=\alpha S_{i}^{\beta_{0}+\beta_{1}L_{i}+\beta_{2}E_{i}+\beta_{3}LE_{i}} + \epsilon_{i} ,
   \end{equation}
 
   \noindent where $S_{i}$, $L_{i}$, and $E_{i}$ are as defined previously. The logarithmic formulation of this model is
 
   \begin{equation}
   \label{LogLat}
-  \log{Z_{i}} = \log{\alpha}+\beta_{0}\log{S_{i}} + \beta_{1}L\log{S_{i}} +\beta_{2}E\log{S_{i}} +\beta_{3}LE\log{S_{i}} +\epsilon_{i} ..
+  \log{Z_{i}} = \log{\alpha}+\beta_{0}\log{S_{i}} + \beta_{1}L\log{S_{i}} +\beta_{2}E\log{S_{i}} +\beta_{3}LE\log{S_{i}} +\epsilon_{i} .
   \end{equation}
 
   For each property in $Z$, $G$, and $V$, we used the form of the equation that was best supported
@@ -551,65 +552,71 @@ increased at the same rate across latitude. [[Still working on why]]
 
 \section*{Figures}
 
-% \begin{figure}[!h]
-% \label{Latfigs}
-% \includegraphics[width=.9\textwidth]{Figures/properties_vs_lat.eps}
-% \caption{Relationships between latitude and species richness, mean links per species, mean generality, and mean vulnerability. No food web property showed a significant latitudinal gradient in this dataset (N=259 food webs).}
-% \end{figure}
-
-% \begin{figure}[!h]
-% \label{scalingfig}
-% \includegraphics[width=.9\textwidth]{Figures/nonts_scaling_with_S_grey.eps}
-% \caption{Relationships between species richness and mean links per species, mean generality, and mean 
-% vulnerability (N=259 food webs). Scaling of mean links per species and mean vulnerability with species 
-% richness strengthened with latitude for estuarine, stream, and lake food webs. This strengthening was
-% reversed for marine and terrestrial food webs. Scaling of mean generality with species richness 
-% strengthened with latitude for lake food webs, but did not significantly vary with latitude for other
-% ecosystem types (N=259 food webs). }
-% \end{figure}
-
-
-\begin{figure}[!h]
-\label{props_v_lat}
-\includegraphics[width=.9\textwidth]{Figures/by_TL/properties_vs_lat/proportions/nonts_propsvlat.eps}
-\caption{Relationships between latitude and species richness, mean links per species, mean generality, and mean vulnerability (N=163 food webs). }
+\begin{figure}[h]
+\includegraphics[width=.85\textwidth]{Figures/by_TL/scaling_with_S/proportions/S_latlines_nonts.eps}
+\caption{Scaling of link density, generality, and vulnerability with species richness
+varies across ecosystem types and over latitude. For each property we show 
+prediction curves for food webs at the equator (darkest line) and at 
+20\degree, 40\degree, 60\degree, and 80\degree (lightest line) from the 
+equator. We did not include direction (i.e., North or South) in our analyses. 
+All curves are based on N=163 empirical food webs.}
+\label{S}
 \end{figure}
 
 
-\begin{figure}[!h]
-\label{TLs_v_lat}
-\includegraphics[width=.9\textwidth]{Figures/by_TL/properties_vs_lat/proportions/nonts_TLvlat.eps}
-\caption{Relationships between latitude and proportions of basal resources, intermediate consumers, and top predators (N=163 food webs). }
+\begin{figure}[!H]
+\includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/B_latlines_nonts.eps}
+\caption{Scaling of link density, generality, and vulnerability 
+with the proportion of basal resources in a food web
+varies across ecosystem types and over latitude. For each property we show 
+prediction curves for food webs at the equator (darkest line) and at 
+20\degree, 40\degree, 60\degree, and 80\degree (lightest line) from the 
+equator. We did not include direction (i.e., North or South) in our analyses. 
+All curves are based on N=163 empirical food webs.}
+\label{B}
 \end{figure}
 
 \newpage
 
-\begin{figure}[!h]
-\label{S}
-\includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/S_latlines_nonts.eps}
-\caption{}
-\end{figure}
 
-
-\begin{figure}[!h]
-\label{B}
-\includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/B_latlines_nonts.eps}
-\caption{}
-\end{figure}
-
-
-\begin{figure}[!h]
-\label{I}
+\begin{figure}[h]
 \includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/I_latlines_nonts.eps}
-\caption{}
+\caption{Scaling of link density, generality, and vulnerability 
+with the proportion of intermediate consumers in a food web
+varies across ecosystem types and over latitude. For each property we show 
+prediction curves for food webs at the equator (darkest line) and at 
+20\degree, 40\degree, 60\degree, and 80\degree (lightest line) from the 
+equator. We did not include direction (i.e., North or South) in our analyses. 
+All curves are based on N=163 empirical food webs.}
+\label{I}
 \end{figure}
 
 
-\begin{figure}[!h]
-\label{T}
+\begin{figure}[h]
 \includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/T_latlines_nonts.eps}
-\caption{}
+\caption{Scaling of link density, generality, and vulnerability 
+with the proportion of top predators in a food web
+varies across ecosystem types and over latitude. For each property we show 
+prediction curves for food webs at the equator (darkest line) and at 
+20\degree, 40\degree, 60\degree, and 80\degree (lightest line) from the 
+equator. We did not include direction (i.e., North or South) in our analyses. 
+All curves are based on N=163 empirical food webs.}
+\label{T}
 \end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\includegraphics[width=.9\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts.eps}
+\caption{Scaling relationships for link density, generality (number of prey), 
+and vulnerability (number of predators) 
+against the proportions of basal resources (\% Basal), intermediate consumers (\% Intermediate), top 
+predators (\% Top), and species richness of a food web. 
+For each relationship we show observed values corrected for
+ecosystem type and latitude (grey circles), as well as the overall scaling relationship (N=163 food webs). }
+\label{props_v_lat}
+\end{figure}
+
 
 \end{document}
 

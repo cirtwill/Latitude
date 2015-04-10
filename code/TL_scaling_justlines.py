@@ -162,7 +162,7 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
 
       if ecotype=='Estuary':
         if prop=='LS':
-          yax="Links/species"
+          yax="Link density"
         elif prop=='Gen':
           yax="Generality"
         elif prop=='Vul':

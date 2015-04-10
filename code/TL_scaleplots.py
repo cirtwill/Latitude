@@ -170,8 +170,6 @@ def predictionlines(fixed,prop,ecotype,TL):
 
   delta=fixed['log10('+key+')']
 
-  print alpha, delta
-
   if TL=='S':
     for S in range(1,200):
       predy=alpha*(S**delta)
@@ -191,10 +189,10 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
   rawdata=datareader(rawdatafile)
 
-  grace=MultiPanelGrace(colors=ColorBrewerScheme("Paired"))
+  grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
 
   for prop in ['LS','Gen','Vul']:
-    for TL in ['B','I','T','S']:
+    for TL in ['S','B','I','T']:
       if TL!='S':
         fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
       else:
@@ -204,30 +202,34 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
           fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_co.tsv')
 
       graph=grace.add_graph(Panel)
-      print fixed
       for ecotype in ecotypes:
         if ecotype=='Estuary':
+          shap=1
           linecol=1
         elif ecotype=='Lake':
+          shap=2
           linecol=3
         elif ecotype=='Marine':
+          shap=3
           linecol=5
         elif ecotype=='Stream':
+          shap=4
           linecol=7
         else:
+          shap=5
           linecol=11
 
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
         obspoints=graph.add_dataset(datadict)
         obspoints.line.configure(linestyle=0)
-        obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=linecol)
+        obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
 
         predictions=predictionlines(fixed,prop,ecotype,TL)
         predline=graph.add_dataset(predictions)
         predline.symbol.shape=0
 
-        # predline.line.configure(linestyle=1,color=linecol)
+        predline.line.configure(linestyle=1,color=1,linewidth=2.5)
         # if TL=='S':
         #   predline.legend=ecotype
 
@@ -254,7 +256,7 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
           graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
           graph.legend.box_linestyle=0
 
-        if prop=='LS':
+        if prop=='Vul':
           if TL=='B':
             ytex='% Basal'
           elif TL=='I':
@@ -263,22 +265,39 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
             ytex='% Top'
           else:
             ytex='Species Richness'
-          graph.xaxis.label.configure(text=ytex,place='opposite',char_size=.75)
+          graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
+
+        if TL=='T':
+          if prop=='LS':
+            yax="Link density"
+            ymed=25
+          elif prop=='Gen':
+            yax="Generality"
+            ymed=15
+          elif prop=='Vul':
+            yax="Vulnerability"
+            ymed=15
+
+          graph.add_drawing_object(DrawText,text=yax,x=1.1,y=ymed,char_size=.75,loctype='world',rot=270,just=2)
+          # graph.yaxis.label.configure(text=yax,place='opposite',char_size=.75)
 
         graph.world.xmin=0
-        graph.world.xmin=0
+        graph.world.ymin=0
+
+        if prop=='LS':
+          graph.world.ymax=50
+        elif prop=='Gen':
+          graph.world.ymax=30
+        else:
+          graph.world.ymax=30
+        graph.yaxis.tick.major=10
+
         if TL=='S':
           graph.world.xmax=200
           graph.xaxis.tick.major=50
-          graph.world.ymin=-10
-          graph.world.ymax=300
-          graph.yaxis.tick.major=50
         else:
           graph.world.xmax=1
           graph.xaxis.tick.major=.2
-          graph.world.ymin=-5
-          graph.world.ymax=50
-          graph.yaxis.tick.major=10
 
         graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
         graph.xaxis.ticklabel.configure(char_size=.75)
@@ -291,17 +310,13 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
         graph.yaxis.ticklabel.configure(char_size=.75)
         graph.panel_label.configure(char_size=0)
 
-  grace.multi(rows=3,cols=4,vgap=.04,hgap=.06)
+  grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
 
-  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  grace.set_row_xaxislabel(row=2,colspan=(0,3),label='Predicted value',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-
-  if prop=='LS':
-    yax="Ratio of log(LS)"
-  elif prop=='Gen':
-    yax="Ratio of Generality"
-  elif prop=='Vul':
-    yax="Ratio of Vulnerability"
+  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  # grace.set_row_xaxislabel(row=2,colspan=(1,1),label='% Intermediate',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
