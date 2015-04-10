@@ -31,39 +31,6 @@ def fixed_reader(coefffile):
   f.close()
   return fixed_effects
 
-def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
-  # Would probably be more helpful to do a heatmap of observed latitudes.
-  obs={'Lake':{},
-              'Stream':{},
-              'Marine':{},
-              'Terrestrial':{},
-              'Estuary':{}}
-  fixed_effects=fixed
-  f=open(rawdatafile,'r')
-  for line in f:
-    if line.split()[0]!='Web':
-      Latitude=float(line.split('\t')[6])
-      S=int(line.split('\t')[7])
-      LS=float(line.split('\t')[10])
-      L=LS
-      G=float(line.split('\t')[12])
-      Gen=G
-      V=float(line.split('\t')[14])
-      Vul=V
-      ecotype=line.split('\t')[1]
-      ecotype=ecotype.capitalize()
-      B=float(line.split('\t')[-4])
-      I=float(line.split('\t')[-2])
-      T=float(line.split('\t')[-1])
-      if Bformat=='numbers':
-        B=B*S
-        I=I*S
-        T=T*S
-      obs[ecotype][(eval(TL),eval(prop))]=Latitude
-  f.close()
-
-  return obs
-
 def predictionreader(predfile,TL,Bformat):
   predpoints={'Lake':{0:[],10:[],20:[],30:[],40:[],50:[],60:[],70:[],80:[],90:[]},
             'Marine':{0:[],10:[],20:[],30:[],40:[],50:[],60:[],70:[],80:[],90:[]},
@@ -141,7 +108,6 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
 
     for ecotype in ecotypes:
       graph=grace.add_graph(Panel)
-      heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
 
       for line in [80,60,40,20,0]:
         preddataset1=graph.add_dataset(preddata[ecotype][line])
@@ -156,9 +122,7 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
         stars=[(.35,25)]
       else:
         stars=[(175,25)]
-      ### Add stars for significant trends
-
-      # if TL=='B' and ecotype in ['Estuary','Lake','Stream']:
+      ### Add stars for significant trends ?
 
       if ecotype=='Estuary':
         if prop=='LS':
@@ -183,13 +147,15 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
           typ='Terrestrial'
         graph.xaxis.label.configure(text=typ,place='opposite',char_size=.75)
 
-      graph.world.xmin=0
       if TL!='S' and Bformat=='proportions':
+        graph.world.xmin=.01
         graph.world.xmax=.4001
-        graph.xaxis.tick.major=.1
+        # graph.xaxis.tick.major=.1
       else:
+        graph.world.xmin=1
         graph.world.xmax=200
-        graph.xaxis.tick.major=50
+        # graph.xaxis.tick.major=50
+      graph.xaxis.set_log()
 
       graph.xaxis.tick.configure(minor_ticks=1,major_size=.5,minor_size=.3,major_linewidth=1,minor_linewidth=1)
       graph.xaxis.ticklabel.configure(char_size=.75)
@@ -197,12 +163,13 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
       graph.xaxis.bar.linewidth=1
       graph.yaxis.bar.linewidth=1
 
-      graph.world.ymin=0
-      graph.world.ymax=30
-      ymaj=10
+      graph.world.ymin=.1
+      graph.world.ymax=250
 
-      graph.yaxis.tick.major=ymaj
+      # ymaj=10
 
+      # graph.yaxis.tick.major=ymaj
+      graph.yaxis.set_log()
       graph.yaxis.tick.configure(minor_ticks=1,major_size=.5,minor_size=.3,major_linewidth=1,minor_linewidth=1)
       graph.yaxis.ticklabel.configure(char_size=.75)
       graph.panel_label.configure(char_size=0)

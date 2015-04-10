@@ -166,7 +166,7 @@ def predictionlines(fixed,prop,ecotype,TL):
   else:
     key='Species'
 
-  alpha=math.exp(fixed['(Intercept)'])
+  alpha=10**fixed['(Intercept)']
 
   delta=fixed['log10('+key+')']
 
@@ -270,19 +270,22 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
         if TL=='T':
           if prop=='LS':
             yax="Link density"
-            ymed=25
+            ymed=math.log10(50)/2
           elif prop=='Gen':
             yax="Generality"
-            ymed=15
+            ymed=math.log10(30)/2
           elif prop=='Vul':
             yax="Vulnerability"
-            ymed=15
+            ymed=math.log10(30)/2
 
-          graph.add_drawing_object(DrawText,text=yax,x=1.1,y=ymed,char_size=.75,loctype='world',rot=270,just=2)
+          graph.add_drawing_object(DrawText,text=yax,x=1.2,y=10**ymed,char_size=.75,loctype='world',rot=270,just=2)
           # graph.yaxis.label.configure(text=yax,place='opposite',char_size=.75)
 
-        graph.world.xmin=0
-        graph.world.ymin=0
+        if TL!='S':
+          graph.world.xmin=0.01
+        else:
+          graph.world.xmin=1
+        graph.world.ymin=1
 
         if prop=='LS':
           graph.world.ymax=50
@@ -290,14 +293,16 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
           graph.world.ymax=30
         else:
           graph.world.ymax=30
-        graph.yaxis.tick.major=10
+        # graph.yaxis.tick.major=10
+        graph.xaxis.set_log()
+        graph.yaxis.set_log()
 
         if TL=='S':
-          graph.world.xmax=200
-          graph.xaxis.tick.major=50
+          graph.world.xmax=350
+          # graph.xaxis.tick.major=50
         else:
           graph.world.xmax=1
-          graph.xaxis.tick.major=.2
+          # graph.xaxis.tick.major=.2
 
         graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
         graph.xaxis.ticklabel.configure(char_size=.75)
