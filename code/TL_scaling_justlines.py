@@ -57,15 +57,16 @@ def predictionreader(predfile,TL,Bformat):
       I=float(line.split()[7])
       T=float(line.split()[8])
 
+      print pred, TL, ecotype
       if Bformat=='proportions':
         if TL=='B':
-          predpoints[ecotype][Lat].append((B,math.log(pred)))
+          predpoints[ecotype][Lat].append((B,math.exp(pred)))
         elif TL=='I':
-          predpoints[ecotype][Lat].append((I,math.log(pred)))
+          predpoints[ecotype][Lat].append((I,math.exp(pred)))
         elif TL=='T':
-          predpoints[ecotype][Lat].append((T,math.log(pred)))
+          predpoints[ecotype][Lat].append((T,math.exp(pred)))
         elif TL=='S':
-          predpoints[ecotype][Lat].append((S,math.log(pred)))
+          predpoints[ecotype][Lat].append((S,math.exp(pred)))
       else:
         if TL=='B':
           predpoints[ecotype][Lat].append((B*S,math.log(pred)))
