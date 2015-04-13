@@ -6,43 +6,43 @@
 ##########################################################################################
 ##########################################################################################
 
-    LS_B_full=with(data,lm(log10(LS)~log10(Basal)
-    +log10(Basal):Latitude
-    +log10(Basal):(Stream+Lake+Marine+Terr)
-    +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
+    LS_B_full=with(data,lm(log(LS)~log(Basal)
+    +log(Basal):Latitude
+    +log(Basal):(Stream+Lake+Marine+Terr)
+    +log(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     lbdredge=dredge(LS_B_full,rank=AIC)
     # Same in both infiles :)
-    LS_B_min=with(data,lm(log10(LS)~log10(Basal)
-      +log10(Basal):Latitude
-      +log10(Basal):(Marine+Stream+Terr)
-      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
+    LS_B_min=with(data,lm(log(LS)~log(Basal)
+      +log(Basal):Latitude
+      +log(Basal):(Marine+Stream+Terr)
+      +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
-    LS_I_full=with(data,lm(log10(LS)~log10(Intermediate)
-    +log10(Intermediate):Latitude
-    +log10(Intermediate):(Stream+Lake+Marine+Terr)
-    +log10(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
+    LS_I_full=with(data,lm(log(LS)~log(Intermediate)
+    +log(Intermediate):Latitude
+    +log(Intermediate):(Stream+Lake+Marine+Terr)
+    +log(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     lidredge=dredge(LS_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
-      LS_I_min=with(data,lm(log10(LS)~log10(Intermediate)
-        +log10(Intermediate):(Lake+Stream), na.action=na.fail   ))
+      LS_I_min=with(data,lm(log(LS)~log(Intermediate)
+        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
     } else {
-      LS_I_min=with(data,lm(log10(LS)~log10(Intermediate)
-        +log10(Intermediate):Stream, na.action=na.fail   ))
+      LS_I_min=with(data,lm(log(LS)~log(Intermediate)
+        +log(Intermediate):Stream, na.action=na.fail   ))
     }
 
-    LS_T_full=with(data,lm(log10(LS)~log10(Toppreds)
-    +log10(Toppreds):Latitude
-    +log10(Toppreds):(Stream+Lake+Marine+Terr)
-    +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
+    LS_T_full=with(data,lm(log(LS)~log(Toppreds)
+    +log(Toppreds):Latitude
+    +log(Toppreds):(Stream+Lake+Marine+Terr)
+    +log(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     ltdredge=dredge(LS_T_full,rank=AIC)
     # Same on both input files :)
-    LS_T_min=with(data,lm(log10(LS)~log10(Toppreds)
-    +log10(Toppreds):(Lake+Marine+Stream+Terr)
-    +log10(Toppreds):Latitude
-    +log10(Toppreds):Latitude:(Stream+Terr) ))
+    LS_T_min=with(data,lm(log(LS)~log(Toppreds)
+    +log(Toppreds):(Lake+Marine+Stream+Terr)
+    +log(Toppreds):Latitude
+    +log(Toppreds):Latitude:(Stream+Terr) ))
 
 
 ##########################################################################################
@@ -52,44 +52,44 @@
 #
 ##########################################################################################
 #########################################################################################
-    Gen_B_full=with(data,lm(log10(Gen)~log10(Basal)
-    +log10(Basal):Latitude
-    +log10(Basal):(Stream+Lake+Marine+Terr)
-    +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
+    Gen_B_full=with(data,lm(log(Gen)~log(Basal)
+    +log(Basal):Latitude
+    +log(Basal):(Stream+Lake+Marine+Terr)
+    +log(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     gbdredge=dredge(Gen_B_full,rank=AIC)
     # Same for both infiles :)
-    Gen_B_min=with(data,lm(log10(Gen)~log10(Basal)
-      +log10(Basal):Latitude
-      +log10(Basal):(Marine+Stream+Terr)
-      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
+    Gen_B_min=with(data,lm(log(Gen)~log(Basal)
+      +log(Basal):Latitude
+      +log(Basal):(Marine+Stream+Terr)
+      +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
 
-    Gen_I_full=with(data,lm(log10(Gen)~log10(Intermediate)
-    +log10(Intermediate):Latitude
-    +log10(Intermediate):(Stream+Lake+Marine+Terr)
-    +log10(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
+    Gen_I_full=with(data,lm(log(Gen)~log(Intermediate)
+    +log(Intermediate):Latitude
+    +log(Intermediate):(Stream+Lake+Marine+Terr)
+    +log(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     gidredge=dredge(Gen_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
-      Gen_I_min=with(data,lm(log10(Gen)~log10(Intermediate)
-        +log10(Intermediate):Latitude
-        +log10(Intermediate):(Lake+Stream+Terr)
-        +log10(Intermediate):Latitude:Terr , na.action=na.fail   ))
+      Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
+        +log(Intermediate):Latitude
+        +log(Intermediate):(Lake+Stream+Terr)
+        +log(Intermediate):Latitude:Terr , na.action=na.fail   ))
     } else {
-      Gen_I_min=with(data,lm(log10(Gen)~log10(Intermediate)
-        +log10(Intermediate):(Marine+Stream), na.action=na.fail   ))
+      Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
+        +log(Intermediate):(Marine+Stream), na.action=na.fail   ))
     }
 
-    Gen_T_full=with(data,lm(log10(Gen)~log10(Toppreds)
-    +log10(Toppreds):Latitude
-    +log10(Toppreds):(Stream+Lake+Marine+Terr)
-    +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
+    Gen_T_full=with(data,lm(log(Gen)~log(Toppreds)
+    +log(Toppreds):Latitude
+    +log(Toppreds):(Stream+Lake+Marine+Terr)
+    +log(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     gtdredge=dredge(Gen_T_full,rank=AIC)
     # Same in both input files :)
-    Gen_T_min=with(data,lm(log10(Gen)~log10(Toppreds)
-      +log10(Toppreds):(Marine+Stream) ))
+    Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
+      +log(Toppreds):(Marine+Stream) ))
 
 
 ##########################################################################################
@@ -99,45 +99,45 @@
 #
 ##########################################################################################
 #########################################################################################
-    Vul_B_full=with(data,lm(log10(Vul)~log10(Basal)
-    +log10(Basal):Latitude
-    +log10(Basal):(Stream+Lake+Marine+Terr)
-    +log10(Basal):Latitude:(Stream+Lake+Marine+Terr)
+    Vul_B_full=with(data,lm(log(Vul)~log(Basal)
+    +log(Basal):Latitude
+    +log(Basal):(Stream+Lake+Marine+Terr)
+    +log(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vbdredge=dredge(Vul_B_full,rank=AIC)
     # Same for both infiles :)
-    Vul_B_min=with(data,lm(log10(Vul)~log10(Basal)
-      +log10(Basal):Latitude
-      +log10(Basal):(Marine+Stream+Terr)
-      +log10(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
+    Vul_B_min=with(data,lm(log(Vul)~log(Basal)
+      +log(Basal):Latitude
+      +log(Basal):(Marine+Stream+Terr)
+      +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
 
-    Vul_I_full=with(data,lm(log10(Vul)~log10(Intermediate)
-    +log10(Intermediate):Latitude
-    +log10(Intermediate):(Stream+Lake+Marine+Terr)
-    +log10(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
+    Vul_I_full=with(data,lm(log(Vul)~log(Intermediate)
+    +log(Intermediate):Latitude
+    +log(Intermediate):(Stream+Lake+Marine+Terr)
+    +log(Intermediate):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vidredge=dredge(Vul_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
-      Vul_I_min=with(data,lm(log10(Vul)~log10(Intermediate)
-        +log10(Intermediate):(Lake+Stream), na.action=na.fail   ))
+      Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
+        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
     } else {
-      Vul_I_min=with(data,lm(log10(Vul)~log10(Intermediate)
-        +log10(Intermediate):Stream, na.action=na.fail   ))
+      Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
+        +log(Intermediate):Stream, na.action=na.fail   ))
     }
 
 
-    Vul_T_full=with(data,lm(log10(Vul)~log10(Toppreds)
-    +log10(Toppreds):Latitude
-    +log10(Toppreds):(Stream+Lake+Marine+Terr)
-    +log10(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
+    Vul_T_full=with(data,lm(log(Vul)~log(Toppreds)
+    +log(Toppreds):Latitude
+    +log(Toppreds):(Stream+Lake+Marine+Terr)
+    +log(Toppreds):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vtdredge=dredge(Vul_T_full,rank=AIC)
     # Same for both infiles :)
-    Vul_T_min=with(data,lm(log10(Vul)~log10(Toppreds)
-      +log10(Toppreds):(Lake+Marine+Stream+Terr)
-      +log10(Toppreds):Latitude
-      +log10(Toppreds):Latitude:(Stream+Terr) ))
+    Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
+      +log(Toppreds):(Lake+Marine+Stream+Terr)
+      +log(Toppreds):Latitude
+      +log(Toppreds):Latitude:(Stream+Terr) ))
 
 
 ##########################################################################################

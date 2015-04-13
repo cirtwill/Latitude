@@ -1,21 +1,21 @@
   #Let's look at the same old regressions with the subset of data...
   # For proportions, regressions are similar but vary slightly over ecotype.
-  LS_full=with(data,lm(log10(LS)~log10(Species)
-    +log10(Species):Latitude
-    +log10(Species):(Stream+Lake+Marine+Terr)
-    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  LS_full=with(data,lm(log(LS)~log(Species)
+    +log(Species):Latitude
+    +log(Species):(Stream+Lake+Marine+Terr)
+    +log(Species):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
   ls_dredge=dredge(LS_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
-    LS_min =with(data,lm(log10(LS)~log10(Species)
-    +log10(Species):(Lake+Terr)
-    +log10(Species):Latitude
-    +log10(Species):Latitude:Lake
+    LS_min =with(data,lm(log(LS)~log(Species)
+    +log(Species):(Lake+Terr)
+    +log(Species):Latitude
+    +log(Species):Latitude:Lake
     ,na.action=na.fail))    } else {
-    LS_min=with(data,lm(log10(LS)~log10(Species)
-    +log10(Species):(Lake+Terr)
-    +log10(Species):Latitude
-    +log10(Species):Latitude:Lake,
+    LS_min=with(data,lm(log(LS)~log(Species)
+    +log(Species):(Lake+Terr)
+    +log(Species):Latitude
+    +log(Species):Latitude:Lake,
     na.action=na.fail))    }
 
     cutoff<- 4/((nrow(data)-length(LS_min$coefficients)-2)) 
@@ -27,29 +27,29 @@
       subset=data[-c(57,66,138),]
     }
 
-    subLS_min=(with(subset,lm(log10(LS)~log10(Species)
-    +log10(Species):(Lake+Terr)
-    +log10(Species):Latitude
-    +log10(Species):Latitude:Lake,na.action=na.fail)))
+    subLS_min=(with(subset,lm(log(LS)~log(Species)
+    +log(Species):(Lake+Terr)
+    +log(Species):Latitude
+    +log(Species):Latitude:Lake,na.action=na.fail)))
 
 
-  Gen_full=with(data,lm(log10(Gen)~log10(Species)
-    +log10(Species):Latitude
-    +log10(Species):(Stream+Lake+Marine+Terr)
-    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  Gen_full=with(data,lm(log(Gen)~log(Species)
+    +log(Species):Latitude
+    +log(Species):(Stream+Lake+Marine+Terr)
+    +log(Species):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
   g_dredge=dredge(Gen_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
-    Gen_min=with(data,lm(log10(Gen)~log10(Species)
-      +log10(Species):(Lake+Stream)
-      +log10(Species):Latitude
-      +log10(Species):Latitude:Lake
-      +log10(Species):Latitude:Stream
+    Gen_min=with(data,lm(log(Gen)~log(Species)
+      +log(Species):(Lake+Stream)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake
+      +log(Species):Latitude:Stream
       ,na.action=na.fail)) } else {
-    Gen_min=with(data,lm(log10(Gen)~log10(Species)
-      +log10(Species):(Lake+Stream+Terr)
-      +log10(Species):Latitude
-      +log10(Species):Latitude:(Lake+Stream)
+    Gen_min=with(data,lm(log(Gen)~log(Species)
+      +log(Species):(Lake+Stream+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:(Lake+Stream)
       ,na.action=na.fail))
     }
 
@@ -58,35 +58,35 @@
     #  57, 66, 109 are outliers.
     if(infile=='../mod_data/summary-properties.tsv'){
       subset=data[-c(43,57,109),]
-      subGen_min=with(subset,lm(log10(Gen)~log10(Species)
-        +log10(Species):(Lake+Stream+Terr)
-        +log10(Species):Latitude
-        +log10(Species):Latitude:(Lake+Stream)
+      subGen_min=with(subset,lm(log(Gen)~log(Species)
+        +log(Species):(Lake+Stream+Terr)
+        +log(Species):Latitude
+        +log(Species):Latitude:(Lake+Stream)
         ,na.action=na.fail)) } else {
       subset=data[-c(57,66,109),]
-      subGen_min=with(subset,lm(log10(Gen)~log10(Species)
-        +log10(Species):(Lake+Stream+Terr)
-        +log10(Species):Latitude
-        +log10(Species):Latitude:(Lake+Stream)
+      subGen_min=with(subset,lm(log(Gen)~log(Species)
+        +log(Species):(Lake+Stream+Terr)
+        +log(Species):Latitude
+        +log(Species):Latitude:(Lake+Stream)
         ,na.action=na.fail))
       }
 
-  Vul_full=with(data,lm(log10(Vul)~log10(Species)
-    +log10(Species):Latitude
-    +log10(Species):(Stream+Lake+Marine+Terr)
-    +log10(Species):Latitude:(Stream+Lake+Marine+Terr)
+  Vul_full=with(data,lm(log(Vul)~log(Species)
+    +log(Species):Latitude
+    +log(Species):(Stream+Lake+Marine+Terr)
+    +log(Species):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
   v_dredge=dredge(Vul_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
-    Vul_min=with(data,lm(log10(Vul)~log10(Species)
-      +log10(Species):(Lake+Terr)
-      +log10(Species):Latitude
-      +log10(Species):Latitude:Lake
+    Vul_min=with(data,lm(log(Vul)~log(Species)
+      +log(Species):(Lake+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake
       ,na.action=na.fail)) } else {
-    Vul_min=with(data,lm(log10(Vul)~log10(Species)
-      +log10(Species):(Lake+Terr)
-      +log10(Species):Latitude
-      +log10(Species):Latitude:Lake
+    Vul_min=with(data,lm(log(Vul)~log(Species)
+      +log(Species):(Lake+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake
       ,na.action=na.fail))  }
 
     cutoff<- 4/((nrow(data)-length(Vul_min$coefficients)-2)) 
@@ -96,10 +96,10 @@
       subset=data[-c(57,127,138),] } else {
       subset=data[-c(57,66,138),]  }
 
-    subVul_min=with(subset,lm(log10(Vul)~log10(Species)
-      +log10(Species):(Lake+Terr)
-      +log10(Species):Latitude
-      +log10(Species):Latitude:Lake
+    subVul_min=with(subset,lm(log(Vul)~log(Species)
+      +log(Species):(Lake+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake
       ,na.action=na.fail)) 
 
       # What's the basic correlation with latitude?
