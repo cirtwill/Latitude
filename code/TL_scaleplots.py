@@ -71,18 +71,18 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
 
       # Correct the observed property based on latitude and ecotype effects
 
-      if 'log10('+key+'):'+ecotype in fixed_effects: 
-        delta=fixed_effects['log10('+key+'):'+ecotype]
+      if 'log('+key+'):'+ecotype in fixed_effects: 
+        delta=fixed_effects['log('+key+'):'+ecotype]
       else:   # If there's no intercept effect of ecosystem
         delta=0
 
-      if 'log10('+key+'):Latitude' in fixed_effects:
-        if 'log10('+key+'):'+ecotype+':Latitude' in fixed_effects:
-         gamma=fixed_effects['log10('+key+'):Latitude']+fixed_effects['log10('+key+'):'+ecotype+':Latitude'] 
-        elif 'log10('+key+'):Latitude:'+ecotype in fixed_effects:
-          gamma=fixed_effects['log10('+key+'):Latitude']+fixed_effects['log10('+key+'):Latitude:'+ecotype]
+      if 'log('+key+'):Latitude' in fixed_effects:
+        if 'log('+key+'):'+ecotype+':Latitude' in fixed_effects:
+         gamma=fixed_effects['log('+key+'):Latitude']+fixed_effects['log('+key+'):'+ecotype+':Latitude'] 
+        elif 'log('+key+'):Latitude:'+ecotype in fixed_effects:
+          gamma=fixed_effects['log('+key+'):Latitude']+fixed_effects['log('+key+'):Latitude:'+ecotype]
         else:  #If there's no lat-by-ecotype interaction
-          gamma=fixed_effects['log10('+key+'):Latitude'] 
+          gamma=fixed_effects['log('+key+'):Latitude'] 
       else: # If there's no latitude effect at all
         gamma=0
 
@@ -133,22 +133,22 @@ def predictionreader(predfile,TL,Bformat):
 
       if Bformat=='proportions':
         if TL=='B':
-          predpoints[ecotype][Lat].append((B,10**pred))
+          predpoints[ecotype][Lat].append((B,math.exp(pred)))
         elif TL=='I':
-          predpoints[ecotype][Lat].append((I,10**pred))
+          predpoints[ecotype][Lat].append((I,math.exp(pred)))
         elif TL=='T':
-          predpoints[ecotype][Lat].append((T,10**pred))
+          predpoints[ecotype][Lat].append((T,math.exp(pred)))
         elif TL=='S':
-          predpoints[ecotype][Lat].append((S,10**pred))
+          predpoints[ecotype][Lat].append((S,math.exp(pred)))
       else:
         if TL=='B':
-          predpoints[ecotype][Lat].append((B*S,10**pred))
+          predpoints[ecotype][Lat].append((B*S,math.exp(pred)))
         elif TL=='I':
-          predpoints[ecotype][Lat].append((I*S,10**pred))
+          predpoints[ecotype][Lat].append((I*S,math.exp(pred)))
         elif TL=='T':
-          predpoints[ecotype][Lat].append((T*S,10**pred))
+          predpoints[ecotype][Lat].append((T*S,math.exp(pred)))
         elif TL=='S':
-          predpoints[ecotype][Lat].append((S*S,10**pred))
+          predpoints[ecotype][Lat].append((S*S,math.exp(pred)))
 
 
   f.close()
@@ -166,9 +166,9 @@ def predictionlines(fixed,prop,ecotype,TL):
   else:
     key='Species'
 
-  alpha=10**fixed['(Intercept)']
+  alpha=math.exp(fixed['(Intercept)'])
 
-  delta=fixed['log10('+key+')']
+  delta=fixed['log('+key+')']
 
   if TL=='S':
     for S in range(1,200):
@@ -270,15 +270,15 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
         if TL=='T':
           if prop=='LS':
             yax="Link density"
-            ymed=math.log10(50)/2
+            ymed=math.log(50)/2
           elif prop=='Gen':
             yax="Generality"
-            ymed=math.log10(30)/2
+            ymed=math.log(30)/2
           elif prop=='Vul':
             yax="Vulnerability"
-            ymed=math.log10(30)/2
+            ymed=math.log(30)/2
 
-          graph.add_drawing_object(DrawText,text=yax,x=1.2,y=10**ymed,char_size=.75,loctype='world',rot=270,just=2)
+          graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
           # graph.yaxis.label.configure(text=yax,place='opposite',char_size=.75)
 
         if TL!='S':

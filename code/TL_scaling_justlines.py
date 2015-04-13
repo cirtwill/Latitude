@@ -59,22 +59,22 @@ def predictionreader(predfile,TL,Bformat):
 
       if Bformat=='proportions':
         if TL=='B':
-          predpoints[ecotype][Lat].append((B,10**pred))
+          predpoints[ecotype][Lat].append((B,math.log(pred)))
         elif TL=='I':
-          predpoints[ecotype][Lat].append((I,10**pred))
+          predpoints[ecotype][Lat].append((I,math.log(pred)))
         elif TL=='T':
-          predpoints[ecotype][Lat].append((T,10**pred))
+          predpoints[ecotype][Lat].append((T,math.log(pred)))
         elif TL=='S':
-          predpoints[ecotype][Lat].append((S,10**pred))
+          predpoints[ecotype][Lat].append((S,math.log(pred)))
       else:
         if TL=='B':
-          predpoints[ecotype][Lat].append((B*S,10**pred))
+          predpoints[ecotype][Lat].append((B*S,math.log(pred)))
         elif TL=='I':
-          predpoints[ecotype][Lat].append((I*S,10**pred))
+          predpoints[ecotype][Lat].append((I*S,math.log(pred)))
         elif TL=='T':
-          predpoints[ecotype][Lat].append((T*S,10**pred))
+          predpoints[ecotype][Lat].append((T*S,math.log(pred)))
         elif TL=='S':
-          predpoints[ecotype][Lat].append((S*S,10**pred))
+          predpoints[ecotype][Lat].append((S*S,math.log(pred)))
 
 
   f.close()
