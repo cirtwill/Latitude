@@ -12,6 +12,7 @@ library(MuMIn)
 
 infile='../non_TS/summary-properties.tsv'
 #infile='../mod_data/summary-properties.tsv'
+
 format='proportions'
 # format='numbers'
 
