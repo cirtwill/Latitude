@@ -18,7 +18,29 @@ from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 # Think I want plots of the raw data (S, LS, G, V vs. lat) with slope lines
 # Plus predictions for LS, G, V vs S (with corrected obs.)
 
-from TL_latplots import datareader
+def datareader(rawdatafile,TL,Bformat):
+
+  points={'LS':[],'Gen':[],'Vul':[]}
+
+  f=open(rawdatafile,'r')
+  for line in f:
+    if line.split()[0]!='Web':
+      Latitude=float(line.split('\t')[6])
+      S=int(line.split('\t')[7])
+      LS=float(line.split('\t')[10])
+      Gen=float(line.split('\t')[12])
+      Vul=float(line.split('\t')[14])
+      ecotype=line.split('\t')[1]
+      ecotype=ecotype.capitalize()
+      B=float(line.split('\t')[-4])
+      I=float(line.split('\t')[-2])
+      T=float(line.split('\t')[-1])
+
+      for response in ['LS','Gen','Vul']:
+        points[response].append((eval(TL),eval(response)))
+
+  f.close()
+  return points
 
 def fixed_reader(coefffile):
   fixed_effects={}
@@ -92,14 +114,6 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
         correction=eval(TL)**exponent
         y=float(Decimal(eval(prop))/Decimal(correction))
 
-        # if Bformat=='numbers':
-        #   B=B*S
-        #   I=I*S
-        #   T=T*S
-        # B=(math.log(B)-B_centre)/B_scale
-        # I=(math.log(I)-I_centre)/I_scale
-        # T=(math.log(T)-T_centre)/T_scale
-
         obs[ecotype].append((eval(TL),y))
   f.close()
 
@@ -154,7 +168,7 @@ def predictionreader(predfile,TL,Bformat):
   f.close()
   return predpoints
 
-def predictionlines(fixed,prop,ecotype,TL):
+def predictionlines(fixed,prop,TL):
   ecoline=[]
 
   if TL=='B':
@@ -171,7 +185,7 @@ def predictionlines(fixed,prop,ecotype,TL):
   delta=fixed['log('+key+')']
 
   if TL=='S':
-    for S in range(1,200):
+    for S in range(1,350):
       predy=alpha*(S**delta)
       ecoline.append((S,predy))
   else:
@@ -187,12 +201,11 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
   ecotypes=['Lake','Marine','Stream','Terrestrial','Estuary']
 
-  rawdata=datareader(rawdatafile)
-
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
 
   for prop in ['LS','Gen','Vul']:
     for TL in ['S','B','I','T']:
+      rawdata=datareader(rawdatafile,TL,Bformat)
       if TL!='S':
         fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
       else:
@@ -203,131 +216,186 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
       graph=grace.add_graph(Panel)
       for ecotype in ecotypes:
-        if ecotype=='Estuary':
-          shap=1
-          linecol=1
-        elif ecotype=='Lake':
-          shap=2
-          linecol=3
-        elif ecotype=='Marine':
-          shap=3
-          linecol=5
-        elif ecotype=='Stream':
-          shap=4
-          linecol=7
-        else:
-          shap=5
-          linecol=11
-
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
         obspoints=graph.add_dataset(datadict)
         obspoints.line.configure(linestyle=0)
         obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
 
-        predictions=predictionlines(fixed,prop,ecotype,TL)
+        predictions=predictionlines(fixed,prop,TL)
         predline=graph.add_dataset(predictions)
         predline.symbol.shape=0
 
         predline.line.configure(linestyle=1,color=1,linewidth=2.5)
-        # if TL=='S':
-        #   predline.legend=ecotype
 
-        # preddataset1=graph.add_dataset(preddata[ecotype][0])
-        # preddataset2=graph.add_dataset(preddata[ecotype][30])
-        # preddataset3=graph.add_dataset(preddata[ecotype][60])
+      if TL=='S':
+        graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
+        graph.legend.box_linestyle=0
 
-        # preddataset1.symbol.shape=0
-        # preddataset2.symbol.shape=0
-        # preddataset3.symbol.shape=0
-
-        # if TL=='B':
-        #   if ecotype=='Estuary':
-        #     graph.xaxis.label.configure(text='Estuarine',place='opposite',char_size=.75)
-        #   elif ecotype=='Marine':
-        #     graph.xaxis.label.configure(text='Marine',place='opposite',char_size=.75)
-        #   elif ecotype=='Lake':
-        #     graph.xaxis.label.configure(text='Lake',place='opposite',char_size=.75)
-        #   elif ecotype=='Stream':
-        #       graph.xaxis.label.configure(text='Stream',place='opposite',char_size=.75)
-        #   else:
-        #     graph.xaxis.label.configure(text='Terrestrial',place='opposite',char_size=.75)
-        if TL=='S':
-          graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
-          graph.legend.box_linestyle=0
-
-        if prop=='Vul':
-          if TL=='B':
-            ytex='% Basal'
-          elif TL=='I':
-            ytex='% Intermediate'
-          elif TL=='T':
-            ytex='% Top'
-          else:
-            ytex='Species Richness'
-          graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
-
-        if TL=='T':
-          if prop=='LS':
-            yax="Link density"
-            ymed=math.log(50)/2
-          elif prop=='Gen':
-            yax="Generality"
-            ymed=math.log(30)/2
-          elif prop=='Vul':
-            yax="Vulnerability"
-            ymed=math.log(30)/2
-
-          graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
-          # graph.yaxis.label.configure(text=yax,place='opposite',char_size=.75)
-
-        if TL!='S':
-          graph.world.xmin=0.01
+      if prop=='Vul':
+        if TL=='B':
+          ytex='% Basal'
+        elif TL=='I':
+          ytex='% Intermediate'
+        elif TL=='T':
+          ytex='% Top'
         else:
-          graph.world.xmin=1
-        graph.world.ymin=1
+          ytex='Species Richness'
+        graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
 
+      if TL=='T':
         if prop=='LS':
-          graph.world.ymax=50
+          yax="Link density"
+          ymed=math.log(50)/2
         elif prop=='Gen':
-          graph.world.ymax=30
-        else:
-          graph.world.ymax=30
-        # graph.yaxis.tick.major=10
-        graph.xaxis.set_log()
-        graph.yaxis.set_log()
+          yax="Generality"
+          ymed=math.log(30)/2
+        elif prop=='Vul':
+          yax="Vulnerability"
+          ymed=math.log(30)/2
 
-        if TL=='S':
-          graph.world.xmax=350
-          # graph.xaxis.tick.major=50
-        else:
-          graph.world.xmax=1
-          # graph.xaxis.tick.major=.2
+        graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
 
-        graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-        graph.xaxis.ticklabel.configure(char_size=.75)
-        graph.frame.linewidth=1
-        graph.xaxis.bar.linewidth=1
-        graph.yaxis.bar.linewidth=1
+      if TL!='S':
+        graph.world.xmin=0.01
+      else:
+        graph.world.xmin=1
+      graph.world.ymin=.1
+
+      if prop=='LS':
+        graph.world.ymax=100
+      elif prop=='Gen':
+        graph.world.ymax=50
+      else:
+        graph.world.ymax=50
+      graph.xaxis.set_log()
+      graph.yaxis.set_log()
+
+      if TL=='S':
+        graph.world.xmax=350
+      else:
+        graph.world.xmax=1
+
+      graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+      graph.xaxis.ticklabel.configure(char_size=.75)
+      graph.frame.linewidth=1
+      graph.xaxis.bar.linewidth=1
+      graph.yaxis.bar.linewidth=1
 
 
-        graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-        graph.yaxis.ticklabel.configure(char_size=.75)
-        graph.panel_label.configure(char_size=0)
+      graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+      graph.yaxis.ticklabel.configure(char_size=.75)
+      graph.panel_label.configure(char_size=0)
 
   grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
 
   grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=2,colspan=(1,1),label='% Intermediate',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,0),label='% Basal',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   print 'changed'
 
   grace.write_file(outfile)
+
+
+def rawplots(rawdatafile,outfile,Bformat,predfolder):
+
+  outfile=outfile.split('.eps')[0]+'_observed.eps'  
+  # Lets make clear that these are the original, uncorrected points
+
+  grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
+
+  for prop in ['LS','Gen','Vul']:
+    for TL in ['S','B','I','T']:
+      rawdata=datareader(rawdatafile,TL,Bformat)
+
+      if TL!='S':
+        fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_obs.tsv')
+      else:
+        if rawdatafile=='../non_TS/summary-properties.tsv':
+          fixed=fixed_reader('../non_TS/subset/coefficients/'+prop+'_obs.tsv')
+        else:
+          fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_obs.tsv')
+
+      graph=grace.add_graph(Panel)
+
+      obspoints=graph.add_dataset(rawdata[prop])
+      obspoints.line.configure(linestyle=0)
+      obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
+
+      predictions=predictionlines(fixed,prop,TL)
+      predline=graph.add_dataset(predictions)
+      predline.symbol.shape=0
+
+      predline.line.configure(linestyle=1,color=1,linewidth=2.5)
+
+      if TL=='S':
+        graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
+        graph.legend.box_linestyle=0
+
+      if prop=='Vul':
+        if TL=='B':
+          ytex='% Basal'
+        elif TL=='I':
+          ytex='% Intermediate'
+        elif TL=='T':
+          ytex='% Top'
+        else:
+          ytex='Species Richness'
+        graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
+
+      if TL=='T':
+        if prop=='LS':
+          yax="Link density"
+          ymed=math.log(50)/2
+        elif prop=='Gen':
+          yax="Generality"
+          ymed=math.log(30)/2
+        elif prop=='Vul':
+          yax="Vulnerability"
+          ymed=math.log(30)/2
+
+        graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
+
+      if TL!='S':
+        graph.world.xmin=0.01
+      else:
+        graph.world.xmin=1
+      if TL=='S':
+        graph.world.xmax=350
+      else:
+        graph.world.xmax=1
+      graph.world.ymin=.5
+
+      if prop=='LS':
+        graph.world.ymax=100
+      elif prop=='Gen':
+        graph.world.ymax=100
+      else:
+        graph.world.ymax=100
+      graph.xaxis.set_log()
+      graph.yaxis.set_log()
+
+      graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+      graph.xaxis.ticklabel.configure(char_size=.75)
+      graph.frame.linewidth=1
+      graph.xaxis.bar.linewidth=1
+      graph.yaxis.bar.linewidth=1
+
+      graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+      graph.yaxis.ticklabel.configure(char_size=.75)
+      graph.panel_label.configure(char_size=0)
+
+  grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
+
+  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+
+  grace.hide_redundant_xticklabels()
+  grace.hide_redundant_yticklabels()
+  print 'got a raw plot'
+
+  grace.write_file(outfile)
+
 
 def main():
 
@@ -339,6 +407,8 @@ def main():
       else:
         outfile='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/fitlines_ts.eps'
         predfolder='../mod_data/'+Bformat
+
+      rawplots(rawdatafile,outfile,Bformat,predfolder)
 
       scaleplots(rawdatafile,outfile,Bformat,predfolder)
 
