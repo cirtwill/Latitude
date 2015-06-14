@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}  
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{url}
+\usepackage[dvips]{graphicx}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\usepackage[round]{natbib}
+\usepackage{float}
+\usepackage[running]{lineno}
+
+% some cheats to reduce the need to type complicated bits and pieces
+\newcommand{\expect}[1]{\left\langle #1 \right\rangle}
+\newcommand{\etal}{\textit{et al.\ }}
+
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
+
+% the abstract formatting
+\newenvironment{sciabstract}{%
+\begin{quote} \bf}
+{\end{quote}}
+
+\renewcommand\refname{References}
+% the abstract formatting
+
+% margin sizes`
+\topmargin 0.0cm
+\oddsidemargin 0.2cm
+
+
+% let's get some nature formatted citations
+%\usepackage{overcite}
+\textwidth 16cm 
+\textheight 21cm
+\footskip 1.0cm
+
+
+\title{Supplementary Information}
+\author{Alyssa R. Cirtwill$^{1,2}$, Daniel B. Stouffer$^{1}$, Tamara N. Romanuk$^{2}$}
+\date{$^1$School of Biological Sciences\\University of Canterbury\\
+Private Bag 4800\\Christchurch 8140, New Zealand}
+\medskip$^2$Department of Biology\\Life Science Centre\\
+Dalhousie University\\1355 Oxford St.\\P0 BOX 15000\\
+Halifax, NS B3H 4R2\\Canada\\}
+
+
+\begin{document}
+\maketitle
+\baselineskip=8.5mm
+% \linenumbers
+
+\vspace{0.4 in}
+\beginsupplement
+\begin{landscape}
+\subsection*{Appendix S1: Details of Food Web Sources and Selection}
+
+  [[list in supplemental (347 GlobalWeb webs \citep{GlobalWeb}), supplemented 
+  with 31 food webs used to study the relationship between consumer and resource body sizes (SizeWebs \citep{Brose2006})
+  and seven food webs used to study the impact of parasites on network structure (ParWebs \citep{Dunne2013}).
+  Of the GlobalWeb webs, 122 were rejected because their original source could not be found or was unpublished (53), they were source or sink
+  webs rather than descriptions of an entire community (13), were focused on plant-pollinator, host-parasitoid, or 
+  competitive interactions (8, 34, and 2, respectively), described inferred interactions in an extinct community (2), were ``generalized 
+  schemes'' rather than being based on empirical observation (8), or because it was not clear which of a variety of 
+  described sites the published food web represented (2). (See Table S1 for a list of rejected webs and reasons for their
+  exclusion.) For three GlobalWeb webs which included parasites as a minor component of the community, as well as the 
+  seven ParWebs webs, we included a modified version of each web which included only free-living species and the 
+  interactions between them \citep{Dunne2013}. 
+  As we were considering the log of proportions of basal resources, top predators, and intermediate consumers, each web used in our analysis 
+  had to have at least one species in each trophic group.
+
+  of  the University of Canberra's GlobalWeb database (www.globalwebdb.com) 
+  \citep{}. Of these, 302 webs had accessible original sources. 
+  18 source and sink webs, which describe links to or from a focal taxon, were excluded as they are likely 
+  to have different food web properties than webs attempting to
+  describe the entire community of a site \citep{Williams2002}, as were 8 plant-pollinator, 34 host-parasitoid, and 2 
+  competition-focused networks
+  \citep{Riede2010}. Of the remaining 230 food webs, we excluded two paleowebs (comprised of probable interactions 
+  between extinct or prehistoric species) \citep{Simenstad1978} and five ``generalized schemes'' 
+  \citep{Nybakken1982,Percival1929,Swan1961,Landry1977,Petipa1979,Harrison1963}, as 
+  we wished to measure
+  directly observed rather than inferred interactions. We further excluded a food web aggregated from several sites in 
+  the Pacific Ocean which were widely spread in both latitude and longitude and at markedly different successional stages
+  \citep{Vinogradov1978}, such that it is not clear which site the food web represents. 
+  This left 223 food webs with widely varying levels of taxonomic resolution, 11 of which contained humans. 
+
+\subsection*{Appendix S2: Supplemental Figures}
+
+\newpage
+
+\begin{figure}[H]
+\includegraphics[width=.9\textwidth]{}
+\caption{ }
+\label{}
+\end{figure}
+
+
+\end{document}
+
