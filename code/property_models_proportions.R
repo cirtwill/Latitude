@@ -18,6 +18,8 @@
       +log(Basal):(Marine+Stream+Terr)
       +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
+    obs_LS_B=with(data,lm(log(LS)~log(Basal), na.action=na.fail   ))
+
     LS_I_full=with(data,lm(log(LS)~log(Intermediate)
     +log(Intermediate):Latitude
     +log(Intermediate):(Stream+Lake+Marine+Terr)
@@ -32,6 +34,8 @@
         +log(Intermediate):Stream, na.action=na.fail   ))
     }
 
+    obs_LS_I=with(data,lm(log(LS)~log(Intermediate), na.action=na.fail   ))
+
     LS_T_full=with(data,lm(log(LS)~log(Toppreds)
     +log(Toppreds):Latitude
     +log(Toppreds):(Stream+Lake+Marine+Terr)
@@ -43,6 +47,8 @@
     +log(Toppreds):(Lake+Marine+Stream+Terr)
     +log(Toppreds):Latitude
     +log(Toppreds):Latitude:(Stream+Terr) ))
+
+    obs_LS_T=with(data,lm(log(LS)~log(Toppreds), na.action=na.fail   ))
 
 
 ##########################################################################################
@@ -64,6 +70,7 @@
       +log(Basal):(Marine+Stream+Terr)
       +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
+    obs_Gen_B=with(data,lm(log(Gen)~log(Basal), na.action=na.fail   ))
 
     Gen_I_full=with(data,lm(log(Gen)~log(Intermediate)
     +log(Intermediate):Latitude
@@ -81,6 +88,8 @@
         +log(Intermediate):(Marine+Stream), na.action=na.fail   ))
     }
 
+    obs_Gen_I=with(data,lm(log(Gen)~log(Intermediate), na.action=na.fail   ))
+
     Gen_T_full=with(data,lm(log(Gen)~log(Toppreds)
     +log(Toppreds):Latitude
     +log(Toppreds):(Stream+Lake+Marine+Terr)
@@ -91,6 +100,7 @@
     Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
       +log(Toppreds):(Marine+Stream) ))
 
+    obs_Gen_T=with(data,lm(log(Gen)~log(Toppreds), na.action=na.fail   ))
 
 ##########################################################################################
 ##########################################################################################
@@ -111,6 +121,7 @@
       +log(Basal):(Marine+Stream+Terr)
       +log(Basal):Latitude:(Marine+Terr) , na.action=na.fail   ))
 
+    obs_Vul_B=with(data,lm(log(Vul)~log(Basal), na.action=na.fail   ))
 
     Vul_I_full=with(data,lm(log(Vul)~log(Intermediate)
     +log(Intermediate):Latitude
@@ -126,6 +137,7 @@
         +log(Intermediate):Stream, na.action=na.fail   ))
     }
 
+    obs_Vul_I=with(data,lm(log(Vul)~log(Intermediate), na.action=na.fail   ))
 
     Vul_T_full=with(data,lm(log(Vul)~log(Toppreds)
     +log(Toppreds):Latitude
@@ -139,6 +151,7 @@
       +log(Toppreds):Latitude
       +log(Toppreds):Latitude:(Stream+Terr) ))
 
+    obs_Vul_T=with(data,lm(log(Vul)~log(Toppreds), na.action=na.fail   ))
 
 ##########################################################################################
 ##########################################################################################

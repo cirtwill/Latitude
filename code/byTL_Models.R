@@ -5,10 +5,7 @@ library(lmerTest)
 library(boot)
 library(MuMIn)
 
-# source('Models.R')  # Load the other models, format the data
-
-##############################################################################################
-##############################################################################################
+source('marginal_CIs.R') # home-made CI code
 
 infile='../non_TS/summary-properties.tsv'
 #infile='../mod_data/summary-properties.tsv'
@@ -164,6 +161,49 @@ power_analysis=FALSE
   VI_fake=cbind(newdata,VI_preds)
   VT_fake=cbind(newdata,VT_preds)
 
+  ########################################################################################################
+  ########################################################################################################
+  ########################################################################################################
+  ########################################################################################################
+  ####################   Calculate marginal effect of latitude in each ecotype
+
+  if(infile=='../mod_data/summary-properties.tsv'){
+    outdir='../mod_data/'  } else {
+      outdir='../non_TS/'     }
+
+  LS_marg=S_CIs("LS_min")
+  write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_marg=S_CIs("Gen_min")
+  write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_marg=S_CIs("Vul_min")
+  write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_B_marg=B_CIs("LS_B_min")
+  write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_B_marg=B_CIs("Gen_B_min")
+  write.table(Gen_B_marg,file=paste(outdir,'marginals/Gen_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_B_marg=B_CIs("Vul_B_min")
+  write.table(Vul_B_marg,file=paste(outdir,'marginals/Vul_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_I_marg=I_CIs("LS_I_min")
+  write.table(LS_I_marg,file=paste(outdir,'marginals/LS_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_I_marg=I_CIs("Gen_I_min")
+  write.table(Gen_I_marg,file=paste(outdir,'marginals/Gen_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_I_marg=I_CIs("Vul_I_min")
+  write.table(Vul_I_marg,file=paste(outdir,'marginals/Vul_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_T_marg=T_CIs("LS_T_min")
+  write.table(LS_T_marg,file=paste(outdir,'marginals/LS_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_T_marg=T_CIs("Gen_T_min")
+  write.table(Gen_T_marg,file=paste(outdir,'marginals/Gen_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_T_marg=T_CIs("Vul_T_min")
+  write.table(Vul_T_marg,file=paste(outdir,'marginals/Vul_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  ########################################################################################################
+  ########################################################################################################
+  ########################################################################################################
+  ########################################################################################################
+
   colnames(LS_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
   colnames(Gen_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
   colnames(Vul_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
@@ -184,14 +224,19 @@ power_analysis=FALSE
   if(infile=='../mod_data/summary-properties.tsv'){
     outdir='../mod_data/'  } else {
       outdir='../non_TS/'     }
-
+  # Data
   write.table(LS_fake,file=paste(outdir,'subset/predictions/LS.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
   write.table(Gen_fake,file=paste(outdir,'subset/predictions/Gen.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
   write.table(Vul_fake,file=paste(outdir,'subset/predictions/Vul.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
-
+  # Predictions
   write.table(summary(LS_min)$coefficients,file=paste(outdir,'subset/coefficients/LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
   write.table(summary(Gen_min)$coefficients,file=paste(outdir,'subset/coefficients/Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
   write.table(summary(Vul_min)$coefficients,file=paste(outdir,'subset/coefficients/Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  # Coefficients from non-corrected models
+  write.table(summary(obs_LS)$coefficients,file=paste(outdir,'subset/coefficients/LS_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(obs_Gen)$coefficients,file=paste(outdir,'subset/coefficients/Gen_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'subset/coefficients/Vul_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+
 
   if(infile=='../mod_data/summary-properties.tsv'){
     outdir=paste('../mod_data/',format,'/',sep='')  } else {
@@ -221,11 +266,22 @@ power_analysis=FALSE
   write.table(summary(Vul_I_min)$coefficients,file=paste(outdir,'coefficients/VI_co.tsv',sep=''),sep='\t')    
   write.table(summary(Vul_T_min)$coefficients,file=paste(outdir,'coefficients/VT_co.tsv',sep=''),sep='\t')    
 
+  write.table(summary(obs_LS_B)$coefficients,file=paste(outdir,'coefficients/LB_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_LS_I)$coefficients,file=paste(outdir,'coefficients/LI_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_LS_T)$coefficients,file=paste(outdir,'coefficients/LT_obs.tsv',sep=''),sep='\t')
+
+  write.table(summary(obs_Gen_B)$coefficients,file=paste(outdir,'coefficients/GB_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_Gen_I)$coefficients,file=paste(outdir,'coefficients/GI_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_Gen_T)$coefficients,file=paste(outdir,'coefficients/GT_obs.tsv',sep=''),sep='\t')    
+
+  write.table(summary(obs_Vul_B)$coefficients,file=paste(outdir,'coefficients/VB_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_Vul_I)$coefficients,file=paste(outdir,'coefficients/VI_obs.tsv',sep=''),sep='\t')    
+  write.table(summary(obs_Vul_T)$coefficients,file=paste(outdir,'coefficients/VT_obs.tsv',sep=''),sep='\t')    
 
 #################################################################
 
   if(format=='numbers'){
-    write.table(summary(B_latdirect_num)$coefficients,file=paste(outdir,'coefficients/B_lat.tsv',sep=''))
+    write.table(summary(B_latdobs_irect)$coefficients,file=paste(outdir,'coefficients/B_lobs.tsv',sep=''))
     write.table(summary(I_latdirect_num)$coefficients,file=paste(outdir,'coefficients/I_lat.tsv',sep=''))
     write.table(summary(T_latdirect_num)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }

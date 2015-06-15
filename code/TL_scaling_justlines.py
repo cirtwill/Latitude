@@ -88,7 +88,7 @@ def scaleplots(rawdatafile,outfile,Bformat,TL,predfolder):
   xwidth=10
   ywidth=1.5
 
-  rawdata=datareader(rawdatafile)
+  rawdata=datareader(rawdatafile,TL,Bformat)
 
   dummygrace=MultiPanelGrace(colors=ColorBrewerScheme("Greys",n=253))
   colorbar = dummygrace.add_graph(ElLinColorBar,domain=(0,100),scale=LINEAR_SCALE,autoscale=False)
