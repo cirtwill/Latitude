@@ -172,10 +172,10 @@ power_analysis=FALSE
       outdir='../non_TS/'     }
 
   LS_marg=S_CIs("LS_min")
-  write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Gen_marg=S_CIs("Gen_min")
-  write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  # Gen_marg=S_CIs("Gen_min")
   Vul_marg=S_CIs("Vul_min")
+  write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
   write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
 
   LS_B_marg=B_CIs("LS_B_min")

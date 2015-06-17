@@ -2,7 +2,6 @@ S_CIs <- function(model){
       modname=eval(as.name(model))
       betas=summary(modname)$coefficients[,1]
       covar=vcov(modname)
-      modname
     
       s0=seq(1,200,length.out=500)
       # logged data in the modnames, logged data in the plots. No scaling shenanigans
@@ -13,56 +12,51 @@ S_CIs <- function(model){
       lat_effect <- function(data,ind){
         d <- data[ind,] # Is this the sampling step?
 
-        LS_m <- with(d,lm(log(LS)~log(Species)+log(Species):(Lake+Terr)
-            +log(Species):Latitude+log(Species):Latitude:Lake,na.action=na.fail))
-        latbeta=summary(LS_m)$coefficients[5,1]
-        lakebeta=summary(LS_m)$coefficients[6,1]
+        if(model=='LS_min'){
+          LS_m <- with(d,lm(log(LS)~log(Species)+log(Species):(Lake+Terr)
+              +log(Species):Latitude+log(Species):Latitude:Lake,na.action=na.fail))
+          latbeta=summary(LS_m)$coefficients["log(Species):Latitude",1]
+          lakebeta=summary(LS_m)$coefficients["log(Species):Lake:Latitude",1]
 
-        results=c(latbeta,lakebeta)
-        results
-        # return(results)
-      }
+          results=c(latbeta,lakebeta)
+          results    }
+        if(model=='Gen_min'){
+          Gen_m <- with(d,lm(log(Gen)~log(Species)
+          +log(Species):(Lake+Stream+Terr)+log(Species):Latitude
+          +log(Species):Latitude:(Lake+Stream),na.action=na.fail))
+          latbeta=summary(Gen_m)$coefficients[6,1]
+          lakebeta=summary(Gen_m)$coefficients[7,1]
+          streambeta=summary(Gen_m)$coefficients[8,1]
 
-      bootstraps=boot(data,lat_effect,R=1000)
-      # This is working (i.e., generates variation), now I just need to actually make the CI.
+          results=c(latbeta,lakebeta,streambeta)
+          results    }
+        if(model=='Vul_min'){
+          Vul_m <- with(d,lm(log(Vul)~log(Species)
+          +log(Species):(Lake+Terr)+log(Species):Latitude
+          +log(Species):Latitude:Lake,na.action=na.fail))
+          latbeta=summary(Vul_m)$coefficients[5,1]
+          lakebeta=summary(Vul_m)$coefficients[6,1]
 
+          results=c(latbeta,lakebeta)
+          results    }
+        }
 
-      se <- sqrt(logs0^2*covar["log(Species):Latitude","log(Species):Latitude"])
+      bootstraps=boot(data,lat_effect,R=10)
+#      samples=bootstraps$t
+#      latlist=samples[,1]
+ #     lakelist=samples[,2]
+  #    lat95=sort(latlist)[26:975]
+   #   lake95=sort(lakelist)[26:975]
 
-      upper <- marginal + 1.64*se
-      lower <- marginal - 1.64*se
+    #  CIs=cbind(lat95,lake95)
 
-      results <- cbind(s0,marginal,upper,lower)
-      colnames(results)=c("Weight","Marginal","Upper","Lower")
+     # if(model=="Gen_min"){
+      #  streamlist=bootstraps$t[,3]
+       # stream95=sort(streamlist)[26:975]
+        #CIs=cbind(lat95,lake95,stream95)
+      #}
 
-      if(model=="LS_min" | model=="Vul_min"){
-        lake_m <- marginal + betas["log(Species):Lake:Latitude"]
-        lake_se <- sqrt(se^2 + logs0^2*covar["log(Species):Lake:Latitude","log(Species):Lake:Latitude"] 
-          + 2*logs0^2*covar["log(Species):Lake:Latitude","log(Species):Latitude"])
-        lake_upper <- lake_m + 1.64*lake_se
-        lake_lower <- lake_m - 1.64*lake_se
-
-      results <- cbind(s0,marginal,upper,lower,lake_m,lake_upper,lake_lower)
-      colnames(results)=c("Species","Marginal","Upper","Lower","Lake","Lake_upper","Lake_lower")
-      }
-
-      if(model=="Gen_min"){
-        lake_m <- marginal + betas["log(Species):Lake:Latitude"]
-        lake_se <- sqrt(se^2 + logs0^2*covar["log(Species):Lake:Latitude","log(Species):Lake:Latitude"] 
-          + 2*logs0^2*covar["log(Species):Lake:Latitude","log(Species):Latitude"])
-        lake_upper <- lake_m + 1.64*lake_se
-        lake_lower <- lake_m - 1.64*lake_se
-
-        stream_m <- marginal + betas["log(Species):Stream:Latitude"]
-        stream_se <- sqrt(se^2 + logs0^2*covar["log(Species):Stream:Latitude","log(Species):Stream:Latitude"] 
-          + 2*logs0^2*covar["log(Species):Stream:Latitude","log(Species):Latitude"])
-        stream_upper <- stream_m + 1.64*stream_se
-        stream_lower <- stream_m - 1.64*stream_se
-
-      results <- cbind(s0,marginal,upper,lower,lake_m,lake_upper,lake_lower,stream_m,stream_upper,stream_lower)
-      colnames(results)=c("Species","Marginal","Upper","Lower","Lake","Lake_upper","Lake_lower","Stream","Stream_upper","Stream_lower")
-      }
-      return(results)
+      return(bootstraps)
     }
 
 B_CIs <- function(model){
