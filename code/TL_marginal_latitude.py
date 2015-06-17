@@ -200,8 +200,6 @@ def plotter(prop,TL,ecotype,graph):
   upper2.line.configure(linestyle=0,color=10,linewidth=.5)
   upper2.fill.configure(color=0,type=2)
 
-  print dataset['Estuary']['main'][1:10]
-
   if dataset[ecotype]['main']!=[]:
     main=graph.add_dataset(dataset[ecotype]['main'])
   else:
@@ -275,7 +273,6 @@ def main():
   properties=['LS','Gen','Vul']
   TLs=['S','B','I','T']
 
-
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
   for TL in TLs:
@@ -295,30 +292,22 @@ def main():
     grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
     # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-    if TL=='B':
-      xtex='Basal resources'
-    elif TL=='I':
-      xtex='Intermediate consumers'
-    elif TL=='T':
-      xtex='Top predators'
-    else:
-      xtex='Species richness'
-
     grace.set_row_xaxislabel(row=2,colspan=(0,4),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
     grace.hide_redundant_xticklabels()
     grace.hide_redundant_yticklabels()
 
     if TL=='S':
-      troph="Species richness"
-    elif TL=="B":
-      troph="% Basal resources"
-    elif TL=="I":
-      troph="% Intermediate consumers"
-    else:
-      troph=="% Top predators"
+      troph="species richness"
+    elif TL=='B':
+      troph="basal resources"
+    elif TL=='I':
+      troph="intermediate consumers"
+    elif TL=='T':
+      troph="top predators"
 
-    grace.add_drawing_object(DrawText,text='Scaling exponent with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
+    print TL, troph
+    grace.add_drawing_object(DrawText,text='Scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
 
     grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude.eps')
 
