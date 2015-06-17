@@ -73,8 +73,8 @@ B_CIs <- function(model){
       upper <- marginal + 1.64*se
       lower <- marginal - 1.64*se
   
-      results=cbind(marginal,upper,lower)
-      colnames(results)=c("Marginal","Upper","Lower")
+      results=cbind(lat,marginal,upper,lower)
+      colnames(results)=c("Latitude","Marginal","Upper","Lower")
 
       return(results)
     }

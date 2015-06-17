@@ -24,7 +24,7 @@ prey_gen_max=10
 ecotypes=['Estuary','Lake','Marine','Stream','Terrestrial']
 
 def linereader(prop,TL):
-  linefile=open('../non_TS/marginals/proportions/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../non_TS/proportions/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -151,7 +151,7 @@ def linereader(prop,TL):
   return lines  # This is un-scaled, un-logged weight but was scaled and logged before calculating the y's
 
 def num_linereader(prop,TL):
-  linefile=open('../non_TS/marginals/numbers/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../non_TS/numbers/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -191,7 +191,6 @@ def num_linereader(prop,TL):
       # B doesn't have anything else
 
       elif TL=='I':
-
         stream_m=float(line.split()[5])
         stream_u=float(line.split()[6])
         stream_l=float(line.split()[7])
@@ -199,6 +198,14 @@ def num_linereader(prop,TL):
         lake_m=float(line.split()[8])
         lake_u=float(line.split()[9])
         lake_l=float(line.split()[10])
+
+        lines['Stream']['main'].append((s0,stream_m))
+        lines['Stream']['upper'].append((s0,stream_u))
+        lines['Stream']['lower'].append((s0,stream_l))
+
+        lines['Lake']['main'].append((s0,lake_m))
+        lines['Lake']['upper'].append((s0,lake_u))
+        lines['Lake']['lower'].append((s0,lake_l))   
 
         if prop=='Gen':
           terr_m=float(line.split()[11])
@@ -217,14 +224,6 @@ def num_linereader(prop,TL):
           lines['Marine']['upper'].append((s0,marine_u))
           lines['Marine']['lower'].append((s0,marine_l))
 
-        lines['Stream']['main'].append((s0,stream_m))
-        lines['Stream']['upper'].append((s0,stream_u))
-        lines['Stream']['lower'].append((s0,stream_l))
-
-        lines['Lake']['main'].append((s0,lake_m))
-        lines['Lake']['upper'].append((s0,lake_u))
-        lines['Lake']['lower'].append((s0,lake_l))   
-
       elif TL=='T':
         marine_m=float(line.split()[5])
         marine_u=float(line.split()[6])
@@ -239,15 +238,16 @@ def num_linereader(prop,TL):
           stream_u=float(line.split()[12])
           stream_l=float(line.split()[13])
 
+          lines['Stream']['main'].append((s0,stream_m))
+          lines['Stream']['upper'].append((s0,stream_u))
+          lines['Stream']['lower'].append((s0,stream_l))
+
         lines['Marine']['main'].append((s0,marine_m))
         lines['Marine']['upper'].append((s0,marine_u))
         lines['Marine']['lower'].append((s0,marine_l))        
         lines['Terrestrial']['main'].append((s0,terr_m))
         lines['Terrestrial']['upper'].append((s0,terr_u))
         lines['Terrestrial']['lower'].append((s0,terr_l))
-        lines['Stream']['main'].append((s0,stream_m))
-        lines['Stream']['upper'].append((s0,stream_u))
-        lines['Stream']['lower'].append((s0,stream_l))
 
       lines['Estuary']['main'].append((s0,marginal))
       lines['Estuary']['upper'].append((s0,upper))
@@ -257,7 +257,7 @@ def num_linereader(prop,TL):
 
 def plotter(prop,TL,ecotype,graph,form):
 
-  if form=='proprtions':
+  if form=='proportions':
     dataset=linereader(prop,TL)
   else:
     dataset=num_linereader(prop,TL)
@@ -328,20 +328,37 @@ def plotter(prop,TL,ecotype,graph,form):
     major=.5
     prec=1
   elif TL=='B':
-    graph.world.ymin=-1.25
-    graph.world.ymax=1
-    major=.5
     prec=1
+    if prop=='proportions':
+      graph.world.ymin=-1.25
+      graph.world.ymax=1
+      major=.5
+    else:
+      graph.world.ymin=0
+      graph.world.ymax=.60000001
+      major=.2
   elif TL=='I':
-    graph.world.ymin=-1
-    graph.world.ymax=3
-    major=1
-    prec=0
+    if prop=='proportions':
+      graph.world.ymin=-1
+      graph.world.ymax=3
+      major=1
+      prec=0
+    else:
+      graph.world.ymin=-.4
+      graph.world.ymax=.80000001
+      major=.4
+      prec=1
   else:
-    graph.world.ymin=-2
-    graph.world.ymax=1
-    major=1
-    prec=0
+    if prop=='proportions':
+      graph.world.ymin=-2
+      graph.world.ymax=1
+      major=1
+      prec=0
+    else:
+      graph.world.ymin=-1
+      graph.world.ymax=1
+      major=.5
+      prec=1
 
   graph.xaxis.ticklabel.configure(char_size=.75)
   graph.xaxis.tick.configure(major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4,major=30)
@@ -394,7 +411,7 @@ def main():
         for ecotype in ecotypes:
           graph=grace.add_graph(Panel)
 
-          plotter(prop,TL,ecotype,graph)
+          plotter(prop,TL,ecotype,graph,form)
           # graph.remove_extraworld_drawing_objects()
 
       grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
