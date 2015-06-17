@@ -30,6 +30,7 @@ power_analysis=FALSE
   data$Basal=as.numeric(as.character(data$Basal))
   data$Herbivores=as.numeric(as.character(data$Herbivores))
   data$Intermediate=as.numeric(as.character(data$Intermediate))
+  data$Intermediate=data$Intermediate+data$Herbivores   # Role herbivores into intermediates
   data$Toppreds=as.numeric(as.character(data$Toppreds))
 
   data$Estuary=0
@@ -285,7 +286,7 @@ power_analysis=FALSE
 #################################################################
 
   if(format=='numbers'){
-    write.table(summary(B_latdobs_irect)$coefficients,file=paste(outdir,'coefficients/B_lobs.tsv',sep=''))
+    write.table(summary(B_latdirect_num)$coefficients,file=paste(outdir,'coefficients/B_lobs.tsv',sep=''))
     write.table(summary(I_latdirect_num)$coefficients,file=paste(outdir,'coefficients/I_lat.tsv',sep=''))
     write.table(summary(T_latdirect_num)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }

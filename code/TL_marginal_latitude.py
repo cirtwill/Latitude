@@ -94,20 +94,19 @@ def linereader(prop,TL):
         lake_u=float(line.split()[9])
         lake_l=float(line.split()[10])
 
+        terr_m=float(line.split()[11])
+        terr_u=float(line.split()[12])
+        terr_l=float(line.split()[13])  
+
         lines['Stream']['main'].append((s0,stream_m))
         lines['Stream']['upper'].append((s0,stream_u))
         lines['Stream']['lower'].append((s0,stream_l))
         lines['Lake']['main'].append((s0,lake_m))
         lines['Lake']['upper'].append((s0,lake_u))
         lines['Lake']['lower'].append((s0,lake_l))   
-
-        if prop=='Gen':
-          terr_m=float(line.split()[11])
-          terr_u=float(line.split()[12])
-          terr_l=float(line.split()[13])  
-          lines['Terrestrial']['main'].append((s0,terr_m))
-          lines['Terrestrial']['upper'].append((s0,terr_u))
-          lines['Terrestrial']['lower'].append((s0,terr_l))
+        lines['Terrestrial']['main'].append((s0,terr_m))
+        lines['Terrestrial']['upper'].append((s0,terr_u))
+        lines['Terrestrial']['lower'].append((s0,terr_l))
 
       elif TL=='T':
         marine_m=float(line.split()[5])
@@ -226,10 +225,10 @@ def plotter(prop,TL,ecotype,graph):
     major=.5
     prec=1
   elif TL=='I':
-    graph.world.ymin=-.5
-    graph.world.ymax=1.5
-    major=.5
-    prec=1
+    graph.world.ymin=-1
+    graph.world.ymax=3
+    major=1
+    prec=0
   else:
     graph.world.ymin=-2
     graph.world.ymax=1

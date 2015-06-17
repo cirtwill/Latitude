@@ -28,8 +28,10 @@
     lidredge=dredge(LS_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
-    } else {
+        +log(Intermediate):(Lake+Stream+Terr)
+        +log(Intermediate):Latitude
+        +log(Intermediate):Latitude:Terr, na.action=na.fail   ))
+    } else {          ############# THIS IS PROBABLY WRONG!
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
         +log(Intermediate):Stream, na.action=na.fail   ))
     }
@@ -83,7 +85,7 @@
         +log(Intermediate):Latitude
         +log(Intermediate):(Lake+Stream+Terr)
         +log(Intermediate):Latitude:Terr , na.action=na.fail   ))
-    } else {
+    } else {    ########## MAY BE INCORRECT
       Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
         +log(Intermediate):(Marine+Stream), na.action=na.fail   ))
     }
@@ -131,7 +133,9 @@
     vidredge=dredge(Vul_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
-        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
+        +log(Intermediate):Latitude
+        +log(Intermediate):(Lake+Stream+Terr)
+        +log(Intermediate):Latitude:Terr, na.action=na.fail   ))
     } else {
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
         +log(Intermediate):Stream, na.action=na.fail   ))

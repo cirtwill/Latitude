@@ -117,73 +117,65 @@ I_CIs <- function(model){
     
       lat=seq(0,90,length.out=200)
 
-      if(model=="LS_I_min" | model=="Vul_I_min"){
-        marginal <- betas["log(Intermediate)"]
+      marginal <- betas["log(Intermediate)"]+lat*betas["log(Intermediate):Latitude"]
 
-        se <- sqrt(covar["log(Intermediate)","log(Intermediate)"])
+      se <- sqrt(covar["log(Intermediate)","log(Intermediate)"]
+        +2*lat*covar["log(Intermediate)","log(Intermediate):Latitude"]
+        +lat^2*covar["log(Intermediate):Latitude","log(Intermediate):Latitude"])
 
-        upper <- marginal + 1.64*se
-        lower <- marginal - 1.64*se
+      upper <- marginal + 1.64*se
+      lower <- marginal - 1.64*se
 
-        stream_m <- marginal + betas["log(Intermediate):Stream"]
-        stream_se <- sqrt(se^2 +
-          covar["log(Intermediate):Stream","log(Intermediate):Stream"] 
-          +2*covar["log(Intermediate):Stream","log(Intermediate)"])
-        stream_upper <- stream_m + 1.64*stream_se
-        stream_lower <- stream_m - 1.64*stream_se
+      stream_m <- marginal + betas["log(Intermediate):Stream"]
+      stream_se <- sqrt(se^2 +
+        covar["log(Intermediate):Stream","log(Intermediate):Stream"] 
+        +2*covar["log(Intermediate):Stream","log(Intermediate)"]
+        +2*lat*covar["log(Intermediate):Stream","log(Intermediate):Latitude"]
+        )
+      stream_upper <- stream_m + 1.64*stream_se
+      stream_lower <- stream_m - 1.64*stream_se
 
-        lake_m <- marginal + betas["log(Intermediate):Lake"]
-        lake_se <- sqrt(se^2 + 
-          +covar["log(Intermediate):Lake","log(Intermediate):Lake"] 
-          +2*covar["log(Intermediate):Lake","log(Intermediate)"])
-        lake_upper <- lake_m + 1.64*lake_se
-        lake_lower <- lake_m - 1.64*lake_se
+      lake_m <- marginal + betas["log(Intermediate):Lake"]
+      lake_se <- sqrt(se^2 + 
+        +covar["log(Intermediate):Lake","log(Intermediate):Lake"] 
+        +2*covar["log(Intermediate):Lake","log(Intermediate)"]
+        +2*lat*covar["log(Intermediate):Lake","log(Intermediate):Latitude"])
+      lake_upper <- lake_m + 1.64*lake_se
+      lake_lower <- lake_m - 1.64*lake_se
 
-        results <- cbind(lat,marginal,upper,lower,stream_m,stream_upper,stream_lower,
-          lake_m,lake_upper,lake_lower)
-        colnames(results)=c("Latitude","Marginal","Upper","Lower","Stream","Stream_upper","Stream_lower",
-          "Lake","Lake_upper","Lake_lower")
-      }
-
-      if(model=="Gen_I_min"){
-        marginal <- betas["log(Intermediate)"]+lat*betas["log(Intermediate):Latitude"]
-
-        se <- sqrt(covar["log(Intermediate)","log(Intermediate)"]+2*lat*covar["log(Intermediate):Latitude","log(Intermediate)"]
-          +lat^2*covar["log(Intermediate):Latitude","log(Intermediate):Latitude"])
-
-        upper <- marginal + 1.64*se
-        lower <- marginal - 1.64*se
-
-        stream_m <- marginal + betas["log(Intermediate):Stream"]
-        stream_se <- sqrt(se^2 +
-          covar["log(Intermediate):Stream","log(Intermediate):Stream"] 
-          +2*covar["log(Intermediate):Stream","log(Intermediate)"])
-        stream_upper <- stream_m + 1.64*stream_se
-        stream_lower <- stream_m - 1.64*stream_se
-
-        lake_m <- marginal + betas["log(Intermediate):Lake"]
-        lake_se <- sqrt(se^2 + 
-          +covar["log(Intermediate):Lake","log(Intermediate):Lake"] 
-          +2*covar["log(Intermediate):Lake","log(Intermediate)"])
-        lake_upper <- lake_m + 1.64*lake_se
-        lake_lower <- lake_m - 1.64*lake_se
-
-        terr_m <- marginal + lat*betas["log(Intermediate):Latitude:Terr"] + betas["log(Intermediate):Terr"]
-        terr_se <- sqrt(se^2 +
-          lat^2*covar["log(Intermediate):Latitude:Terr","log(Intermediate):Latitude:Terr"] 
-          +2*lat*covar["log(Intermediate):Latitude:Terr","log(Intermediate)"]
-          +2*lat^2*covar["log(Intermediate):Latitude:Terr","log(Intermediate):Latitude"]
+      if(model=="LS_I_min"){
+        terr_m <- marginal + betas["log(Intermediate):Terr"] +  lat*betas["log(Intermediate):Terr:Latitude"]
+        terr_se <- sqrt(se^2 + 
           +covar["log(Intermediate):Terr","log(Intermediate):Terr"] 
           +2*covar["log(Intermediate):Terr","log(Intermediate)"]
-          +2*lat*covar["log(Intermediate):Terr","log(Intermediate):Latitude"])
+          +2*lat*covar["log(Intermediate):Terr","log(Intermediate):Latitude"]
+          +2*lat*covar["log(Intermediate):Terr","log(Intermediate):Terr:Latitude"]
+          +2*lat^2*covar["log(Intermediate):Terr:Latitude","log(Intermediate):Latitude"]
+          +2*lat*covar["log(Intermediate):Terr:Latitude","log(Intermediate)"]
+          +lat^2*covar["log(Intermediate):Terr:Latitude","log(Intermediate):Terr:Latitude"]
+          )
         terr_upper <- terr_m + 1.64*terr_se
         terr_lower <- terr_m - 1.64*terr_se
+        } else {
+        terr_m <- marginal + betas["log(Intermediate):Terr"] +  lat*betas["log(Intermediate):Latitude:Terr"]
+        terr_se <- sqrt(se^2 + 
+          +covar["log(Intermediate):Terr","log(Intermediate):Terr"] 
+          +2*covar["log(Intermediate):Terr","log(Intermediate)"]
+          +2*lat*covar["log(Intermediate):Terr","log(Intermediate):Latitude"]
+          +2*lat*covar["log(Intermediate):Terr","log(Intermediate):Latitude:Terr"]
+          +2*lat^2*covar["log(Intermediate):Latitude:Terr","log(Intermediate):Latitude"]
+          +2*lat*covar["log(Intermediate):Latitude:Terr","log(Intermediate)"]
+          +lat^2*covar["log(Intermediate):Latitude:Terr","log(Intermediate):Latitude:Terr"]
+          )
+        terr_upper <- terr_m + 1.64*terr_se
+        terr_lower <- terr_m - 1.64*terr_se
+        }
 
-        results <- cbind(lat,marginal,upper,lower,stream_m,stream_upper,stream_lower,
-          lake_m,lake_upper,lake_lower,terr_m,terr_upper,terr_lower)
-        colnames(results)=c("Latitude","Marginal","Upper","Lower","Stream","Stream_upper","Stream_lower",
-          "Lake","Lake_upper","Lake_lower","Terrestrial","Terr_upper","Terr_lower")
-      }
+      results <- cbind(lat,marginal,upper,lower,stream_m,stream_upper,stream_lower,
+        lake_m,lake_upper,lake_lower,terr_m,terr_upper,terr_lower)
+      colnames(results)=c("Latitude","Marginal","Upper","Lower","Stream","Stream_upper","Stream_lower",
+        "Lake","Lake_upper","Lake_lower","Terrestrial","Terr_upper","Terr_lower")
+
       return(results)
     }
 
