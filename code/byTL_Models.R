@@ -5,13 +5,11 @@ library(lmerTest)
 library(boot)
 library(MuMIn)
 
-source('marginal_CIs.R') # home-made CI code
-
 infile='../non_TS/summary-properties.tsv'
 #infile='../mod_data/summary-properties.tsv'
 
-format='proportions'
-# format='numbers'
+# format='proportions'
+format='numbers'
 
 # for(format in c('proportions','numbers')){
 power_analysis=FALSE
@@ -32,6 +30,7 @@ power_analysis=FALSE
   data$Basal=as.numeric(as.character(data$Basal))
   data$Herbivores=as.numeric(as.character(data$Herbivores))
   data$Intermediate=as.numeric(as.character(data$Intermediate))
+  data$Intermediate=data$Intermediate+data$Herbivores   # Role herbivores into intermediates
   data$Toppreds=as.numeric(as.character(data$Toppreds))
 
   data$Estuary=0
@@ -171,33 +170,38 @@ power_analysis=FALSE
     outdir='../mod_data/'  } else {
       outdir='../non_TS/'     }
 
-  LS_marg=S_CIs("LS_min")
-  # Gen_marg=S_CIs("Gen_min")
-  Vul_marg=S_CIs("Vul_min")
-  write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  if(format=='proportions'){
+    source('marginal_CIs.R')
+    LS_marg=S_CIs("LS_min")
+    write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Gen_marg=S_CIs("Gen_min")
+    write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Vul_marg=S_CIs("Vul_min")
+    write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
 
-  LS_B_marg=B_CIs("LS_B_min")
-  write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Gen_B_marg=B_CIs("Gen_B_min")
-  write.table(Gen_B_marg,file=paste(outdir,'marginals/Gen_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Vul_B_marg=B_CIs("Vul_B_min")
-  write.table(Vul_B_marg,file=paste(outdir,'marginals/Vul_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    LS_B_marg=B_CIs("LS_B_min")
+    write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Gen_B_marg=B_CIs("Gen_B_min")
+    write.table(Gen_B_marg,file=paste(outdir,'marginals/Gen_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Vul_B_marg=B_CIs("Vul_B_min")
+    write.table(Vul_B_marg,file=paste(outdir,'marginals/Vul_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
 
-  LS_I_marg=I_CIs("LS_I_min")
-  write.table(LS_I_marg,file=paste(outdir,'marginals/LS_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Gen_I_marg=I_CIs("Gen_I_min")
-  write.table(Gen_I_marg,file=paste(outdir,'marginals/Gen_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Vul_I_marg=I_CIs("Vul_I_min")
-  write.table(Vul_I_marg,file=paste(outdir,'marginals/Vul_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    LS_I_marg=I_CIs("LS_I_min")
+    write.table(LS_I_marg,file=paste(outdir,'marginals/LS_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Gen_I_marg=I_CIs("Gen_I_min")
+    write.table(Gen_I_marg,file=paste(outdir,'marginals/Gen_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Vul_I_marg=I_CIs("Vul_I_min")
+    write.table(Vul_I_marg,file=paste(outdir,'marginals/Vul_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
 
-  LS_T_marg=T_CIs("LS_T_min")
-  write.table(LS_T_marg,file=paste(outdir,'marginals/LS_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Gen_T_marg=T_CIs("Gen_T_min")
-  write.table(Gen_T_marg,file=paste(outdir,'marginals/Gen_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-  Vul_T_marg=T_CIs("Vul_T_min")
-  write.table(Vul_T_marg,file=paste(outdir,'marginals/Vul_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    LS_T_marg=T_CIs("LS_T_min")
+    write.table(LS_T_marg,file=paste(outdir,'marginals/LS_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Gen_T_marg=T_CIs("Gen_T_min")
+    write.table(Gen_T_marg,file=paste(outdir,'marginals/Gen_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+    Vul_T_marg=T_CIs("Vul_T_min")
+    write.table(Vul_T_marg,file=paste(outdir,'marginals/Vul_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  } else {
+    source('number_marginal_CIs.R')
+  }
 
   ########################################################################################################
   ########################################################################################################
@@ -281,7 +285,7 @@ power_analysis=FALSE
 #################################################################
 
   if(format=='numbers'){
-    write.table(summary(B_latdobs_irect)$coefficients,file=paste(outdir,'coefficients/B_lobs.tsv',sep=''))
+    write.table(summary(B_latdirect_num)$coefficients,file=paste(outdir,'coefficients/B_lobs.tsv',sep=''))
     write.table(summary(I_latdirect_num)$coefficients,file=paste(outdir,'coefficients/I_lat.tsv',sep=''))
     write.table(summary(T_latdirect_num)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }
