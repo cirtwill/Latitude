@@ -24,7 +24,7 @@ prey_gen_max=10
 ecotypes=['Estuary','Lake','Marine','Stream','Terrestrial']
 
 def linereader(prop,TL):
-  linefile=open('../non_TS/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../non_TS/marginals/proportions/'+prop+'_'+TL+'_marginal.tsv','r')
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -150,9 +150,117 @@ def linereader(prop,TL):
   linefile.close()
   return lines  # This is un-scaled, un-logged weight but was scaled and logged before calculating the y's
 
-def plotter(prop,TL,ecotype,graph):
+def num_linereader(prop,TL):
+  linefile=open('../non_TS/marginals/numbers/'+prop+'_'+TL+'_marginal.tsv','r')
+  lines={}
+  for ecotype in ecotypes:
+    lines[ecotype]={'main':[],'upper':[],'lower':[]}
 
-  dataset=linereader(prop,TL)
+  for line in linefile:
+    if line.split()[0] != '"Latitude"':
+      s0=float(line.split()[1])
+      marginal=float(line.split()[2])
+      upper=float(line.split()[3])
+      lower=float(line.split()[4])
+
+      if TL=='S':
+        terr_m=float(line.split()[5])
+        terr_u=float(line.split()[6])
+        terr_l=float(line.split()[7])
+
+        lake_m=float(line.split()[8])
+        lake_u=float(line.split()[9])
+        lake_l=float(line.split()[10])
+
+        lines['Terrestrial']['main'].append((s0,terr_m))
+        lines['Terrestrial']['upper'].append((s0,terr_u))
+        lines['Terrestrial']['lower'].append((s0,terr_l))
+        lines['Lake']['main'].append((s0,lake_m))
+        lines['Lake']['upper'].append((s0,lake_u))
+        lines['Lake']['lower'].append((s0,lake_l))
+
+        if prop=='Gen':
+          stream_m=float(line.split()[11])
+          stream_u=float(line.split()[12])
+          stream_l=float(line.split()[13])
+    
+          lines['Stream']['main'].append((s0,stream_m))
+          lines['Stream']['upper'].append((s0,stream_u))
+          lines['Stream']['lower'].append((s0,stream_l))
+
+      # B doesn't have anything else
+
+      elif TL=='I':
+
+        stream_m=float(line.split()[5])
+        stream_u=float(line.split()[6])
+        stream_l=float(line.split()[7])
+
+        lake_m=float(line.split()[8])
+        lake_u=float(line.split()[9])
+        lake_l=float(line.split()[10])
+
+        if prop=='Gen':
+          terr_m=float(line.split()[11])
+          terr_u=float(line.split()[12])
+          terr_l=float(line.split()[13])  
+
+          marine_m=float(line.split()[14])
+          marine_u=float(line.split()[15])
+          marine_l=float(line.split()[16])  
+
+          lines['Terrestrial']['main'].append((s0,terr_m))
+          lines['Terrestrial']['upper'].append((s0,terr_u))
+          lines['Terrestrial']['lower'].append((s0,terr_l))
+
+          lines['Marine']['main'].append((s0,marine_m))
+          lines['Marine']['upper'].append((s0,marine_u))
+          lines['Marine']['lower'].append((s0,marine_l))
+
+        lines['Stream']['main'].append((s0,stream_m))
+        lines['Stream']['upper'].append((s0,stream_u))
+        lines['Stream']['lower'].append((s0,stream_l))
+
+        lines['Lake']['main'].append((s0,lake_m))
+        lines['Lake']['upper'].append((s0,lake_u))
+        lines['Lake']['lower'].append((s0,lake_l))   
+
+      elif TL=='T':
+        marine_m=float(line.split()[5])
+        marine_u=float(line.split()[6])
+        marine_l=float(line.split()[7])
+
+        terr_m=float(line.split()[8])
+        terr_u=float(line.split()[9])
+        terr_l=float(line.split()[10])  
+
+        if prop=='Gen':
+          stream_m=float(line.split()[11])
+          stream_u=float(line.split()[12])
+          stream_l=float(line.split()[13])
+
+        lines['Marine']['main'].append((s0,marine_m))
+        lines['Marine']['upper'].append((s0,marine_u))
+        lines['Marine']['lower'].append((s0,marine_l))        
+        lines['Terrestrial']['main'].append((s0,terr_m))
+        lines['Terrestrial']['upper'].append((s0,terr_u))
+        lines['Terrestrial']['lower'].append((s0,terr_l))
+        lines['Stream']['main'].append((s0,stream_m))
+        lines['Stream']['upper'].append((s0,stream_u))
+        lines['Stream']['lower'].append((s0,stream_l))
+
+      lines['Estuary']['main'].append((s0,marginal))
+      lines['Estuary']['upper'].append((s0,upper))
+      lines['Estuary']['lower'].append((s0,lower))
+  linefile.close()
+  return lines  # This is un-scaled, un-logged weight but was scaled and logged before calculating the y's
+
+def plotter(prop,TL,ecotype,graph,form):
+
+  if form=='proprtions':
+    dataset=linereader(prop,TL)
+  else:
+    dataset=num_linereader(prop,TL)
 
   up1=[]  # Greater than 0
   up2=[]  # Less than 0
@@ -274,41 +382,42 @@ def main():
 
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
-  for TL in TLs:
-    # Make a separate graph for each TL
-    grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  for form in ['proportions','numbers']:
+    for TL in TLs:
+      # Make a separate graph for each TL
+      grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
-    grace.add_label_scheme('dummy',names)
-    grace.set_label_scheme('dummy')
-    for prop in properties:
-      print prop
-      for ecotype in ecotypes:
-        graph=grace.add_graph(Panel)
+      grace.add_label_scheme('dummy',names)
+      grace.set_label_scheme('dummy')
+      for prop in properties:
+        print prop
+        for ecotype in ecotypes:
+          graph=grace.add_graph(Panel)
 
-        plotter(prop,TL,ecotype,graph)
-        # graph.remove_extraworld_drawing_objects()
+          plotter(prop,TL,ecotype,graph)
+          # graph.remove_extraworld_drawing_objects()
 
-    grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
-    # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+      grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
+      # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-    grace.set_row_xaxislabel(row=2,colspan=(0,4),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+      grace.set_row_xaxislabel(row=2,colspan=(0,4),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
-    grace.hide_redundant_xticklabels()
-    grace.hide_redundant_yticklabels()
+      grace.hide_redundant_xticklabels()
+      grace.hide_redundant_yticklabels()
 
-    if TL=='S':
-      troph="species richness"
-    elif TL=='B':
-      troph="basal resources"
-    elif TL=='I':
-      troph="intermediate consumers"
-    elif TL=='T':
-      troph="top predators"
+      if TL=='S':
+        troph="species richness"
+      elif TL=='B':
+        troph="basal resources"
+      elif TL=='I':
+        troph="intermediate consumers"
+      elif TL=='T':
+        troph="top predators"
 
-    print TL, troph
-    grace.add_drawing_object(DrawText,text='Scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
+      print TL, troph
+      grace.add_drawing_object(DrawText,text='Scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
 
-    grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude.eps')
+      grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'.eps')
 
 
 if __name__ == '__main__':

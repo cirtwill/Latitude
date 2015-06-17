@@ -168,40 +168,41 @@ power_analysis=FALSE
 
   if(infile=='../mod_data/summary-properties.tsv'){
     outdir='../mod_data/'  } else {
-      outdir='../non_TS/'     }
+      outdir=paste('../non_TS/',format,'/',sep='')     }
 
   if(format=='proportions'){
     source('marginal_CIs.R')
-    LS_marg=S_CIs("LS_min")
-    write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Gen_marg=S_CIs("Gen_min")
-    write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Vul_marg=S_CIs("Vul_min")
-    write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-
-    LS_B_marg=B_CIs("LS_B_min")
-    write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Gen_B_marg=B_CIs("Gen_B_min")
-    write.table(Gen_B_marg,file=paste(outdir,'marginals/Gen_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Vul_B_marg=B_CIs("Vul_B_min")
-    write.table(Vul_B_marg,file=paste(outdir,'marginals/Vul_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-
-    LS_I_marg=I_CIs("LS_I_min")
-    write.table(LS_I_marg,file=paste(outdir,'marginals/LS_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Gen_I_marg=I_CIs("Gen_I_min")
-    write.table(Gen_I_marg,file=paste(outdir,'marginals/Gen_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Vul_I_marg=I_CIs("Vul_I_min")
-    write.table(Vul_I_marg,file=paste(outdir,'marginals/Vul_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-
-    LS_T_marg=T_CIs("LS_T_min")
-    write.table(LS_T_marg,file=paste(outdir,'marginals/LS_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Gen_T_marg=T_CIs("Gen_T_min")
-    write.table(Gen_T_marg,file=paste(outdir,'marginals/Gen_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
-    Vul_T_marg=T_CIs("Vul_T_min")
-    write.table(Vul_T_marg,file=paste(outdir,'marginals/Vul_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
   } else {
     source('number_marginal_CIs.R')
   }
+
+  LS_marg=S_CIs("LS_min")
+  write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_marg=S_CIs("Gen_min")
+  write.table(Gen_marg,file=paste(outdir,'marginals/Gen_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_marg=S_CIs("Vul_min")
+  write.table(Vul_marg,file=paste(outdir,'marginals/Vul_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_B_marg=B_CIs("LS_B_min")
+  write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_B_marg=B_CIs("Gen_B_min")
+  write.table(Gen_B_marg,file=paste(outdir,'marginals/Gen_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_B_marg=B_CIs("Vul_B_min")
+  write.table(Vul_B_marg,file=paste(outdir,'marginals/Vul_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_I_marg=I_CIs("LS_I_min")
+  write.table(LS_I_marg,file=paste(outdir,'marginals/LS_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_I_marg=I_CIs("Gen_I_min")
+  write.table(Gen_I_marg,file=paste(outdir,'marginals/Gen_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_I_marg=I_CIs("Vul_I_min")
+  write.table(Vul_I_marg,file=paste(outdir,'marginals/Vul_I_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+
+  LS_T_marg=T_CIs("LS_T_min")
+  write.table(LS_T_marg,file=paste(outdir,'marginals/LS_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Gen_T_marg=T_CIs("Gen_T_min")
+  write.table(Gen_T_marg,file=paste(outdir,'marginals/Gen_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
+  Vul_T_marg=T_CIs("Vul_T_min")
+  write.table(Vul_T_marg,file=paste(outdir,'marginals/Vul_T_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
 
   ########################################################################################################
   ########################################################################################################
@@ -295,60 +296,60 @@ power_analysis=FALSE
     write.table(summary(T_latdirect)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }
 
-cutoff<- 4/((nrow(data)-length(B_latdirect$coefficients)-2)) 
-plot(B_latdirect, which=4, cook.levels=cutoff)
-# 56, 81, 120 are outliers.
+# cutoff<- 4/((nrow(data)-length(B_latdirect$coefficients)-2)) 
+# plot(B_latdirect, which=4, cook.levels=cutoff)
+# # 56, 81, 120 are outliers.
 
-subset=data[-c(56,81,120),]
-subB=(with(subset,lm(Basal~Latitude*Stream+Lake),na.action=na.fail))
+# subset=data[-c(56,81,120),]
+# subB=(with(subset,lm(Basal~Latitude*Stream+Lake),na.action=na.fail))
 
-cutoff<- 4/((nrow(data)-length(I_latdirect$coefficients)-2)) 
-plot(I_latdirect, which=4, cook.levels=cutoff)
-# 141, 159, 161 are outliers.
+# cutoff<- 4/((nrow(data)-length(I_latdirect$coefficients)-2)) 
+# plot(I_latdirect, which=4, cook.levels=cutoff)
+# # 141, 159, 161 are outliers.
 
-subset=data[-c(141, 159, 161),]
-subI=(with(subset,lm(Intermediate~1),na.action=na.fail))
+# subset=data[-c(141, 159, 161),]
+# subI=(with(subset,lm(Intermediate~1),na.action=na.fail))
 
-cutoff<- 4/((nrow(data)-length(T_latdirect$coefficients)-2)) 
-plot(T_latdirect, which=4, cook.levels=cutoff)
-# 20, 38, 149 are outliers.
+# cutoff<- 4/((nrow(data)-length(T_latdirect$coefficients)-2)) 
+# plot(T_latdirect, which=4, cook.levels=cutoff)
+# # 20, 38, 149 are outliers.
 
-subset=data[-c(20,38,149),]
+# subset=data[-c(20,38,149),]
 
-subT=(with(subset,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
-
-
-write.table(summary(Sp_latdirect)$coefficients,file=paste(outdir,'coefficients/S_lat.tsv',sep=''))
-cutoff<- 4/((nrow(data)-length(Sp_latdirect$coefficients)-2)) 
-plot(Sp_latdirect, which=4, cook.levels=cutoff)
-# 122, 127, 128 are outliers. Redoing model without them lat:stream still sig.
-
-subset=data[-c(122,127,128),]
-subSp=(with(subset,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail))
+# subT=(with(subset,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
 
 
-write.table(summary(LS_latdirect)$coefficients,file=paste(outdir,'coefficients/LS_lat.tsv',sep=''))
-cutoff<- 4/((nrow(data)-length(LS_latdirect$coefficients)-2)) 
-plot(LS_latdirect, which=4, cook.levels=cutoff)
-# 110, 122, 127 are outliers. Redoing model without them, lat:stream not significant.
+# write.table(summary(Sp_latdirect)$coefficients,file=paste(outdir,'coefficients/S_lat.tsv',sep=''))
+# cutoff<- 4/((nrow(data)-length(Sp_latdirect$coefficients)-2)) 
+# plot(Sp_latdirect, which=4, cook.levels=cutoff)
+# # 122, 127, 128 are outliers. Redoing model without them lat:stream still sig.
 
-subset=data[-c(110,122,127),]
-subLS=(with(subset,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
+# subset=data[-c(122,127,128),]
+# subSp=(with(subset,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail))
 
-write.table(summary(Gen_latdirect)$coefficients,file=paste(outdir,'coefficients/Gen_lat.tsv',sep=''))
-cutoff<- 4/((nrow(data)-length(Gen_latdirect$coefficients)-2)) 
-plot(Gen_latdirect, which=4, cook.levels=cutoff)
-# 110, 122, 127 are outliers again. 
 
-subGen=(with(subset,lm(Gen~Marine+Stream),na.action=na.fail))
-# Removing outliers, model is similar (only stream significant)
+# write.table(summary(LS_latdirect)$coefficients,file=paste(outdir,'coefficients/LS_lat.tsv',sep=''))
+# cutoff<- 4/((nrow(data)-length(LS_latdirect$coefficients)-2)) 
+# plot(LS_latdirect, which=4, cook.levels=cutoff)
+# # 110, 122, 127 are outliers. Redoing model without them, lat:stream not significant.
 
-write.table(summary(Vul_latdirect)$coefficients,file=paste(outdir,'coefficients/Vul_lat.tsv',sep=''))
-cutoff<- 4/((nrow(data)-length(Vul_latdirect$coefficients)-2)) 
-plot(Vul_latdirect, which=4, cook.levels=cutoff)
-# 110, 122, 127 are outliers again.
+# subset=data[-c(110,122,127),]
+# subLS=(with(subset,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
 
-subVul=(with(subset,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
-# Removing outliers, latitude:stream is not significant.
+# write.table(summary(Gen_latdirect)$coefficients,file=paste(outdir,'coefficients/Gen_lat.tsv',sep=''))
+# cutoff<- 4/((nrow(data)-length(Gen_latdirect$coefficients)-2)) 
+# plot(Gen_latdirect, which=4, cook.levels=cutoff)
+# # 110, 122, 127 are outliers again. 
+
+# subGen=(with(subset,lm(Gen~Marine+Stream),na.action=na.fail))
+# # Removing outliers, model is similar (only stream significant)
+
+# write.table(summary(Vul_latdirect)$coefficients,file=paste(outdir,'coefficients/Vul_lat.tsv',sep=''))
+# cutoff<- 4/((nrow(data)-length(Vul_latdirect$coefficients)-2)) 
+# plot(Vul_latdirect, which=4, cook.levels=cutoff)
+# # 110, 122, 127 are outliers again.
+
+# subVul=(with(subset,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
+# # Removing outliers, latitude:stream is not significant.
 
 # }
