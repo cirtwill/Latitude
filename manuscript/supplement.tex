@@ -90,9 +90,126 @@ Halifax, NS B3H 4R2\\Canada\\}
  (See Table S1 for a list of rejected webs and reasons for their
   exclusion.) 
 
+\subsection*{Appendix S2: Supplemental Methods and Results - scaling Relationships with S}
+
+  \subsubsection*{Methods}
+
+    The scaling relationships between link density ($Z$) and species richness ($S$)
+    has been shown to be a power law~\citep{Riede2010} of the form 
+
+    \begin{equation}
+    \label{Power}
+    Z_{i} \sim \alpha S_{i}^{\beta}  ,
+    \end{equation}
+
+    \noindent which is often re-expressed in logarithmic form 
+
+    \begin{equation}
+    \label{Loglog}
+    \log{Z_{i}} \sim \log{\alpha} + \beta\log{S_{i}}  .
+    \end{equation}
+
+    \noindent Although these relationships are very similar, they imply different error distributions~\citep{Xiao2011}.
+    Specifically, equation~(\ref{Power}) implies a normally-distributed, additive error and equation~(\ref{Loglog}) a lognormal,
+    multiplicative error. As we have no \emph{a priori} reason to believe that our dataset has one error distribution
+    over another, we follow the recommendations in~\citet{Xiao2011} and compared the two
+    model formulations explicitly. The model with the error distribution most resembling that observed in the empirical
+    data was then used to test for potential effects of latitude.
 
 
-\subsection*{Appendix S2: Supplemental Figures}
+    Although scaling relationships between species richness and generality or
+    species richness and vulnerability have not been explicitly examined (but see scaling 
+    relationships for the standard devaitions of each property in~\citet{Riede2010}), we expect that they will follow
+    power laws similar to that of the relationship between species richness and links per species.
+    This is because the links taken into account in calculating generality and vulnerability are subsets 
+    of the total links included when calculating links per species. As with links per species, we explicitly 
+    compared the error distributions of models for generality and vulnerability using
+    both the power-law and logarithmic formulations. 
+    In each case, we used the best-fitting equation as a template when assessing the effect of latitude on scaling with
+    species richness.
+
+
+  \subsubsection*{Results}
+
+    When considering the relationships between species richness or the proportions 
+    of basal resources, intermediate consumers, or top predators and all response variables 
+    (link density, generality, vulnerability), equation~(\ref{Loglog}) had a
+    lower AIC than did equation~(\ref{Power}). This indicates that the
+    data support an assumption of multiplicative lognormal error better than an
+    assumption of additive normal error. That is, models where $\epsilon$ is
+    modelled as an additive term on
+    the logarithmic scale provide a better description of the data than models
+    where $\epsilon$ is modelled as an additive term on the arithmetic scale.  
+    We therefore used logarithmic-form models when assessing the
+    effect of latitude on scaling relationships  with species richness.
+
+\subsection*{Appendix S3: Supplemental Methods and Results - relationships with latitude}
+
+  \subsubsection*{Methods}
+
+    To determine whether there were latitudinal gradients in food-web structure,
+    we first examined simple linear relationships between latitude and each of 
+    species richness, links per species, generality, vulnerability, and proportions
+    of basal resources, intermediate consumers, and top predators. We fit models of the form
+
+    \begin{equation}
+    \label{Latfull}
+    S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
+    \end{equation}
+
+    \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
+    latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
+    variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
+    marine, lake, and terrestrial networks with estuarine
+    networks providing the intercept) and $\epsilon_{i}$ a residual error term. 
+    We next calculated the AIC
+    of the maximal model as well as the AIC's of a suite of candidate simplified models identified
+    using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. 
+    Simplified models were obtained by
+    systematically removing all possible combinations of terms from the full model.
+    The best-fitting model was then determined to be the model with the fewest terms 
+    where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
+    and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
+    model.
+
+
+  \subsubsection*{Results}
+    Contrary to the expected latitudinal gradient, the best-fit version of
+    equation~(\ref{Latfull}) for species richness did not include a signficant effect of latitude for any ecosystem type except streams
+    ($\beta_{Latitude}$=0.095, $p$=0.626; $\beta_{Latitude:Stream}$=-1.69, $p$=0.007).  This
+    relationship was robust to the removal of three outliers (based on Cook's Distance). 
+    There were also relationships between latitude and link density and latitude and vulnerability
+    in stream food webs, but these trends were non-signficant after the removal of three outliers.
+    Link density and vulnerability did not vary with latitude in any other ecosystem type.
+    The best-fit version of equation~(\ref{Latfull}) for generality did not include any effect of
+    latitude in any ecosystem type. 
+
+
+    The relationships between latitude and the proportions of species at each trophic level were broadly similar
+    to the relationship between latitude and species richness. 
+    The proportion of basal resources increased towards the poles in stream webs ($\beta_{Latitude:Stream}$=0.012, $p$\textless0.001) 
+    but did not vary with latitude in estuarine, marine, lake, or terrestrial 
+    food webs ($\beta_{Latitude}$=0.001, $p$=0.139).
+    The proportion of intermediate consumers did not vary with latitude in any ecosystem type.
+    The proportion of top predators did not vary with latitude in 
+    estuarine, marine, or terrestrial food webs ($\beta_{Latitude}$=0.001, $p$=0.136) but decreased towards the poles in stream and lake food 
+    webs ($\beta_{Latitude:Stream}$=-0.006, $p$=0.030; 
+    $\beta_{Latitude:Lake}$=-0.006, $p$=0.001). 
+    All of these trends were robust to the removal of outliers.
+
+\subsection*{Appendix S4: Supplemental Figures}
+
+\begin{figure}[H]
+\includegraphics[width=.85\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts_observed.eps}
+\caption{Scaling relationships for link density, generality (number of prey), 
+and vulnerability (number of predators) against the proportions of basal resources (\% Basal),
+intermediate consumers (\% Intermediate), top predators (\% Top), and species richness of a food web. 
+For each relationship, we show observed values (grey circles) and the scaling relationship, neglecting 
+any effects of habitat type or latitude (N=163 food webs). See Fig. 1 (\emph{Main Text}) to compare with 
+observed values correcting for the effects of habitat type and latitude. }
+\label{props_v_lat_obs}
+\end{figure}
+
 
 \newpage
 

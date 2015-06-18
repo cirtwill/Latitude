@@ -8,8 +8,8 @@ library(MuMIn)
 infile='../non_TS/summary-properties.tsv'
 #infile='../mod_data/summary-properties.tsv'
 
-# format='proportions'
-format='numbers'
+format='proportions'
+# format='numbers'
 
 # for(format in c('proportions','numbers')){
 power_analysis=FALSE
