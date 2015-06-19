@@ -245,16 +245,11 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
       if TL=='T':
         if prop=='LS':
-          yax="Link density"
-          ymed=math.log(50)/2
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Link density ",place='opposite',char_size=.75)
         elif prop=='Gen':
-          yax="Generality"
-          ymed=math.log(30)/2
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Generality ",place='opposite',char_size=.75)
         elif prop=='Vul':
-          yax="Vulnerability"
-          ymed=math.log(30)/2
-
-        graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
       if TL!='S':
         graph.world.xmin=0.01
@@ -346,16 +341,11 @@ def rawplots(rawdatafile,outfile,Bformat,predfolder):
 
       if TL=='T':
         if prop=='LS':
-          yax="Link density"
-          ymed=math.log(50)/2
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Link density ",place='opposite',char_size=.75)
         elif prop=='Gen':
-          yax="Generality"
-          ymed=math.log(30)/2
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Generality ",place='opposite',char_size=.75)
         elif prop=='Vul':
-          yax="Vulnerability"
-          ymed=math.log(30)/2
-
-        graph.add_drawing_object(DrawText,text=yax,x=1.2,y=math.exp(ymed),char_size=.75,loctype='world',rot=270,just=2)
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
       if TL!='S':
         graph.world.xmin=0.01

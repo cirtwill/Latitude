@@ -432,6 +432,7 @@ def main():
         troph="top predators"
 
       print TL, troph
+
       grace.add_drawing_object(DrawText,text='Scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
 
       grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'.eps')
@@ -465,14 +466,10 @@ def main():
     graph=Sgrace.add_graph(Panel)
 
     plotter(prop,TL,ecotype,graph,form)
-      # graph.remove_extraworld_drawing_objects()
     graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
-    # graph.add_drawing_object(DrawText,text=typ, x=100, y=.75,loctype='world', rot=270,char_size=.85,just=2)
     graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
 
   Sgrace.multi(rows=5,cols=1,vgap=.04,hgap=.04)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-
 
   Sgrace.hide_redundant_xticklabels()
   Sgrace.hide_redundant_yticklabels()
@@ -502,39 +499,52 @@ def main():
     for TL in ['B','I','T']:      
       if TL=='B':
         troph="Basal resources"
+        yarg=1.1875
       elif TL=='I':
         troph="Intermediate consumers"
+        yarg=3.33333333333333333
       elif TL=='T':
         troph="Top predators"
+        yarg=1.25
+
+
+        # if prop=='LS':
+        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Link density ",place='opposite',char_size=.75)
+        # elif prop=='Gen':
+        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Generality ",place='opposite',char_size=.75)
+        # elif prop=='Vul':
+        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
       graph=Tgrace.add_graph(Panel)
 
       plotter(prop,TL,ecotype,graph,form)
-        # graph.remove_extraworld_drawing_objects()
-      # graph.xaxis.label.configure(text='Absolute latitude',place='normal',just=2,char_size=.85)
-      # graph.add_drawing_object(DrawText,text=typ, x=100, y=.75,loctype='world', rot=270,char_size=.85,just=2)
-
-      if TL=='T':
-        graph.add_drawing_object(DrawText,text=typ,x=100,y=-0.5,just=2,rot=270,loctype='world',char_size=.75)  
-        yarg=1.25
-      elif TL=='B':
-        yarg=1.1875
-      else:
-        yarg=3.33333333333333333
-
-      graph.xaxis.label.configure(text='',place='opposite',char_size=.65)
 
       if ecotype=='Estuary':
         graph.add_drawing_object(DrawText,text=troph,x=45,y=yarg,loctype='world',char_size=.65,just=2)
+      graph.xaxis.label.text=''
 
+      if TL=='T':
+        if ecotype=='Estuary':
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Estuarine",place='opposite',char_size=.75)
+        elif ecotype=='Marine':
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Marine",place='opposite',char_size=.75)
+        elif ecotype=='Lake':
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Lake",place='opposite',char_size=.75)
+        elif ecotype=='Stream':
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Stream",place='opposite',char_size=.75)
+        else:
+          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Terrestrial",place='opposite',char_size=.75)
+  
+      else:
+        graph.yaxis.label.text=''
+
+      # graph.xaxis.label.configure(text='',place='opposite',char_size=.65)
 
   Tgrace.multi(rows=5,cols=3,vgap=.04,hgap=.04)
-  # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
-
 
   Tgrace.hide_redundant_xticklabels()
   Tgrace.hide_redundant_yticklabels()
-  Tgrace.hide_redundant_labels()
+  # Tgrace.hide_redundant_labels()
 
   Tgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with proportion',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
   Tgrace.set_row_xaxislabel(row=4,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
