@@ -328,11 +328,11 @@ def plotter(prop,TL,ecotype,graph,form):
     major=.5
     prec=1
   elif TL=='B':
-    prec=1
+    prec=0
     if form=='proportions':
       graph.world.ymin=-1.25
       graph.world.ymax=1
-      major=.5
+      major=1
     else:
       graph.world.ymin=0
       graph.world.ymax=.60000001
@@ -445,8 +445,10 @@ def main():
 
   Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
-  # Sgrace.add_label_scheme('dummy',names)
-  # Sgrace.set_label_scheme('dummy')
+  Snames=['Estuarine','Lake','Marine','Stream','Terrestrial']
+
+  Sgrace.add_label_scheme('dummy',Snames)
+  Sgrace.set_label_scheme('dummy')
   
   for ecotype in ecotypes:   
     if ecotype=='Estuary':
@@ -464,7 +466,7 @@ def main():
 
     plotter(prop,TL,ecotype,graph,form)
       # graph.remove_extraworld_drawing_objects()
-    graph.xaxis.label.configure(text='Absolute latitude',place='normal',just=2,char_size=.85)
+    graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
     # graph.add_drawing_object(DrawText,text=typ, x=100, y=.75,loctype='world', rot=270,char_size=.85,just=2)
     graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
 
@@ -476,7 +478,8 @@ def main():
   Sgrace.hide_redundant_yticklabels()
   Sgrace.hide_redundant_labels()
 
-  Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.08)
+  Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Sgrace.set_row_xaxislabel(row=4,colspan=(0,0),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   Sgrace.write_file('../manuscript/Figures/by_TL/marginal/justS_marginal_latitude.eps')
  
@@ -495,7 +498,14 @@ def main():
       typ='Stream'
     else:
       typ='Terrestrial'
-    for TL in ['B','I','T']:
+
+    for TL in ['B','I','T']:      
+      if TL=='B':
+        troph="Basal resources"
+      elif TL=='I':
+        troph="Intermediate consumers"
+      elif TL=='T':
+        troph="Top predators"
 
       graph=Tgrace.add_graph(Panel)
 
@@ -503,7 +513,20 @@ def main():
         # graph.remove_extraworld_drawing_objects()
       # graph.xaxis.label.configure(text='Absolute latitude',place='normal',just=2,char_size=.85)
       # graph.add_drawing_object(DrawText,text=typ, x=100, y=.75,loctype='world', rot=270,char_size=.85,just=2)
-      graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+
+      if TL=='T':
+        graph.add_drawing_object(DrawText,text=typ,x=100,y=-0.5,just=2,rot=270,loctype='world',char_size=.75)  
+        yarg=1.25
+      elif TL=='B':
+        yarg=1.1875
+      else:
+        yarg=3.33333333333333333
+
+      graph.xaxis.label.configure(text='',place='opposite',char_size=.65)
+
+      if ecotype=='Estuary':
+        graph.add_drawing_object(DrawText,text=troph,x=45,y=yarg,loctype='world',char_size=.65,just=2)
+
 
   Tgrace.multi(rows=5,cols=3,vgap=.04,hgap=.04)
   # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
@@ -513,8 +536,8 @@ def main():
   Tgrace.hide_redundant_yticklabels()
   Tgrace.hide_redundant_labels()
 
-  Tgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.08)
-  Tgrace.set_row_xaxislabel(row=4,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.08)
+  Tgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with proportion',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Tgrace.set_row_xaxislabel(row=4,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   Tgrace.write_file('../manuscript/Figures/by_TL/marginal/BIT_marginal_latitude.eps')
 
