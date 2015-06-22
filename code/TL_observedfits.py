@@ -284,7 +284,7 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
 
   grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
 
-  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Corrected observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+  grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Re-scaled value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
