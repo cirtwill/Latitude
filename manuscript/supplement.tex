@@ -65,8 +65,8 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 % \begin{landscape}
 \subsection*{Appendix S1: Details of Food Web Sources and Selection}
 
-  We combined published food webs from~\citet{GlobaWeb} (GlobalWeb),~\citet{Brose2006} (Brose), 
-  and~\citet{Dunne2013} (Dunne).
+  We combined published food webs from~\citet{GlobaWeb},~\citet{Brose2006}, 
+  and~\citet{Dunne2013}.
   Of the 385 food webs available from~\citet{Globalweb}, 122 were rejected because their original
   source was unpublished or could not be retrieved. We further eliminated 13 source or sink webs
   (which describe feeding links flowing from or to a particular resource or top predator rather
@@ -83,15 +83,15 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
   free-living species, we removed the the parasites (and all interactions involving them) from
   these webs (and the 3 webs containing parasites from~\citet{GlobalWeb}) leaving free-living 
   species only. In addition, we included the 96 webs from~\citet{Brose2006}, which were originally
-  collected to XXXYYYY. This gave us a database of 259 webs. However, as we wished to use the
+  collected to XXXYYYY. This gave us a database of 259 webs. As we wished to use the
   logarithmic form of power-law relationships, we then eliminated any food web which did not have
   at least one each of basal resources, intermediate consumers, and top predators (to obtain non-zero
   proportions of each category). Our final sample size was thereby reduced to 163 food webs.
 
 
+ See Table S1 for a list of rejected webs and reasons for their
+  exclusion. 
 
- (See Table S1 for a list of rejected webs and reasons for their
-  exclusion.) 
 
 \subsection*{Appendix S2: Supplemental Methods and Results - scaling Relationships with S}
 
@@ -129,13 +129,17 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     compared the error distributions of models for generality and vulnerability using
     both the power-law and logarithmic formulations. 
     In each case, we used the best-fitting equation as a template when assessing the effect of latitude on scaling with
-    species richness.
+    species richness. We then repeated this analysis 
+    to model the scaling of link density, generality, 
+    and vulnerability with the proportions of basal 
+    resources, intermediate consumers, and top predators
+    in a food web.
 
 
   \subsubsection*{Results}
 
     When considering the relationships between species richness or the proportions 
-    of basal resources, intermediate consumers, or top predators and all response variables 
+    of basal resources, intermediate consumers, or top predators, and all response variables 
     (link density, generality, vulnerability), equation~(\ref{Loglog}) had a
     lower AIC than did equation~(\ref{Power}). This indicates that the
     data support an assumption of multiplicative lognormal error better than an
@@ -181,7 +185,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     equation~(\ref{Latfull}) for species richness did not include a signficant effect of latitude for any ecosystem type except streams
     ($\beta_{Latitude}$=0.095, $p$=0.626; $\beta_{Latitude:Stream}$=-1.69, $p$=0.007).  This
     relationship was robust to the removal of three outliers (based on Cook's Distance). 
-    There were also relationships between latitude and link density and latitude and vulnerability
+    There were also relationships between latitude and link density and between latitude and vulnerability
     in stream food webs, but these trends were non-signficant after the removal of three outliers.
     Link density and vulnerability did not vary with latitude in any other ecosystem type.
     The best-fit version of equation~(\ref{Latfull}) for generality did not include any effect of
@@ -206,14 +210,16 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 
 \begin{figure}[h]
 \centerline{\includegraphics*[width=.75\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts_observed.eps}}
-\caption{Scaling relationships for link density, generality (number of prey), 
-and vulnerability (number of predators) against the proportions of basal resources (\% Basal),
+\caption{Scaling relationships for link density, generality, 
+and vulnerability relative to species richness and the proportions of basal resources (\% Basal),
 intermediate consumers (\% Intermediate), top predators (\% Top), and species richness of a food web. 
-For each relationship, we show observed values (grey circles) and the scaling relationship, neglecting 
-any effects of habitat type or latitude (N=163 food webs). See Fig. 1 (\emph{Main Text}) to compare with 
+For each relationship, we show observed values (white circles) and 
+a simplified form of the scaling relationship described in equation XX (\emph{Main Text}), neglecting 
+any effects of habitat type or latitude (black line, N=163 food webs). See Fig. 1 (\emph{Main Text}) to compare with 
 observed values correcting for the effects of habitat type and latitude. }
 \label{props_v_lat_obs}
 \end{figure}
+
 
 \newpage
 
@@ -221,18 +227,22 @@ observed values correcting for the effects of habitat type and latitude. }
 \begin{figure}[h]
 \centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
-types and over latitude. For each property we show the scaling exponent for species richness (black
-line) with a 95\% confidence interval (in grey). Latitude is given in degrees from the equator
-regardless of direction. The scaling relationships are based on N=163 empirical food webs.}
+types and over latitude. For each property we show the estimated scaling exponent for species richness (black
+line) with its 95\% confidence interval (in grey),
+based on N=163 empirical food webs. Latitude is 
+given in degrees from the equator
+regardless of direction.}
 \label{S}
 \end{figure}
+
 
 \begin{figure}[!h]
 \centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/B_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
-basal resources (black line) with a 95\% confidence interval (in grey). Latitude is given in degrees
-from the equator regardless of direction. The scaling relationships are based on N=163 empirical food webs.}
+basal resources (black line) with its 95\% confidence interval (in grey), based on N=163 
+empirical food webs. Latitude is given in degrees
+from the equator regardless of direction.}
 \label{B}
 \end{figure}
 
@@ -243,8 +253,9 @@ from the equator regardless of direction. The scaling relationships are based on
 \centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/I_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
-intermediate consumers (black line) with a 95\% confidence interval (in grey). Latitude is given in degrees
-from the equator regardless of direction. The scaling relationships are based on N=163 empiricl food webs.}
+intermediate consumers (black line) with its 95\% confidence interval (in grey), based on 
+N=163 empirical food webs. Latitude is given in degrees
+from the equator regardless of direction.}
 \label{I}
 \end{figure}
 
@@ -252,8 +263,9 @@ from the equator regardless of direction. The scaling relationships are based on
 \centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/T_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
-top predators (black line) with a 95\% confidence interval (in grey). Latitude is given in degrees
-from the equator regardless of direction. The scaling relationships are based on N=163 empiricl food webs.}
+top predators (black line) with its 95\% confidence interval (in grey), based on N=163 
+empirical food webs. Latitude is given in degrees
+from the equator regardless of direction.}
 \label{T}
 \end{figure}
 
