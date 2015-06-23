@@ -18,20 +18,19 @@
     +log(Species):Latitude:Lake,
     na.action=na.fail))    }
 
-    cutoff<- 4/((nrow(data)-length(LS_min$coefficients)-2)) 
-    plot(LS_min, which=4, cook.levels=cutoff)
-    #  57, 66, 138 are outliers.
-    if(infile=='../mod_data/summary-properties.tsv'){
-      subset=data[-c(57,127,138),]
-    } else {
-      subset=data[-c(57,66,138),]
-    }
+    # cutoff<- 4/((nrow(data)-length(LS_min$coefficients)-2)) 
+    # plot(LS_min, which=4, cook.levels=cutoff)
+    # #  57, 66, 138 are outliers.
+    # if(infile=='../mod_data/summary-properties.tsv'){
+    #   subset=data[-c(57,127,138),]
+    # } else {
+    #   subset=data[-c(57,66,138),]
+    # }
 
-    subLS_min=(with(subset,lm(log(LS)~log(Species)
-    +log(Species):(Lake+Terr)
-    +log(Species):Latitude
-    +log(Species):Latitude:Lake,na.action=na.fail)))
-
+    # subLS_min=(with(subset,lm(log(LS)~log(Species)
+    # +log(Species):(Lake+Terr)
+    # +log(Species):Latitude
+    # +log(Species):Latitude:Lake,na.action=na.fail)))
   obs_LS=(with(subset,lm(log(LS)~log(Species),na.action=na.fail)))
 
   Gen_full=with(data,lm(log(Gen)~log(Species)
@@ -48,29 +47,11 @@
       +log(Species):Latitude:Stream
       ,na.action=na.fail)) } else {
     Gen_min=with(data,lm(log(Gen)~log(Species)
-      +log(Species):(Lake+Stream+Terr)
+      +log(Species):(Lake+Stream)
       +log(Species):Latitude
       +log(Species):Latitude:(Lake+Stream)
       ,na.action=na.fail))
     }
-
-    cutoff<- 4/((nrow(data)-length(Gen_min$coefficients)-2)) 
-    plot(Gen_min, which=4, cook.levels=cutoff)
-    #  57, 66, 109 are outliers.
-    if(infile=='../mod_data/summary-properties.tsv'){
-      subset=data[-c(43,57,109),]
-      subGen_min=with(subset,lm(log(Gen)~log(Species)
-        +log(Species):(Lake+Stream+Terr)
-        +log(Species):Latitude
-        +log(Species):Latitude:(Lake+Stream)
-        ,na.action=na.fail)) } else {
-      subset=data[-c(57,66,109),]
-      subGen_min=with(subset,lm(log(Gen)~log(Species)
-        +log(Species):(Lake+Stream+Terr)
-        +log(Species):Latitude
-        +log(Species):Latitude:(Lake+Stream)
-        ,na.action=na.fail))
-      }
 
   obs_Gen=(with(subset,lm(log(Gen)~log(Species),na.action=na.fail)))
 
@@ -91,19 +72,6 @@
       +log(Species):Latitude
       +log(Species):Latitude:Lake
       ,na.action=na.fail))  }
-
-    cutoff<- 4/((nrow(data)-length(Vul_min$coefficients)-2)) 
-    plot(Vul_min, which=4, cook.levels=cutoff)
-    #  57, 66, 138 are outliers.
-    if(infile=='../mod_data/summary-properties.tsv'){
-      subset=data[-c(57,127,138),] } else {
-      subset=data[-c(57,66,138),]  }
-
-    subVul_min=with(subset,lm(log(Vul)~log(Species)
-      +log(Species):(Lake+Terr)
-      +log(Species):Latitude
-      +log(Species):Latitude:Lake
-      ,na.action=na.fail)) 
 
   obs_Vul=(with(subset,lm(log(Vul)~log(Species),na.action=na.fail)))
 

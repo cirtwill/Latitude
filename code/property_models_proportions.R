@@ -28,10 +28,8 @@
     lidredge=dredge(LS_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):(Lake+Stream+Terr)
-        +log(Intermediate):Latitude
-        +log(Intermediate):Latitude:Terr, na.action=na.fail   ))
-    } else {          ############# THIS IS PROBABLY WRONG!
+        +log(Intermediate):Stream, na.action=na.fail   ))
+    } else {       ### Probably wrong
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
         +log(Intermediate):Stream, na.action=na.fail   ))
     }
@@ -48,7 +46,7 @@
     LS_T_min=with(data,lm(log(LS)~log(Toppreds)
     +log(Toppreds):(Lake+Marine+Stream+Terr)
     +log(Toppreds):Latitude
-    +log(Toppreds):Latitude:(Stream+Terr) ))
+    +log(Toppreds):Latitude:(Stream) ))
 
     obs_LS_T=with(data,lm(log(LS)~log(Toppreds), na.action=na.fail   ))
 
@@ -83,8 +81,8 @@
     if(infile=='../non_TS/summary-properties.tsv'){
       Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
         +log(Intermediate):Latitude
-        +log(Intermediate):(Lake+Stream+Terr)
-        +log(Intermediate):Latitude:Terr , na.action=na.fail   ))
+        +log(Intermediate):(Lake+Stream)
+        +log(Intermediate):Latitude:(Lake+Stream) , na.action=na.fail   ))
     } else {    ########## MAY BE INCORRECT
       Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
         +log(Intermediate):(Marine+Stream), na.action=na.fail   ))
@@ -133,9 +131,7 @@
     vidredge=dredge(Vul_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
-        +log(Intermediate):Latitude
-        +log(Intermediate):(Lake+Stream+Terr)
-        +log(Intermediate):Latitude:Terr, na.action=na.fail   ))
+        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
     } else {
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
         +log(Intermediate):Stream, na.action=na.fail   ))
@@ -153,7 +149,7 @@
     Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
       +log(Toppreds):(Lake+Marine+Stream+Terr)
       +log(Toppreds):Latitude
-      +log(Toppreds):Latitude:(Stream+Terr) ))
+      +log(Toppreds):Latitude:(Stream) ))
 
     obs_Vul_T=with(data,lm(log(Vul)~log(Toppreds), na.action=na.fail   ))
 
