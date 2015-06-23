@@ -37,26 +37,34 @@ def linereader(prop,TL):
       lower=float(line.split()[4])
 
       if TL=='S':
-        terr_m=float(line.split()[5])
-        terr_u=float(line.split()[6])
-        terr_l=float(line.split()[7])
+        if prop!='Gen':
+          terr_m=float(line.split()[5])
+          terr_u=float(line.split()[6])
+          terr_l=float(line.split()[7])
 
-        lake_m=float(line.split()[8])
-        lake_u=float(line.split()[9])
-        lake_l=float(line.split()[10])
+          lake_m=float(line.split()[8])
+          lake_u=float(line.split()[9])
+          lake_l=float(line.split()[10])
 
-        lines['Terrestrial']['main'].append((s0,terr_m))
-        lines['Terrestrial']['upper'].append((s0,terr_u))
-        lines['Terrestrial']['lower'].append((s0,terr_l))
-        lines['Lake']['main'].append((s0,lake_m))
-        lines['Lake']['upper'].append((s0,lake_u))
-        lines['Lake']['lower'].append((s0,lake_l))
+          lines['Terrestrial']['main'].append((s0,terr_m))
+          lines['Terrestrial']['upper'].append((s0,terr_u))
+          lines['Terrestrial']['lower'].append((s0,terr_l))
+          lines['Lake']['main'].append((s0,lake_m))
+          lines['Lake']['upper'].append((s0,lake_u))
+          lines['Lake']['lower'].append((s0,lake_l))
 
         if prop=='Gen':
-          stream_m=float(line.split()[11])
-          stream_u=float(line.split()[12])
-          stream_l=float(line.split()[13])
-    
+          lake_m=float(line.split()[5])
+          lake_u=float(line.split()[6])
+          lake_l=float(line.split()[7])
+
+          stream_m=float(line.split()[8])
+          stream_u=float(line.split()[9])
+          stream_l=float(line.split()[10])
+
+          lines['Lake']['main'].append((s0,lake_m))
+          lines['Lake']['upper'].append((s0,lake_u))
+          lines['Lake']['lower'].append((s0,lake_l))
           lines['Stream']['main'].append((s0,stream_m))
           lines['Stream']['upper'].append((s0,stream_u))
           lines['Stream']['lower'].append((s0,stream_l))
@@ -90,23 +98,18 @@ def linereader(prop,TL):
         stream_u=float(line.split()[6])
         stream_l=float(line.split()[7])
 
-        lake_m=float(line.split()[8])
-        lake_u=float(line.split()[9])
-        lake_l=float(line.split()[10])
+        if prop!='LS':
+          lake_m=float(line.split()[8])
+          lake_u=float(line.split()[9])
+          lake_l=float(line.split()[10])
 
-        terr_m=float(line.split()[11])
-        terr_u=float(line.split()[12])
-        terr_l=float(line.split()[13])  
+          lines['Lake']['main'].append((s0,lake_m))
+          lines['Lake']['upper'].append((s0,lake_u))
+          lines['Lake']['lower'].append((s0,lake_l))   
 
         lines['Stream']['main'].append((s0,stream_m))
         lines['Stream']['upper'].append((s0,stream_u))
         lines['Stream']['lower'].append((s0,stream_l))
-        lines['Lake']['main'].append((s0,lake_m))
-        lines['Lake']['upper'].append((s0,lake_u))
-        lines['Lake']['lower'].append((s0,lake_l))   
-        lines['Terrestrial']['main'].append((s0,terr_m))
-        lines['Terrestrial']['upper'].append((s0,terr_u))
-        lines['Terrestrial']['lower'].append((s0,terr_l))
 
       elif TL=='T':
         marine_m=float(line.split()[5])

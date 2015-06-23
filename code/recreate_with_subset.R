@@ -31,7 +31,7 @@
     # +log(Species):(Lake+Terr)
     # +log(Species):Latitude
     # +log(Species):Latitude:Lake,na.action=na.fail)))
-  obs_LS=(with(subset,lm(log(LS)~log(Species),na.action=na.fail)))
+  obs_LS=(with(data,lm(log(LS)~log(Species),na.action=na.fail)))
 
   Gen_full=with(data,lm(log(Gen)~log(Species)
     +log(Species):Latitude
@@ -53,7 +53,7 @@
       ,na.action=na.fail))
     }
 
-  obs_Gen=(with(subset,lm(log(Gen)~log(Species),na.action=na.fail)))
+  obs_Gen=(with(data,lm(log(Gen)~log(Species),na.action=na.fail)))
 
   Vul_full=with(data,lm(log(Vul)~log(Species)
     +log(Species):Latitude
@@ -73,7 +73,7 @@
       +log(Species):Latitude:Lake
       ,na.action=na.fail))  }
 
-  obs_Vul=(with(subset,lm(log(Vul)~log(Species),na.action=na.fail)))
+  obs_Vul=(with(data,lm(log(Vul)~log(Species),na.action=na.fail)))
 
       # What's the basic correlation with latitude?
   Sp_latdirect_full=(with(data,lm(Species~Latitude*(Stream+Lake+Marine+Terr),na.action=na.fail)))
