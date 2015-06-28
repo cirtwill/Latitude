@@ -97,6 +97,7 @@ def clustering(directory,item):
   return Clus
 
 def food_web_properties(directory,item,G):
+
   Clus=clustering(directory,item)
 
   N=len(G.nodes())
@@ -195,31 +196,22 @@ def websorter(metafile,directory):
   for line in f:
     newline=line.split('\n')[0]
     items=newline.split('*')
-    if items[17][:3] in ['Use','use']:
+    if items[9][:3] in ['Use','use']:
       webno=items[0]
       try:
         webfile='WEB'+str(int(webno))+'.web'
       except:
         webfile=webno+'.web'
       uselist.append(webfile)
-      ecotype=items[3]
-      Humans=items[19]
-      Site=items[21]
-      if ecotype in ['lake','stream']:
-        ecotype2='freshwater'
-      else:
-        ecotype2=ecotype
-      year=items[6]
-      latitude=items[10]
-      info=[ecotype,ecotype2,year,Humans,Site,latitude]
+      ecotype=items[2]
+      Site=items[10]
+      latitude=items[5]
+      info=[ecotype,Site,latitude]
       infodict[webfile]=info
   f.close()
 
   header=['Web',
           'Ecotype',
-          'Ecotype2',
-          'Year_pub',
-          'Humans',
           'Site',
           'Latitude',
           'Species',
@@ -271,10 +263,9 @@ def websorter(metafile,directory):
   outfile.close()
 
 
-
 def main():
   
-  metafile = '../mod_data/sup_data/food_web_notes.csv'
+  metafile = '../mod_data/sup_data/food_web_notes_updated.csv'
   directory = '../mod_data/lists/pred-prey-lists-to-use/'
   motifdir = '../mod_data/Roles/'
 

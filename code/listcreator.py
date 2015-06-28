@@ -26,7 +26,7 @@ def create_predprey_list(webfile):
   predpreydict={}
   specieslist=set()
 
-  print webfile
+  # print webfile
 
   for item in rowdict[predators]:
     specieslist.add(item)
@@ -51,7 +51,8 @@ def create_predprey_list(webfile):
   try:
     webname=re.findall(r'(WEB\w+)',webfile)[0]+'.web'
   except:
-    webname='Carpinteria2006.web' 
+    webname=webfile.split('/')[-1].split('.')[0] 
+    print webname
 
   decodefile=open('../mod_data/species-keys/all-webs/'+webname,'w')
   for species in specieslist:
