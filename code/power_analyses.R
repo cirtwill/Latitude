@@ -141,6 +141,7 @@ power_analysis = function (x, y, CI_boot = TRUE, diagno = TRUE, output_plot = FA
 ##############################################################################################
 ##############################################################################################
 
+  print('species')
 
   power_analysis(data$Species,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
                         #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
@@ -149,14 +150,29 @@ power_analysis = function (x, y, CI_boot = TRUE, diagno = TRUE, output_plot = FA
   power_analysis(data$Species,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
                         #It is lognormal, AIC=766.9 vs 1150.6
 
+  print('Basal')
+
+  power_analysis(data$Basal,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
+  power_analysis(data$Basal,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=1037.4 vs 1265.9 with nonlinear.
+  power_analysis(data$Basal,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
 
 
+  print('Intermediate')
 
-  power_analysis(data$Species,data$Basal)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-141 vs -112 with nonlinear.
-  # power_analysis(data$Species,data$Herbivores)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
-  # Too many zeros.
-  power_analysis(data$Species,data$Intermediate)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-121.4 vs -72.6
-  power_analysis(data$Species,data$Toppreds)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
-                        #It is lognormal, AIC=-163.5 vs -138.7
+  power_analysis(data$Intermediate,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
+  power_analysis(data$Intermediate,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=1037.4 vs 1265.9 with nonlinear.
+  power_analysis(data$Intermediate,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
+
+
+  print('Toppreds')
+
+  power_analysis(data$Toppreds,data$LS)   #To determine whether scaling of LS~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=766.8 vs 1150.3 with nonlinear.
+  power_analysis(data$Toppreds,data$Gen)   #To determine whether scaling of Gen~S is more lognormal or nonlinear.
+                        #It is lognormal, AIC=1037.4 vs 1265.9 with nonlinear.
+  power_analysis(data$Toppreds,data$Vul)   #To determine whether scaling of Vul~S is more lognormal or nonlinear.
+
