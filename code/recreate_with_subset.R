@@ -7,11 +7,13 @@
     ,na.action=na.fail))
   ls_dredge=dredge(LS_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
+    # TS - updated 29/06/2015
     LS_min =with(data,lm(log(LS)~log(Species)
-    +log(Species):(Lake+Terr)
+    +log(Species):Lake
     +log(Species):Latitude
     +log(Species):Latitude:Lake
     ,na.action=na.fail))    } else {
+      # non-TS - updated 29/06/2015
     LS_min=with(data,lm(log(LS)~log(Species)
     +log(Species):(Lake+Terr)
     +log(Species):Latitude
@@ -20,17 +22,16 @@
 
     # cutoff<- 4/((nrow(data)-length(LS_min$coefficients)-2)) 
     # plot(LS_min, which=4, cook.levels=cutoff)
-    # #  57, 66, 138 are outliers.
-    # if(infile=='../mod_data/summary-properties.tsv'){
-    #   subset=data[-c(57,127,138),]
-    # } else {
-    #   subset=data[-c(57,66,138),]
-    # }
+    if(infile!='../mod_data/summary-properties.tsv'){
+      # The only change is that the different intercept for terrestrial is not sig.
+      subset=data[-c(60,136,163),]
+      subLS_min=(with(subset,lm(log(LS)~log(Species)
+      +log(Species):(Lake+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake,na.action=na.fail)))
+    }
 
-    # subLS_min=(with(subset,lm(log(LS)~log(Species)
-    # +log(Species):(Lake+Terr)
-    # +log(Species):Latitude
-    # +log(Species):Latitude:Lake,na.action=na.fail)))
+
   obs_LS=(with(data,lm(log(LS)~log(Species),na.action=na.fail)))
 
   Gen_full=with(data,lm(log(Gen)~log(Species)
@@ -40,13 +41,26 @@
     ,na.action=na.fail))
   g_dredge=dredge(Gen_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
+    # TS - updated 29/06/2015
     Gen_min=with(data,lm(log(Gen)~log(Species)
       +log(Species):(Lake+Stream)
       +log(Species):Latitude
-      +log(Species):Latitude:Lake
-      +log(Species):Latitude:Stream
+      +log(Species):Latitude:(Lake+Stream)
       ,na.action=na.fail)) } else {
+      # non-TS - updated 29/06/2015
     Gen_min=with(data,lm(log(Gen)~log(Species)
+      +log(Species):(Lake+Stream)
+      +log(Species):Latitude
+      +log(Species):Latitude:(Lake+Stream)
+      ,na.action=na.fail))
+    }
+
+    # cutoff<- 4/((nrow(data)-length(Gen_min$coefficients)-2)) 
+    # plot(Gen_min, which=4, cook.levels=cutoff)
+    if(infile!='../mod_data/summary-properties.tsv'){
+      # The only change is that the different intercept for stream is not sig. Int still is.
+      subset=data[-c(60,79,136),]
+      subGen_min=with(subset,lm(log(Gen)~log(Species)
       +log(Species):(Lake+Stream)
       +log(Species):Latitude
       +log(Species):Latitude:(Lake+Stream)
@@ -62,16 +76,30 @@
     ,na.action=na.fail))
   v_dredge=dredge(Vul_full,rank=AIC)
   if(infile=='../mod_data/summary-properties.tsv'){
+    # TS - updated 29/06/2015
     Vul_min=with(data,lm(log(Vul)~log(Species)
-      +log(Species):(Lake+Terr)
+      +log(Species):Lake
       +log(Species):Latitude
       +log(Species):Latitude:Lake
       ,na.action=na.fail)) } else {
+      # non-TS - updated 29/06/2015
     Vul_min=with(data,lm(log(Vul)~log(Species)
       +log(Species):(Lake+Terr)
       +log(Species):Latitude
       +log(Species):Latitude:Lake
       ,na.action=na.fail))  }
+
+    # cutoff<- 4/((nrow(data)-length(Vul_min$coefficients)-2)) 
+    # plot(Vul_min, which=4, cook.levels=cutoff)
+    if(infile!='../mod_data/summary-properties.tsv'){
+      # Just like LS
+      subset=data[-c(60,136,163),]
+      subVul_min=with(subset,lm(log(Vul)~log(Species)
+      +log(Species):(Lake+Terr)
+      +log(Species):Latitude
+      +log(Species):Latitude:Lake
+      ,na.action=na.fail))
+    }
 
   obs_Vul=(with(data,lm(log(Vul)~log(Species),na.action=na.fail)))
 
@@ -87,20 +115,14 @@
   vld=dredge(Vul_latdirect_full,rank=AIC)
 
   if(infile=='../mod_data/summary-properties.tsv'){
-    Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine+Terr),na.action=na.fail)) 
+    # TS - updated 29/06/2015
+    Sp_latdirect=(with(data,lm(Species~Lake+Marine+Terr),na.action=na.fail)) 
+    LS_latdirect=(with(data,lm(LS~Stream+Marine),na.action=na.fail))
+    Gen_latdirect=(with(data,lm(Gen~Stream),na.action=na.fail))
+    Vul_latdirect=(with(data,lm(Vul~Stream+Marine),na.action=na.fail))
     } else {
-    Sp_latdirect=(with(data,lm(Species~Stream*Latitude+Lake+Marine),na.action=na.fail)) }
-    cutoff<- 4/((nrow(data)-length(Sp_latdirect$coefficients)-2)) 
-    plot(Sp_latdirect, which=4, cook.levels=cutoff)
-    subset=data[-c(122,126,128),]
-
-  LS_latdirect=(with(data,lm(LS~Stream*Latitude+Marine),na.action=na.fail))
-    cutoff<- 4/((nrow(data)-length(LS_latdirect$coefficients)-2)) 
-    plot(LS_latdirect, which=4, cook.levels=cutoff)
-    subset=data[-c(110,122,127),]
-
-  Gen_latdirect=(with(data,lm(Gen~Marine+Stream),na.action=na.fail))
-  Vul_latdirect=(with(data,lm(Vul~Latitude*Stream+Marine),na.action=na.fail))
-    cutoff<- 4/((nrow(data)-length(Vul_latdirect$coefficients)-2)) 
-    plot(Vul_latdirect, which=4, cook.levels=cutoff)
-    subset=data[-c(110,122,127),]
+    # non-TS - updated 29/06/2015
+    Sp_latdirect=(with(data,lm(Species~Lake+Marine),na.action=na.fail)) }
+    LS_latdirect=(with(data,lm(LS~Stream+Marine),na.action=na.fail))
+    Gen_latdirect=(with(data,lm(Gen~Stream),na.action=na.fail))
+    Vul_latdirect=(with(data,lm(Vul~Stream+Marine),na.action=na.fail))
