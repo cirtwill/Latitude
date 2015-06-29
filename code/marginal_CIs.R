@@ -273,9 +273,9 @@ T_CIs <- function(model){
         lake_lower <- lake_m - 1.64*lake_se
 
       results <- cbind(lat,marginal,upper,lower,marine_m,marine_upper,marine_lower,
-        stream_m,stream_upper,stream_lower,lake_m,lake_upper,lake_lower)
+        lake_m,lake_upper,lake_lower,stream_m,stream_upper,stream_lower)
       colnames(results)=c("Latitude","Marginal","Upper","Lower","Marine","Marine_upper","Marine_lower",
-        "Stream","Stream_upper","Stream_lower","Lake","Lake_upper","Lake_lower")
+        "Lake","Lake_upper","Lake_lower","Stream","Stream_upper","Stream_lower")
       }
       return(results)
     }
