@@ -14,16 +14,20 @@
     lbdredge=dredge(LS_B_full,rank=AIC)
     # Same in both infiles :)
     if(infile=='../non_TS/summary-properties.tsv'){
-      LS_B_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):Stream, na.action=na.fail   ))
-    } else {       ### Probably wrong
-    # TS - updated 29/06/2015
-    LS_B_min=with(data,lm(log(LS)~log(Basal)
-      +log(Basal):Latitude
-      +log(Basal):(Marine+Stream+Terr)
-      +log(Basal):Latitude:(Marine+Terr)
-      , na.action=na.fail   ))
-    }
+      # non-TS - updated 29/06/2015
+      LS_B_min=with(data,lm(log(LS)~log(Basal)
+        +log(Basal):Latitude
+        +log(Basal):(Marine+Stream+Terr)
+        +log(Basal):Latitude:(Marine+Terr)
+        , na.action=na.fail   ))
+      } else {       ### Probably wrong
+      # TS - updated 29/06/2015
+      LS_B_min=with(data,lm(log(LS)~log(Basal)
+        +log(Basal):Latitude
+        +log(Basal):(Marine+Stream+Terr)
+        +log(Basal):Latitude:(Marine+Terr)
+        , na.action=na.fail   ))
+      }
 
     obs_LS_B=with(data,lm(log(LS)~log(Basal), na.action=na.fail   ))
 
@@ -34,15 +38,17 @@
     ,na.action=na.fail))
     lidredge=dredge(LS_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
+      # TS, updated 29/06/2015
+      # The only major change so far.
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
         +log(Intermediate):Stream, na.action=na.fail   ))
-    } else {  #updated 29/06/2015
+      } else {  #updated 29/06/2015
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
         +log(Intermediate):Latitude
         +log(Intermediate):Stream
         +log(Intermediate):Latitude:Stream
         , na.action=na.fail   ))
-    }
+      }
 
     obs_LS_I=with(data,lm(log(LS)~log(Intermediate), na.action=na.fail   ))
 
@@ -53,15 +59,19 @@
     ,na.action=na.fail))
     ltdredge=dredge(LS_T_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
-      LS_T_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):Stream, na.action=na.fail   ))
-    } else {  #updated 29/06/2015
-    LS_T_min=with(data,lm(log(LS)~log(Toppreds)
-    +log(Toppreds):(Lake+Marine+Stream+Terr)
-    +log(Toppreds):Latitude
-    +log(Toppreds):Latitude:(Stream+Terr)
-    , na.action=na.fail   ))
-    }
+      # Updated 29/06/2015
+      LS_T_min=with(data,lm(log(LS)~log(Toppreds)
+        +log(Toppreds):(Lake+Marine+Stream+Terr)
+        +log(Toppreds):Latitude
+        +log(Toppreds):Latitude:(Stream+Terr)
+      , na.action=na.fail   ))
+      } else {  #updated 29/06/2015
+      LS_T_min=with(data,lm(log(LS)~log(Toppreds)
+        +log(Toppreds):(Lake+Marine+Stream+Terr)
+        +log(Toppreds):Latitude
+        +log(Toppreds):Latitude:(Stream+Terr)
+        , na.action=na.fail   ))
+      }
 
     obs_LS_T=with(data,lm(log(LS)~log(Toppreds), na.action=na.fail   ))
 
@@ -81,8 +91,12 @@
     gbdredge=dredge(Gen_B_full,rank=AIC)
     # Same for both infiles :)
     if(infile=='../non_TS/summary-properties.tsv'){
-      Gen_Bgbdredge_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):Stream, na.action=na.fail   ))
+      # updated 29/06/2015
+      Gen_B_min=with(data,lm(log(Gen)~log(Basal)
+        +log(Basal):Latitude
+        +log(Basal):(Marine+Stream+Terr)
+        +log(Basal):Latitude:(Marine+Terr)
+        , na.action=na.fail   ))
     } else {  #updated 29/06/2015
       Gen_B_min=with(data,lm(log(Gen)~log(Basal)
         +log(Basal):Latitude
@@ -100,6 +114,7 @@
     ,na.action=na.fail))
     gidredge=dredge(Gen_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
+      # updated 29/06/2015
       Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
         +log(Intermediate):Latitude
         +log(Intermediate):(Lake+Stream)
@@ -121,10 +136,10 @@
     ,na.action=na.fail))
     gtdredge=dredge(Gen_T_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
+      # updated 29/06/2015
       Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
-        +log(Toppreds):Latitude
-        +log(Toppreds):(Lake+Stream)
-        +log(Toppreds):Latitude:(Lake+Stream) , na.action=na.fail   ))
+        +log(Toppreds):(Lake+Marine+Stream)
+        , na.action=na.fail   ))
     } else {  # TS - updated 29/06/2015
       Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
         +log(Toppreds):(Lake+Marine+Stream+Terr)
@@ -146,8 +161,8 @@
     +log(Basal):Latitude:(Stream+Lake+Marine+Terr)
     ,na.action=na.fail))
     vbdredge=dredge(Vul_B_full,rank=AIC)
-
     if(infile=='../non_TS/summary-properties.tsv'){
+      # updated 29/06/2015, same in both infiles
       Vul_B_min=with(data,lm(log(Vul)~log(Basal)
         +log(Basal):Latitude
         +log(Basal):(Marine+Stream+Terr)
@@ -170,8 +185,10 @@
     ,na.action=na.fail))
     vidredge=dredge(Vul_I_full,rank=AIC)
     if(infile=='../non_TS/summary-properties.tsv'){
+      # updated 29/06/2015
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
-        +log(Intermediate):(Lake+Stream), na.action=na.fail   ))
+        +log(Intermediate):Stream
+        , na.action=na.fail   ))
     } else {   # TS - updated 29/06/2015
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
         +log(Intermediate):Stream
@@ -190,15 +207,19 @@
     vtdredge=dredge(Vul_T_full,rank=AIC)
     # Same for both infiles :)
     if(infile=='../non_TS/summary-properties.tsv'){
+      # updated 29/06/2015
       Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
-        +log(Toppreds):(Lake+Stream), na.action=na.fail   ))
-    } else {   # TS - updated 29/06/2015
-    Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
-      +log(Toppreds):(Lake+Marine+Stream+Terr)
-      +log(Toppreds):Latitude
-      +log(Toppreds):Latitude:(Stream+Terr) ))
-      ,na.action=na.fail))
-    }
+        +log(Toppreds):(Lake+Marine+Stream+Terr)
+        +log(Toppreds):Latitude
+        +log(Toppreds):Latitude:(Stream+Terr)
+        ,na.action=na.fail))
+      } else {   # TS - updated 29/06/2015
+      Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
+        +log(Toppreds):(Lake+Marine+Stream+Terr)
+        +log(Toppreds):Latitude
+        +log(Toppreds):Latitude:(Stream+Terr)
+        ,na.action=na.fail))
+      }
 
     obs_Vul_T=with(data,lm(log(Vul)~log(Toppreds), na.action=na.fail   ))
 
@@ -219,19 +240,22 @@
   tld=dredge(T_latdirect_full,rank=AIC)
 
   if(infile=='../non_TS/summary-properties.tsv'){
-    B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lake),na.action=na.fail))
+    # non-TS, updated 29/06/2015
+    B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lake+Marine),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lake+Marine),na.action=na.fail))
     }
 
   if(infile=='../non_TS/summary-properties.tsv'){
-    I_latdirect=(with(data,lm(Intermediate~1),na.action=na.fail))
+    # non-TS, updated 29/06/2015
+    I_latdirect=(with(data,lm(Intermediate~Latitude*Lake+Stream),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     I_latdirect=(with(data,lm(Intermediate~Latitude*Lake+Stream),na.action=na.fail))
     }
 
   if(infile=='../non_TS/summary-properties.tsv'){
-    T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Marine+Latitude:Stream),na.action=na.fail))
+    # non-TS, updated 29/06/2015
+    T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Latitude:Stream),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     T_latdirect=(with(data,lm(Toppreds~Latitude*Lake+Stream+Latitude:Stream),na.action=na.fail))
     }
