@@ -25,15 +25,23 @@ def datareader(rawdatafile,TL,Bformat):
   f=open(rawdatafile,'r')
   for line in f:
     if line.split()[0]!='Web':
-      Latitude=float(line.split('\t')[6])
-      S=int(line.split('\t')[7])
-      LS=float(line.split('\t')[10])
-      Gen=float(line.split('\t')[12])
-      Vul=float(line.split('\t')[14])
       ecotype=line.split('\t')[1]
       ecotype=ecotype.capitalize()
+      site=line.split('\t')[2]
+      Latitude=float(line.split('\t')[3])
+      S=int(line.split('\t')[4])
+      L=line.split('\t')[5]
+      C=line.split('\t')[6]
+      LS=float(line.split('\t')[7])
+      LSsd=line.split('\t')[8]
+      Gen=float(line.split('\t')[9])
+      GenSD=float(line.split('\t')[10])
+      Vul=float(line.split('\t')[11])
+      VulSD=float(line.split('\t')[12])
       B=float(line.split('\t')[-4])
+      H=float(line.split('\t')[-3])
       I=float(line.split('\t')[-2])
+      I=I+H # Include the herbivores as intermediates
       T=float(line.split('\t')[-1])
 
       for response in ['LS','Gen','Vul']:
@@ -74,21 +82,20 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
 
   f=open(rawdatafile,'r')
   for line in f:
+    # print line.split()
+    # sys.exit()
     if line.split()[0]!='Web':
-      Latitude=float(line.split('\t')[6])
-      S=float(line.split('\t')[7])
-      LS=float(line.split('\t')[10])
-      Gen=float(line.split('\t')[12])
-      Vul=float(line.split('\t')[14])
-      # Correct
-      # LS=(math.log(LS)-LS_centre)/LS_scale
-      # Gen=(math.log(G)-G_centre)/G_scale
-      # Vul=(math.log(V)-V_centre)/V_scale
       ecotype=line.split('\t')[1]
       ecotype=ecotype.capitalize()
-
+      Latitude=float(line.split('\t')[3])
+      S=float(line.split('\t')[4])
+      LS=float(line.split('\t')[7])
+      Gen=float(line.split('\t')[9])
+      Vul=float(line.split('\t')[11])
       B=float(line.split('\t')[-4])
+      H=float(line.split('\t')[-3])
       I=float(line.split('\t')[-2])
+      I=H+I
       T=float(line.split('\t')[-1])
 
       # Correct the observed property based on latitude and ecotype effects
@@ -190,8 +197,8 @@ def predictionlines(fixed,prop,TL):
       ecoline.append((S,predy))
   else:
     ## Need to do a range of percents
-    for frac in range(1,101):
-      perc=float(frac)/float(100)
+    for frac in range(1,201):
+      perc=float(frac)/float(200)
       predy=alpha*(perc**delta)
       ecoline.append((perc,predy))
 
@@ -252,7 +259,7 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
           graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
       if TL!='S':
-        graph.world.xmin=0.01
+        graph.world.xmin=0.005
       else:
         graph.world.xmin=1
       graph.world.ymin=.1
@@ -267,7 +274,7 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
       graph.yaxis.set_log()
 
       if TL=='S':
-        graph.world.xmax=350
+        graph.world.xmax=200
       else:
         graph.world.xmax=1
 
@@ -348,23 +355,24 @@ def rawplots(rawdatafile,outfile,Bformat,predfolder):
           graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
       if TL!='S':
-        graph.world.xmin=0.01
+        graph.world.xmin=0.005
       else:
         graph.world.xmin=1
-      if TL=='S':
-        graph.world.xmax=350
-      else:
-        graph.world.xmax=1
-      graph.world.ymin=.5
+      graph.world.ymin=.1
 
       if prop=='LS':
         graph.world.ymax=100
       elif prop=='Gen':
-        graph.world.ymax=100
+        graph.world.ymax=50
       else:
-        graph.world.ymax=100
+        graph.world.ymax=50
       graph.xaxis.set_log()
       graph.yaxis.set_log()
+
+      if TL=='S':
+        graph.world.xmax=250
+      else:
+        graph.world.xmax=1
 
       graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
       graph.xaxis.ticklabel.configure(char_size=.75)
