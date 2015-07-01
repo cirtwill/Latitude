@@ -175,17 +175,17 @@ power_analysis=FALSE
     outdir='../mod_data/'  } else {
       outdir='../non_TS/'     }
   # Data
-  write.table(LS_fake,file=paste(outdir,'subset/predictions/LS.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
-  write.table(Gen_fake,file=paste(outdir,'subset/predictions/Gen.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
-  write.table(Vul_fake,file=paste(outdir,'subset/predictions/Vul.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
+  write.table(LS_fake,file=paste(outdir,'predictions/LS.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
+  write.table(Gen_fake,file=paste(outdir,'predictions/Gen.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
+  write.table(Vul_fake,file=paste(outdir,'predictions/Vul.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
   # Predictions
-  write.table(summary(LS_min)$coefficients,file=paste(outdir,'subset/coefficients/LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(Gen_min)$coefficients,file=paste(outdir,'subset/coefficients/Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(Vul_min)$coefficients,file=paste(outdir,'subset/coefficients/Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(LS_min)$coefficients,file=paste(outdir,'coefficients/LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(Gen_min)$coefficients,file=paste(outdir,'coefficients/Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(Vul_min)$coefficients,file=paste(outdir,'coefficients/Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
   # Coefficients from non-corrected models
-  write.table(summary(obs_LS)$coefficients,file=paste(outdir,'subset/coefficients/LS_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(obs_Gen)$coefficients,file=paste(outdir,'subset/coefficients/Gen_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'subset/coefficients/Vul_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(obs_LS)$coefficients,file=paste(outdir,'coefficients/LS_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(obs_Gen)$coefficients,file=paste(outdir,'coefficients/Gen_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'coefficients/Vul_obs.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
 
   write.table(LB_fake,file=paste(outdir,'predictions/LB.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   
   write.table(LI_fake,file=paste(outdir,'predictions/LI.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')   

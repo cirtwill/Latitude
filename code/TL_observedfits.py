@@ -217,9 +217,9 @@ def scaleplots(rawdatafile,outfile,Bformat,predfolder):
         fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
       else:
         if rawdatafile=='../non_TS/summary-properties.tsv':
-          fixed=fixed_reader('../non_TS/subset/coefficients/'+prop+'_co.tsv')
+          fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
         else:
-          fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_co.tsv')
+          fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
 
       graph=grace.add_graph(Panel)
       for ecotype in ecotypes:
@@ -315,9 +315,9 @@ def rawplots(rawdatafile,outfile,Bformat,predfolder):
         fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_obs.tsv')
       else:
         if rawdatafile=='../non_TS/summary-properties.tsv':
-          fixed=fixed_reader('../non_TS/subset/coefficients/'+prop+'_obs.tsv')
+          fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
         else:
-          fixed=fixed_reader('../mod_data/subset/coefficients/'+prop+'_obs.tsv')
+          fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
 
       graph=grace.add_graph(Panel)
 
