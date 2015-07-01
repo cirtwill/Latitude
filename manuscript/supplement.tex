@@ -14,19 +14,19 @@
 
 % some cheats to reduce the need to type complicated bits and pieces
 \newcommand{\expect}[1]{\left\langle #1 \right\rangle}
-\newcommand{\etal}{\textit{et al.\ }
+\newcommand{\etal}{\textit{et al.\ }}
 
 \newcommand{\beginsupplement}{%
         \setcounter{table}{0}
-        \renewcommand{\thetable}{S\arabic{table}%
+        \renewcommand{\thetable}{S\arabic{table}}%
         \setcounter{figure}{0}
-        \renewcommand{\thefigure}{S\arabic{figure}%
+        \renewcommand{\thefigure}{S\arabic{figure}}%
      }
 
 % the abstract formatting
 \newenvironment{sciabstract}{%
 \begin{quote} \bf}
-{\end{quote}
+{\end{quote}}
 
 \renewcommand\refname{References}
 % the abstract formatting
@@ -46,7 +46,7 @@
 
 \title{Supplementary Information}
 \author{Alyssa R. Cirtwill$^{1,2}$, Daniel B. Stouffer$^{1,3}$, Tamara N. Romanuk$^{2}$}
-\date{\small$^1$School of Biological Sciences\\University of Canterbury\\
+\date{\footnotesize$^1$School of Biological Sciences\\University of Canterbury\\
 Private Bag 4800\\Christchurch 8140, New Zealand \\
 \medskip$^2$Department of Biology\\
 Life Science Centre, Dalhousie University\\1355 Oxford St., P0 BOX 15000\\
@@ -62,6 +62,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 
 \vspace{0.4 in}
 \beginsupplement
+\linenumbers
 % \begin{landscape}
 \subsection*{Appendix S1: Details of Food Web Sources and Selection}
 
@@ -86,8 +87,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
   the parasites (and all interactions involving them) from these webs (and the
   3 webs containing parasites from~\citet{GlobalWeb}) leaving free-living
   species only. In addition, we included 30 of the 40 webs
-  from~\citet{Riede2011}, which were originally collected to test the
-  relationship between consumer and resources body sizes. Nine of the
+  from~\citet{Riede2011}. Nine of the
   remaining webs in the~\citet{Riede2011} dataset were also included in
   the~\citet{GlobalWeb}  dataset, and the last web was derived from an
   unpublished source. This gave us a database of 263 webs. As we wished to use
@@ -103,434 +103,606 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
   exclusion. 
 
 
+  \newpage
+  \begin{landscape}
+
+    \begin{table}[h!]
+    \centering
+    \caption{Sources of food webs considered for use in this study. ``Collection" indicates the direct source of the
+    food web (i.e., where the interaction matrix was obtained) while ``Original source" indicates the original publication
+    of the food web. We also show the ecosystem type, country of origin, and latitude for each food web, as well as whether
+    it was ultimately included in the study. Collection 1 is~\citet{Riede2011}, collection 2 is~\citet{Dunne2013}, and collection 3 is~\citet{GlobalWeb}.}
+    \label{S1}
+  
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection \\
+        \hline
+        Alamitos & 1 & \citet{Harrison1995}    & stream & 37,12,25 N & Yes   &       \\
+        Alford & 1 & \citet{Havens1992}    & lake  & 44,15,41.59 N & Yes   &       \\
+        Beaver & 1 & \citet{Havens1992}    & lake  & 44,18,58.13 N & Yes   &       \\
+        Bere  & 1 & \citet{Woodward2008}  & stream & 50,45,7 N & Yes   &       \\
+        Bridge & 1 & \citet{Havens1992}    & lake  & 44,09,42.66 N & Yes   &       \\
+        Broad & 1 & \citet{Townsend1998}  & stream & 45.896938 S & Yes   &       \\
+        Broadstone & 1 & \citet{Woodward2005} & stream  & 51,01,05 N & Yes   &       \\
+        Calero & 1 & \citet{Harrison1995}    & stream & 37,11,09 - 20 N & Yes   &       \\
+        Canton & 1 & \citet{Townsend1998}  & stream & 45.752 S & No    & Duplicated in GlobalWeb (web 235) \\
+        Carpinteria2006 & 1 & \citet{Lafferty2006}    & estuary & 34.41 - 34.40 N & Yes   &       \\
+        Chub  & 1 & \citet{Havens1992}    & lake  & 43,31,39.36 N & Yes   &       \\
+        Coachella & 1 & \citet{Polis1991a} & terrestrial & 33,54 N & Yes   &       \\
+        Connery & 1 & \citet{Havens1992}    & lake  & 44,18,42.10 N & Yes   &       \\
+        Corte & 1 & \citet{Harrison1995}    & stream & 37,56,28 - 37,57,39 N & Yes   &       \\
+        Coyote & 1 & \citet{Harrison1995}    & stream & 37,53,11.66 - 37,53,17.06 N & Yes   &       \\
+        German & 1 & \citet{Townsend1998}  & stream & 44.97 S & No    & Duplicated in GlobalWeb (web 227) \\
+        GrandeCl & 1 & \citet{CattinBlandenier2004} & terrestrial & 46,47,09 N & Yes   &       \\
+        GrandeSc & 1 & \citet{CattinBlandenier2004} & terrestrial & 46,47,09 N & Yes   &       \\
+        Guadalupe & 1 & \citet{Harrison1995}    & stream & 37,27,54 - 37,21,17 N & Yes   &       \\
+        Hainich   & 1 & Unpublished  & terrestrial &       & No    & Could not locate original source \\
+        LittleKyeBurn & 1 & \citet{Townsend1998}  & stream & 45 S  & No    & Duplicated in GlobalWeb (web 230) \\
+        LittleRock & 1 & \citet{Martinez1991}    & lake  & 45,44,07.94 N & Yes   &       \\
+        Mondego & 1 & \citet{Patricio2006}  & estuary & 40,08 N & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        Montane Forest & 1 & \citet{Rasmussen1941}    & terrestrial & 36,5-37 N & No    & Duplicated in GlobalWeb (web60) \\
+        Reef  & 1 & \citet{Opitz1996}  & marine & 18,29 - 17,53 N & Yes   &       \\
+        Sierra & 1 & \citet{Brose2005}    & lake  & 36,50 - 37,02 N & Yes   &       \\
+        SimberloffE1 & 1 & \citet{Simberloff1976}  & terrestrial & 24,40,37.29 N & Yes   &       \\
+        SimberloffE2 & 1 & \citet{Simberloff1976}  & terrestrial & 24,40,33 N & Yes   &       \\
+        SimberloffE3 & 1 & \citet{Simberloff1976}  & terrestrial & 24,41,23.82 N & Yes   &       \\
+        SimberloffE7 & 1 & \citet{Simberloff1976}  & terrestrial & 25,15 N & Yes   &       \\
+        SimberloffE9 & 1 & \citet{Simberloff1976}  & terrestrial & 25,01,59.64 - 25,02,55.44 N & Yes   &       \\
+        SimberloffST2 & 1 & \citet{Simberloff1976}  & terrestrial & 24,36,16 N & Yes   &       \\
+        Skipwith & 1 & \citet{Warren1989}  & lake  & 53,40 N & Yes   &       \\
+        Stink & 1 & \citet{Havens1992}    & lake  & 43,37,55.88 N & Yes   &       \\
+        StMarks & 1 & \citet{Christian1999}    & estuary & 30,05 N & No    & Duplicated in GlobalWeb (web 288) \\
+        Stony  & 1 & \citet{Townsend1998}  & stream & 45.58 S & No    & Duplicated in GlobalWeb (web 231) \\
+        TreleaseWoods & 1 & \citet{Twomey1945}    & terrestrial & 40,09,47 N & No    & Duplicated in GlobalWeb (web 59) \\
+        Tuesday & 1 & \citet{Jonsson2005}    & lake  & 46,13 N & Yes   &       \\
+        Weddell Sea & 1 & \citet{Brose2005}  & marine & 58,20.8 - 60,10.4 S & No    & Duplicated in GlobalWeb (web 341) \\
+        Ythan & 1 & \citet{Huxham1996}     & marine &       & No    & Duplicated in Dunne (YthanDunne) \\
+        BahiaDunne & 2 & \citet{Hechinger2011}  & estuary & 30.43 - 30.46 N & Yes   &        \\
+        CarpinteriaDunne & 2 & \citet{Hechinger2011}    & estuary & 34.41 - 34.40 N & Yes   &        \\
+        EsteroDunne & 2 & \citet{Hechinger2011}  & estuary & 31.78 - 31.69 N & Yes   &        \\
+        FjordDunne & 2 & \citet{Zander2011}  & estuary & 54.92 - 54.75 N & Yes   &        \\
+        OtagoDunne & 2 & \citet{Mouritsen2011}  & estuary & 45.78 - 45.88 S & Yes   &        \\
+        SyltDunne & 2 & \citet{Thieltges2011}  & estuary & 54.83 - 55.12 N & Yes   &        \\
+        YthanDunne & 2 & \citet{Huxham1996}  & estuary & 57,18,32 N & Yes   &        \\
+        1     & 3 & \citet{Qazim1970}  & estuary &       & No    & Could not locate original source \\
+        2     & 3 & \citet{Day1967} & estuary &       & No    & Could not locate original source \\
+        3     & 3 & \citet{Woodwell1967}    & estuary & 41,03,11 N & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        4     & 3 & \citet{Johnston1956}    & estuary &       & No    & Sink web \\
+        5     & 3 & \citet{Teal1962}    & estuary & 31,28,38 N & Yes   &       \\
+        6     & 3 & \citet{MacGinitie1935}    & estuary & 36,48,18 N & Yes   &       \\
+        7     & 3 & \citet{Kremer1978}    & marine & 41,45 - 41,30 N & Yes   &       \\
+        8     & 3 & \citet{Nixon1973}    & estuary & 41,33,00 N & Yes   &       \\
+        9     & 3 & \citet{Kitching1967}  & stream &       & No    & Could not locate original source \\
+        10    & 3 & \citet{Menge1976}    & marine & 41 - 47 N & Yes   &       \\
+        11    & 3 & \citet{Menge1976}    & marine & 41 - 47 N & Yes   &       \\
+        12    & 3 & \citet{Menge1976}    & marine & 45,45 - 49 N & Yes   &       \\
+        13    & 3 & \citet{Menge1976}    & marine & 45,45 - 49 N & Yes   &       \\
+        14    & 3 & \citet{Walsh1967}  & estuary & 21,26,09 N & No    & Could not locate original source \\
+        15    & 3 & \citet{Walsh1967}  & estuary & 21,26,09 N & No    & Could not locate original source \\
+        16    & 3 & \citet{Copeland1974}    & estuary &       & No    & Could not locate original source \\
+        17    & 3 & \citet{Hiatt1960}  & marine & 4,30 - 15 N & No    & Generalized scheme \\
+        18    & 3 & \citet{Niering1963a}  & terrestrial & 1,01,29 - 1,06,23 N & Yes   &       \\
+        19    & 3 & \citet{Brooks1963}    & lake &       & No    & Could not locate original source \\
+        20    & 3 & \citet{Knox1970}  & terrestrial &       & No    & Could not locate original source \\
+        21    & 3 & \citet{Patten1979}  & marine & 70-85 S & Yes   &       \\
+        22    & 3 & \citet{Summerhayes1923}  & terrestrial & 74,27,54 N & Yes   &       \\
+        23    & 3 & \citet{Bird1930}  & terrestrial & 50,25,17 N & Yes   &       \\
+        24    & 3 & \citet{Bird1930}  & terrestrial & 50,25,17 N & Yes   &       \\
+        25    & 3 & \citet{Bird1930}  & terrestrial & 50,25,17 N & Yes   &       \\
+        26    & 3 & \citet{Bird1930}  & terrestrial & 50,25,17 N & Yes   &       \\
+        27    & 3 & \citet{Varley1970}  & terrestrial &       & No    & Could not locate original source \\
+        28    & 3 & \citet{Paviour-Smith1956}  & estuary & 45,51,30 S & Yes   &       \\
+        29    & 3 & \citet{Dunbar1953}  & marine &       & No    & Generalized scheme \\
+        30    & 3 & \citet{Mackintosh1964}  & marine &       & No    & Generalized scheme \\
+        31    & 3 & \citet{Petipa1970}  & marine &       & No    & Could not locate original source \\
+      \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        32    & 3 & \citet{Petipa1970}  & marine &       & No    & Could not locate original source \\
+        33    & 3 & \citet{Fryer1959} & lake & 11,36,39 S & Yes   &       \\
+        34    & 3 & \citet{Jones1949}     & stream & 51,41 - 51,55 N & Yes   &       \\
+        35    & 3 & \citet{Minshall1967}    & stream & 37,18,26 N & Yes   &       \\
+        36    & 3 & \citet{Walsh1967}  & estuary & 21,26,09 N & No    & Could not locate original source \\
+        37    & 3 & \citet{Clarke1967}    & marine & 41,02,49 N & Yes   &       \\
+        38    & 3 & \citet{Fryer1959} & lake & 11,36,39 S & Yes   &       \\
+        39    & 3 & \citet{Fryer1959} & lake & 11,36,39 S & Yes   &       \\
+        40    & 3 & \citet{Harrison1962}  & terrestrial &       & No    & Generalized scheme \\
+        41    & 3 & \citet{Parin1970}  & marine &       & No    & Could not locate original source \\
+        42    & 3 & \citet{Vinogradov1978}  & marine &       & No    & Study site unclear \\
+        43    & 3 & \citet{Rosenthal1974}    & marine & 32,57 N & Yes   &       \\
+        44    & 3 & \citet{Yanez1978}  & marine & 17,26,21 N & Yes   &       \\
+        45    & 3 & \citet{Tilly1968}    & stream & 41,22,55 N & Yes   &       \\
+        46    & 3 & \citet{Patten1975}    & lake & 33,54 N & Yes   &       \\
+        47    & 3 & \citet{Harris1980}    & lake &       & No    & Study site unclear \\
+        48    & 3 & \citet{Simenstad1978}    & marine &       & No    & Extinct species \\
+        49    & 3 & \citet{Simenstad1978}    & marine &       & No    & Extinct species \\
+        50    & 3 & \citet{Nybakken1982}    & marine &       & No    & Generalized scheme \\
+        51    & 3 & \citet{Dexter1947}    & marine & 42,38,56 N & Yes   &       \\
+        52    & 3 & \citet{Paine1980a}    & marine & 58,27 N & Yes   &       \\
+        53    & 3 & \citet{Paine1980a}    & marine & 48,19 - 48,37 N & Yes   &       \\
+        54    & 3 & Unpublished  & marine &       & No    & Unpublished \\
+        55    & 3 & \citet{Milne1972}  & estuary &       & No    & Could not locate original source \\
+        56    & 3 & \citet{Milne1972}  & estuary &       & No    & Could not locate original source \\
+        57    & 3 & \citet{Yanez1978}  & marine & 17,26,21 N & Yes   &       \\
+        58    & 3 & \citet{Cohen1990}  & lake & 51,46 N & Yes   &       \\
+        59    & 3 & \citet{Twomey1945}    & terrestrial & 40,09,47 N & Yes   &       \\
+        60    & 3 & \citet{Rasmussen1941}    & terrestrial & 36,5-37 N & Yes   &       \\
+        61    & 3 & \citet{Summerhayes1928}  & terrestrial & 77,52,30 N & Yes   &       \\
+        62    & 3 & \citet{Summerhayes1928}  & terrestrial & 77,52,30 N & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        63    & 3 & \citet{Jones1950}     & stream & 52,25,08 N & Yes   &       \\
+        64    & 3 & \citet{Cummins1966}    & stream & 41,39,33 N & Yes   &       \\
+        65    & 3 & \citet{Tsuda1972}  & stream & 34,21,20 - 34,23,21 N & Yes   &       \\
+        66    & 3 & \citet{Mann1972a}  & stream & 51,30 N & Yes   &       \\
+        67    & 3 & \citet{Carlson1968}    & stream & 40,24,16 N & Yes   &       \\
+        68    & 3 & \citet{Morgan1972}  & lake &       & No    & Could not locate original source \\
+        69    & 3 & \citet{Cohen1990}  & estuary &       & No    & Could not locate original source \\
+        70    & 3 & \citet{Kemp1977}    & estuary & 28,54,08 N & Yes   &       \\
+        71    & 3 & \citet{Sorokin1972}  & lake & 48,00 N & Yes   &       \\
+        72    & 3 & \citet{Baril1983}  & lake & 46,02 N & Yes   &       \\
+        73    & 3 & \citet{Schiemer1979}  & lake &       & No    & Could not locate original source \\
+        74    & 3 & \citet{Cohen1990} & marine & 34,15,00 S & Yes   &       \\
+        75    & 3 & \citet{Pechlaner1972}  & lake & 47,11 N & Yes   &       \\
+        76    & 3 & \citet{Schiemer1979}  & lake & 47,42 - 47,54 N & Yes   &       \\
+        77    & 3 & \citet{Cohen1990}  & lake &       & No    & Could not locate original source \\
+        78    & 3 & \citet{Burgis1972}  & lake & 0     & Yes   &       \\
+        79    & 3 & \citet{Sarvala1974}  & lake &       & No    & Could not locate original source \\
+        80    & 3 & \citet{Sarvala1974}  & lake &       & No    & Could not locate original source \\
+        81    & 3 & \citet{Hatanaka1977}  & marine &       & No    & Could not locate original source \\
+        82    & 3 & \citet{Cohen1990} & marine &       & No    & Could not locate original source \\
+        83    & 3 & \citet{Cohen1990}  & lake &       & No    & Could not locate original source \\
+        84    & 3 & \citet{Wilbur1972}    & lake & 42,28,42 N & Yes   &       \\
+        85    & 3 & \citet{Mizuno1982}  & lake &       & No    & Could not locate original source \\
+        86    & 3 & \citet{Hogetsu1979}  & marine & 34,36 - 35,38 N & Yes   &       \\
+        87    & 3 & \citet{Bradstreet1982}  & terrestrial & 72,46,34.95 N & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        88    & 3 & \citet{Kuusela1980}  & stream &       & No    & Could not locate original source \\
+        89    & 3 & \citet{Hartley1948}  & stream & 52,13 N & Yes   &       \\
+        91    & 3 & \citet{Cohen1990}  & terrestrial &       & No    & Could not locate original source \\
+        92    & 3 & \citet{Swan1961}  & terrestrial &       & No    & Generalized scheme \\
+        93    & 3 & \citet{Pattie1966}    & terrestrial & 45 N  & Yes   &       \\
+        94    & 3 & \citet{Brown1971}    & terrestrial &       & No    & Could not locate original source \\
+        95    & 3 & \citet{Brown1975}    & terrestrial & 70,11,14.18 N & Yes   &       \\
+        96    & 3 & \citet{Cohen1990}  & terrestrial &       & No    & Could not locate original source \\
+        97    & 3 & \citet{Cohen1990}  & terrestrial &       & No    & Could not locate original source \\
+        98    & 3 & \citet{Holm1980}  & terrestrial &       & No    & Could not locate original source \\
+        99    & 3 & \citet{Howes1954}    & terrestrial & 32,36 N & Yes   &       \\
+        100   & 3 & \citet{Cohen1990}  & terrestrial &       & No    & Could not locate original source \\
+        101   & 3 & \citet{Cohen1990} & lake  &       & No    & Could not locate original source \\
+        102   & 3 & \citet{Shushkina1979}  & marine & 10 S - 15 N & Yes   &       \\
+        103   & 3 & \citet{Petipa1979}  & marine &       & No    & Generalized scheme \\
+        104   & 3 & \citet{Menge1976}  & marine & 4,48,04 N & Yes   &       \\
+        105   & 3 & \citet{Edwards1982}  & marine & 42,40 N & Yes   &       \\
+        106   & 3 & \citet{Glynn1965}  & marine &       & No    & Could not locate original source \\
+        107   & 3 & \citet{Peterson1979}  & marine & 39,52,02 N & Yes   &       \\
+        108   & 3 & \citet{Hewatt1937}  & marine & 36,37 N & Yes   &       \\
+        109   & 3 & \citet{Castilla1981} & marine &       & No    & Could not locate original source \\
+        110   & 3 & \citet{Dexter1947}  & marine & 42,38,56 N & Yes   &       \\
+        111   & 3 & \citet{Dexter1947}  & marine & 42,38,56 N & Yes   &       \\
+        112   & 3 & \citet{Dexter1947}  & marine & 42,38,56 N & Yes   &       \\
+        113   & 3 & \citet{Dexter1947}  & marine & 42,38,56 N & Yes   &       \\
+        114   & 3 & \citet{Marshall1982}  & lake  & 17,54,11.90 S & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        115   & 3 & \citet{Koepcke1952}  & marine &       & No    & Could not locate original source \\
+        116   & 3 & \citet{Hurlbert1972}  & lake  & 35,09,19 S & Yes   &       \\
+        117   & 3 & \citet{Zaret1973}  & lake  & 9,11,31.50 N & Yes   &       \\
+        118   & 3 & \citet{Bindloss1972}  & lake  & 56,41,18.71 N & Yes   &       \\
+        119   & 3 & \citet{Mann1972}  & stream & 51,27 N & Yes   &       \\
+        120   & 3 & \citet{Moriarty1973}  & lake  & 0,00,58 N & Yes   &       \\
+        121   & 3 & \citet{VanEs1977}  & estuary & 53,20 - 53,15 N & Yes   &       \\
+        122   & 3 & \citet{Nixon1973}  & estuary & 41,33,04 N & Yes   &       \\
+        123   & 3 & \citet{Harris1972}  & terrestrial & 40,45,28 N & Yes   &       \\
+        124   & 3 & \citet{Collins1976}  & stream & 44,34 N & Yes   &       \\
+        125   & 3 & \citet{Landry1977}  & marine &       & No    & Generalized scheme \\
+        126   & 3 & \citet{Larsson1978}  & lake  & 61,26,00 N & Yes   &       \\
+        127   & 3 & \citet{Beaver1979}  & lake  &       & No    & Could not locate original source \\
+        128   & 3 & \citet{Beaver1979}  & lake  &       & No    & Could not locate original source \\
+        129   & 3 & Unpublished & terrestrial &       & No    & Unpublished \\
+        130   & 3 & \citet{Odum1975}  & estuary & 27,12 N & Yes   &       \\
+        131   & 3 & \citet{Beaver1985}  & lake  & 4,12,37 N & Yes   &       \\
+        132   & 3 & \citet{Beaver1985}  & lake  & 4,12,37 N & Yes   &       \\
+        133   & 3 & \citet{Beaver1985}  & lake  & 7,52,22 N & Yes   &       \\
+        134   & 3 & \citet{Beaver1985}  & lake  & 19 S  & Yes   &       \\
+        135   & 3 & \citet{Beaver1985}  & lake  & 4,40,46 S & Yes   &       \\
+        136   & 3 & \citet{Bradshaw1983}    & lake  &       & No    & Could not locate original source \\
+        137   & 3 & \citet{Corker1984}  & lake  & 22,14-22,17 N & Yes   &       \\
+        138   & 3 & \citet{Kitching1983}     & lake  &       & No    & Could not locate original source \\
+        139   & 3 & \citet{Kitching1983}  & lake  &       & No    & Could not locate original source \\
+        140   & 3 & \citet{Seifert1979}  & terrestrial & 10,21 N & Yes   &       \\
+        141   & 3 & \citet{Seifert1976}  & terrestrial &       & No    & Competition network \\
+        142   & 3 & \citet{Seifert1976}  & terrestrial &       & No    & Competition network \\
+        143   & 3 & \citet{Snow1958}    & lake  & 34,41,45 N & Yes   &       \\
+         \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        144   & 3 & \citet{Snow1958}  & lake  &       & No    & Could not locate original source \\
+        145   & 3 & \citet{Rejmanek1979}  & terrestrial &       & No    & Host-parasitoid web \\
+        146   & 3 & \citet{Rejmanek1979}  & terrestrial &       & No    & Host-parasitoid web \\
+        147   & 3 & \citet{Rejmanek1979}  & terrestrial &       & No    & Host-parasitoid web \\
+        148   & 3 & \citet{Rejmanek1979}  & terrestrial &       & No    & Host-parasitoid web \\
+        149   & 3 & \citet{Force1974}    & terrestrial &       & No    & Host-parasitoid web \\
+        150   & 3 & \citet{Hopkins1984}     & terrestrial &       & No    & Host-parasitoid web \\
+        151   & 3 & \citet{Richards1926}     & terrestrial & 51,20,04 N & Yes   &       \\
+        152   & 3 & \citet{Whittaker1984}    & terrestrial &       & No    & Source web \\
+        153   & 3 & \citet{Mayse1978}    & terrestrial & 40,06,38 N & Yes   &       \\
+        154   & 3 & \citet{Mayse1978}    & terrestrial & 39,56,41 N & Yes   &       \\
+        155   & 3 & \citet{Askew1975}     & terrestrial &       & No    & Host-parasitoid web \\
+        156   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        157   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        158   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        159   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        160   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        161   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        162   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        163   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        164   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        165   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        166   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        167   & 3 & \citet{Askew1961}     & terrestrial &       & No    & Host-parasitoid web \\
+        168   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        169   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\        
+        170   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        171   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\      
+        172   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        173   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        174   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        175   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        176   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        177   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        178   & 3 & \citet{Hawkins1984}    & terrestrial &       & No    & Host-parasitoid web \\
+        \hline
+        \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        179   & 3 & \citet{Robinson1953}  & terrestrial &       & No    & Source web \\
+        180   & 3 & \citet{Savely1939}    & terrestrial & 36,01,02 N & Yes   &       \\
+        181   & 3 & \citet{Savely1939}    & terrestrial & 36,01,02 N & Yes   &       \\
+        182   & 3 & \citet{Savely1939}    & terrestrial & 36,01,02 N & Yes   &       \\
+        183   & 3 & \citet{Savely1939}    & terrestrial & 36,01,02 N & Yes   &       \\
+        184   & 3 & \citet{Beaver1972}     & terrestrial &       & No    & Could not locate original source \\
+        185   & 3 & \citet{Chapman1955}     & terrestrial &       & No    & Source web \\
+        186   & 3 & \citet{Cornaby1974}  & terrestrial &       & No    & Source web \\
+        187   & 3 & \citet{Cornaby1974}  & terrestrial &       & No    & Source web \\
+        188   & 3 & \citet{Jiron1981}  & terrestrial &       & No    & Source web \\
+        189   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        190   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        191   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        192   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        193   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        194   & 3 & \citet{McKinnerney1978}    & terrestrial &       & No    & Could not locate original source \\
+        195   & 3 & \citet{Schoenly1983a}    & terrestrial &       & No    & Could not locate original source \\
+        196   & 3 & \citet{Schoenly1983a}    & terrestrial &       & No    & Could not locate original source \\
+        197   & 3 & \citet{Mohr1943}    & terrestrial &       & No    & Source web \\
+        198   & 3 & \citet{Schoenly1983}  & terrestrial &       & No    & Source web \\
+        199   & 3 & \citet{Valiela1969}    & terrestrial &       & No    & Source web \\
+        200   & 3 & \citet{Valiela1974}    & terrestrial &       & No    & Source web \\
+        201   & 3 & \citet{Valiela1974}    & terrestrial &       & No    & Source web \\
+        202   & 3 & \citet{Allan1982}    & stream & 38,50,21 N & Yes   &       \\
+        203   & 3 & \citet{Collins1976}    & stream & 44,24 N & Yes   &       \\
+        204   & 3 & \citet{Fryer1959} & lake  & 11,36,39 S & Yes   &       \\
+        205   & 3 & \citet{Hildrew1985}     & stream & 51,01,05 N & Yes   &       \\
+        \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        206   & 3 & \citet{Jones1949}     & stream & 51,41 - 51,55 N & Yes   &       \\
+        207   & 3 & \citet{Koslucher1973}    & stream & 41,57 - 42,14 N & Yes   &       \\
+        208   & 3 & \citet{Minckley1963}    & stream & 37,56 N & Yes   &       \\
+        209   & 3 & \citet{Minshall1967}    & stream & 37,18,26 N & Yes   &       \\
+        210   & 3 & \citet{Percival1929}     & stream &       & No    & Generalized scheme \\
+        211   & 3 & \citet{Ricker1935}  & stream &       & No    & Could not locate original source \\
+        212   & 3 & \citet{Ricker1935}  & stream &       & No    & Could not locate original source \\
+        213   & 3 & \citet{Badcock1949}     & stream & 53 N  & Yes   &       \\
+        214   & 3 & \citet{Thompson2003}    & stream & 44,40,44 N & Yes   &       \\
+        215   & 3 & \citet{Thompson2003}    & stream & 40,40,52 N & Yes   &       \\
+        216   & 3 & \citet{Thompson2003}    & stream & 35,02,50 N & Yes   &       \\
+        217   & 3 & \citet{Thompson2003}    & stream & 35,03,50 N & Yes   &       \\
+        218   & 3 & \citet{Thompson2004c}  & stream & 45.79 S & Yes   &       \\
+        219   & 3 & \citet{Thompson2004c}  & stream & 44.64 S & Yes   &       \\
+        220   & 3 & \citet{Thompson2004c}  & stream & 46.29 S & Yes   &       \\
+        221   & 3 & \citet{Thompson2004c}  & stream & 46.41 S & Yes   &       \\
+        222   & 3 & \citet{Thompson2004c}  & stream & 45,57,0 S & Yes   &       \\
+        223   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+        224   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+        225   & 3 & \citet{Thompson2004c}  & stream & 46.115 S & Yes   &       \\
+        226   & 3 & \citet{Thompson2004c}  & stream & 45.61 S & Yes   &       \\
+        227   & 3 & \citet{Thompson2004c}  & stream & 44.97 S & Yes   &       \\
+        228   & 3 & \citet{Thompson2004c}  & stream & 44.95 S & Yes   &       \\
+        229   & 3 & \citet{Thompson2004c}  & stream & 44.96 S & Yes   &       \\
+        230   & 3 & \citet{Thompson2004c}  & stream & 45 S  & Yes   &       \\
+        231   & 3 & \citet{Thompson2004c}  & stream & 45.58 S & Yes   &       \\
+        232   & 3 & \citet{Thompson2004c}  & stream & 45.61 S & Yes   &       \\
+        233   & 3 & \citet{Thompson2004c}  & stream & 45.782 S & Yes   &       \\
+        234   & 3 & \citet{Thompson2004c}  & stream & 45.803 S & Yes   &       \\
+        235   & 3 & \citet{Thompson2004c}  & stream & 45.752 S & Yes   &       \\
+        236   & 3 & \citet{Thompson2004c}  & stream & 46.29 S & Yes   &       \\
+        237   & 3 & \citet{Thompson2004c}  & stream & 46.41 S & Yes   &       \\
+        238   & 3 & \citet{Thompson2004c}  & stream & 45,57,0 S & Yes   &       \\
+        239   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+         \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        240   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+        241   & 3 & \citet{Thompson2004c}  & stream & 46.115 S & Yes   &       \\
+        242   & 3 & \citet{Thompson2004c}  & stream & 46.29 S & Yes   &       \\
+        243   & 3 & \citet{Thompson2004c}  & stream & 46.41 S & Yes   &       \\
+        244   & 3 & \citet{Thompson2004c}  & stream & 45,57,0 S & Yes   &       \\
+        245   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+        246   & 3 & \citet{Thompson2004c}  & stream & 46.08 S & Yes   &       \\
+        247   & 3 & \citet{Thompson2004c}  & stream & 46.115 S & Yes   &       \\
+        248   & 3 & \citet{Thompson2004}  & estuary & 45,51,28 S & Yes   &        \\
+        249   & 3 & \citet{Angelini2005}  & stream & 24,30 S & Yes   &       \\
+        250   & 3 & \citet{Angelini2006}  & lake  & 22,57,38 S & Yes   &       \\
+        251   & 3 & \citet{Angelini2006}  & lake  & 22,57,38 S & Yes   &       \\
+        252   & 3 & \citet{Angelini2010}  & stream & 18,40 S & Yes   &       \\
+        253   & 3 & \citet{Angelini2011}  & marine & 5 - 17,15 S & Yes   &       \\
+        254   & 3 & \citet{Angelini2013}  & stream & 21 S  & Yes   &       \\
+        255   & 3 & \citet{Angelini2013}  & stream & 21 S  & Yes   &       \\
+        256   & 3 & \citet{Angelini2013}  & stream &       & No    & Could not locate original source \\
+        257   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        258   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        259   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        260   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        261   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        262   & 3 & \citet{Baeta2011}  & estuary & 40,08 N & Yes   &       \\
+        263   & 3 & \citet{Schneider1997}    & lake  & 45,58,50 N & Yes   &       \\
+        264   & 3 & \citet{Stagliano2002}    & terrestrial & 39,06,27 N & Yes   &       \\
+        265   & 3 & \citet{Lin2006}  & marine & 22,27 N & Yes   &       \\
+        266   & 3 & \citet{Cornejo-Donoso2008}  & marine & 60 - 69 S & Yes   &       \\
+        267   & 3 & \citet{Zetina-Rejon2003}  & marine & 23.15 - 22.9N & Yes   &       \\
+        268   & 3 & \citet{Cruz-Escalona2007}  & marine & 18,45 - 18,50 N & Yes   &       \\
+        269   & 3 & \citet{Liu2007}  & lake  & 29,32,35 N & Yes   &       \\
+         \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        270   & 3 & \citet{Filgueira2011}  & marine & 42,17,37 - 42,19,29 N & Yes   &       \\
+        271   & 3 & \citet{Amundsen2013}  & lake  & 69,07 N & Yes   &        \\
+        272   & 3 & \citet{Hampton2011}    & lake  & 48,03,29 N & Yes   &       \\
+        273   & 3 & \citet{Parker2006}  & stream & 69,1 N & Yes   &       \\
+        274   & 3 & \citet{Parker2006}  & stream & 69,1 N & Yes   &       \\
+        275   & 3 & \citet{Parker2006}  & stream & 69,1 N & Yes   &       \\
+        276   & 3 & \citet{Parker2006}  & stream & 69,1 N & Yes   &       \\
+        277   & 3 & \citet{Massana1996}  & lake  & 42,08,6 - 42,07 N & Yes   &       \\
+        278   & 3 & \citet{Stewart2011}    & lake  & 43.7 N & Yes   &       \\
+        279   & 3 & \citet{Stewart2011}    & lake  & 43.7 N & Yes   &       \\
+        280   & 3 & \citet{Cromar1996}  & stream & 43,58 N & Yes   &       \\
+        281   & 3 & \citet{Cromar1996}  & stream & 44,58 N & Yes   &       \\
+        282   & 3 & \citet{Cromar1996}  & stream & 45,58 N & Yes   &       \\
+        283   & 3 & \citet{Cromar1996}  & stream & 46,58 N & Yes   &       \\
+        284   & 3 & \citet{Cromar1996}  & stream & 47,58 N & Yes   &       \\
+        285   & 3 & \citet{Cromar1996}  & stream & 48,58 N & Yes   &       \\
+        286   & 3 & \citet{Cromar1996}  & stream & 49,58 N & Yes   &       \\
+        287   & 3 & \citet{Cromar1996}  & stream & 50,58 N & Yes   &       \\
+        288   & 3 & \citet{Christian1999}    & estuary & 30,05,39 N & Yes   &       \\
+        289   & 3 & \citet{Fetahi2011}  & lake  & 11,15 N & Yes   &       \\
+        290   & 3 & \citet{Brodeur1992}    & marine & 43 - 48 N & Yes   &       \\
+        291   & 3 & \citet{Brodeur1992}    & marine & 44 - 48 N & Yes   &       \\
+        292   & 3 & \citet{Brodeur1992}    & marine & 45 - 48 N & Yes   &       \\
+        293   & 3 & \citet{Brodeur1992}    & marine & 46 - 48 N & Yes   &       \\
+        294   & 3 & \citet{Gaedke1994}  & lake  & 47,37,30 N & Yes   &       \\
+        295   & 3 & \citet{Preston2012}    & lake  & 37.66 N & Yes   &        \\
+        296   & 3 & \citet{Ratsirarson1996}  & lake  & 24,55 S & Yes   &       \\
+        297   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        298   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        299   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        300   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        301   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        302   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        303   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+         \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        304   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        305   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        306   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        307   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        308   & 3 & \citet{Closs1994}  & stream & 37,40 S & Yes   &       \\
+        309   & 3 & \citet{Gontikaki2011}  & marine & 61,13,88 N & Yes   &       \\
+        310   & 3 & \citet{Khan2009}  & lake  & 12,45,25 N & Yes   &       \\
+        311   & 3 & \citet{Memmott2000}     & terrestrial &       & No    & Source web \\
+        312   & 3 & \citet{Kaiser-Bunbury2009}  & terrestrial &       & No    & Plant-pollinator web \\
+        313   & 3 & \citet{Kaiser-Bunbury2009}  & terrestrial &       & No    & Plant-pollinator web \\
+        314   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        315   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        316   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        317   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        318   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        319   & 3 & \citet{Kaiser-Bunbury2011}  & terrestrial &       & No    & Plant-pollinator web \\
+        320   & 3 & \citet{Ruzicka2012}    & marine & 42 - 49 N & Yes   &       \\
+        321   & 3 & \citet{Ruzicka2012}    & marine & 43 - 49 N & Yes   &       \\
+        322   & 3 & \citet{Ruzicka2012}    & marine & 44 - 49 N & Yes   &       \\
+        323   & 3 & \citet{Ruzicka2012}    & marine & 45 - 49 N & Yes   &       \\
+        324   & 3 & \citet{Ruzicka2012}    & marine & 46 - 49 N & Yes   &       \\
+        325   & 3 & \citet{Lewis2002}  & terrestrial &       & No    & Host-parasitoid web \\
+        326   & 3 & \citet{Lewis2002}  & terrestrial &       & No    & Host-parasitoid web \\
+        327   & 3 & \citet{Kelleway2010}  & stream & 29,13 S & Yes   &       \\
+        328   & 3 & \citet{Kelleway2010}  & stream & 29,20,0 S & Yes   &       \\
+        329   & 3 & \citet{Kelleway2010}  & stream & 29,35 S & Yes   &       \\
+        330   & 3 & \citet{Kelleway2010}  & stream & 29,13 S & Yes   &       \\
+        331   & 3 & \citet{Kelleway2010}  & stream & 29,20,0 S & Yes   &       \\
+        332   & 3 & \citet{Huang2008}  & stream & 31.70 N & Yes   &       \\
+        333   & 3 & \citet{Link2002}    & marine & 33,51 - 44,49 N & Yes   &       \\
+        334   & 3 & \citet{Alcorlo2001}  & lake  & 41,26,36 N & Yes   &       \\
+        335   & 3 & \citet{Alcorlo2001}  & lake  & 41,26,05 N & Yes   &       \\
+        336   & 3 & \citet{Alcorlo2001}  & lake  & 41,26,36 N & Yes   &       \\
+        337   & 3 & \citet{Alcorlo2001}  & lake  & 41,26,05 N & Yes   &       \\
+         \hline
+      \end{tabular}}%
+      \end{table}
+
+        \newpage
+
+    \begin{table}[h!]
+    \centering
+    {\footnotesize
+      \begin{tabular}{p{2.8cm}p{1.3cm}p{5.5cm}p{2.2cm}p{2.5cm}lp{3.5cm}}
+        \hline
+        Web ID & Collection & Original Source & Ecosystem & Latitude(degrees) & Used  & Reason for rejection  \\
+        \hline
+        338   & 3 & \citet{Torres2013}  & marine &       & No    & Could not locate original source \\
+        339   & 3 & \citet{Bulman2001}  & marine & 37-39 S & Yes   &       \\
+        340   & 3 & \citet{Smith2007}  & marine & 74-78 S & Yes   &       \\
+        341   & 3 & \citet{Lancraft1991}  & marine & 58,20.8 - 60,10.4 S & Yes   &       \\
+        342   & 3 & \citet{Hopkins1993}  & marine & 57,00 - 60,45 S & Yes   &       \\
+        343   & 3 & \citet{Kitching1987}  & lake  & 28,12 S & Yes   &       \\
+        344   & 3 & \citet{Hodkinson2004}  & terrestrial &       & No    & Host-parasitoid web \\
+        345   & 3 & \citet{Boit2012}  & lake  & 47,38,10 N & Yes   &       \\
+        346   & 3 & \citet{Rayner2010}  & stream & 17,7 S & Yes   &       \\
+        347   & 3 & \citet{Motta2005}  & stream & 23,03 S & Yes   &       \\
+        348   & 3 & \citet{Douglass2011}    & marine & 37,13 N & Yes   &       \\
+        349   & 3 & \citet{Douglass2011}    & marine & 37,13 N & Yes   &       \\
+        350   & 3 & \citet{Douglass2011}    & marine & 37,13 N & Yes   &       \\
+        351   & 3 & \citet{Warren1989}     & lake  &       & No    & Could not locate original source \\
+        352   & 3 & \citet{Poepperl2003}  & stream & 54,06 N & No    & describes compartments, not species \\
+        353   & 3 & \citet{Poepperl2003}  & stream & 54,06 N & No    & describes compartments, not species \\
+        354   & 3 & \citet{Goldwasser1993}  & terrestrial & 18,03 N & Yes   &       \\
+        355   & 3 & \citet{Cohen2003}    & lake  & 46,13 N & Yes   &       \\
+        356   & 3 & \citet{Cohen2003}    & lake  & 46,13 N & Yes   &       \\
+        357   & 3 & \citet{Yodzis1998} & marine & 34,21 - 16 S & No    & Study site unclear \\
+        358   & 3 & \citet{Schroter2003}  & terrestrial &       & No    & Generalized scheme \\
+        359   & 3 & \citet{Baiser2012}  & lake  &       & No    & Study site unclear \\
+        \hline
+      \end{tabular}%
+        }
+    \end{table}%
+
+  \end{landscape}
 \newpage
-\begin{landscape}
 
-  \begin{table}[h!]
-  \centering
-  \caption{Sources of food webs considered for use in this study. ``Collection" indicates the direct source of the
-  food web (i.e., where the interaction matrix was obtained) while ``Original source" indicates the original publication
-  of the food web. We also show the ecosystem type, country of origin, and latitude for each food web, as well as whether
-  it was ultimately included in the study.  }
-  \label{S1}
-% Table generated by Excel2LaTeX from sheet 'Sheet1'
-    \begin{tabular}{rrrrrrrrr}
-      \hline
-      Web ID & Collection & Original Source & Location & Ecosystem & Latitude(degrees) & Used  & Reason for rejection & Notes \\
-      \hline
-      Alamitos & ~\citet{Riede2011} & ~\citet{Harrison1995} & USA   & stream & 37,12,25 N & Yes   &       &  \\
-      Alford & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 44,15,41.59 N & Yes   &       &  \\
-      Beaver & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 44,18,58.13 N & Yes   &       &  \\
-      Bere  & ~\citet{Riede2011} & ~\citet{Woodward2008} & England & stream & 50,45,7 N & Yes   &       &  \\
-      Bridge & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 44,09,42.66 N & Yes   &       &  \\
-      Broad & ~\citet{Riede2011} & ~\citet{Townsend1998} & New Zealand & stream & 45.896938 S & Yes   &       &  \\
-      Broadstone & ~\citet{Riede2011} & ~\citet{Woodward2005} & stream & stream & 51,01,05 N & Yes   &       &  \\
-      Calero & ~\citet{Riede2011} & ~\citet{Harrison1995} & USA   & stream & 37,11,09 - 20 N & Yes   &       &  \\
-      Canton & ~\citet{Riede2011} & ~\citet{Townsend1998} & New Zealand & stream & 45.752 S & No    & Duplicated in GlobalWeb (web 235) &  \\
-      Carpinteria2006 & ~\citet{Riede2011} & ~\citet{Lafferty2006} & USA   & estuary & 34.41 - 34.40 N & Yes   &       &  \\
-      Chub  & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 43,31,39.36 N & Yes   &       &  \\
-      Coachella & ~\citet{Riede2011} & ~\citet{Polis1991a} & desert & terrestrial & 33,54 N & Yes   &       &  \\
-      Connery & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 44,18,42.10 N & Yes   &       &  \\
-      Corte & ~\citet{Riede2011} & ~\citet{Harrison1995} & USA   & stream & 37,56,28 - 37,57,39 N & Yes   &       &  \\
-      Coyote & ~\citet{Riede2011} & ~\citet{Harrison1995} & USA   & stream & 37,53,11.66 - 37,53,17.06 N & Yes   &       &  \\
-      German & ~\citet{Riede2011} & ~\citet{Townsend1998} & New Zealand & stream & 44.97 S & No    & Duplicated in GlobalWeb (web 227) &  \\
-      GrandeCl & ~\citet{Riede2011} & ~\citet{CattinBlandenier2004} & wetland & terrestrial & 46,47,09 N & Yes   &       &  \\
-      GrandeSc & ~\citet{Riede2011} & ~\citet{CattinBlandenier2004} & wetland & terrestrial & 46,47,09 N & Yes   &       &  \\
-      Guadalupe & ~\citet{Riede2011} & ~\citet{Harrison1995} & USA   & stream & 37,27,54 - 37,21,17 N & Yes   &       &  \\
-      Hainich   & ~\citet{Riede2011} & Unpublished & Germany & terrestrial &       & No    & Could not locate original source &  \\
-      LittleKyeBurn & ~\citet{Riede2011} & ~\citet{Townsend1998} & New Zealand & stream & 45 S  & No    & Duplicated in GlobalWeb (web 230) &  \\
-      LittleRock & ~\citet{Riede2011} & ~\citet{Martinez1991} & USA   & lake  & 45,44,07.94 N & Yes   &       &  \\
-      Mondego & ~\citet{Riede2011} & ~\citet{Patricio2006} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      Montane Forest, Arizona & ~\citet{Riede2011} & ~\citet{Rasmussen1941} & USA   & terrestrial & 36,5-37 N & No    & Duplicated in GlobalWeb (web60) &  \\
-      Reef  & ~\citet{Riede2011} & ~\citet{Opitz1996} & Caribbean & marine & 18,29 - 17,53 N & Yes   &       &  \\
-      Sierra & ~\citet{Riede2011} & ~\citet{Brose2005} & USA   & lake  & 36,50 - 37,02 N & Yes   &       &  \\
-      SimberloffE1 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 24,40,37.29 N & Yes   &       &  \\
-      SimberloffE2 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 24,40,33 N & Yes   &       &  \\
-      SimberloffE3 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 24,41,23.82 N & Yes   &       &  \\
-      SimberloffE7 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 25,15 N & Yes   &       &  \\
-      SimberloffE9 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 25,01,59.64 - 25,02,55.44 N & Yes   &       &  \\
-      SimberloffST2 & ~\citet{Riede2011} & ~\citet{Simberloff1976} & Mangrove islands & terrestrial & 24,36,16 N & Yes   &       &  \\
-      Skipwith & ~\citet{Riede2011} & ~\citet{Warren1989} & England & lake  & 53,40 N & Yes   &       &  \\
-      Stink & ~\citet{Riede2011} & ~\citet{Havens1992} & USA   & lake  & 43,37,55.88 N & Yes   &       &  \\
-      StMarks & ~\citet{Riede2011} & ~\citet{Christian1999} & USA   & estuary & 30,05 N & No    & Duplicated in GlobalWeb (web 288) &  \\
-      Stony  & ~\citet{Riede2011} & ~\citet{Townsend1998} & New Zealand & stream & 45.58 S & No    & Duplicated in GlobalWeb (web 231) &  \\
-      TreleaseWoods & ~\citet{Riede2011} & \multicolumn{1}{l}{~\citet{Twomey1945} & USA   & terrestrial & 40,09,47 N & No    & Duplicated in GlobalWeb (web 59) &  \\
-      Tuesday & ~\citet{Riede2011} & ~\citet{Jonsson2005} & USA   & lake  & 46,13 N & Yes   &       &  \\
-      Weddell Sea & ~\citet{Riede2011} & ~\citet{Brose2005} & Antarctica & marine & 58,20.8 - 60,10.4 S & No    & Duplicated in GlobalWeb (web 341) &  \\
-      Ythan & ~\citet{Riede2011} & ~\citet{Huxham1996} & UK    & marine &       & No    & Duplicated in Dunne (YthanDunne) &  \\
-      BahiaDunne & ~\citet{Dunne2013} & ~\citet{Hechinger2011} & Mexico & estuary & 30.43 - 30.46 N & Yes   &       & Parasites removed \\
-      CarpinteriaDunne & ~\citet{Dunne2013} & ~\citet{Hechinger2011} & USA   & estuary & 34.41 - 34.40 N & Yes   &       & Parasites removed \\
-      EsteroDunne & ~\citet{Dunne2013} & ~\citet{Hechinger2011} & Mexico & estuary & 31.78 - 31.69 N & Yes   &       & Parasites removed \\
-      FjordDunne & ~\citet{Dunne2013} & ~\citet{Zander2011} & Germany & estuary & 54.92 - 54.75 N & Yes   &       & Parasites removed \\
-      OtagoDunne & ~\citet{Dunne2013} & ~\citet{Mouritsen2011} & New Zealand & estuary & 45.78 - 45.88 S & Yes   &       & Parasites removed \\
-      SyltDunne & ~\citet{Dunne2013} & ~\citet{Thieltges2011} & Denmark & estuary & 54.83 - 55.12 N & Yes   &       & Parasites removed \\
-      YthanDunne & ~\citet{Dunne2013} & ~\citet{Huxham1996} & Scotland & estuary & 57,18,32 N & Yes   &       & Parasites removed \\
-      1     & ~\citet{GlobalWeb} & ~\citet{Qazim1970} & India & estuary &       & No    & Could not locate original source &  \\
-      2     & ~\citet{GlobalWeb} & ~\citet{Day1967} & South Africa & estuary &       & No    & Could not locate original source &  \\
-      3     & ~\citet{GlobalWeb} & ~\citet{Woodwell1967} & USA   & estuary & 41,03,11 N & Yes   &       &  \\
-      4     & ~\citet{GlobalWeb} & ~\citet{Johnston1956} & USA   & estuary &       & No    & Sink web &  \\
-      5     & ~\citet{GlobalWeb} & ~\citet{Teal1962} & USA   & estuary & 31,28,38 N & Yes   &       &  \\
-      6     & ~\citet{GlobalWeb} & ~\citet{MacGinitie1935} & USA   & estuary & 36,48,18 N & Yes   &       &  \\
-      7     & ~\citet{GlobalWeb} & ~\citet{Kremer1978} & USA   & marine & 41,45 - 41,30 N & Yes   &       &  \\
-      8     & ~\citet{GlobalWeb} & ~\citet{Nixon1973} & USA   & estuary & 41,33,00 N & Yes   &       &  \\
-      9     & ~\citet{GlobalWeb} & ~\citet{Kitching1967} & Ireland & stream &       & No    & Could not locate original source &  \\
-      10    & ~\citet{GlobalWeb} & ~\citet{Menge1976} & USA   & marine & 41 - 47 N & Yes   &       &  \\
-      11    & ~\citet{GlobalWeb} & ~\citet{Menge1976} & USA   & marine & 41 - 47 N & Yes   &       &  \\
-      12    & ~\citet{GlobalWeb} & ~\citet{Menge1976} & USA   & marine & 45,45 - 49 N & Yes   &       &  \\
-      13    & ~\citet{GlobalWeb} & ~\citet{Menge1976} & USA   & marine & 45,45 - 49 N & Yes   &       &  \\
-      14    & ~\citet{GlobalWeb} & ~\citet{Walsh1967} & Hawaii & estuary & 21,26,09 N & No    & Could not locate original source &  \\
-      15    & ~\citet{GlobalWeb} & ~\citet{Walsh1967} & Hawaii & estuary & 21,26,09 N & No    & Could not locate original source &  \\
-      16    & ~\citet{GlobalWeb} & ~\citet{Copeland1974} & USA   & estuary &       & No    & Could not locate original source &  \\
-      17    & ~\citet{GlobalWeb} & ~\citet{Hiatt1960} & Marshall Islands - Pacific Ocean & marine & 4,30 - 15 N & No    & Generalized scheme &  \\
-      18    & ~\citet{GlobalWeb} & ~\citet{Niering1963a} & Polynesia & terrestrial & 1,01,29 - 1,06,23 N & Yes   &       &  \\
-      19    & ~\citet{GlobalWeb} & ~\citet{Brooks1963} & USA   & lake &       & No    & Could not locate original source &  \\
-      20    & ~\citet{GlobalWeb} & ~\citet{Knox1970} & Antarctica & terrestrial &       & No    & Could not locate original source &  \\
-      21    & ~\citet{GlobalWeb} & ~\citet{Patten1979} & Antarctica & marine & 70-85 S & Yes   &       &  \\
-      22    & ~\citet{GlobalWeb} & ~\citet{Summerhayes1923} & Norway & terrestrial & 74,27,54 N & Yes   &       &  \\
-      23    & ~\citet{GlobalWeb} & ~\citet{Bird1930} & Canada & terrestrial & 50,25,17 N & Yes   &       &  \\
-      24    & ~\citet{GlobalWeb} & ~\citet{Bird1930} & Canada & terrestrial & 50,25,17 N & Yes   &       &  \\
-      25    & ~\citet{GlobalWeb} & ~\citet{Bird1930} & Canada & terrestrial & 50,25,17 N & Yes   &       &  \\
-      26    & ~\citet{GlobalWeb} & ~\citet{Bird1930} & Canada & terrestrial & 50,25,17 N & Yes   &       &  \\
-      27    & ~\citet{GlobalWeb} & ~\citet{Varley1970} & England & terrestrial &       & No    & Could not locate original source &  \\
-      28    & ~\citet{GlobalWeb} & ~\citet{Paviour-Smith1956} & New Zealand & estuary & 45,51,30 S & Yes   &       &  \\
-      29    & ~\citet{GlobalWeb} & ~\citet{Dunbar1953} & Arctic seas & marine &       & No    & Generalized scheme &  \\
-      30    & ~\citet{GlobalWeb} & ~\citet{Mackintosh1964} & Antarctica & marine &       & No    & Generalized scheme &  \\
-      31    & ~\citet{GlobalWeb} & ~\citet{Petipa1970} & Black Sea & marine &       & No    & Could not locate original source &  \\
-      32    & ~\citet{GlobalWeb} & ~\citet{Petipa1970} & Black Sea & marine &       & No    & Could not locate original source &  \\
-      33    & ~\citet{GlobalWeb} & ~\citet{Fryer1959} & Malawi & lake & 11,36,39 S & Yes   &       &  \\
-      34    & ~\citet{GlobalWeb} & ~\citet{Jones1949} & UK    & stream & 51,41 - 51,55 N & Yes   &       &  \\
-      35    & ~\citet{GlobalWeb} & ~\citet{Minshall1967} & USA   & stream & 37,18,26 N & Yes   &       &  \\
-      36    & ~\citet{GlobalWeb} & ~\citet{Walsh1967} & Hawaii & estuary & 21,26,09 N & No    & Could not locate original source &  \\
-      37    & ~\citet{GlobalWeb} & ~\citet{Clarke1967} & USA   & marine & 41,02,49 N & Yes   &       &  \\
-      38    & ~\citet{GlobalWeb} & ~\citet{Fryer1959} & Malawi & lake & 11,36,39 S & Yes   &       &  \\
-      39    & ~\citet{GlobalWeb} & ~\citet{Fryer1959} & Malawi & lake & 11,36,39 S & Yes   &       &  \\
-      40    & ~\citet{GlobalWeb} & ~\citet{Harrison1962} & Malaysia & terrestrial &       & No    & Generalized scheme &  \\
-      41    & ~\citet{GlobalWeb} & ~\citet{Parin1970} & Israel & marine &       & No    & Could not locate original source &  \\
-      42    & ~\citet{GlobalWeb} & ~\citet{Vinogradov1978} & Pacific Ocean & marine &       & No    & Study site unclear &  \\
-      43    & ~\citet{GlobalWeb} & ~\citet{Rosenthal1974} & USA   & marine & 32,57 N & Yes   &       &  \\
-      44    & ~\citet{GlobalWeb} & ~\citet{Yanez1978} & Mexico & marine & 17,26,21 N & Yes   &       &  \\
-      45    & ~\citet{GlobalWeb} & ~\citet{Tilly1968} & USA   & stream & 41,22,55 N & Yes   &       &  \\
-      46    & ~\citet{GlobalWeb} & ~\citet{Patten1975} & USA   & lake & 33,54 N & Yes   &       &  \\
-      47    & ~\citet{GlobalWeb} & ~\citet{Harris1980} & USA   & lake &       & No    & Study site unclear &  \\
-      48    & ~\citet{GlobalWeb} & ~\citet{Simenstad1978} & USA   & marine &       & No    & Extinct species &  \\
-      49    & ~\citet{GlobalWeb} & ~\citet{Simenstad1978} & USA   & marine &       & No    & Extinct species &  \\
-      50    & ~\citet{GlobalWeb} & ~\citet{Nybakken1982} & USA   & marine &       & No    & Generalized scheme &  \\
-      51    & ~\citet{GlobalWeb} & ~\citet{Dexter1947} & USA   & marine & 42,38,56 N & Yes   &       &  \\
-      52    & ~\citet{GlobalWeb} & ~\citet{Paine1980a} & USA   & marine & 58,27 N & Yes   &       &  \\
-      53    & ~\citet{GlobalWeb} & ~\citet{Paine1980a} & USA   & marine & 48,19 - 48,37 N & Yes   &       &  \\
-      54    & ~\citet{GlobalWeb} & Unpublished & Barbados & marine &       & No    & Unpublished &  \\
-      55    & ~\citet{GlobalWeb} & ~\citet{Milne1972} & Scotland & estuary &       & No    & Could not locate original source &  \\
-      56    & ~\citet{GlobalWeb} & ~\citet{Milne1972} & Scotland & estuary &       & No    & Could not locate original source &  \\
-      57    & ~\citet{GlobalWeb} & ~\citet{Yanez1978} & Mexico & marine & 17,26,21 N & Yes   &       &  \\
-      58    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Russia & lake & 51,46 N & Yes   &       &  \\
-      59    & ~\citet{GlobalWeb} & ~\citet{Twomey1945} & USA   & terrestrial & 40,09,47 N & Yes   &       &  \\
-      60    & ~\citet{GlobalWeb} & ~\citet{Rasmussen1941} & USA   & terrestrial & 36,5-37 N & Yes   &       &  \\
-      61    & ~\citet{GlobalWeb} & ~\citet{Summerhayes1928} & Norway & terrestrial & 77,52,30 N & Yes   &       &  \\
-      62    & ~\citet{GlobalWeb} & ~\citet{Summerhayes1928} & Norway & terrestrial & 77,52,30 N & Yes   &       &  \\
-      63    & ~\citet{GlobalWeb} & ~\citet{Jones1950} & UK    & stream & 52,25,08 N & Yes   &       &  \\
-      64    & ~\citet{GlobalWeb} & ~\citet{Cummins1966} & USA   & stream & 41,39,33 N & Yes   &       &  \\
-      65    & ~\citet{GlobalWeb} & ~\citet{Tsuda1972} & Japan & stream & 34,21,20 - 34,23,21 N & Yes   &       &  \\
-      66    & ~\citet{GlobalWeb} & ~\citet{Mann1972a} & England & stream & 51,30 N & Yes   &       &  \\
-      67    & ~\citet{GlobalWeb} & ~\citet{Carlson1968} & USA   & river} & 40,24,16 N & Yes   &       &  \\
-      68    & ~\citet{GlobalWeb} & ~\citet{Morgan1972} & Scotland & lake &       & No    & Could not locate original source &  \\
-      69    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Portugal & estuary &       & No    & Could not locate original source &  \\
-      70    & ~\citet{GlobalWeb} & ~\citet{Kemp1977} & USA   & estuary & 28,54,08 N & Yes   &       &  \\
-      71    & ~\citet{GlobalWeb} & ~\citet{Sorokin1972} & Russia & lake & 48,00 N & Yes   &       &  \\
-      72    & ~\citet{GlobalWeb} & ~\citet{Baril1983} & Canada & lake & 46,02 N & Yes   &       &  \\
-      73    & ~\citet{GlobalWeb} & ~\citet{Schiemer1979} & Austria & lake &       & No    & Could not locate original source &  \\
-      74    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & South Africa & marine & 34,15,00 S & Yes   &       &  \\
-      75    & ~\citet{GlobalWeb} & ~\citet{Pechlaner1972} & Austria & lake & 47,11 N & Yes   &       &  \\
-      76    & ~\citet{GlobalWeb} & ~\citet{Schiemer1979} & Austria & lake & 47,42 - 47,54 N & Yes   &       &  \\
-      77    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Ethiopia & lake &       & No    & Could not locate original source &  \\
-      78    & ~\citet{GlobalWeb} & ~\citet{Burgis1972} & Uganda & lake & 0     & Yes   &       &  \\
-      79    & ~\citet{GlobalWeb} & ~\citet{Sarvala1974} & Finland & lake &       & No    & Could not locate original source &  \\
-      80    & ~\citet{GlobalWeb} & ~\citet{Sarvala1974} & Finland & lake &       & No    & Could not locate original source &  \\
-      81    & ~\citet{GlobalWeb} & ~\citet{Hatanaka1977} & Japan & marine &       & No    & Could not locate original source &  \\
-      82    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & France & marine &       & No    & Could not locate original source &  \\
-      83    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Finland & lake &       & No    & Could not locate original source &  \\
-      84    & ~\citet{GlobalWeb} & ~\citet{Wilbur1972} & USA   & lake & 42,28,42 N & Yes   &       &  \\
-      85    & ~\citet{GlobalWeb} & ~\citet{Mizuno1982} & Malaysia & lake &       & No    & Could not locate original source &  \\
-      86    & ~\citet{GlobalWeb} & ~\citet{Hogetsu1979} & Japan & marine & 34,36 - 35,38 N & Yes   &       &  \\
-      87    & ~\citet{GlobalWeb} & ~\citet{Bradstreet1982} & Canada & terrestrial & 72,46,34.95 N & Yes   &       &  \\
-      88    & ~\citet{GlobalWeb} & ~\citet{Kuusela1980} & Finland & stream &       & No    & Could not locate original source &  \\
-      89    & ~\citet{GlobalWeb} & ~\citet{Hartley1948} & England & stream & 52,13 N & Yes   &       &  \\
-      91    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Japan & terrestrial &       & No    & Could not locate original source &  \\
-      92    & ~\citet{GlobalWeb} & ~\citet{Swan1961} & Tibet & terrestrial &       & No    & Generalized scheme &  \\
-      93    & ~\citet{GlobalWeb} & ~\citet{Pattie1966} & USA   & terrestrial & 45 N  & Yes   &       &  \\
-      94    & ~\citet{GlobalWeb} & ~\citet{Brown1971} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      95    & ~\citet{GlobalWeb} & ~\citet{Brown1975} & USA   & terrestrial & 70,11,14.18 N & Yes   &       &  \\
-      96    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Russia & terrestrial &       & No    & Could not locate original source &  \\
-      97    & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & Russia & terrestrial &       & No    & Could not locate original source &  \\
-      98    & ~\citet{GlobalWeb} & ~\citet{Holm1980} & Namibia & terrestrial &       & No    & Could not locate original source &  \\
-      99    & ~\citet{GlobalWeb} & ~\citet{Howes1954} & USA   & terrestrial & 32,36 N & Yes   &       &  \\
-      100   & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & India & terrestrial &       & No    & Could not locate original source &  \\
-      101   & ~\citet{GlobalWeb} & ~\citet{Cohen1990} & France & lake  &       & No    & Could not locate original source &  \\
-      102   & ~\citet{GlobalWeb} & ~\citet{Shushkina1973} & Pacific Ocean & marine & 10 S - 15 N & Yes   &       &  \\
-      103   & ~\citet{GlobalWeb} & ~\citet{Petipa1979} & Pacific Ocean & marine &       & No    & Generalized scheme &  \\
-      104   & ~\citet{GlobalWeb} & ~\citet{Menge1976} & Panama & marine & 4,48,04 N & Yes   &       &  \\
-      105   & ~\citet{GlobalWeb} & ~\citet{Edwards1982} & USA & marine & 42,40 N & Yes   &       &  \\
-      106   & ~\citet{GlobalWeb} & ~\citet{Glynn1965} & USA & marine &       & No    & Could not locate original source &  \\
-      107   & ~\citet{GlobalWeb} & ~\citet{Peterson1979} & USA & marine & 39,52,02 N & Yes   &       &  \\
-      108   & ~\citet{GlobalWeb} & ~\citet{Hewatt1937} & USA & marine & 36,37 N & Yes   &       &  \\
-      109   & ~\citet{GlobalWeb} & ~\citet{Castilla1981} & Chile} & marine &       & No    & Could not locate original source &  \\
-      110   & ~\citet{GlobalWeb} & ~\citet{Dexter1947} & USA & marine & 42,38,56 N & Yes   &       &  \\
-      111   & ~\citet{GlobalWeb} & ~\citet{Dexter1947} & USA & marine & 42,38,56 N & Yes   &       &  \\
-      112   & ~\citet{GlobalWeb} & ~\citet{Dexter1947} & USA & marine & 42,38,56 N & Yes   &       &  \\
-      113   & ~\citet{GlobalWeb} & ~\citet{Dexter1947} & USA & marine & 42,38,56 N & Yes   &       &  \\
-      114   & ~\citet{GlobalWeb} & ~\citet{Marshall1982} & Zimbabwe & lake  & 17,54,11.90 S & Yes   &       &  \\
-      115   & ~\citet{GlobalWeb} & ~\citet{Koepcke1952} & Peru} & marine &       & No    & Could not locate original source &  \\
-      116   & ~\citet{GlobalWeb} & ~\citet{Hurlbert1972} & USA & lake  & 35,09,19 S & Yes   &       &  \\
-      117   & ~\citet{GlobalWeb} & ~\citet{Zaret1973} & Panama & lake  & 9,11,31.50 N & Yes   &       &  \\
-      118   & ~\citet{GlobalWeb} & ~\citet{Bindloss1972} & UK & lake  & 56,41,18.71 N & Yes   &       &  \\
-      119   & ~\citet{GlobalWeb} & ~\citet{Mann1972} & UK & stream & 51,27 N & Yes   &       &  \\
-      120   & ~\citet{GlobalWeb} & ~\citet{Moriarty1973} & Uganda & lake  & 0,00,58 N & Yes   &       &  \\
-      121   & ~\citet{GlobalWeb} & ~\citet{VanEs1977} & Germany & estuary & 53,20 - 53,15 N & Yes   &       &  \\
-      122   & ~\citet{GlobalWeb} & ~\citet{Nixon1973} & USA & estuary & 41,33,04 N & Yes   &       &  \\
-      123   & ~\citet{GlobalWeb} & ~\citet{Harris1972} & USA & terrestrial & 40,45,28 N & Yes   &       &  \\
-      124   & ~\citet{GlobalWeb} & ~\citet{Collins1976} & USA & stream & 44,34 N & Yes   &       &  \\
-      125   & ~\citet{GlobalWeb} & ~\citet{Landry1977} & Unspecified & marine &       & No    & Generalized scheme &  \\
-      126   & ~\citet{GlobalWeb} & ~\citet{Larsson1978} & Norway & lake  & 61,26,00 N & Yes   &       &  \\
-      127   & ~\citet{GlobalWeb} & ~\citet{Beaver1979} & Malaysia & lake  &       & No    & Could not locate original source &  \\
-      128   & ~\citet{GlobalWeb} & ~\citet{Beaver1979} & Malaysia & lake  &       & No    & Could not locate original source &  \\
-      129   & ~\citet{GlobalWeb} & Unpublished & Unspecified & terrestrial &       & No    & Unpublished &  \\
-      130   & ~\citet{GlobalWeb} & ~\citet{Odum1975} & USA & estuary & 27,12 N & Yes   &       &  \\
-      131   & ~\citet{GlobalWeb} & ~\citet{Beaver1985} & Malaysia & lake  & 4,12,37 N & Yes   &       &  \\
-      132   & ~\citet{GlobalWeb} & ~\citet{Beaver1985} & Malaysia & lake  & 4,12,37 N & Yes   &       &  \\
-      133   & ~\citet{GlobalWeb} & ~\citet{Beaver1985} & Sri Lanka & lake  & 7,52,22 N & Yes   &       &  \\
-      134   & ~\citet{GlobalWeb} & ~\citet{Beaver1985} & Madagascar & lake  & 19 S  & Yes   &       &  \\
-      135   & ~\citet{GlobalWeb} & ~\citet{Beaver1985} & Seychelles & lake  & 4,40,46 S & Yes   &       &  \\
-      136   & ~\citet{GlobalWeb} & ~\citet{Bradshaw1983} & USA   & lake  &       & No    & Could not locate original source &  \\
-      137   & ~\citet{GlobalWeb} & ~\citet{Corker1984} & Hong Kong & lake  & 22,14-22,17 N & Yes   &       &  \\
-      138   & ~\citet{GlobalWeb} & ~\citet{Kitching1983} & UK    & lake  &       & No    & Could not locate original source &  \\
-      139   & ~\citet{GlobalWeb} & ~\citet{Kitching1983} & Australia & lake  &       & No    & Could not locate original source &  \\
-      140   & ~\citet{GlobalWeb} & ~\citet{Siefert1979} & Venezuela & terrestrial & 10,21 N & Yes   &       &  \\
-      141   & ~\citet{GlobalWeb} & ~\citet{Seifert1976} & Costa Rica & terrestrial &       & No    & Competition network &  \\
-      142   & ~\citet{GlobalWeb} & ~\citet{Seifert1976} & Costa Rica & terrestrial &       & No    & Competition network &  \\
-      143   & ~\citet{GlobalWeb} & ~\citet{Snow1958} & USA   & lake  & 34,41,45 N & Yes   &       &  \\
-      144   & ~\citet{GlobalWeb} & ~\citet{Snow1958} & Germany & lake  &       & No    & Could not locate original source &  \\
-      145   & ~\citet{GlobalWeb} & ~\citet{Rejmanek1979} & Europe & terrestrial &       & No    & Host-parasitoid web &  \\
-      146   & ~\citet{GlobalWeb} & ~\citet{Rejmanek1979} & Europe & terrestrial &       & No    & Host-parasitoid web &  \\
-      147   & ~\citet{GlobalWeb} & ~\citet{Rejmanek1979} & Europe & terrestrial &       & No    & Host-parasitoid web &  \\
-      148   & ~\citet{GlobalWeb} & ~\citet{Rejmanek1979} & Europe & terrestrial &       & No    & Host-parasitoid web &  \\
-      149   & ~\citet{GlobalWeb} & ~\citet{Force1974} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      150   & ~\citet{GlobalWeb} & ~\citet{Hopkins1984} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      151   & ~\citet{GlobalWeb} & ~\citet{Richards1926} & UK    & terrestrial & 51,20,04 N & Yes   &       &  \\
-      152   & ~\citet{GlobalWeb} & ~\citet{Whittaker1984} & USA   & terrestrial &       & No    & Source web &  \\
-      153   & ~\citet{GlobalWeb} & ~\citet{Mayse1978} & USA   & terrestrial & 40,06,38 N & Yes   &       &  \\
-      154   & ~\citet{GlobalWeb} & ~\citet{Mayse1978} & USA   & terrestrial & 39,56,41 N & Yes   &       &  \\
-      155   & ~\citet{GlobalWeb} & ~\citet{Askew1975} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      156   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      157   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      158   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      159   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      160   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      161   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      162   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      163   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      164   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      165   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      166   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      167   & ~\citet{GlobalWeb} & ~\citet{Askew1961} & UK    & terrestrial &       & No    & Host-parasitoid web &  \\
-      168   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      169   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      170   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      171   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      172   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      173   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      174   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      175   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      176   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      177   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      178   & ~\citet{GlobalWeb} & ~\citet{Hawkins1984} & USA   & terrestrial &       & No    & Host-parasitoid web &  \\
-      179   & ~\citet{GlobalWeb} & ~\citet{Robinson1953} & England & terrestrial &       & No    & Source web &  \\
-      180   & ~\citet{GlobalWeb} & ~\citet{Savely1939} & USA   & terrestrial & 36,01,02 N & Yes   &       &  \\
-      181   & ~\citet{GlobalWeb} & ~\citet{Savely1939} & USA   & terrestrial & 36,01,02 N & Yes   &       &  \\
-      182   & ~\citet{GlobalWeb} & ~\citet{Savely1939} & USA   & terrestrial & 36,01,02 N & Yes   &       &  \\
-      183   & ~\citet{GlobalWeb} & ~\citet{Savely1939} & USA   & terrestrial & 36,01,02 N & Yes   &       &  \\
-      184   & ~\citet{GlobalWeb} & ~\citet{Beaver1972} & UK    & terrestrial &       & No    & Could not locate original source &  \\
-      185   & ~\citet{GlobalWeb} & ~\citet{Chapman1955} & UK    & terrestrial &       & No    & Source web &  \\
-      186   & ~\citet{GlobalWeb} & ~\citet{Cornaby1974} & Costa Rica & terrestrial &       & No    & Source web &  \\
-      187   & ~\citet{GlobalWeb} & ~\citet{Cornaby1974} & Costa Rica & terrestrial &       & No    & Source web &  \\
-      188   & ~\citet{GlobalWeb} & ~\citet{Jiron1981} & Costa Rica & terrestrial &       & No    & Source web &  \\
-      189   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      190   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      191   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      192   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      193   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      194   & ~\citet{GlobalWeb} & ~\citet{McKinnerney1978} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      195   & ~\citet{GlobalWeb} & ~\citet{Schoenly1983a} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      196   & ~\citet{GlobalWeb} & ~\citet{Schoenly1983a} & USA   & terrestrial &       & No    & Could not locate original source &  \\
-      197   & ~\citet{GlobalWeb} & ~\citet{Mohr1943} & USA   & terrestrial &       & No    & Source web &  \\
-      198   & ~\citet{GlobalWeb} & ~\citet{Schoenly1983} & Mexico & terrestrial &       & No    & Source web &  \\
-      199   & ~\citet{GlobalWeb} & ~\citet{Valiela1969} & USA   & terrestrial &       & No    & Source web &  \\
-      200   & ~\citet{GlobalWeb} & ~\citet{Valiela1974} & USA   & terrestrial &       & No    & Source web &  \\
-      201   & ~\citet{GlobalWeb} & ~\citet{Valiela1974} & USA   & terrestrial &       & No    & Source web &  \\
-      202   & ~\citet{GlobalWeb} & ~\citet{Allan1982} & USA   & stream & 38,50,21 N & Yes   &       &  \\
-      203   & ~\citet{GlobalWeb} & ~\citet{Collins1976} & USA   & stream & 44,24 N & Yes   &       &  \\
-      204   & ~\citet{GlobalWeb} & ~\citet{Fryer1959} & Malawi & lake  & 11,36,39 S & Yes   &       & Used whole-lake web only \\
-      205   & ~\citet{GlobalWeb} & ~\citet{Hildrew1985} & UK    & stream & 51,01,05 N & Yes   &       &  \\
-      206   & ~\citet{GlobalWeb} & ~\citet{Jones1949} & UK    & stream & 51,41 - 51,55 N & Yes   &       &  \\
-      207   & ~\citet{GlobalWeb} & ~\citet{Koslucher1973} & USA   & stream & 41,57 - 42,14 N & Yes   &       &  \\
-      208   & ~\citet{GlobalWeb} & ~\citet{Minckley1963} & USA   & stream & 37,56 N & Yes   &       &  \\
-      209   & ~\citet{GlobalWeb} & ~\citet{Minshall1967} & USA   & stream & 37,18,26 N & Yes   &       &  \\
-      210   & ~\citet{GlobalWeb} & ~\citet{Percival1929} & UK    & stream &       & No    & Generalized scheme &  \\
-      211   & ~\citet{GlobalWeb} & ~\citet{Ricker1935} & Canada & stream &       & No    & Could not locate original source &  \\
-      212   & ~\citet{GlobalWeb} & ~\citet{Ricker1935} & Canada & stream &       & No    & Could not locate original source &  \\
-      213   & ~\citet{GlobalWeb} & ~\citet{Badcock1949} & UK    & stream & 53 N  & Yes   &       &  \\
-      214   & ~\citet{GlobalWeb} & ~\citet{Thompson2003} & USA   & stream & 44,40,44 N & Yes   &       &  \\
-      215   & ~\citet{GlobalWeb} & ~\citet{Thompson2003} & USA   & stream & 40,40,52 N & Yes   &       &  \\
-      216   & ~\citet{GlobalWeb} & ~\citet{Thompson2003} & USA   & stream & 35,02,50 N & Yes   &       &  \\
-      217   & ~\citet{GlobalWeb} & ~\citet{Thompson2003} & USA   & stream & 35,03,50 N & Yes   &       &  \\
-      218   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.79 S & Yes   &       &  \\
-      219   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 44.64 S & Yes   &       &  \\
-      220   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.29 S & Yes   &       &  \\
-      221   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.41 S & Yes   &       &  \\
-      222   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45,57,0 S & Yes   &       &  \\
-      223   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      224   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      225   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.115 S & Yes   &       &  \\
-      226   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.61 S & Yes   &       &  \\
-      227   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 44.97 S & Yes   &       &  \\
-      228   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 44.95 S & Yes   &       &  \\
-      229   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 44.96 S & Yes   &       &  \\
-      230   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45 S  & Yes   &       &  \\
-      231   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.58 S & Yes   &       &  \\
-      232   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.61 S & Yes   &       &  \\
-      233   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.782 S & Yes   &       &  \\
-      234   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.803 S & Yes   &       &  \\
-      235   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45.752 S & Yes   &       &  \\
-      236   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.29 S & Yes   &       &  \\
-      237   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.41 S & Yes   &       &  \\
-      238   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45,57,0 S & Yes   &       &  \\
-      239   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      240   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      241   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.115 S & Yes   &       &  \\
-      242   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.29 S & Yes   &       &  \\
-      243   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.41 S & Yes   &       &  \\
-      244   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 45,57,0 S & Yes   &       &  \\
-      245   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      246   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.08 S & Yes   &       &  \\
-      247   & ~\citet{GlobalWeb} & ~\citet{Thompson2004c} & New Zealand & stream & 46.115 S & Yes   &       &  \\
-      248   & ~\citet{GlobalWeb} & ~\citet{Thompson2004} & New Zealand & estuary & 45,51,28 S & Yes   &       & Parasites removed \\
-      249   & ~\citet{GlobalWeb} & ~\citet{Angelini2005} & Brazil & stream & 24,30 S & Yes   &       &  \\
-      250   & ~\citet{GlobalWeb} & ~\citet{Angelini2006} & Brazil & lake  & 22,57,38 S & Yes   &       &  \\
-      251   & ~\citet{GlobalWeb} & ~\citet{Angelini2006} & Brazil & lake  & 22,57,38 S & Yes   &       &  \\
-      252   & ~\citet{GlobalWeb} & ~\citet{Angelini2010} & Brazil & stream & 18,40 S & Yes   &       &  \\
-      253   & ~\citet{GlobalWeb} & ~\citet{Angelini2011} & Angola & marine & 5 - 17,15 S & Yes   &       &  \\
-      254   & ~\citet{GlobalWeb} & ~\citet{Angelini2013} & Brazil & stream & 21 S  & Yes   &       &  \\
-      255   & ~\citet{GlobalWeb} & ~\citet{Angelini2013} & Brazil & stream & 21 S  & Yes   &       &  \\
-      256   & ~\citet{GlobalWeb} & ~\citet{Angelini2013} & Brazil & stream &       & No    & Could not locate original source &  \\
-      257   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      258   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      259   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      260   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      261   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      262   & ~\citet{GlobalWeb} & ~\citet{Baeta2011} & Portugal & estuary & 40,08 N & Yes   &       &  \\
-      263   & ~\citet{GlobalWeb} & ~\citet{Schnieder1997} & USA   & lake  & 45,58,50 N & Yes   &       &  \\
-      264   & ~\citet{GlobalWeb} & ~\citet{Stagliano2002} & USA   & terrestrial & 39,06,27 N & Yes   &       &  \\
-      265   & ~\citet{GlobalWeb} & ~\citet{Lin2006} & Taiwan & marine & 22,27 N & Yes   &       &  \\
-      266   & ~\citet{GlobalWeb} & ~\citet{Cornejo-Donoso2008} & Antarctica & marine & 60 - 69 S & Yes   &       &  \\
-      267   & ~\citet{GlobalWeb} & ~\citet{Zetina-Rejon2003} & Mexico & marine & 23.15 - 22.9N & Yes   &       &  \\
-      268   & ~\citet{GlobalWeb} & ~\citet{Cruz-Escalona2007} & Mexico & marine & 18,45 - 18,50 N & Yes   &       &  \\
-      269   & ~\citet{GlobalWeb} & ~\citet{Liu2007} & China & lake  & 29,32,35 N & Yes   &       &  \\
-      270   & ~\citet{GlobalWeb} & ~\citet{Filguera2011} & Spain & marine & 42,17,37 - 42,19,29 N & Yes   &       &  \\
-      271   & ~\citet{GlobalWeb} & ~\citet{Amundsen2013} & Norway & lake  & 69,07 N & Yes   &       & Parasites removed \\
-      272   & ~\citet{GlobalWeb} & ~\citet{Hampton2011} & USA   & lake  & 48,03,29 N & Yes   &       &  \\
-      273   & ~\citet{GlobalWeb} & ~\citet{Parker2006} & Alaska & stream & 69,1 N & Yes   &       &  \\
-      274   & ~\citet{GlobalWeb} & ~\citet{Parker2006} & Alaska & stream & 69,1 N & Yes   &       &  \\
-      275   & ~\citet{GlobalWeb} & ~\citet{Parker2006} & Alaska & stream & 69,1 N & Yes   &       &  \\
-      276   & ~\citet{GlobalWeb} & ~\citet{Parker2006} & Alaska & stream & 69,1 N & Yes   &       &  \\
-      277   & ~\citet{GlobalWeb} & ~\citet{Massana1996} & Spain & lake  & 42,08,6 - 42,07 N & Yes   &       &  \\
-      278   & ~\citet{GlobalWeb} & ~\citet{Stewart2011} & USA   & lake  & 43.7 N & Yes   &       &  \\
-      279   & ~\citet{GlobalWeb} & ~\citet{Stewart2011} & USA   & lake  & 43.7 N & Yes   &       &  \\
-      280   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 43,58 N & Yes   &       &  \\
-      281   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 44,58 N & Yes   &       &  \\
-      282   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 45,58 N & Yes   &       &  \\
-      283   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 46,58 N & Yes   &       &  \\
-      284   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 47,58 N & Yes   &       &  \\
-      285   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 48,58 N & Yes   &       &  \\
-      286   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 49,58 N & Yes   &       &  \\
-      287   & ~\citet{GlobalWeb} & ~\citet{Cromar1996} & Canada & stream & 50,58 N & Yes   &       &  \\
-      288   & ~\citet{GlobalWeb} & ~\citet{Christian1999} & USA   & estuary & 30,05,39 N & Yes   &       &  \\
-      289   & ~\citet{GlobalWeb} & ~\citet{Fetahi2011} & Ethiopia & lake  & 11,15 N & Yes   &       &  \\
-      290   & ~\citet{GlobalWeb} & ~\citet{Brodeur1992} & USA   & marine & 43 - 48 N & Yes   &       &  \\
-      291   & ~\citet{GlobalWeb} & ~\citet{Brodeur1992} & USA   & marine & 44 - 48 N & Yes   &       &  \\
-      292   & ~\citet{GlobalWeb} & ~\citet{Brodeur1992} & USA   & marine & 45 - 48 N & Yes   &       &  \\
-      293   & ~\citet{GlobalWeb} & ~\citet{Brodeur1992} & USA   & marine & 46 - 48 N & Yes   &       &  \\
-      294   & ~\citet{GlobalWeb} & ~\citet{Gaedke1994} & Europe & lake  & 47,37,30 N & Yes   &       &  \\
-      295   & ~\citet{GlobalWeb} & ~\citet{Preston2012} & USA   & lake  & 37.66 N & Yes   &       & Parasites removed \\
-      296   & ~\citet{GlobalWeb} & ~\citet{Ratsirarson1996} & Madagascar & lake  & 24,55 S & Yes   &       &  \\
-      297   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      298   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      299   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      300   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      301   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      302   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      303   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      304   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      305   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      306   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      307   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      308   & ~\citet{GlobalWeb} & ~\citet{Closs1994} & Australia & stream & 37,40 S & Yes   &       &  \\
-      309   & ~\citet{GlobalWeb} & ~\citet{Gontikaki2011} & Atlantic Ocean & marine & 61,13,88 N & Yes   &       &  \\
-      310   & ~\citet{GlobalWeb} & ~\citet{Khan2009} & India & lake  & 12,45,25 N & Yes   &       &  \\
-      311   & ~\citet{GlobalWeb} & ~\citet{Memmott2000} & UK    & terrestrial &       & No    & Source web &  \\
-      312   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2009} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      313   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2009} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      314   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      315   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      316   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      317   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      318   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      319   & ~\citet{GlobalWeb} & ~\citet{Kaiser-Bunbury2011} & Mauritius & terrestrial &       & No    & Plant-pollinator web &  \\
-      320   & ~\citet{GlobalWeb} & ~\citet{Ruzicka2012} & USA   & marine & 42 - 49 N & Yes   &       &  \\
-      321   & ~\citet{GlobalWeb} & ~\citet{Ruzicka2012} & USA   & marine & 43 - 49 N & Yes   &       &  \\
-      322   & ~\citet{GlobalWeb} & ~\citet{Ruzicka2012} & USA   & marine & 44 - 49 N & Yes   &       &  \\
-      323   & ~\citet{GlobalWeb} & ~\citet{Ruzicka2012} & USA   & marine & 45 - 49 N & Yes   &       &  \\
-      324   & ~\citet{GlobalWeb} & ~\citet{Ruzicka2012} & USA   & marine & 46 - 49 N & Yes   &       &  \\
-      325   & ~\citet{GlobalWeb} & ~\citet{Lewis2002} & Belize & terrestrial &       & No    & Host-parasitoid web &  \\
-      326   & ~\citet{GlobalWeb} & ~\citet{Lewis2002} & Belize & terrestrial &       & No    & Host-parasitoid web &  \\
-      327   & ~\citet{GlobalWeb} & ~\citet{Kelleway2010} & Australia & stream & 29,13 S & Yes   &       &  \\
-      328   & ~\citet{GlobalWeb} & ~\citet{Kelleway2010} & Australia & stream & 29,20,0 S & Yes   &       &  \\
-      329   & ~\citet{GlobalWeb} & ~\citet{Kelleway2010} & Australia & stream & 29,35 S & Yes   &       &  \\
-      330   & ~\citet{GlobalWeb} & ~\citet{Kelleway2010} & Australia & stream & 29,13 S & Yes   &       &  \\
-      331   & ~\citet{GlobalWeb} & ~\citet{Kelleway2010} & Australia & stream & 29,20,0 S & Yes   &       &  \\
-      332   & ~\citet{GlobalWeb} & ~\citet{Huang2008} & China & stream & 31.70 N & Yes   &       &  \\
-      333   & ~\citet{GlobalWeb} & ~\citet{Link2002} & USA   & marine & 33,51 - 44,49 N & Yes   &       &  \\
-      334   & ~\citet{GlobalWeb} & ~\citet{Alcorlo2001} & Spain & lake  & 41,26,36 N & Yes   &       &  \\
-      335   & ~\citet{GlobalWeb} & ~\citet{Alcorlo2001} & Spain & lake  & 41,26,05 N & Yes   &       &  \\
-      336   & ~\citet{GlobalWeb} & ~\citet{Alcorlo2001} & Spain & lake  & 41,26,36 N & Yes   &       &  \\
-      337   & ~\citet{GlobalWeb} & ~\citet{Alcorlo2001} & Spain & lake  & 41,26,05 N & Yes   &       &  \\
-      338   & ~\citet{GlobalWeb} & ~\citet{Torres2013} & South Atlantic & marine &       & No    & Could not locate original source &  \\
-      339   & ~\citet{GlobalWeb} & ~\citet{Bulman2001} & Australia & marine & 37-39 S & Yes   &       &  \\
-      340   & ~\citet{GlobalWeb} & ~\citet{Smith2007} & Antarctica & marine & 74-78 S & Yes   &       &  \\
-      341   & ~\citet{GlobalWeb} & ~\citet{Lancraft1991} & Antarctica & marine & 58,20.8 - 60,10.4 S & Yes   &       &  \\
-      342   & ~\citet{GlobalWeb} & ~\citet{Hopkins1993} & Antarctica & marine & 57,00 - 60,45 S & Yes   &       &  \\
-      343   & ~\citet{GlobalWeb} & ~\citet{Kitching1987} & Australia & lake  & 28,12 S & Yes   &       &  \\
-      344   & ~\citet{GlobalWeb} & ~\citet{Hodkinson2004} & Norway & terrestrial &       & No    & Host-parasitoid web &  \\
-      345   & ~\citet{GlobalWeb} & ~\citet{Boit2012} & Europe & lake  & 47,38,10 N & Yes   &       &  \\
-      346   & ~\citet{GlobalWeb} & ~\citet{Rayner2010} & Australia & stream & 17,7 S & Yes   &       &  \\
-      347   & ~\citet{GlobalWeb} & ~\citet{Motta2005} & Brazil & stream & 23,03 S & Yes   &       &  \\
-      348   & ~\citet{GlobalWeb} & ~\citet{Douglass2011} & USA   & marine & 37,13 N & Yes   &       &  \\
-      349   & ~\citet{GlobalWeb} & ~\citet{Douglass2011} & USA   & marine & 37,13 N & Yes   &       &  \\
-      350   & ~\citet{GlobalWeb} & ~\citet{Douglass2011} & USA   & marine & 37,13 N & Yes   &       &  \\
-      351   & ~\citet{GlobalWeb} & ~\citet{Warren1989} & UK    & lake  &       & No    & Could not locate original source &  \\
-      352   & ~\citet{GlobalWeb} & ~\citet{Poepperl2003} & Germany & stream & 54,06 N & No    & describes compartments, not species &  \\
-      353   & ~\citet{GlobalWeb} & ~\citet{Poepperl2003} & Germany & stream & 54,06 N & No    & describes compartments, not species &  \\
-      354   & ~\citet{GlobalWeb} & ~\citet{Goldwasser1993} & St. Martin & terrestrial & 18,03 N & Yes   &       &  \\
-      355   & ~\citet{GlobalWeb} & ~\citet{Cohen2003} & USA   & lake  & 46,13 N & Yes   &       &  \\
-      356   & ~\citet{GlobalWeb} & ~\citet{Cohen2003} & USA   & lake  & 46,13 N & Yes   &       &  \\
-      357   & ~\citet{GlobalWeb} & ~\citet{Yodzis1998} & South Africa & marine & 34,21 - 16 S & No    & Study site unclear &  \\
-      358   & ~\citet{GlobalWeb} & ~\citet{Schroter2003} & Europe & terrestrial &       & No    & Generalized scheme &  \\
-      359   & ~\citet{GlobalWeb} & ~\citet{Baiser2012} & North America & lake  &       & No    & Study site unclear &  \\
-      \hline
-    \end{tabular}%
-  \end{table}%
-
-\end{landscape}
-\newpage
-
-\subsection*{Appendix S2: Supplemental Methods and Results - scaling Relationships with S}
+\subsection*{Appendix S2: Scaling Relationships with S}
 
   \subsubsection*{Methods}
 
@@ -552,14 +724,14 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     \noindent Although these relationships are very similar, they imply different error distributions~\citep{Xiao2011}.
     Specifically, equation~(\ref{Power}) implies a normally-distributed, additive error and equation~(\ref{Loglog}) a lognormal,
     multiplicative error. As we have no \emph{a priori} reason to believe that our dataset has one error distribution
-    over another, we follow the recommendations in~\citet{Xiao2011} and compared the two
+    over another, we follow the recommendations in\citet{Xiao2011} and compared the two
     model formulations explicitly. The model with the error distribution most resembling that observed in the empirical
     data was then used to test for potential effects of latitude.
 
 
     Although scaling relationships between species richness and generality or
     species richness and vulnerability have not been explicitly examined (but see scaling 
-    relationships for the standard devaitions of each property in~\citet{Riede2010}), we expect that they will follow
+    relationships for the standard devaitions of each property in\citet{Riede2010}), we expect that they will follow
     power laws similar to that of the relationship between species richness and links per species.
     This is because the links taken into account in calculating generality and vulnerability are subsets 
     of the total links included when calculating links per species. As with links per species, we explicitly 
@@ -587,7 +759,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     We therefore used logarithmic-form models when assessing the
     effect of latitude on scaling relationships  with species richness.
 
-\subsection*{Appendix S3: Supplemental Methods and Results - relationships with latitude}
+\subsection*{Appendix S3: Relationships with latitude}
 
   \subsubsection*{Methods}
 
@@ -605,7 +777,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
     variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
     marine, lake, and terrestrial networks with estuarine
-    networks providing the intercept) and $\epsilon_{i}$ a residual error term. 
+    networks providing the intercept) and $\epsilon_{i}$ is a residual error term. 
     We next calculated the AIC
     of the maximal model as well as the AIC's of a suite of candidate simplified models identified
     using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. 
@@ -650,13 +822,13 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 \subsection*{Appendix S4: Supplemental Figures}
 
 \begin{figure}[h]
-\centerline{\includegraphics*[width=.75\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts_observed.eps}
+\centerline{\includegraphics*[width=.75\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts_observed.eps}}
 \caption{Scaling relationships for link density, generality, 
 and vulnerability relative to species richness and the proportions of basal resources (\% Basal),
 intermediate consumers (\% Intermediate), top predators (\% Top), and species richness of a food web. 
 For each relationship, we show observed values (white circles) and 
-a simplified form of the scaling relationship described in equation XX (\emph{Main Text}), neglecting 
-any effects of habitat type or latitude (black line, N=163 food webs). See Fig. 1 (\emph{Main Text}) to compare with 
+a simplified form of the scaling relationship described in equation 2 (\emph{Main Text}), neglecting 
+any effects of habitat type or latitude (black line, N=166 food webs). See Fig. 1 (\emph{Main Text}) to compare with 
 observed values correcting for the effects of habitat type and latitude. }
 \label{props_v_lat_obs}
 \end{figure}
@@ -666,11 +838,11 @@ observed values correcting for the effects of habitat type and latitude. }
 
 
 \begin{figure}[h]
-\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_proportions.eps}
+\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the estimated scaling exponent for species richness (black
 line) with its 95\% confidence interval (in grey),
-based on N=163 empirical food webs. Latitude is 
+based on N=166 empirical food webs. Latitude is 
 given in degrees from the equator
 regardless of direction.}
 \label{S}
@@ -678,10 +850,10 @@ regardless of direction.}
 
 
 \begin{figure}[!h]
-\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/B_marginal_latitude_proportions.eps}
+\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/B_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
-basal resources (black line) with its 95\% confidence interval (in grey), based on N=163 
+basal resources (black line) with its 95\% confidence interval (in grey), based on N=166 
 empirical food webs. Latitude is given in degrees
 from the equator regardless of direction.}
 \label{B}
@@ -691,20 +863,20 @@ from the equator regardless of direction.}
 
 
 \begin{figure}[h]
-\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/I_marginal_latitude_proportions.eps}
+\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/I_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
 intermediate consumers (black line) with its 95\% confidence interval (in grey), based on 
-N=163 empirical food webs. Latitude is given in degrees
+N=166 empirical food webs. Latitude is given in degrees
 from the equator regardless of direction.}
 \label{I}
 \end{figure}
 
 \begin{figure}[!h]
-\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/T_marginal_latitude_proportions.eps}
+\centerline{\includegraphics*[width=.8\textwidth]{Figures/by_TL/marginal/T_marginal_latitude_proportions.eps}}
 \caption{Changes to the scaling of link density, generality, and vulnerability across ecosystem
 types and over latitude. For each property we show the scaling exponent for the proportion of
-top predators (black line) with its 95\% confidence interval (in grey), based on N=163 
+top predators (black line) with its 95\% confidence interval (in grey), based on N=166 
 empirical food webs. Latitude is given in degrees
 from the equator regardless of direction.}
 \label{T}
