@@ -398,7 +398,7 @@ def main():
 
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
-  for form in ['proportions','numbers']:
+  for form in ['proportions']:#,'numbers']:
     for TL in TLs:
       # Make a separate graph for each TL
       grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))

@@ -225,7 +225,7 @@ T_CIs <- function(model){
         stream_upper <- stream_m + 1.64*stream_se
         stream_lower <- stream_m - 1.64*stream_se
 
-        terr_m <- marginal + betas["log(Toppreds):Terr"] + betas["log(Toppreds):Terr:Latitude"]
+        terr_m <- marginal + betas["log(Toppreds):Terr"] + lat*betas["log(Toppreds):Terr:Latitude"]
         terr_se <- sqrt(se^2 +
           lat^2*covar["log(Toppreds):Terr:Latitude","log(Toppreds):Terr:Latitude"] 
           +2*lat*covar["log(Toppreds):Terr:Latitude","log(Toppreds)"]
