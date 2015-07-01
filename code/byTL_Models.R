@@ -4,8 +4,8 @@ library(nlrwr)
 library(lmerTest)
 library(MuMIn)
 
-# infile='../non_TS/summary-properties.tsv'
-infile='../mod_data/summary-properties.tsv'
+infile='../non_TS/summary-properties.tsv'
+# infile='../mod_data/summary-properties.tsv'
 
 format='proportions'
 # format='numbers' # Don't care about numbers actually
@@ -96,10 +96,10 @@ power_analysis=FALSE
         for(i in 1:500){
         # newdata[k,1]=i
         newdata[k,1]=latitude
-        newdata[k,2]=0
-        newdata[k,3]=0
-        newdata[k,4]=0
-        newdata[k,5]=0
+        newdata[k,2]=0 # Lake
+        newdata[k,3]=0 # Marine
+        newdata[k,4]=0 # Stream
+        newdata[k,5]=0 # Terrestrial
         if(j=="Lake"){
           newdata[k,2]=1 }
         if(j=="Marine"){
@@ -108,8 +108,8 @@ power_analysis=FALSE
           newdata[k,4]=1 }
         if(j=="Terr"){
           newdata[k,5]=1 }
-        newdata[k,6]=i/500
-        newdata[k,7]=(i/500)*200
+        newdata[k,6]=i/500 # Basal
+        newdata[k,7]=(i/500)*200 # Species
 
         k=k+1
   }}}
