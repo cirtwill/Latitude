@@ -13,6 +13,8 @@ from PyGrace.Extensions.panel import Panel,MultiPanelGrace
 from PyGrace.drawing_objects import DrawText, DrawLine
 
 #from PyGrace.Extensions.distribution import CDFGraph, PDFGraph
+from PyGrace.axis import LINEAR_SCALE, LOGARITHMIC_SCALE
+from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 from PyGrace.Extensions.latex_string import LatexString, CONVERT
 
 # Ranges of the parameters
@@ -149,26 +151,6 @@ def linereader(prop,TL):
   linefile.close()
   return lines  # This is un-scaled, un-logged weight but was scaled and logged before calculating the y's
 
-
-import sys
-import os
-import re
-import random
-from decimal import *
-import math
-
-from PyGrace.grace import Grace
-from PyGrace.colors import RandomColorScheme, MarkovChainColorScheme, ColorBrewerScheme
-from PyGrace.dataset import SYMBOLS
-from PyGrace.Extensions.panel import Panel,MultiPanelGrace
-from PyGrace.drawing_objects import DrawText
-from PyGrace.axis import LINEAR_SCALE, LOGARITHMIC_SCALE
-
-from PyGrace.Extensions.colorbar import SolidRectangle, ColorBar
-from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
-
-# Think I want plots of the raw data (S, LS, G, V vs. lat) with slope lines
-# Plus predictions for LS, G, V vs S (with corrected obs.)
 
 def datareader(rawdatafile,TL,Bformat):
 
@@ -526,7 +508,7 @@ def plotter(prop,TL,ecolist,graph):
       if ecotype=='Terrestrial':
         main.legend=ecotype
       elif ecotype=='Estuary':
-        main.legend="Estuary, Stream, Marine"
+        main.legend="Estuarine, Stream, Marine"
 
   graph.legend.configure(loc=(5,.3),loctype='world',char_size=.75,box_linestyle=0,box_fill=0)
     # graph.legend.configure(loc=(.95,-2),loctype='world',char_size=1.6,box_linestyle=0,box_fill=0)
@@ -568,6 +550,8 @@ def main():
   colors.add_color(168, 211, 191, "ltgreen")
 
   grace=MultiPanelGrace(colors=colors)
+  grace.add_label_scheme('dummy',['A','C','B','D'])
+  grace.set_label_scheme('dummy')
   for ecolist in ecolists:
     graph=grace.add_graph(Panel)
     plotter(prop,TL,ecolist,graph)
@@ -576,7 +560,7 @@ def main():
     scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist)
 
 
-  grace.multi(rows=2,cols=2,vgap=.04,hgap=.1)
+  grace.multi(rows=2,cols=2,vgap=.04,hgap=.15)
 
   # grace.set_row_xaxislabel(row=1,colspan=(0,1),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
