@@ -347,13 +347,13 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
     predictions=predictionlines(fixed,prop,TL,ecotype)
     predline=graph2.add_dataset(predictions)
     predline.symbol.shape=0
-    predline.line.configure(linestyle=1,color="purble",linewidth=2.5)
+    predline.line.configure(linestyle=1,color=5,linewidth=2.5)
 
     heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
     datadict=heatpoints[ecotype]
     obspoints=graph2.add_dataset(datadict)
     obspoints.line.configure(linestyle=0)
-    obspoints.symbol.configure(size=.5,shape=1,fill_color="purble",fill_pattern=1,color=1,linewidth=.5)
+    obspoints.symbol.configure(size=.7,shape=1,fill_color=5,fill_pattern=1,color=1,linewidth=.5)
 
     obspoints.legend='Lake'
 
@@ -364,7 +364,7 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
           predictions=predictionlines(fixed,prop,TL,ecotype)
           predline=graph2.add_dataset(predictions)
           predline.symbol.shape=0
-          predline.line.configure(linestyle=1,color=4,linewidth=2)
+          predline.line.configure(linestyle=1,color=3,linewidth=2)
 
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
@@ -376,20 +376,20 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
           schap=4
         else:
           schap=3
-        obspoints.symbol.configure(size=.5,shape=schap,fill_color=4,fill_pattern=1,color=1,linewidth=.5)
+        obspoints.symbol.configure(size=.7,shape=schap,fill_color=3,fill_pattern=1,color=1,linewidth=.5)
         obspoints.legend=ecotype
 
       else:
         predictions=predictionlines(fixed,prop,TL,ecotype)
         predline=graph2.add_dataset(predictions)
         predline.symbol.shape=0
-        predline.line.configure(linestyle=1,color=12,linewidth=2)
+        predline.line.configure(linestyle=1,color=7,linewidth=2)
 
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
         obspoints=graph2.add_dataset(datadict)
         obspoints.line.configure(linestyle=0)
-        obspoints.symbol.configure(size=.5,shape=1,fill_color=12,fill_pattern=1,color=1,linewidth=.5)
+        obspoints.symbol.configure(size=.7,shape=1,fill_color=7,fill_pattern=1,color=1,linewidth=.5)
 
         obspoints.legend='Terrestrial'
 
@@ -406,14 +406,14 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
   graph2.xaxis.set_log()
   graph2.yaxis.set_log()
 
-  graph2.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph2.xaxis.ticklabel.configure(char_size=.75)
+  graph2.xaxis.tick.configure(minor_ticks=9,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+  graph2.xaxis.ticklabel.configure(char_size=.75,format='decimal',prec=0)
   graph2.frame.linewidth=1
   graph2.xaxis.bar.linewidth=1
   graph2.yaxis.bar.linewidth=1
 
-  graph2.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph2.yaxis.ticklabel.configure(char_size=.75)
+  graph2.yaxis.tick.configure(minor_ticks=9,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+  graph2.yaxis.ticklabel.configure(char_size=.75,format='decimal',prec=0)
   graph2.panel_label.configure(char_size=.75,placement='iul',dy=.03,dx=.04)
 
   graph2.xaxis.label.configure(text='Species richness',place='normal',char_size=1)
@@ -440,17 +440,17 @@ def plotter(prop,TL,ecolist,graph):
 
     upper=graph.add_dataset(up)
     upper.symbol.configure(shape=0)
-    upper.line.configure(linestyle=1,color=1,linewidth=.5)
-    upper.fill.configure(color="grey",type=2)
+    upper.line.configure(linestyle=0,color=1,linewidth=.5)
+    upper.fill.configure(color=4,type=2)
 
     lower=graph.add_dataset(down)
     lower.symbol.configure(shape=0)
-    lower.line.configure(linestyle=1,color=1,linewidth=.5)
+    lower.line.configure(linestyle=0,color=1,linewidth=.5)
     lower.fill.configure(color=0,type=2)
 
     main=graph.add_dataset(dataset[ecotype]['main'])
     main.symbol.shape=0
-    main.line.configure(linestyle=1,color="purble",linewidth=2)
+    main.line.configure(linestyle=1,color=5,linewidth=2)
     main.legend="Lake"
 
   else:
@@ -461,8 +461,8 @@ def plotter(prop,TL,ecolist,graph):
       topper.append((x,y))
     topd=graph.add_dataset(topper)
     topd.symbol.shape=0
-    topd.line.configure(linestyle=1,color=1,linewidth=.5)
-    topd.fill.configure(color=5,type=2,pattern=1)
+    topd.line.configure(linestyle=0,color=1,linewidth=.5)
+    topd.fill.configure(color=2,type=2,pattern=1)
 
     midtop=[]
     mtps=dataset['Terrestrial']['upper']
@@ -470,8 +470,8 @@ def plotter(prop,TL,ecolist,graph):
       midtop.append((x,y))
     midt=graph.add_dataset(midtop)
     midt.symbol.shape=0
-    midt.line.configure(linestyle=1,color=1,linewidth=.5)
-    midt.fill.configure(color='grey',type=2,pattern=1)
+    midt.line.configure(linestyle=0,color=1,linewidth=.5)
+    midt.fill.configure(color=10,type=2,pattern=1)
 
     greens=[]
     grs=dataset['Estuary']['lower']
@@ -479,8 +479,8 @@ def plotter(prop,TL,ecolist,graph):
       greens.append((x,y))
     greeny=graph.add_dataset(greens)
     greeny.symbol.shape=0
-    greeny.line.configure(linestyle=1,color=1,linewidth=.5)
-    greeny.fill.configure(color=9,type=2,pattern=1)
+    greeny.line.configure(linestyle=0,color=1,linewidth=.5)
+    greeny.fill.configure(color=6,type=2,pattern=1)
 
     whites=[]
     wts=dataset['Terrestrial']['lower']
@@ -488,7 +488,7 @@ def plotter(prop,TL,ecolist,graph):
       whites.append((x,y))
     whitey=graph.add_dataset(whites)
     whitey.symbol.shape=0
-    whitey.line.configure(linestyle=1,color=1,linewidth=.5)
+    whitey.line.configure(linestyle=0,color=1,linewidth=.5)
     whitey.fill.configure(color=0,type=2,pattern=1)
 
 
@@ -496,7 +496,7 @@ def plotter(prop,TL,ecolist,graph):
       if ecotype =='Estuary':
         colo=3
       elif ecotype=='Terrestrial':
-        colo=12
+        colo=7
 
       if dataset[ecotype]['main']!=[]:
         main=graph.add_dataset(dataset[ecotype]['main'])
@@ -539,12 +539,12 @@ def main():
 
   prop='LS'
   TL='S'
-  ecolists=[['Terrestrial','Marine','Stream','Estuary'],["Lake"]]
+  ecolists=[['Marine','Stream','Terrestrial','Estuary'],["Lake"]]
   rawdatafile='../non_TS/summary-properties.tsv'
   predfolder='../non_TS/proportions'
   Bformat='proportions'
 
-  colors=ColorBrewerScheme('PRGn')
+  colors=ColorBrewerScheme('Paired')
   colors.add_color(200, 200, 200,"grey")  
   colors.add_color(8,  81,  156, "purble")
   colors.add_color(168, 211, 191, "ltgreen")
