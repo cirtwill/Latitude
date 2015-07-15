@@ -393,10 +393,12 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
 
         obspoints.legend='Terrestrial'
 
-  if ecotype=='lake':
-    graph2.legend.configure(loc=(40,.56),loctype='world',char_size=.75,box_linestyle=0)
+  if ecolist==['Lake']:
+    graph2.legend.configure(loc=(40,.51),loctype='world',char_size=.75,box_linestyle=0)
   else:
-    graph2.legend.configure(loc=(40,1.6),loctype='world',char_size=.75,box_linestyle=0)
+    graph2.legend.configure(loc=(40,1.55),loctype='world',char_size=.75,box_linestyle=0)
+
+  names=[0.1,1,10,100]
 
   graph2.world.xmin=1
   graph2.world.xmax=300
@@ -407,13 +409,17 @@ def scaleplots(rawdatafile,Bformat,TL,prop,graph2,ecolist):
   graph2.yaxis.set_log()
 
   graph2.xaxis.tick.configure(minor_ticks=9,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+  graph2.yaxis.tick.configure(minor_ticks=9,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
+
+  specials2=graph2.yaxis.tick.set_spec_ticks([0.1,1,10,100],[],tick_labels=names)
+ 
   graph2.xaxis.ticklabel.configure(char_size=.75,format='decimal',prec=0)
+  graph2.yaxis.ticklabel.configure(char_size=.75,format='decimal',prec=1)
+
   graph2.frame.linewidth=1
   graph2.xaxis.bar.linewidth=1
   graph2.yaxis.bar.linewidth=1
 
-  graph2.yaxis.tick.configure(minor_ticks=9,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph2.yaxis.ticklabel.configure(char_size=.75,format='decimal',prec=0)
   graph2.panel_label.configure(char_size=.75,placement='iul',dy=.03,dx=.04)
 
   graph2.xaxis.label.configure(text='Species richness',place='normal',char_size=1)
@@ -510,8 +516,7 @@ def plotter(prop,TL,ecolist,graph):
       elif ecotype=='Estuary':
         main.legend="Estuarine, Stream, Marine"
 
-  graph.legend.configure(loc=(5,.3),loctype='world',char_size=.75,box_linestyle=0,box_fill=0)
-    # graph.legend.configure(loc=(.95,-2),loctype='world',char_size=1.6,box_linestyle=0,box_fill=0)
+  graph.legend.configure(loc=(5,.285),loctype='world',char_size=.75,box_linestyle=0,box_fill=0)
   graph.panel_label.configure(char_size=.75,placement='iul',dy=.03,dx=.04)
 
   graph.xaxis.bar.linewidth=1
@@ -539,7 +544,7 @@ def main():
 
   prop='LS'
   TL='S'
-  ecolists=[['Marine','Stream','Terrestrial','Estuary'],["Lake"]]
+  ecolists=[['Estuary','Stream','Marine','Terrestrial'],["Lake"]]
   rawdatafile='../non_TS/summary-properties.tsv'
   predfolder='../non_TS/proportions'
   Bformat='proportions'
