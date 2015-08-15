@@ -1,0 +1,469 @@
+\documentclass[12pt]{letter}
+
+\usepackage[britdate]{canterbury-letter}
+% \usepackage[britdate,alyssa-signature]{canterbury-letter}
+\usepackage{times}
+\usepackage{letterbib}
+\usepackage{geometry}
+\usepackage[round]{natbib}
+\usepackage{graphicx}
+\geometry{a4paper}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage[running]{lineno}
+\usepackage{amsmath,amsfonts,amssymb}
+% \usepackage[margin=10pt,font=small,labelfont=bf]{caption}
+
+%\usepackage{natbib}
+% \bibpunct[; ]{(}{)}{;}{a}{,}{;}
+
+\newenvironment{refquote}{\bigskip \begin{it}}{\end{it}\smallskip}
+
+\newenvironment{figure}{}
+
+
+\position{PhD Candidate}
+\department{School of Biological Sciences}
+\location{Private Bag 4800}
+\telephone{+64 3 364 2729}
+\fax{+64 3 364 2590}
+\email{alyssa.cirtwill@pg.canterbury.ac.nz}
+\url{http://stoufferlab.org}
+\name{Alyssa R. Cirtwill}
+
+% \position{PhD student}
+% \department{School of Biological Sciences}
+% \location{Private Bag 4800}
+% \telephone{+64 3 364 2729}
+% \fax{+64 3 364 2590}
+% \email{alyssa.cirtwill@pg.canterbury.ac.nz}
+% \url{http://stoufferlab.org}
+% \name{Ms. Alyssa R. Cirtwill}
+
+
+\newcommand{\mytitle}{\emph{Specialisation in food webs scales with species richness but not with latitude}}
+\newcommand{\myjournal}{\emph{Proceedings of the Royal Society B}}
+
+\begin{document}
+
+\begin{letter}{\bf Dr. Daniel Costa\\
+               Editor\\
+               Proceedings of the Royal Society B\\
+               6-9 Carlton House Terrace\\
+               London, UK\\
+               SW1Y 5AG\\
+                }
+
+\opening{Dear Dr. Costa:}
+
+We have now finished the revisions for the resubmission of our manuscript
+``\mytitle'' for consideration in the Population and Community Ecology section
+of the \myjournal. 
+
+In your original decision, you encouraged us to resubmit a revised version of
+the manuscript noting that, while the Reviewers were quite positive, they and
+the Associate Editor had a few substantial concerns. We appreciate the
+comments by the Associate Editor and the Referees, and have taken care to
+address each one while keeping within the size limits set by \myjournal. We
+feel that the revised manuscript is both stronger and more accessible, and
+hope that it will please the Editors.
+
+
+Thank you again for your consideration of our revised manuscript.
+
+% \closing{Regards,}
+
+
+\end{letter}
+
+\newpage
+
+\setcounter{page}{1}
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+{\Large \bf Reply to Associate Editor}
+% ---------------------------------------
+
+  The Associate Editor stated that both Referees found our study ``very
+  interesting'', but echoed and added to their concerns. In particular, the
+  Associate Editor requested a demonstration that our results are not
+  ``artefacts of differences in sampling effort between studies''. To address
+  this, we have taken the Associate Editor's advice and performed the extra
+  analyses suggested by Referee 1 (described in detail below). We have also
+  taken the Associate Editor's specific comments to heart and address each one
+  in turn. We hope that our replies (preceded by \textbf{R:} [[do something
+  good]].
+
+
+  1) Title doesn't reflect our trends in freshwater communities.
+
+  \begin{refquote}
+
+    Title: the current title seems to suggest that this scaling with latitude
+    did never happen, while it was present in freshwater food webs.
+
+  \end{refquote}
+
+
+  \textbf{R:} We had originally intended to emphasize that, contrary to our expectations,
+  scaling relationships did not vary over latitude in most ecosystems. We have amended our
+  title to ``[[newtitle]]'' in order to better capture the scaling that did occur in streams.
+
+
+  2) L29, L42: suggest the likely directions of effects.
+
+  \begin{refquote}
+
+    L29. To help the reader, please be explicit about the direction of these ‘direct relationships’.
+
+    \smallskip
+
+    L42. Can you make a directional prediction on how latitude is expected to
+    affect the scaling? Otherwise, the study becomes rather exploratory
+    presenting some phenomenological patterns not grounded in theory that need
+    ad hoc explanations in the discussion. Similarly, can you provide a priori
+    motivations why the relationship may differ among ecosystem types?
+
+  \end{refquote}
+
+
+  \textbf{R:} Well, this was an exploratory study. I think that's fine. We explored, we discovered, Science! And I looked at differences between ecosystem types because they're usually different ... so there. I should probably lie about it though.
+
+
+  I guess scaling of species richness with latitude might be different in different food webs, maybe I can cite that?
+  Clearly we didn't develop the crossover between the latitude-specialization and latitude-species trends :(
+
+
+
+  Line 29:
+
+  \begin{quotation}
+
+  If the latitude-niche breadth hypothesis is correct, there should also be
+  direct relationships between latitude and the degree of specialisation
+  (i.e., the breadth of the Eltonian niche; Elton, 1927) of species within
+  food webs. Specifically, narrower niches in the tropics would equate to
+  greater specialisation (narrower niches) while constant niche sizes but
+  greater productivity would translate to constant specialisation and niche
+  width across latitude.
+
+  \end{quotation}
+
+
+  \begin{quotation}
+
+  \end{quotation}
+
+
+  3) L98-99: explain our model-selection procedure in more detail.
+
+  \begin{refquote}
+
+    L98-99. According to some experts (e.g. the landmark 2002 book by Burnham
+    and Anderson) when models differ less than 2 units in AIC, they have the
+    same support and fit. On what theoretical grounds do you motivate the
+    choice to select the model with the lowest AIC as the best-fit model when
+    models have $\delta$AIC\textless2? To what extent does this choice affect your
+    conclusions?
+
+  \end{refquote}
+
+  \textbf{R:} We are also aware of this research. This is why we in fact
+  considered all models with $\delta$AIC\textless2   as described in lines
+  97-98. Where possible, we chose the model from that array with the fewest
+  degrees of freedom. We only differentiated between models with very similar
+  AICs when there were several models with the same degrees of freedom. In general
+  these models differed only in which ecosystem types were included for intercept
+  effects (including the different slopes in lake and stream ecosystems had larger
+  effects) [[Maybe give him a list of the top models?]]. As we were only interested
+  in changes in the slope of the scaling relationship with latitude, the slight changes
+  in the intercepts would not change our conclusions at all.
+
+  
+
+  4) Move by-trophic-level analyses to appendix and/or better-explain our motivations.
+
+
+  \begin{refquote}
+
+    L100-106. After reading the introduction, it is not clear why you ‘were
+    also interested’ in this topic. I suggest following the advice of reviewer
+    2 and moving this part and the associated results to the appendix. Please
+    also then explain why this is a priori interesting and relevant to
+    investigate in the context of your study.
+
+  \end{refquote}
+
+  \textbf{R:} We thought that breaking down the food webs into trophic levels would
+  provide an extra dimension of detail for this analysis. If scaling relationships
+  had varied strongly with latitude for one trophic level and not another, that also
+  would have guided our thoughts about potential mechanisms. We are happy to remove this
+  analysis to the appendix, but I don't feel like justifying why everything has to be
+  have a priori expectations and mechanisms. It's all post-hoc bullshitting anyway.
+
+
+  5) L113: is there any covariance in the network properties?
+
+  \begin{refquote}
+
+    L113. To what extent do the property estimates covary with each other?
+    This may be presented in an appendix.
+
+  \end{refquote}
+
+
+  6) L116: missing supporting statistics
+
+  \begin{refquote}
+
+    L116. It seems the stats to support this statement are missing.
+
+  \end{refquote}
+
+
+  7) L187-198: provide citations for an absence of prey-switching in communities other than streams.
+
+  \begin{refquote}
+
+    L187-198. For your explanation why the scaling relationship changes with
+    latitude in lake and stream food webs and not in the other ecosystem types
+    to be convincing it is not enough to cite studies that high-latitude
+    aquatic species tend to switch between different seasonally available
+    prey, you also need to provide evidence from the literature that this is
+    not the case in the other ecosystem types.
+
+  \end{refquote}
+
+
+  8) Ensure layout (especially citations) matches journal specifications.
+
+  \begin{refquote}
+
+    Please strictly follow the author guidelines with regard to layout (for
+    example how to cite studies in the text).
+
+  \end{refquote}
+
+
+  \newpage
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+{\Large \bf Reply to Reviewer 1}
+% ---------------------------------------
+
+  Polite pre-amble.
+
+  ``This is an interesting paper that takes advantage of recent compilations
+  of food webs to test basic theory with respect to latitudinal gradients in
+  niche breadth. The paper is exceptionally well written and presented, and this
+  is a credit to the    authors. The analysis is of a hitherto unattempted size,
+  and is sophisticated and well thought out.''
+
+  ``The paper is remarkable for a lack of grammatical and other errors."
+
+% ---------------------------------------
+  \emph{
+  1) Some trends may be due to differences in sampling effort, especially
+  due to differences between Thompson \& Townsend stream food webs and other
+  stream webs.}
+
+
+  \begin{refquote}
+
+    My concern here is how much of the pattern can be attributed to true
+    ecological effects – as opposed to the consequences of differences in the
+    effort used to describe different food webs... It could be explored to some extent by
+    analysing for an effect of particular authors (e.g. the Thompson and
+    Townsend food webs which dominate the stream dataset) but ultimately there
+    is every chance that the results here are artefacts of differences in
+    sampling effort between studies. Might it be possible to randomise the
+    datasets, excluding particular food webs (or authors) to determine
+    robustness to this effect?? 
+
+  \end{refquote}
+
+
+  \textbf{R:} We share the reviewer's concern that variation in sampling
+  effort could be driving the trends we observe. To ensure that this is not
+  the case, we have performed several tests. We have included a brief
+  allusion to these tests in the main text and a fuller explanation in the
+  supplemental information.
+
+  [[Details of the tests]]
+
+
+  \begin{quotation}
+
+
+  \end{quotation}
+
+
+   2) Emphasize our results for streams, include the possibility that they
+   may be due to greater seasonality in stream food webs. 
+
+  \begin{refquote}
+
+    It is particularly interesting in that stream systems (as opposed to
+    estuarine, marine or terrestrial food webs) are more likely to be affected
+    by seasonal variability – and this is the mechanism evoked as underpinning
+    the latitudinal gradient. I am surprised that the authors didn’t make more
+    of this point – to some degree the difference in habitats supports their
+    proposed mechanism, and this could be discussed.
+
+  \end{refquote}
+
+
+  \textbf{R:} [[We'll need to look for citations re: seasonal effects in streams.]]
+
+
+  \begin{quotation}
+
+
+  \end{quotation}
+
+
+  \newpage
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+{\Large \bf Reply to Reviewer 2}
+% ---------------------------------------
+
+  Polite pre-amble.
+  ``This is an interesting study on a timely and important topic. The core analysis of the paper (scaling relationships of food web metrics with species richness) are convincingly presented and comprehensively discussed.''
+
+% ---------------------------------------
+
+  1) Network terminology and methods might be inaccessible to researchers
+  withoout network background.
+
+  \begin{refquote}
+
+    the accessibility to readers outside the food-web community could be
+    improved by a more detailed explanation of the methods, especially the
+    applied network metrics and underlying scaling relationships; a conceptual
+    figure visualizing the expected relationships for different communities
+    according to the latitude-niche breadth hypothesis could be very helpful
+    here
+
+    \smallskip
+
+     For readers outside the field, please explain in more detail the
+     difference between `original species' and `trophic species' in food webs.
+
+  \end{refquote}
+
+
+  \textbf{R:} We thank the reviewer for their concern that our manuscript
+  should be accessible to as wide a variety of    researchers as possible, and
+  have followed the reviewer's suggestions in several places in the manuscript.
+
+
+  2) Move by-trophic-level analysis to supplemental information, consider
+  numbers of species rather than proportions.
+
+  \begin{refquote}
+
+    the additional analyses of scaling relationships by trophic levels and
+    latitude-species richness relationships are not well introduced. If the
+    analysis on scaling relationships by trophic levels was maintained, then
+    it should already be mentioned in the Introduction (including specific
+    expectations for this analysis) and would require a more comprehensive
+    discussion.
+
+    \smallskip
+
+    The abstract is incomplete. Results of the analysis on the scaling
+    relationships by trophic levels are missing.
+
+    \smallskip
+
+    Please justify why you use the proportion of species within a trophic
+    level and not the absolute number of species per trophic level; at a first
+    glance, this would be more intuitive for me given the focus of the study
+    on scaling relationships with species richness.
+
+  \end{refquote}
+
+  \textbf{R:} 
+
+
+
+  3) Move description of the species-richness gradient to methods and results.
+
+
+  \begin{refquote}
+
+     Analyses of species richness along latitude should already be mentioned
+     and described in the Methods and should be referred to in the Results
+     section instead of the Discussion.
+
+     \smallskip
+
+      The start of the Discussion confused me since it presents another
+      additional analysis. This analysis on the latitudinal gradient in
+      species richness is interesting and important for the interpretation of
+      the patterns, but should already be presented in Methods and Results
+      section.
+
+  \end{refquote}
+
+  \textbf{R:} [[Going to be hard to fit this in gracefully.]]
+
+
+  4) Explain habitat categories.
+
+  \begin{refquote}
+
+    Please describe in more detail why you used the chosen habitat categories
+    and provide the number of webs per habitat type also in the main
+    manuscript.
+
+  \end{refquote}
+
+
+  \textbf{R:} We followed the habitat categories listed in [[foodwebdb.org]].
+  Although more detailed descriptions were also    provided, we opted to use the
+  set of five more general habitat types in order to have a greater number of
+  food webs in each category.
+
+
+  5) The y-xais of Fig. 1 is unclear, top predators are unlabelled.
+
+
+  \begin{refquote}
+
+    Please re-label the y-axis on Fig. 1 to improve clarity. The top predators
+    are missing in this figure although they are mentioned in the legend.
+
+  \end{refquote}
+
+  \textbf{R:} [[Sure fine whatever]]
+
+
+  6) Add generality, vulnerability to Fig. 2 in main text.
+
+  \begin{refquote}
+
+    I would suggest adding generality and vulnerability to Fig. 2 in the main
+    manuscript (instead of showing them in Fig. S2 only).
+
+  \end{refquote}
+
+  \textbf{R:} [[That's going to be ugly]]
+
+
+
+
+
+  \newpage
+
+
+\bibliographystyle{geb}%Compile with jae.bst style file
+\bibliography{noISBN.bib}
+
+\end{document}
