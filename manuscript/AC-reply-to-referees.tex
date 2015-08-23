@@ -130,21 +130,18 @@ Thank you again for your consideration of our revised manuscript.
   \end{refquote}
 
 
-  \textbf{R:} Well, this was an exploratory study. I think that's fine. We explored, we discovered, Science! And I looked at differences between ecosystem types because they're usually different ... so there. I should probably lie about it though.
+  \textbf{R:} Providing \emph{a priori} expectations for the directions of relationships between latitude and niche width/specialisation is difficult due to the 
+  contrasting hypotheses of narrower niches in the tropics~\citep{Vazquez2004} versus broader niche space in the tropics~\citep{Davies2007}. Given the limited support available for either hypothesis, it was equally likely that scaling of specialization with species richness might be stronger or weaker towards the poles. 
+  We do not share the Associate Editor's concern that this makes our study too exploratory but rather had intended to use the results of our analyses to support one or the other of these hypotheses. We have added to the manuscript at lines XX and YY to more explicitly frame our study as a test of these two versions of the latitude-niche breadth hypothesis.
 
-
-  I guess scaling of species richness with latitude might be different in different food webs, maybe I can cite that?
-  Clearly we didn't develop the crossover between the latitude-specialization and latitude-species trends :(
-
-
-
+ 
   Line 29:
 
   \begin{quotation}
 
   If the latitude-niche breadth hypothesis is correct, there should also be
   direct relationships between latitude and the degree of specialisation
-  (i.e., the breadth of the Eltonian niche; Elton, 1927) of species within
+  (i.e., the breadth of the Eltonian niche;~\citealp{Elton1927}) of species within
   food webs. Specifically, narrower niches in the tropics would equate to
   greater specialisation (narrower niches) while constant niche sizes but
   greater productivity would translate to constant specialisation and niche
@@ -152,8 +149,21 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{quotation}
 
+  \smallskip
+
+  Line 43:
 
   \begin{quotation}
+
+  By testing whether latitude affects the scaling of each property with
+  species richness, we test for the effects of latitude on specialisation
+  implied by the ``latitude-niche breadth hypothesis''. If the scaling of
+  specialisation with species richness is weaker at the tropics (i.e., if
+  species gain fewer links, predators, or prey as the size of the network
+  increases), this will indicate narrower niches at the tropics. If, however,
+  the scaling of specialisation with species richness does not vary over
+  latitude, this will support the hypothesis that niches are similarly-sized
+  worldwide but that there is a broader niche space in the tropics.
 
   \end{quotation}
 
@@ -171,17 +181,17 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
-  \textbf{R:} We are also aware of this research. This is why we in fact
-  considered all models with $\delta$AIC\textless2   as described in lines
-  97-98. Where possible, we chose the model from that array with the fewest
-  degrees of freedom. We only differentiated between models with very similar
-  AICs when there were several models with the same degrees of freedom. In general
-  these models differed only in which ecosystem types were included for intercept
-  effects (including the different slopes in lake and stream ecosystems had larger
-  effects) [[Maybe give him a list of the top models?]]. As we were only interested
-  in changes in the slope of the scaling relationship with latitude, the slight changes
-  in the intercepts would not change our conclusions at all.
-
+  \textbf{R:} We are also aware of the general consensus    that models where
+  $\delta$AIC\textess2 are roughly equally well-supported. This is why our
+  procedure (as stated in lines XX-XX) was to first consider the set of models
+  where $\delta$AIC\textess2 and select the model with the fewest degrees of
+  freedom. We chose the smallest model where $\delta$AIC\textess2 in order to
+  avoid over-fitting the models. We only used AIC as a deciding factor where
+  there were several models that shared the minimal degrees of freedom and all
+  had $\delta$AIC\textess2.  In fact, this scenario did not occur for the
+  models presented in the previous draft   (it does occur when the by-trophic-
+  level models use counts of species rather than proportions), so we have simply
+  removed the description of this step of our analysis from the main text. [[If we go with species counts, will need to describe what the differences are between the similar models]]
   
 
   4) Move by-trophic-level analyses to appendix and/or better-explain our motivations.
@@ -197,12 +207,16 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
-  \textbf{R:} We thought that breaking down the food webs into trophic levels would
-  provide an extra dimension of detail for this analysis. If scaling relationships
-  had varied strongly with latitude for one trophic level and not another, that also
-  would have guided our thoughts about potential mechanisms. We are happy to remove this
-  analysis to the appendix, but I don't feel like justifying why everything has to be
-  have a priori expectations and mechanisms. It's all post-hoc bullshitting anyway.
+  \textbf{R:} We have followed Reviewer 2's suggestion and 
+  moved these additional analyses to the supplemental 
+  iformation. This analysis was purely exploratory. The 
+  scaling of specialisation with proportions (or numbers) 
+  of species at different trophic levels has not been 
+  previously investigated (to our knowledge), and it 
+  seemed to us to be a logical extension of the main 
+  analysis. If the Associate Editor disagrees in principle 
+  with exploratory science, we are willing to remove these 
+  analyses altogether.
 
 
   5) L113: is there any covariance in the network properties?
@@ -214,6 +228,23 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
+  \textbf{R:} As the Associate Editor likely suspected, the property estimates
+  are all strongly    positively correlated. As generality and vulnerability
+  describe the two components (number of prey and number    of predators,
+  respectively) of links per species, this is   to be expected. We have added a
+  brief description of this correlation to the main text as we believe it   will
+  provide some context for the very similar results for link density and
+  vulnerability.
+
+  \begin{quotation}
+
+    Link density, generality, and vulnerability were strongly and positively
+    correlated ($R^2$=0.891 for link density and generality,
+    $R^2$\textgreater0.999 for link density and vulnerability, and $R^2$=0.890
+    for generality and vulnerability).
+
+  \end{quotation}
+
 
   6) L116: missing supporting statistics
 
@@ -222,6 +253,16 @@ Thank you again for your consideration of our revised manuscript.
     L116. It seems the stats to support this statement are missing.
 
   \end{refquote}
+ 
+
+  \textbf{R:} We have ammended the text (lines XX-XX) to support our statement.
+
+  \begin{quotation}
+    In stream food
+    webs, generality increased more rapidly towards the poles
+    ($\beta_{Latitude:Stream}$=0.007, $p$=0.001) while link density and
+    vulnerability did not vary with latitude (i.e., the interaction term $\beta_{Latitude:Stream}$ was not retained in the best-fit models).
+  \end{quotation}
 
 
   7) L187-198: provide citations for an absence of prey-switching in communities other than streams.
@@ -238,6 +279,9 @@ Thank you again for your consideration of our revised manuscript.
   \end{refquote}
 
 
+  \textbf{R:} [[Try to find evidence that this doesn't happen, otherwise I guess we're just going to have to hedge like summbitches??]]
+
+
   8) Ensure layout (especially citations) matches journal specifications.
 
   \begin{refquote}
@@ -247,6 +291,7 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
+  \textbf{R:} Can do, boss.
 
   \newpage
 
