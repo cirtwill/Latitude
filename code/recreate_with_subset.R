@@ -19,6 +19,7 @@
     +log(Species):Latitude
     +log(Species):Latitude:Lake,
     na.action=na.fail))    }
+    # Decided on DF
 
     # cutoff<- 4/((nrow(data)-length(LS_min$coefficients)-2)) 
     # plot(LS_min, which=4, cook.levels=cutoff)
@@ -54,6 +55,7 @@
       +log(Species):Latitude:(Lake+Stream)
       ,na.action=na.fail))
     }
+    # Decided on DF
 
     # cutoff<- 4/((nrow(data)-length(Gen_min$coefficients)-2)) 
     # plot(Gen_min, which=4, cook.levels=cutoff)
@@ -88,6 +90,7 @@
       +log(Species):Latitude
       +log(Species):Latitude:Lake
       ,na.action=na.fail))  }
+    # Decided based on Df
 
     # cutoff<- 4/((nrow(data)-length(Vul_min$coefficients)-2)) 
     # plot(Vul_min, which=4, cook.levels=cutoff)

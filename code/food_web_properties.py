@@ -5,6 +5,8 @@ import random
 import networkx as nx
 from decimal import *
 from math import *
+
+from byauthor_jacknife_setup import *
 # import role_dictionary_maker as RD
 
 #For new lists, calculate properties.
@@ -188,7 +190,18 @@ def food_web_properties(directory,item,G):
     stroutput.append(str(thing))
   return stroutput 
 
-def websorter(metafile,directory):
+def authors_by_web(bibfile,used_webs,webkeys):
+  authorset,authors_by_key,authors_with_initials=bibreader(bibfile,used_webs)
+  web_to_key=web_key_dict(webkeys)
+
+  # The idea here will be to add columns for each author to the datafile so I can jacknife by authors.
+  web_to_authors={}
+  for web in web_to_key:
+    authors=authors_by_key[web_to_key[web]]
+    web_to_authors[web]=authors
+  return web_to_authors
+
+def websorter(metafile,directory,bibfile,webkeys):
   infodict={}
   uselist=[]
   f=open(metafile)
@@ -229,10 +242,15 @@ def websorter(metafile,directory):
           'Herbivores',
           'Intermediate',
           'Toppreds']
-  header=header
+
+  authorset,authors_by_key,authors_with_initials=bibreader(bibfile,used_webs)
+  web_to_authors=authors_by_web(bibfile,used_webs,webkeys)
+
+  bigheader=header+list(sorted(authorset))
+  # Header is expanded with a list of authors... now I need to fill those columns.
 
   outfile=open('../mod_data/summary-properties.tsv','w')
-  outfile.write('\t'.join(header))
+  outfile.write(u'\t'.join(header).encode('utf-8').strip())
   outfile.write('\n')
 
   for item in uselist:
@@ -248,7 +266,7 @@ def websorter(metafile,directory):
            # extfile.write('\t'.join(map(str,[eval(item) for item in extheader])))
 
   out2=open('../non_TS/summary-properties.tsv','w')
-  out2.write('\t'.join(header))
+  out2.write(u'\t'.join(bigheader).encode('utf-8').strip())
   out2.write('\n')
 
   for item in uselist:
@@ -258,6 +276,19 @@ def websorter(metafile,directory):
     out2.write('\t'.join(info))
     out2.write('\t')
     out2.write('\t'.join(snoutputs))
+
+    try:
+      shortitem=item.split('.web')[0].split('WEB')[1]
+    except IndexError:
+      shortitem=item.split('.web')[0]
+    print shortitem
+
+    for author in sorted(authorset):
+      if author in web_to_authors[shortitem]:
+        out2.write('\t1')
+      else:
+        out2.write('\t0')
+
     out2.write('\n')
 
   outfile.close()
@@ -268,8 +299,10 @@ def main():
   metafile = '../mod_data/sup_data/food_web_notes_updated.csv'
   directory = '../mod_data/lists/pred-prey-lists-to-use/'
   motifdir = '../mod_data/Roles/'
+  bibfile = '../manuscript/noISN.bib'  
+  webkeys = '../manuscript/webs_and_keys.csv'
 
-  websorter(metafile,directory)
+  websorter(metafile,directory,bibfile,webkeys)
 
 if __name__ == '__main__':
   main()
