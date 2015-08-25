@@ -138,9 +138,13 @@ def authors_by_key(bibfile,used_webs,webkeys):
 	authorset,authors_by_key,authors_with_initials=bibreader(bibfile,used_webs)
 	web_to_key=web_key_dict(webkeys)
 
+	# The idea here will be to add columns for each author to the datafile so I can jacknife by authors.
+
 	for web in web_to_key:
 		authors=authors_by_key[web_to_key[web]]
 		print web, authors
+
+
 
 
 
