@@ -13,14 +13,14 @@ S_CIs <- function(model){
       lower <- marginal - 1.64*se
 
 
-      lake_m <- marginal + lat*betas["log(Species):Lake:Latitude"] + betas["log(Species):Lake"]
+      lake_m <- marginal + lat*betas["log(Species):Lakeweb:Latitude"] + betas["log(Species):Lakeweb"]
       lake_se <- sqrt(se^2 + 
-        lat^2*covar["log(Species):Lake:Latitude","log(Species):Lake:Latitude"] 
-        +2*lat*covar["log(Species):Lake:Latitude","log(Species)"]
-        +2*lat^2*covar["log(Species):Lake:Latitude","log(Species):Latitude"]
-        +covar["log(Species):Lake","log(Species):Lake"] 
-        +2*covar["log(Species):Lake","log(Species)"]
-        +2*lat*covar["log(Species):Lake","log(Species):Latitude"])
+        lat^2*covar["log(Species):Lakeweb:Latitude","log(Species):Lakeweb:Latitude"] 
+        +2*lat*covar["log(Species):Lakeweb:Latitude","log(Species)"]
+        +2*lat^2*covar["log(Species):Lakeweb:Latitude","log(Species):Latitude"]
+        +covar["log(Species):Lakeweb","log(Species):Lakeweb"] 
+        +2*covar["log(Species):Lakeweb","log(Species)"]
+        +2*lat*covar["log(Species):Lakeweb","log(Species):Latitude"])
 
       lake_upper <- lake_m + 1.64*lake_se
       lake_lower <- lake_m - 1.64*lake_se
@@ -35,7 +35,7 @@ S_CIs <- function(model){
         terr_lower <- terr_m - 1.64*terr_se
 
         results <- cbind(lat,marginal,upper,lower,terr_m,terr_upper,terr_lower,lake_m,lake_upper,lake_lower)
-        colnames(results)=c("Latitude","Marginal","Upper","Lower","Terrestrial","Terr_upper","Terr_lower","Lake","Lake_upper","Lake_lower")
+        colnames(results)=c("Latitude","Marginal","Upper","Lower","Terrestrial","Terr_upper","Terr_lower","Lakeweb","Lakeweb_upper","Lakeweb_lower")
       }
 
       if(model=="Gen_min"){
@@ -52,7 +52,7 @@ S_CIs <- function(model){
 
       results <- cbind(lat,marginal,upper,lower,lake_m,lake_upper,lake_lower,
         stream_m,stream_upper,stream_lower)
-      colnames(results)=c("Latitude","Marginal","Upper","Lower","Lake","Lake_upper","Lake_lower",
+      colnames(results)=c("Latitude","Marginal","Upper","Lower","Lakeweb","Lakeweb_upper","Lakeweb_lower",
         "Stream","Stream_upper","Stream_lower")
       }
       return(results)
@@ -160,15 +160,15 @@ I_CIs <- function(model){
     stream_upper <- stream_m + 1.64*stream_se
     stream_lower <- stream_m - 1.64*stream_se
 
-    lake_m <- marginal + betas["log(Intermediate):Lake"] +  lat*betas["log(Intermediate):Latitude:Lake"]
+    lake_m <- marginal + betas["log(Intermediate):Lakeweb"] +  lat*betas["log(Intermediate):Latitude:Lakeweb"]
     lake_se <- sqrt(se^2 + 
-      +covar["log(Intermediate):Lake","log(Intermediate):Lake"] 
-      +2*covar["log(Intermediate):Lake","log(Intermediate)"]
-      +2*lat*covar["log(Intermediate):Lake","log(Intermediate):Latitude"]
-      +2*lat*covar["log(Intermediate):Lake","log(Intermediate):Latitude:Lake"]
-      +2*lat^2*covar["log(Intermediate):Latitude:Lake","log(Intermediate):Latitude"]
-      +2*lat*covar["log(Intermediate):Latitude:Lake","log(Intermediate)"]
-      +lat^2*covar["log(Intermediate):Latitude:Lake","log(Intermediate):Latitude:Lake"]
+      +covar["log(Intermediate):Lakeweb","log(Intermediate):Lakeweb"] 
+      +2*covar["log(Intermediate):Lakeweb","log(Intermediate)"]
+      +2*lat*covar["log(Intermediate):Lakeweb","log(Intermediate):Latitude"]
+      +2*lat*covar["log(Intermediate):Lakeweb","log(Intermediate):Latitude:Lakeweb"]
+      +2*lat^2*covar["log(Intermediate):Latitude:Lakeweb","log(Intermediate):Latitude"]
+      +2*lat*covar["log(Intermediate):Latitude:Lakeweb","log(Intermediate)"]
+      +lat^2*covar["log(Intermediate):Latitude:Lakeweb","log(Intermediate):Latitude:Lakeweb"]
       )
 
     lake_upper <- lake_m + 1.64*lake_se
@@ -177,7 +177,7 @@ I_CIs <- function(model){
     results <- cbind(lat,marginal,upper,lower,stream_m,stream_upper,stream_lower,
       lake_m,lake_upper,lake_lower)
     colnames(results)=c("Latitude","Marginal","Upper","Lower","Stream","Stream_upper","Stream_lower",
-      "Lake","Lake_upper","Lake_lower")      }
+      "Lakeweb","Lakeweb_upper","Lakeweb_lower")      }
 
   return(results)
   }
@@ -206,10 +206,10 @@ T_CIs <- function(model){
         marine_upper <- marine_m + 1.64*marine_se
         marine_lower <- marine_m - 1.64*marine_se
 
-        lake_m <- marginal + betas["log(Toppreds):Lake"]
-        lake_se <- sqrt(se^2 +covar["log(Toppreds):Lake","log(Toppreds):Lake"] 
-          +2*covar["log(Toppreds):Lake","log(Toppreds)"]
-          +2*lat*covar["log(Toppreds):Lake","log(Toppreds):Latitude"])
+        lake_m <- marginal + betas["log(Toppreds):Lakeweb"]
+        lake_se <- sqrt(se^2 +covar["log(Toppreds):Lakeweb","log(Toppreds):Lakeweb"] 
+          +2*covar["log(Toppreds):Lakeweb","log(Toppreds)"]
+          +2*lat*covar["log(Toppreds):Lakeweb","log(Toppreds):Latitude"])
 
         lake_upper <- lake_m + 1.64*lake_se
         lake_lower <- lake_m - 1.64*lake_se
@@ -239,7 +239,7 @@ T_CIs <- function(model){
 
         results <- cbind(lat,marginal,upper,lower,marine_m,marine_upper,marine_lower,lake_m,lake_upper,lake_lower,
           stream_m,stream_upper,stream_lower,terr_m,terr_upper,terr_lower)
-        colnames(results)=c("Latitude","Marginal","Upper","Lower","Marine","Marine_upper","Marine_lower","Lake","Lake_upper","Lake_lower",
+        colnames(results)=c("Latitude","Marginal","Upper","Lower","Marine","Marine_upper","Marine_lower","Lakeweb","Lakeweb_upper","Lakeweb_lower",
           "Stream","Stream_upper","Stream_lower","Terrestrial","Terr_upper","Terr_lower")
       }
 
@@ -265,9 +265,9 @@ T_CIs <- function(model){
         stream_upper <- stream_m + 1.64*stream_se
         stream_lower <- stream_m - 1.64*stream_se
 
-        lake_m <- marginal + betas["log(Toppreds):Lake"]
-        lake_se <- sqrt(se^2 +covar["log(Toppreds):Lake","log(Toppreds):Lake"] 
-          +2*covar["log(Toppreds):Lake","log(Toppreds)"])
+        lake_m <- marginal + betas["log(Toppreds):Lakeweb"]
+        lake_se <- sqrt(se^2 +covar["log(Toppreds):Lakeweb","log(Toppreds):Lakeweb"] 
+          +2*covar["log(Toppreds):Lakeweb","log(Toppreds)"])
 
         lake_upper <- lake_m + 1.64*lake_se
         lake_lower <- lake_m - 1.64*lake_se
@@ -275,7 +275,7 @@ T_CIs <- function(model){
       results <- cbind(lat,marginal,upper,lower,marine_m,marine_upper,marine_lower,
         lake_m,lake_upper,lake_lower,stream_m,stream_upper,stream_lower)
       colnames(results)=c("Latitude","Marginal","Upper","Lower","Marine","Marine_upper","Marine_lower",
-        "Lake","Lake_upper","Lake_lower","Stream","Stream_upper","Stream_lower")
+        "Lakeweb","Lakeweb_upper","Lakeweb_lower","Stream","Stream_upper","Stream_lower")
       }
       return(results)
     }

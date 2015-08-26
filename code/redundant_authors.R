@@ -125,9 +125,6 @@
 	data$Dayton <- NULL
 	data$Rosenthal <- NULL
 
-# Redundant with Closs
-	data$Lake <- NULL
-
 # Redundant with Coffman
 	data$Cummins <- NULL
 	data$Roff <- NULL
