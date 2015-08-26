@@ -63,7 +63,42 @@ def duplicate_surnames(sur,auth):
 			surname='Wilson_G'
 		else:
 			surname='Wilson_H'
-			# print auth
+	elif sur in [u"{Zetina Rej\\'{o}n}",u"Zetina-Rej\\'{o}n"]:
+		surname='Zetina_Rejon'
+	elif sur==u"{Van Es}":
+		surname="Van_Es"
+	elif sur==u"{Savely":
+		surname="Savely"
+	elif 'Arregu' in sur and 'nchez' in sur:
+		surname='Arreguin_Sanchez'
+	elif sur==u'de Morais':
+		surname='de_Morais'
+	elif sur==u'van Oevelen':
+		surname='van_Oevelen'
+	elif sur==u'{38 coauthors}':
+		surname='38_coauthors'
+	elif sur==u'{Ali Dawah}':
+		surname='Ali_Dawah'
+	elif sur==u'{Cattin Blandenier}':
+		surname='Cattin_Blandenier'
+	elif sur==u'{Cruz Escalona}':
+		surname='Cruz_Escalona'
+	elif sur==u'{Emmett Duffy}':
+		surname='Emmett_Duffy'
+	elif sur==u'{Feroz Khan}':
+		surname='Feroz_Khan'
+	elif sur==u'Ya\u0301n\u0303ez-Arancibiaia':
+		surname='Yanez_Arancibiaia'
+	elif 'Alo' in sur and 'sio' in sur:
+		surname='Aloisio'
+	elif 'Baltan' in sur:
+		surname='Baltanas'
+	elif 'Ch' in sur and 'vez' in sur:
+		surname='Chavez'
+	elif 'Patr' in sur and 'cio' in sur:
+		surname='Patricio'
+
+
 
 	# Surprisingly, Joseph J. Torres and Jose J. Torres seem to be the same person.
 	else:
@@ -108,6 +143,8 @@ def bibreader(bibfile,used_webs):
 
 			authors_by_key[bib_id]=set(surnames)
 
+	# for author in sorted(authorset)[301:]:
+	# 	print author
 	return authorset,authors_by_key,authors_with_initials
 
 def common_author_matcher(bibfile,used_webs):
