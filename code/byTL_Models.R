@@ -91,6 +91,7 @@ by_TL=FALSE
   for(i in 1:nrow(olddata)){
     newdata=olddata[-i,]
     name=olddata$Web[i]
+    print(name)
 
     data=newdata
     source('recreate_with_subset.R')
