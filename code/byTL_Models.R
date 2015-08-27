@@ -3,7 +3,6 @@
 library(nlrwr)
 library(lmerTest)
 library(MuMIn)
-library(bootstrap)
 
 infile='../non_TS/summary-properties.tsv'
 # infile='../mod_data/summary-properties.tsv'

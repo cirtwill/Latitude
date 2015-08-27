@@ -354,12 +354,20 @@ Thank you again for your consideration of our revised manuscript.
   (we removed Thompson and Townsend separately as each worked on one web that the other
   did not). We have added a description of these methods and summary figures of their results
   to the supporting information, and we thank the reviewer for suggesting this validation
-  of our overall results. [[done]] We have also added a brief note in the main text to direct other
-  readers with similar concerns to the supporting information. [[not done]]
+  of our overall results. We have also added a brief note in the main text to direct other
+  readers with similar concerns to the supporting information (lines XX-XX). [[At the end of the 
+  section describing our analyses - didn't seeem to fit after the first mention of sampling effort]]
+  [[done]]
 
 
   \begin{quotation}
 
+    As a supplemental check to ensure that variation in sampling effor across
+    food webs was not responsible for the trends we observed, we then repeated
+    our analyses using jackknifed data sets in which we 1) sequentially removed
+    each food web in the dataset and 2) sequentially removed sets of food webs 
+    associated with each author of the food webs in the dataset. Parameter 
+    estimates varied very little across either series of jackknifes (\emph{Appendix SXX}).
 
   \end{quotation}
 
@@ -395,8 +403,14 @@ Thank you again for your consideration of our revised manuscript.
 {\Large \bf Reply to Reviewer 2}
 % ---------------------------------------
 
-  Polite pre-amble.
-  ``This is an interesting study on a timely and important topic. The core analysis of the paper (scaling relationships of food web metrics with species richness) are convincingly presented and comprehensively discussed.''1
+  The Reviewer stated that our study is interesting and covers ``a timely and
+  important topic. The core analysis of the paper (scaling relationships of
+  food web metrics with species richness) are convincingly presented and
+  comprehensively discussed.'' Nevertheless, the Reviewer has suggested several
+  ways in which our manuscript could be improved. We have responded to each suggestion
+  in turn, and believe that our replies (preceded by \textbf{R}) have further improved
+  the manuscript.
+
 
 % ---------------------------------------
 
@@ -421,19 +435,29 @@ Thank you again for your consideration of our revised manuscript.
 
 
   \textbf{R:} We thank the reviewer for their concern that our manuscript
-  should be accessible to as wide a variety of    researchers as possible, and
+  should be accessible to as wide a variety of researchers as possible, and
   have followed the reviewer's suggestions in several places in the manuscript.
-  [[sent DBS a draft of the conceptual figure]]
-  
+  We now include a conceptual figure to clearly and succinctly link the changes
+  to scaling relationships we expected to the two versions of the latitude-niche
+  breadth hypothesis (Fig. 1).
+
 
   At lines XX-XX we have added parenthetical explanations of the original and 
-  trophic-species versions of food webs.
+  trophic-species versions of food webs. We have also added parenthetical definitions
+  of link density, generality, and vulnerability at the begining of the results section
+  to remind readers of the biological meaning of these measures.
 
   \begin{quotation}
 
     We therefore analysed both original (i.e., without aggregating any species) and
     trophic-species (i.e., after aggregating species with identical predators and
-    prey) versions of the dataset;
+    prey) versions of the dataset ...
+
+    \smallskip
+
+      Link density (mean number of feeding links per species), generality
+      (mean number of prey per species), and vulnerability (mean number of predators
+      per species) were strongly and positively correlated ...
 
   \end{quotation}
 
@@ -464,6 +488,7 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
+
   \textbf{R:} Following the Referee's suggestion, we have moved our analysis
   of scaling relationships by trophic levels to the supplemental information.
   We hope that this will address the Referee's first two concerns above. We thank the
@@ -477,7 +502,6 @@ Thank you again for your consideration of our revised manuscript.
   proportions feature in more of the food-web literature) and so we ultimately decided
   on proportions because the trends were clearer than in absolute numbers. [[Should we just
   give both now that this is in the supplemental?]]
-
 
 
   3) Move description of the species-richness gradient to methods and results.
@@ -499,7 +523,52 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
-  \textbf{R:} [[Going to be hard to fit this in gracefully.]]
+
+  \textbf{R:} We had originally viewed this analysis as a very minor part of our paper,
+  but are happy to follow the Reviewer's suggestion and integrate it in the methods and
+  results along with our main analyses. We have described the methods for this analysis
+  in lines XX-XX and summarize our results in lines XX-XX.
+
+
+  \begin{quotation}
+
+    \subsection*{Gradients over latitude}
+
+    To put our dataset in the context of other research on latitudinal gradients in species richness,
+    we first examined simple linear relationships between latitude and each of 
+    species richness, links per species, generality, vulnerability, and proportions
+    of basal resources, intermediate consumers, and top predators. We fit models of the form
+
+    \begin{equation}
+    \label{Latfull}
+    S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
+    \end{equation}
+
+    \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
+    latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
+    variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
+    marine, lake, and terrestrial networks with estuarine
+    networks providing the intercept) and $\epsilon_{i}$ is a residual error term. 
+    We next calculated the AIC
+    of the maximal model as well as the AIC's of a suite of candidate simplified models identified
+    using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. 
+    Simplified models were obtained by
+    systematically removing all possible combinations of terms from the full model.
+    The best-fitting model was then determined to be the model with the fewest terms 
+    where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
+    and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
+    model.
+
+
+    \smallskip
+
+    Contrary to the expected latitudinal gradient, the best-fit version of
+    equation~(\ref{Latfull}) for species richness did not  include a signficant
+    effect of latitude for any  ecosystem type. Further, there were no
+    relationships between link density, generality, or vulnerability with
+    latitude for any ecosystem type.
+
+  \end{quotation}
 
 
   4) Explain habitat categories.
@@ -513,10 +582,20 @@ Thank you again for your consideration of our revised manuscript.
   \end{refquote}
 
 
-  \textbf{R:} We followed the habitat categories listed in [[foodwebdb.org]].
-  Although more detailed descriptions were also    provided, we opted to use the
-  set of five more general habitat types in order to have a greater number of
-  food webs in each category.
+  \textbf{R:} We followed the habitat categories given by the publications which
+  aggregated the food webs. Although more detailed descriptions were also provided, 
+  we opted to use the set of five more general habitat types in order to have a 
+  greater number of food webs in each category.
+
+
+  We have added a brief explanation, and the number of webs in each ecosystem type, at lines XX-XX:
+
+  \begin{quotation}
+    We grouped food web by ecosystem type (stream, N=71; lake, N=47; marine, N=28; estuarine, N=18;
+    and terrestrial, N=31) according to their designation in previous aggregations of food webs 
+    (i.e.,~\citet{GlobalWeb,Riede2011,Dunne2013}).
+    
+  \end{quotation}
 
 
   5) The y-xais of Fig. 1 is unclear, top predators are unlabelled.
@@ -529,10 +608,12 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
+
   \textbf{R:} [[Sure fine whatever]]
 
 
   6) Add generality, vulnerability to Fig. 2 in main text.
+
 
   \begin{refquote}
 
@@ -541,10 +622,8 @@ Thank you again for your consideration of our revised manuscript.
 
   \end{refquote}
 
+
   \textbf{R:} [[That's going to be ugly]]
-
-
-
 
 
   \newpage

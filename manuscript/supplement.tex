@@ -759,63 +759,6 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     We therefore used logarithmic-form models when assessing the
     effect of latitude on scaling relationships  with species richness.
 
-\subsection*{Appendix S3: Relationships with latitude}
-
-  \subsubsection*{Methods}
-
-    To determine whether there were latitudinal gradients in food-web structure,
-    we first examined simple linear relationships between latitude and each of 
-    species richness, links per species, generality, vulnerability, and proportions
-    of basal resources, intermediate consumers, and top predators. We fit models of the form
-
-    \begin{equation}
-    \label{Latfull}
-    S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
-    \end{equation}
-
-    \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
-    latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
-    variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
-    marine, lake, and terrestrial networks with estuarine
-    networks providing the intercept) and $\epsilon_{i}$ is a residual error term. 
-    We next calculated the AIC
-    of the maximal model as well as the AIC's of a suite of candidate simplified models identified
-    using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. 
-    Simplified models were obtained by
-    systematically removing all possible combinations of terms from the full model.
-    The best-fitting model was then determined to be the model with the fewest terms 
-    where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
-    and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
-    model.
-
-
-  \subsubsection*{Results}
-    Contrary to the expected latitudinal gradient, the best-fit version of
-    equation~(\ref{Latfull}) for species richness did not 
-    include a signficant effect of latitude for any 
-    ecosystem type. Further, there were no relationships
-    between link density, generality, or vulnerability
-    with latitude for any ecosystem type.
-
-
-    The relationships between latitude and the proportions of species at each trophic level were more complex. 
-    The proportion of basal resources increased towards the poles in stream webs ($\beta_{Latitude:stream}$=0.011, $p$\textless0.001) 
-    but did not vary with latitude in estuarine, marine, lake, or terrestrial 
-    food webs ($\beta_{Latitude}$=0.001, $p$=0.080),
-    while the proportion of intermediate consumers decreased towards the poles in all ecosystem types
-    except lakes ($\beta_{Latitude}$=-0.003, $p$=0.015 and
-    $\beta_{Latitude:Lake}$=0.005, $p$=0.016).
-    The proportion of top predators in a food web, 
-    meanwhile, decreased towards the poles in lake and 
-    stream food webs but did not vary in other ecosystem
-    types ($\beta_{Latitude}$=0.002, $p$=0.151; 
-    $\beta_{Latitude:Lake}$=-0.006, $p$=0.001; and
-    $\beta_{Latitude:stream}$=-0.007, $p$=0.006).
-
-    % Does this need to be taken into account? Do I mention
-    % it later?
-    % All of these trends were robust to the removal of outliers.
-    % Was it? Do I even care?
 
 \subsection*{Appendix SX: Testing for effects of sampling effort}
 
@@ -921,6 +864,22 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 
 
   \subsubsection*{Results}
+
+    The relationships between latitude and the proportions of species at each
+    trophic level were more complex than the flat relationship between latitude
+    and species richness in this dataset.  The proportion of basal resources
+    increased towards the poles in stream webs
+    ($\beta_{Latitude:stream}$=0.011, $p$\textless0.001)  but did not vary
+    with latitude in estuarine, marine, lake, or terrestrial  food webs
+    ($\beta_{Latitude}$=0.001, $p$=0.080), while the proportion of
+    intermediate consumers decreased towards the poles in all ecosystem types
+    except lakes ($\beta_{Latitude}$=-0.003, $p$=0.015 and
+    $\beta_{Latitude:Lake}$=0.005, $p$=0.016). The proportion of top predators
+    in a food web,  meanwhile, decreased towards the poles in lake and  stream
+    food webs but did not vary in other ecosystem types
+    ($\beta_{Latitude}$=0.002, $p$=0.151;  $\beta_{Latitude:Lake}$=-0.006,
+    $p$=0.001; and $\beta_{Latitude:stream}$=-0.007, $p$=0.006).
+
 
     Unlike species richness, only generality showed an overall increase with
     increasing proportions of basal resources in a web ($\beta_0$=0.019,

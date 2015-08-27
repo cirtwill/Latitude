@@ -160,7 +160,9 @@ latitude when exploring gradients in food-web structure.
     We then divided the species in each web into basal resources (those species with
     consumers but no prey), top predators (those species with prey but no predators),
     and intermediate consumers (species with both predators and prey, including cannibalistic
-    species). 
+    species). We grouped food web by ecosystem type (stream, N=71; lake, N=47; marine, 
+    N=28; estuarine, N=18; and terrestrial, N=31) according to their designation in 
+    previous aggregations of food webs (i.e.,~\citet{GlobalWeb,Riede2011,Dunne2013}).
 
 
     As the food webs in this dataset are derived from a variety of sources and were compiled over many decades, it
@@ -168,14 +170,43 @@ latitude when exploring gradients in food-web structure.
     Many analyses of food-web structure attempt to reduce this variation by aggregating species with identical predator and prey
     sets to form ``trophic species'' webs ~\citep{Martinez1991,Dunne2004,Vermaat2009,Dunne2013}. As our study
     is concerned directly with the number of species at a particular latitude, however, we did not wish to ignore 
-    species with identical sets of interactions. We therefore analysed both original and trophic-species versions
+    species with identical sets of interactions. We therefore analysed both original (i.e., without aggregating 
+    any species) and trophic-species (i.e., after aggregating species with identical predators and prey) versions
     of the dataset; in each case using the number of species and 
-    links in each web to calculate the mean link density (number of links per species), mean generality 
+    feeding links in each web to calculate the mean link density (number of links per species), mean generality 
     (number of prey per species), and mean vulnerability (number of predators per species) of the web. 
     The version of the dataset used did not qualitatively change the results, suggesting that
     the scaling relationships between species richness, other food-web properties, and latitude are very 
     similar whether or not redundant species are included. For simplicity, here we present only
-    the results for the original webs.
+    the results for the original (un-aggregated) webs.
+
+
+  \subsection*{Gradients over latitude}
+
+    To put our dataset in the context of other research on latitudinal gradients in species richness,
+    we first examined simple linear relationships between latitude and each of 
+    species richness, links per species, generality, vulnerability, and proportions
+    of basal resources, intermediate consumers, and top predators. We fit models of the form
+
+    \begin{equation}
+    \label{Latfull}
+    S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
+    \end{equation}
+
+    \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
+    latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
+    variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
+    marine, lake, and terrestrial networks with estuarine
+    networks providing the intercept) and $\epsilon_{i}$ is a residual error term. 
+    We next calculated the AIC
+    of the maximal model as well as the AIC's of a suite of candidate simplified models identified
+    using the R~\citep{R} function dredge from package MuMIn~\citep{MuMIn}. 
+    Simplified models were obtained by
+    systematically removing all possible combinations of terms from the full model.
+    The best-fitting model was then determined to be the model with the fewest terms 
+    where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
+    and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
+    model.
 
 
   \subsection*{Scaling Relationships with S}
@@ -209,7 +240,7 @@ latitude when exploring gradients in food-web structure.
 
     After determining the appropriate form of the scaling relationship, we
     then assessed the impact of latitude on the scaling relationships between
-    species richness and  link density, generality, vulnerability. In the
+    species richness and link density, generality, vulnerability. In the
     context of the scaling relationships above, note  that this implies that
     we wished to determine the effect of latitude on the scaling exponent
     $\beta$. We included a categorical variable for
@@ -244,6 +275,12 @@ latitude when exploring gradients in food-web structure.
     restriction that species richness was retained in all reduced models. The
     best-fitting model was then determined to be the model with the fewest
     terms  where $\Delta$AIC\textless2, as this model is the least likely to suffer from over-fitting.
+    As a supplemental check to ensure that variation in sampling effor across
+    food webs was not responsible for the trends we observed, we then repeated
+    our analyses using jackknifed data sets in which we 1) sequentially removed
+    each food web in the dataset and 2) sequentially removed sets of food webs 
+    associated with each author of the food webs in the dataset. Parameter 
+    estimates varied very little across either series of jackknifes (\emph{Appendix SXX}).
     % If several models shared the fewest
     % number of terms  and had $\Delta$AIC\textless2, the model with the lowest
     % AIC in that set was chosen as the best-fit model.
@@ -251,11 +288,19 @@ latitude when exploring gradients in food-web structure.
 
 \section*{Results}
 
-  Link density, generality, and vulnerability were strongly and positively
-  correlated ($R^2$=0.891 for link density and generality,
+  Contrary to the expected latitudinal gradient, the best-fit version of
+  equation~(\ref{Latfull}) for species richness did not  include a signficant
+  effect of latitude for any  ecosystem type. Further, there were no
+  relationships between link density, generality, or vulnerability with
+  latitude for any ecosystem type. Link density (mean number of feeding links
+  per species), generality (mean number of prey per species), and
+  vulnerability (mean number of predators per species) were strongly and
+  positively correlated ($R^2$=0.891 for link density and generality,
   $R^2$\textgreater0.999 for link density and vulnerability, and $R^2$=0.890
-  for generality and vulnerability). Each property 
-  increased with increasing
+  for generality and vulnerability).
+
+
+  Each property increased with increasing
   species richness ($\beta_0$=0.637, $p$\textless0.001; $\beta_0$=0.553,
   $p$\textless0.001; and $\beta_0$=0.637, $p$\textless0.001, respectively;
   Fig~\ref{props_v_lat}).For estuarine, marine, and terrestrial food webs the
