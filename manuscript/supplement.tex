@@ -64,7 +64,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 \beginsupplement
 \linenumbers
 % \begin{landscape}
-\subsection*{Appendix S1: Details of Food Web Sources and Selection}
+\subsection*{Appendix S1: Details of food web sources and selection}
 
   We combined published food webs from~\citet{GlobalWeb},~\citet{Riede2011},
   and~\citet{Dunne2013}. Of the 358 food webs available
@@ -702,7 +702,7 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
   \end{landscape}
 \newpage
 
-\subsection*{Appendix S2: Forms of scaling Relationships with S}
+\subsection*{Appendix S2: Forms of scaling relationships with species richness}
 
   \subsubsection*{Methods}
 
@@ -816,6 +816,91 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
     % it later?
     % All of these trends were robust to the removal of outliers.
     % Was it? Do I even care?
+
+\subsection*{Appendix SX: Testing for effects of sampling effort}
+
+  \subsubsection*{Methods}
+    As our dataset consists of food webs published over several decades, from 
+    many countries, and by many research groups, it is highly likely that not
+    all webs were compiled using the same procedure or with the same degree of
+    sampling effort. In order to insure that our results were not driven by
+    particularly unusual food webs, or by unusually well- or poorly-sampled webs 
+    derived from any particular group, we performed two jackknife tests of our 
+    results. In the first test, we removed one web from our dataset and re-fit 
+    our models, then repeated this process for all webs in the dataset. We then 
+    plotted the estimates for each coefficient in each of our models in order to 
+    determine whether the omission of any web dramatically changed the resulting 
+    model. In the second test, we removed groups of webs assembled by a given 
+    author (or authors, where two or more authors assembled identical sets of 
+    food webs) and again plotted the resulting collection of estimates for each
+    coefficient. We did not plot the coefficients resulting from the removal of
+    authors who compiled a single food web, as these were included in the first
+    test. This allowed us to determine whether the inclusion or exclusion
+    of the webs assembled by a particular researcher or group of researchers
+    affected our results.
+
+  \subsubsection*{Results}
+
+    None of our models were affected by the removal of any single food web.
+    Estimates of co-efficients from all jackknifed datasets were extremely
+    similar (Figs.~\ref{LS_web,Gen_web,Vul_web}). Moreover, our models were also robust to the removal
+    of any given author (Figs.~\ref{LS_auth,Gen_auth,Vul_auth}). We are therefore very confident that,
+    while there are undoubtedly differences in the methods used to compile food webs,
+    these differences are not driving the trends we report in this study.
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/LS_web.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across food webs. We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of each web in the dataset. All estimates are colour
+    coded according the ecosystem type of the removed web.}
+    \label{LS_web}
+    \end{figure}
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/Gen_web.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across food webs. We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of each web in the dataset. All estimates are colour
+    coded according the ecosystem type of the removed web.}
+    \label{Gen_web}
+    \end{figure}
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/Vul_web.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across food webs. We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of each web in the dataset. All estimates are colour
+    coded according the ecosystem type of the removed web.}
+    \label{Vul_web}
+    \end{figure}
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/LS_author.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across authors of the published food webs used in this study. 
+    We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of all webs compiled by each author in the dataset.}
+    \label{LS_web}
+    \end{figure}
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/Gen_author.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across authors of the published food webs used in this study. 
+    We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of all webs compiled by each author in the dataset.}
+    \label{Gen_web}
+    \end{figure}
+
+    \begin{figure}[h]
+    \centerline{\includegraphics*[width=.8\textwidth]{Figures/Jackknife/Vul_author.eps}}
+    \caption{Estimates of the coefficients in equation XX do not vary significantly
+    when jackknifing across authors of the published food webs used in this study. 
+    We show the estimates (+/- 1SE) of each coefficient
+    in the equation after the removal of all webs compiled by each author in the dataset.}
+    \label{Vul_web}
+    \end{figure}
 
 
 \subsection*{Appendix S4: Scaling relationships by trophic level}
