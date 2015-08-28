@@ -163,72 +163,72 @@ def web_jackknife_plotter(directory,webfiles,prop,datafile):
 
     if prop in ['LS','Vul']:
       if key=='"(Intercept)"' and prop=='LS':
-        graph.world.xmin=-.600001
-        graph.world.xmax=0
+        graph.world.xmin=-.700001
+        graph.world.xmax=.1
         major=.3
         labtext=labels[0]
       elif key=='"(Intercept)"' and prop=='Vul':
-        graph.world.xmin=-1.25
-        graph.world.xmax=-.75
-        major=.25
+        graph.world.xmin=-1.5
+        graph.world.xmax=-.5
+        major=.5
         labtext=labels[0]
       elif key=='"log(Species)"':
         graph.world.xmin=.49999999
-        graph.world.xmax=.75
+        graph.world.xmax=.8
         major=.1
         labtext=labels[1]
       elif key=='"log(Species):Latitude"':
-        graph.world.xmin=-.0025
-        graph.world.xmax=.0005
-        major=.001
+        graph.world.xmin=-.004
+        graph.world.xmax=.002
+        major=.002
         labtext=labels[2]
       elif key=='"log(Species):Lakeweb"':
-        graph.world.xmin=-.2
-        graph.world.xmax=0.05
-        major=.1
+        graph.world.xmin=-.3
+        graph.world.xmax=0.1
+        major=.15
         labtext=labels[3]
       elif key=='"log(Species):Terr"':
-        graph.world.xmin=-.1
-        graph.world.xmax=0
+        graph.world.xmin=-.1500001
+        graph.world.xmax=.02
         major=.05
         labtext=labels[4]
       else:
-        graph.world.xmin=0
+        graph.world.xmin=-.005
         graph.world.xmax=.01
         major=.005
         labtext=labels[5]
     elif prop=='Gen':
       if key in ['"log(Species):Lakeweb:Latitude"','"log(Species):Stream:Latitude"']:
         graph.world.xmin=0
-        graph.world.xmax=.01
+        graph.world.xmax=.015
         major=.005
         if key=='"log(Species):Lakeweb:Latitude"':
           labtext=labels[5]
         else:
           labtext=labels[6]
       elif key=='"(Intercept)"':
-        graph.world.xmax=-.3999999
-        graph.world.xmin=-.9
-        major=.2
+        graph.world.xmax=-.25
+        graph.world.xmin=-1.05
+        major=.3
         labtext=labels[0]
       elif key=='"log(Species)"':
-        graph.world.xmax=.65
-        graph.world.xmin=.45
-        major=.1
+        graph.world.xmax=.8
+        graph.world.xmin=.4
+        major=.2
         labtext=labels[1]
       elif key=='"log(Species):Latitude"':
-        graph.world.xmin=-.003
+        graph.world.xmin=-.004
         graph.world.xmax=.002
         major=.002
         labtext=labels[2]
       elif key=='"log(Species):Stream"':
-        graph.world.xmax=0
-        graph.world.xmin=-.4
+        graph.world.xmax=.05
+        graph.world.xmin=-.5
         major=.2
         labtext=labels[4]
       else: # Lake
-        graph.world.xmax=.1
-        graph.world.xmin=-.2
+        graph.world.xmax=.10001
+        graph.world.xmin=-.25
         major=.1
         labtext=labels[3]
 
@@ -346,37 +346,37 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile):
         labtext=labels[5]
     elif prop=='Gen':
       if key in ['"log(Species):Lakeweb:Latitude"','"log(Species):Stream:Latitude"']:
-        graph.world.xmin=0
-        graph.world.xmax=.01
-        major=.005
+        graph.world.xmin=-.005
+        graph.world.xmax=.015
+        major=.006
         if key=='"log(Species):Lakeweb:Latitude"':
           labtext=labels[5]
         else:
           labtext=labels[6]
       elif key=='"(Intercept)"':
-        graph.world.xmax=-.3999999
-        graph.world.xmin=-.9
-        major=.2
+        graph.world.xmax=-.0999999
+        graph.world.xmin=-1.15
+        major=.3
         labtext=labels[0]
       elif key=='"log(Species)"':
-        graph.world.xmax=.75
-        graph.world.xmin=.45
-        major=.1
+        graph.world.xmax=.8
+        graph.world.xmin=.3
+        major=.2
         labtext=labels[1]
       elif key=='"log(Species):Latitude"':
-        graph.world.xmin=-.003
-        graph.world.xmax=.002
-        major=.002
+        graph.world.xmin=-.004
+        graph.world.xmax=.00300001
+        major=.003
         labtext=labels[2]
       elif key=='"log(Species):Stream"':
-        graph.world.xmax=0
-        graph.world.xmin=-.4
-        major=.2
+        graph.world.xmax=.2
+        graph.world.xmin=-.6
+        major=.3
         labtext=labels[4]
       else: # Lake
-        graph.world.xmax=.1
-        graph.world.xmin=-.2
-        major=.1
+        graph.world.xmax=.200001
+        graph.world.xmin=-.3
+        major=.2
         labtext=labels[3]
 
     graph.xaxis.tick.configure(place='both',major_size=.4,minor_ticks=0,minor_size=.4,major=major,major_linewidth=.5,minor_linewidth=.5)

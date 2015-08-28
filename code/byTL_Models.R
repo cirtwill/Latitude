@@ -82,7 +82,6 @@ by_TL=FALSE
   source('redundant_authors.R')
 
   # Calculate the base models.
-  source('recreate_with_subset.R')
 
   olddata=data
 
@@ -117,8 +116,9 @@ by_TL=FALSE
     }
   }
 
-
   data=olddata
+
+  source('recreate_with_subset.R')
 
   if(infile=='../mod_data/summary-properties.tsv'){
     outdir='../mod_data/'  } else {
