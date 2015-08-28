@@ -441,6 +441,7 @@ def main():
 
   form="proportions"
   TL='S'
+  prop="LS"
 
   Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
@@ -448,34 +449,33 @@ def main():
 
   Sgrace.add_label_scheme('dummy',Snames)
   Sgrace.set_label_scheme('dummy')
+  
+  for ecotype in ecotypes:   
+    if ecotype=='Estuary':
+      typ='Estuarine'
+    elif ecotype=='Marine':
+      typ='Marine'
+    elif ecotype=='Lake':
+      typ='Lake'
+    elif ecotype=='Stream':
+      typ='Stream'
+    else:
+      typ='Terrestrial'
 
-  for ecotype in ecotypes[:3]:   
-    for prop in ['LS','Gen','Vul']:  
-      if ecotype=='Estuary':
-        typ='Estuarine'
-      elif ecotype=='Marine':
-        typ='Marine'
-      elif ecotype=='Lake':
-        typ='Lake'
-      elif ecotype=='Stream':
-        typ='Stream'
-      else:
-        typ='Terrestrial'
+    graph=Sgrace.add_graph(Panel)
 
-      graph=Sgrace.add_graph(Panel)
+    plotter(prop,TL,ecotype,graph,form)
+    graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
+    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
 
-      plotter(prop,TL,ecotype,graph,form)
-      # graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
-      # graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
-
-  Sgrace.multi(rows=3,cols=3,vgap=.04,hgap=.04)
+  Sgrace.multi(rows=5,cols=1,vgap=.04,hgap=.04)
 
   Sgrace.hide_redundant_xticklabels()
   Sgrace.hide_redundant_yticklabels()
   Sgrace.hide_redundant_labels()
 
-  # Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
-  # Sgrace.set_row_xaxislabel(row=4,colspan=(0,0),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Sgrace.set_row_xaxislabel(row=4,colspan=(0,0),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   Sgrace.write_file('../manuscript/Figures/by_TL/marginal/justS_marginal_latitude.eps')
  
