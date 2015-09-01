@@ -141,7 +141,7 @@
      showgrid="false"
      inkscape:window-width="1215"
      inkscape:window-height="1000"
-     inkscape:window-x="1345"
+     inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
@@ -736,5 +736,12 @@
          x="53.694862"
          y="733.953"
          style="font-size:24px">C) Consequences for scaling relationships</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3275"
+       width="53.448277"
+       height="56.896553"
+       x="553.4483"
+       y="316.15527" />
   </g>
 </svg>
