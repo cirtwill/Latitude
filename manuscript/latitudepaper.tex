@@ -44,7 +44,7 @@
 \begin{document}
 
 
-\title{Latitudinal gradients in niche breadth vary across ecosystem types.}
+\title{Latitudinal gradients in biotic niche breadth vary across ecosystem types.}
 \author{Alyssa R. Cirtwill$^{1,2}$, Daniel B. Stouffer$^{1}$, Tamara N. Romanuk$^{2}$}
 \date{\small$^1$Centre for Integrative Ecology\\School of Biological Sciences\\University of Canterbury\\
 Private Bag 4800\\Christchurch 8140, New Zealand \\
@@ -125,7 +125,7 @@ latitude when exploring gradients in food-web structure.
   Specifically, narrower niches in the tropics would equate to
   greater specialisation (narrower niches) while constant niche sizes but
   greater productivity would translate to constant specialisation and niche
-  width across latitude.
+  width across latitude (Fig.~\ref{concept}).
   Attempts to unravel these effects, however,
   are complicated by known relationships between species richness and many other network properties~\cite{Riede2010}. 
   For example,
@@ -137,23 +137,22 @@ latitude when exploring gradients in food-web structure.
 
   If this is the case, it may still be possible to uncover effects of latitude
   on specialisation by examining the shape of the scaling  relationship
-  between specialisation and species richness over changing latitude. As
-  food webs describing different ecosystem types may differ both in their
-  food-web structure~\cite{Dunne2004,Shurin2006} and in the extent to [[seasonal
-  variation? Latitudinal gradients in S? Productivity? whatnow?]], we also included
-  ecosystem type as a covariate.   Here, we
-  use three measures of specialisation: mean links per species, mean
-  generality (number of prey), and mean vulnerability (number of predators).
+  between specialisation and species richness over changing latitude. 
   By testing whether latitude affects the scaling of each property with
   species richness, we test for the effects of latitude on specialisation
-  implied by the ``latitude-niche breadth hypothesis''. If the scaling of
-  specialisation with species richness is weaker in the tropics (i.e., if
-  species gain fewer links, predators, or prey as the size of the network
-  increases), this will indicate narrower niches at the tropics. If, however,
-  the scaling of specialisation with species richness does not vary over
-  latitude, this will indicate that niches are similarly-sized
+  implied by the ``latitude-niche breadth hypothesis'' (Fig.~\ref{concept}). 
+  If the scaling of specialisation with species richness is weaker in the 
+  tropics (i.e., if species gain fewer links, predators, or prey as the size 
+  of the network increases), this will indicate narrower niches at the tropics. 
+  If, however, the scaling of specialisation with species richness does not 
+  vary over latitude, this will indicate that niches are similarly-sized
   worldwide but that there is a broader niche space in the tropics.
-
+  Additionally, as food webs describing different ecosystem types may differ
+  in their topology~\cite{Dunne2004,Shurin2006} and may be subject to different
+  latitudinal gradients in species richness~\cite{} or productivity~\cite{},
+  we also explored the differences in scaling relationships across ecosystem types.
+  Here, we use three measures of specialisation; mean links per species, mean
+  generality (number of prey), and mean vulnerability (number of predators).
 
 
 \section*{Methods}
@@ -189,7 +188,7 @@ latitude when exploring gradients in food-web structure.
     the results for the original (un-aggregated) webs.
 
 
-  \subsection*{Gradients over latitude}
+  \subsection*{Gradients over Latitude}
 
     To put our dataset in the context of other research on latitudinal gradients in species richness,
     we first examined simple linear relationships between latitude and each of 
@@ -205,19 +204,18 @@ latitude when exploring gradients in food-web structure.
     latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
     variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
     marine, lake, and terrestrial networks with estuarine
-    networks providing the intercept) and $\epsilon_{i}$ is a residual error term. 
+    networks corresponding to $E_{i}=0$) and $\epsilon_{i}$ is a residual error term. 
     We next calculated the AIC
     of the maximal model as well as the AIC's of a suite of candidate simplified models identified
     using the R~\cite{R} function dredge from package MuMIn~\cite{MuMIn}. 
     Simplified models were obtained by
     systematically removing all possible combinations of terms from the full model.
     The best-fitting model was then determined to be the model with the fewest terms 
-    where $\Delta$AIC\textless2. If several models shared the fewest number of terms 
-    and had $\Delta$AIC\textless2, the model with the lowest AIC in that set was chosen as the best-fit
-    model.
+    where $\Delta$AIC\textless2, as this model is the least likely to suffer from over-fitting. 
+    
 
 
-  \subsection*{Scaling Relationships with S}
+  \subsection*{Scaling Relationships with Species Richness}
 
     The scaling relationship between link density ($Z$) and species richness ($S$)
     has been shown to be a power law~\cite{Riede2010} of the form 
@@ -278,17 +276,9 @@ latitude when exploring gradients in food-web structure.
     We then simplified each model. To do this, we calculated the AIC of the
     maximal model as well as the AIC's of a suite of candidate simplified
     models identified using the R~\cite{R} function dredge from package
-    MuMIn~\cite{MuMIn}.  Simplified models were obtained by systematically
-    removing all possible combinations  of terms from the full model with the
-    restriction that species richness was retained in all reduced models. The
-    best-fitting model was then determined to be the model with the fewest
-    terms  where $\Delta$AIC\textless2, as this model is the least likely to suffer from over-fitting.
-    As a supplemental check to ensure that variation in sampling effor across
-    food webs was not responsible for the trends we observed, we then repeated
-    our analyses using jackknifed data sets in which we 1) sequentially removed
-    each food web in the dataset and 2) sequentially removed sets of food webs 
-    associated with each author of the food webs in the dataset. Parameter 
-    estimates varied very little across either series of jackknifes (\emph{Appendix SXX}).
+    MuMIn~\cite{MuMIn}.  Simplified models were obtained by using the same
+    procedure as described above. Parameter estimates for the simplified models
+    varied very little across either series of jackknifes (\emph{Appendix S3}).
     % If several models shared the fewest
     % number of terms  and had $\Delta$AIC\textless2, the model with the lowest
     % AIC in that set was chosen as the best-fit model.
