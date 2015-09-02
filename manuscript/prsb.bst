@@ -928,6 +928,7 @@ FUNCTION {format.organization.address}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
+  new.block
   format.date "year" output.check
   date.block
   format.title "title" output.check
@@ -954,12 +955,14 @@ FUNCTION {book}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check
+    new.block
     }
     { format.authors output.nonnull
       crossref missing$
         { "author and editor" editor either.or.check }
         'skip$
       if$
+    new.block
     }
   if$
   format.date "year" output.check
@@ -1002,13 +1005,16 @@ FUNCTION {inbook}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check
+      new.block
     }
     { format.authors output.nonnull
       crossref missing$
         { "author and editor" editor either.or.check }
         'skip$
       if$
+      new.block
     }
+  new.block
   if$
   format.date "year" output.check
   date.block
@@ -1038,6 +1044,7 @@ FUNCTION {inbook}
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
+  new.block
   format.date "year" output.check
   date.block
   format.title "title" output.check
