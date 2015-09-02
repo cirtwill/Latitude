@@ -31,12 +31,14 @@
 
 # Redundant with Aloisio
   data$Carvalho <- NULL
+  data$Aloisio <- NULL # Only helped with one web, it had no intermediates or herbs.
 
 # Redundant with Althaus
   data$Bax <- NULL
   data$Bulman <- NULL
   data$He <- NULL
   data$Williams_A <- NULL
+  data$Althaus <- NULL # No intermediates here either.
 
 # Redundant with Amundsen
   data$Klemetsen <- NULL

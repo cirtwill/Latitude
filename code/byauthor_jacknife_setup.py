@@ -75,7 +75,7 @@ def duplicate_surnames(sur,auth):
 		surname='de_Morais'
 	elif sur==u'van Oevelen':
 		surname='van_Oevelen'
-	elif sur==u'{38 coauthors}':
+	elif sur in [u'{38 coauthors}','Coauthors']:
 		surname='38_coauthors'
 	elif sur==u'{Ali Dawah}':
 		surname='Ali_Dawah'
@@ -97,7 +97,10 @@ def duplicate_surnames(sur,auth):
 		surname='Chavez'
 	elif 'Patr' in sur and 'cio' in sur:
 		surname='Patricio'
-
+	elif sur in ['McLaughlin','Mclaughlin']:
+		surname='McLaughlin'
+	elif 'Silander' in sur:
+		surname='Silander'
 
 
 	# Surprisingly, Joseph J. Torres and Jose J. Torres seem to be the same person.

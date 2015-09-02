@@ -63,20 +63,21 @@ by_TL=FALSE
 
 
   # # Check for redundant authors
-  # auths=as.data.frame(data[,20:188])
+  # auths=as.data.frame(data[,20:185])
   # for(col1 in colnames(auths)){
   #   duplicates=c(col1)
   #   for(col2 in colnames(auths)){
   #     v1=as.vector(auths[,col1])
   #     v2=as.vector(auths[,col2])
-  #     if(cor(v1,v2)==1){
-  #       duplicates=union(duplicates,c(col2))
-  #     }
+  #     if(sum(v1)>0 && sum(v2)>0){
+  #       if(cor(v1,v2)==1){
+  #         duplicates=union(duplicates,c(col2))
+  #       }
   #   }
   #   if(length(duplicates)>1){
   #   print(duplicates)
   #   }
-  # }
+  # }}
 
   # Eliminate the redundant authors for jacknifing.
   source('redundant_authors.R')
@@ -101,11 +102,21 @@ by_TL=FALSE
 
   # Jackknifing by authors (slightly harder)
 
+  removals=matrix(nrow=50,ncol=2,data=NA)
+
   # If an author is only on one web, then I've already checked that in the webwise version :)
-  for(i in 20:189){
+  j=1
+  for(i in 20:185){
     if(sum(olddata[,i])>1){
       newdata=olddata[which(olddata[,i]==0),]
       name=colnames(olddata)[i]
+
+      removed=dim(olddata)[1]-dim(newdata)[1]
+      removals[j,1]=name
+      removals[j,2]=removed
+
+      print(c(name,removed,j))
+      j=j+1
 
       data=newdata
       source('recreate_with_subset.R')
@@ -116,6 +127,7 @@ by_TL=FALSE
     }
   }
 
+  write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
   data=olddata
 
   source('recreate_with_subset.R')
