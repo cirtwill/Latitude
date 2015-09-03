@@ -17,6 +17,75 @@ from PyGrace.axis import LINEAR_SCALE, LOGARITHMIC_SCALE
 from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 from PyGrace.Extensions.latex_string import LatexString, CONVERT
 
+redundants={
+  'Egloff':['X38_coauthors','Richardson','Coauthors'],
+  'Abele':['Simberloff'],
+  'Ali_Dawah':['Banasek.Richter','Berlow','Bersier','Blanchard','Brey',
+              'Brose','Cushing','Dell','Harper.Smith','Jacob','Knapp',
+              'Ledger','Memmot','Mintenbeck','Pinnegar','Rall','Ruess','Ulrich','Yodzis'],
+  'Aloisio':['Carvalho'],
+  'Althaus':['Bax','Bulman','He','Williams_A'],
+  'Amundsen':['Klemetsen','Knudsen','Kristoffersen','Primicerio'],
+  'Antezana':['Cornejo.Donoso'],
+  'Arreguin_Sanchez':['Zetina_Rejon'],
+  'Baeta':['Niquil'],
+  'Bailey.Watts':['Bindloss','Holden','Smith_I'],
+  'Beaney':['Huxham','Raffaelli'],
+  'Bradstreet':['Cross'],
+  'Bretschko':['Gollmann','Pechlaner','Pfeifer','Tilzer','Weissenbach'],
+  'Briand':['Newman'],
+  'Brittain':['Larsson','Lien','Lillehammer','Tangen'],
+  'Britton':['Kowalczewski','Lack','Matthews','McDonald'],
+  'Brown':['Hechinger'],
+  'Burgis':['Ganf','McGowan','Viner'],
+  'Canuel':['Douglass','Emmett_Duffy'],
+  'Castro':['Filgueira'],
+  'Catella':['Resende','de_Morais'],
+  'Cattaneo.Vietti':['Smith_WO'],
+  'Chen':['Chen_Y','Li_J','Liu'],
+  'Christian':['Luczkovich'],
+  'Clarke_T':['Flechsig','Grigg'],
+  'Clarke_W':['Dayton','Rosenthal'],
+  'Closs':['Lake'],
+  'Coffman':['Cummins','Roff'],
+  'Collins':['Mitchell','Wiegert'],
+  'Conover':['Edwards_D','Sutter'],
+  'Cummins':['Coffman','Roff'],
+  'Dai':['Fang','Hsieh','Hung','Lin','Lo','Shao','Su'],
+  'Darlington':['Moriarty_C','Moriarty_D','Tevlin'],
+  'Detloff':['Josten','Zander'],
+  'Ebenman':['Emmerson','Montoya','Olesen','Valido'],
+  'Edwards_E':['Kilroy','McIntosh','Scarsbrook'],
+  'Feroz_Khan':['Panikkar'],
+  'Fetahi':['Mengistou','Schagerl'],
+  'Fradkin':['Hampton','Leavitt','Rosenberger'],
+  'Garcia.Cantizano':['Massana','Pedros.Alio'],
+  'Godfrey':['Pearson','Pusey'],
+  'Goldwasser':['Roughgarden'],
+  'Gontikaki':['Soetaert','Witte','van_Oevelen'],
+  'Harris':['Paur'],
+  'Hasham':['Hildrew'],
+  'Heald':['Odum_W'],
+  'Hildrew':['Hasham'],
+  'Homer':['Kemp','Lehman','McKellar','Odum_H','Smith_WH','Young'],
+  'Hopkins':['Lancraft','Torres'],
+  'Huang':['Li_X','Yan'],
+  'Hurlbert':['Mulla','Wilson_H'],
+  'Johnson':['Orlofske','Preston'],
+  'Lauridsen':['Papantoniou'],
+  'Marques':['Patricio'],
+  'Motta':['Uieda'],
+  'Pattie':['Verbeek'],
+  'Price':['Mayse'],
+  'Ratsirarson':['Silander'],
+  'Seifert_F':['Seifert_R'],
+  'Shushkina':['Vinogradov'],
+  'Sprules':['Stewart'],
+  'Stagliano':['Whiles'],
+  'Tavares.Cromar':['Williams_D']}
+
+
+
 def websbytype(datafile):
   webtypedict={'terrestrial':[],'stream':[],'estuary':[],'lake':[],'marine':[]}
 
@@ -98,32 +167,51 @@ def removalcounter(removalfile):
 def utilities(prop):
   if prop in ['LS','Vul']:
     labels=[\
+    LatexString(r"\v{-.6}\f{Symbol}a\f{}"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s0\s"), \
+    LatexString(r"\n\v{-.15}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Lake\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Terrestrial\s"), \
+    LatexString(r"\n\v{-.15}\f{Symbol}b\f{}\s3, E = Lake\s")]
+
+    altlabels=[\
     LatexString(r"\f{Symbol}a\f{}"), \
-    LatexString(r"\f{Symbol}b\f{}\s0\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s1\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s2, E = Lake\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s2, E = Terrestrial\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s3, E = Lake\s")]
+    LatexString(r"\n\f{Symbol}b\f{}\s0\s"), \
+    LatexString(r"\n\n\v{.3}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Lake\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Terrestrial\s"), \
+    LatexString(r"\n\n\v{.3}\f{Symbol}b\f{}\s3, E = Lake\s")]
+
     keylist=['"(Intercept)"','"log(Species)"','"log(Species):Latitude"','"log(Species):Lakeweb"','"log(Species):Terr"','"log(Species):Lakeweb:Latitude"']
   elif prop=='Gen':
     labels=[\
-    LatexString(r"\f{Symbol}a\f{}"), \
-    LatexString(r"\f{Symbol}b\f{}\s0\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s1\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s2, E = Lake\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s2, E = Stream\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s3, E = Lake\s"), \
-    LatexString(r"\f{Symbol}b\f{}\s3, E = Stream\s")]
+    LatexString(r"\v{-.6}\f{Symbol}a\f{}"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s0\s"), \
+    LatexString(r"\n\v{-.15}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Lake\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s2, E = Stream\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s3, E = Lake\s"), \
+    LatexString(r"\n\f{Symbol}b\f{}\s3, E = Stream\s")]
     keylist=['"(Intercept)"','"log(Species)"','"log(Species):Latitude"','"log(Species):Lakeweb"','"log(Species):Stream"','"log(Species):Lakeweb:Latitude"','"log(Species):Stream:Latitude"']
 
-  return labels, keylist
+    altlabels=[\
+    LatexString(r"\n\v{.28}\f{Symbol}a\f{}"), \
+    LatexString(r"\n\v{-.3}\f{Symbol}b\f{}\s0\s"), \
+    LatexString(r"\n\n\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\v{-.3}\f{Symbol}b\f{}\s2, E = Lake\s"), \
+    LatexString(r"\f{Symbol}b\f{}\s2, E = Stream\s"), \
+    LatexString(r"\n\n\f{Symbol}b\f{}\s3, E = Lake\s"), \
+    LatexString(r"\n\n\v{.15}\f{Symbol}b\f{}\s3, E = Stream\s")]
+
+
+  return labels, keylist, altlabels
 
 def web_jackknife_plotter(directory,webfiles,prop,datafile):
 
   betadict, weblist=web_coefficient_zoo(directory,webfiles,prop)
   webtypedict=websbytype(datafile)
   
-  labels, keylist=utilities(prop)
+  labels, keylist, altlabels=utilities(prop)
 
   basis=baselines(directory,prop)
 
@@ -331,7 +419,7 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
 
   betadict, authorlist=author_coefficient_zoo(directory,authorfiles,prop)
 
-  labels, keylist=utilities(prop)
+  labels, keylist, altlabels=utilities(prop)
 
   basis=baselines(directory,prop)
   
@@ -360,18 +448,10 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
       pseudov=N*theta-(N-1)*theta_n
       dats=[(pseudov,i)]
 
-      # ticklab='Au'+str(i)+' ('+str(Nn)+')'
-      if len(str(i))==1:
-        if len(str(Nn))==1:
-          ticklab='Au'+str(i)+' ('+str(Nn)+')'
-        elif len(str(Nn))==2:
-          ticklab='Au'+str(i)+' ('+str(Nn)+')'
+      if author in redundants.keys():
+        ticklab='Aus'+str(i)+' ('+str(Nn)+')'
       else:
-        if len(str(Nn))==1:
-          ticklab='Au'+str(i)+' ('+str(Nn)+')'
-        elif len(str(Nn))==2:
-          ticklab='Au'+str(i)+' ('+str(Nn)+')'
-      # print len(ticklab)
+        ticklab='Au'+str(i)+' ('+str(Nn)+')'
       ticklabs.append(ticklab)
       ticklist.append(i)
       # dats=[(betadict[key][author][0],i,betadict[key][author][1]*1.96)]
@@ -405,73 +485,73 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
         graph.world.xmin=-200
         graph.world.xmax=200
         major=100
-        labtext=labels[0]
+        labtext=altlabels[0]
       elif key=='"(Intercept)"' and prop=='Vul':
         graph.world.xmin=-200
         graph.world.xmax=200
         major=100
-        labtext=labels[0]
+        labtext=altlabels[0]
       elif key=='"log(Species)"':
         graph.world.xmin=-60
         graph.world.xmax=80
         major=50
-        labtext=labels[1]
+        labtext=altlabels[1]
       elif key=='"log(Species):Latitude"':
         graph.world.xmin=-1
         graph.world.xmax=1
         major=1
-        labtext=labels[2]
+        labtext=altlabels[2]
       elif key=='"log(Species):Lakeweb"':
         graph.world.xmin=-50
         graph.world.xmax=50
         major=50
-        labtext=labels[3]
+        labtext=altlabels[3]
       elif key=='"log(Species):Terr"':
         graph.world.xmin=-40
         graph.world.xmax=30
         major=30
-        labtext=labels[4]
+        labtext=altlabels[4]
       else:
         graph.world.xmin=-1
         graph.world.xmax=1
         major=1
-        labtext=labels[5]
+        labtext=altlabels[5]
     elif prop=='Gen':
       if key=='"log(Species):Lakeweb:Latitude"':
         graph.world.xmin=-1
         graph.world.xmax=1.5
         major=1
-        labtext=labels[5]
+        labtext=altlabels[5]
       elif key=='"log(Species):Stream:Latitude"':
         graph.world.xmin=-2.5
         graph.world.xmax=2.5
         major=1
-        labtext=labels[6]
+        labtext=altlabels[6]
       elif key=='"(Intercept)"':
         graph.world.xmax=100
         graph.world.xmin=-150
         major=100
-        labtext=labels[0]
+        labtext=altlabels[0]
       elif key=='"log(Species)"':
         graph.world.xmax=50
         graph.world.xmin=-50
         major=50
-        labtext=labels[1]
+        labtext=altlabels[1]
       elif key=='"log(Species):Latitude"':
         graph.world.xmin=-1
         graph.world.xmax=1
         major=1
-        labtext=labels[2]
+        labtext=altlabels[2]
       elif key=='"log(Species):Stream"':
         graph.world.xmax=110
         graph.world.xmin=-100
         major=100
-        labtext=labels[4]
+        labtext=altlabels[4]
       else: # Lake
         graph.world.xmax=30
         graph.world.xmin=-55
         major=25
-        labtext=labels[3]
+        labtext=altlabels[3]
 
     graph.xaxis.tick.configure(place='both',major_size=.4,minor_ticks=0,minor_size=.4,major=major,major_linewidth=.5,minor_linewidth=.5)
     graph.xaxis.ticklabel.configure(char_size=.5,format='decimal',prec=0,angle=90)
