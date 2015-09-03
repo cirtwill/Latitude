@@ -9,7 +9,7 @@
 all : manuscript/latitudepaper.pdf
 
 # Rule for specific things
-manuscript/latitudepaper.pdf : manuscript/Figures/by_TL/marginal/*.eps manuscript/Figures/by_TL/scaling_with_S/proportions/fitlines_*.eps manuscript/noISN.bib manuscript/jae.bst
+manuscript/latitudepaper.pdf : manuscript/Figures/by_TL/marginal/*.eps manuscript/Figures/by_TL/scaling_with_S/proportions/fitlines_*.eps manuscript/noISN.bib manuscript/prsb.bst
 	cd manuscript && \
 	pwd && \
 	latex latitudepaper.tex && \
@@ -18,6 +18,12 @@ manuscript/latitudepaper.pdf : manuscript/Figures/by_TL/marginal/*.eps manuscrip
 	latex latitudepaper.tex && \
 	dvips latitudepaper.dvi && \
 	ps2pdf latitudepaper.ps && \
+	cd ../
+
+# Jackknife figure
+manuscript/Figures/Jackknife/&.eps : code/jackknife_display_figure.py Jackknifed/main/coefficients/*.tsv 
+	cd code && \
+	python jackknife_display_figure.py && \
 	cd ../
 
 # Figures depend on the figure making code, datafiles
