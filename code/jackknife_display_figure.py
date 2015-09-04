@@ -169,18 +169,18 @@ def utilities(prop):
     labels=[\
     LatexString(r"\v{-.6}\f{Symbol}a\f{}"), \
     LatexString(r"\n\f{Symbol}b\f{}\s0\s"), \
-    LatexString(r"\n\v{-.15}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\v{-.12}\f{Symbol}b\f{}\s1\s"), \
     LatexString(r"\n\f{Symbol}b\f{}\s2, E = Lake\s"), \
     LatexString(r"\n\f{Symbol}b\f{}\s2, E = Terrestrial\s"), \
-    LatexString(r"\n\v{-.15}\f{Symbol}b\f{}\s3, E = Lake\s")]
+    LatexString(r"\n\v{-.12}\f{Symbol}b\f{}\s3, E = Lake\s")]
 
     altlabels=[\
-    LatexString(r"\f{Symbol}a\f{}"), \
+    LatexString(r"\n\v{.4}\f{Symbol}a\f{}"), \
     LatexString(r"\n\f{Symbol}b\f{}\s0\s"), \
-    LatexString(r"\n\n\v{.3}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\n\n\v{.5}\f{Symbol}b\f{}\s1\s"), \
     LatexString(r"\n\f{Symbol}b\f{}\s2, E = Lake\s"), \
     LatexString(r"\n\f{Symbol}b\f{}\s2, E = Terrestrial\s"), \
-    LatexString(r"\n\n\v{.3}\f{Symbol}b\f{}\s3, E = Lake\s")]
+    LatexString(r"\n\n\v{.5}\f{Symbol}b\f{}\s3, E = Lake\s")]
 
     keylist=['"(Intercept)"','"log(Species)"','"log(Species):Latitude"','"log(Species):Lakeweb"','"log(Species):Terr"','"log(Species):Lakeweb:Latitude"']
   elif prop=='Gen':
@@ -195,13 +195,13 @@ def utilities(prop):
     keylist=['"(Intercept)"','"log(Species)"','"log(Species):Latitude"','"log(Species):Lakeweb"','"log(Species):Stream"','"log(Species):Lakeweb:Latitude"','"log(Species):Stream:Latitude"']
 
     altlabels=[\
-    LatexString(r"\n\v{.28}\f{Symbol}a\f{}"), \
-    LatexString(r"\n\v{-.3}\f{Symbol}b\f{}\s0\s"), \
-    LatexString(r"\n\n\f{Symbol}b\f{}\s1\s"), \
-    LatexString(r"\n\v{-.3}\f{Symbol}b\f{}\s2, E = Lake\s"), \
+    LatexString(r"\n\v{.3}\f{Symbol}a\f{}"), \
+    LatexString(r"\n\v{-.11}\f{Symbol}b\f{}\s0\s"), \
+    LatexString(r"\n\v{-.65}\f{Symbol}b\f{}\s1\s"), \
+    LatexString(r"\v{-1.15}\f{Symbol}b\f{}\s2, E = Lake\s"), \
     LatexString(r"\f{Symbol}b\f{}\s2, E = Stream\s"), \
-    LatexString(r"\n\n\f{Symbol}b\f{}\s3, E = Lake\s"), \
-    LatexString(r"\n\n\v{.15}\f{Symbol}b\f{}\s3, E = Stream\s")]
+    LatexString(r"\n\v{-.68}\f{Symbol}b\f{}\s3, E = Lake\s"), \
+    LatexString(r"\n\v{-.58}\f{Symbol}b\f{}\s3, E = Stream\s")]
 
 
   return labels, keylist, altlabels
@@ -306,12 +306,12 @@ def web_jackknife_plotter(directory,webfiles,prop,datafile):
 
     graph.legend.configure(char_size=.6,box_linestyle=0,box_fill=0,length=6)
 
-    graph.panel_label.configure(char_size=.5,placement='ouc',dy=0.01,dx=0,just=2)
+    graph.panel_label.configure(char_size=.7,placement='ouc',dy=0.01,dx=0,just=2)
 
-    specials=graph.yaxis.tick.set_spec_ticks([36.5,95.5,133,156.5,181.5],[],tick_labels=['Stream','Lake','Marine','Estuary','Terrestrial'])
+    specials=graph.yaxis.tick.set_spec_ticks([36.5,95.5,133,156.5,181.5],[],tick_labels=['stream','lake','marine','estuary','terrestrial'])
     
     graph.yaxis.tick.configure(place='both',major_size=0,minor_ticks=0,minor_size=.4,major=200,major_linewidth=0,minor_linewidth=0)
-    graph.yaxis.ticklabel.configure(char_size=.5,angle=90)
+    graph.yaxis.ticklabel.configure(char_size=.75,angle=90)
 
     graph.world.ymax=198
     graph.world.ymin=0
@@ -389,7 +389,7 @@ def web_jackknife_plotter(directory,webfiles,prop,datafile):
 
     graph.xaxis.tick.configure(place='both',major_size=.4,minor_ticks=1,minor_size=.3,major=major,major_linewidth=.5,minor_linewidth=.5)
     graph.xaxis.ticklabel.configure(char_size=.5,format='decimal',prec=1,angle=90)
-    graph.xaxis.label.configure(text=labtext,char_size=.5,just=2)
+    graph.xaxis.label.configure(text=labtext,char_size=.7,just=2,place='normal')
 
 
     graph.frame.linewidth=.5
@@ -397,13 +397,14 @@ def web_jackknife_plotter(directory,webfiles,prop,datafile):
     graph.yaxis.bar.linewidth=.5
 
   if prop in ['LS','Vul']:
-    grace.multi(rows=1,cols=6,hgap=.04,width_to_height_ratio=0.08/1)
+    grace.multi(rows=1,cols=6,hgap=.06,width_to_height_ratio=0.08/1)
     cmax=5
-    grace.add_drawing_object(DrawText,text='Estimate of coefficient after removing one web',char_size=.75,x=.442,y=0.05,loctype='view',just=2)
+    grace.add_drawing_object(DrawText,text='estimate of coefficient after removing one web',char_size=1,x=.4928,y=0.04,loctype='view',just=2)
   else:
-    grace.multi(rows=1,cols=7,hgap=.04,width_to_height_ratio=0.08/1)
+    grace.multi(rows=1,cols=7,hgap=.06,width_to_height_ratio=0.08/1)
     cmax=6
-    grace.add_drawing_object(DrawText,text='Estimate of coefficient after removing one web',char_size=.75,x=.4945,y=0.05,loctype='view',just=2)
+    # grace.set_row_xaxislabel(row=0,colspan=(0,cmax),label='estimate of coefficient after removing one web',char_size=1,just=2,color=7)
+    grace.add_drawing_object(DrawText,text='estimate of coefficient after removing one web',char_size=1,x=.5546,y=0.04,loctype='view',just=2)
 
 
   # grace.set_row_xaxislabel(row=0,colspan=(0,cmax),just=2, label='Estimate of coefficient after removing one web',char_size=.75,color=6)
@@ -439,7 +440,7 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
     zerod.symbol.shape=0
     zerod.line.configure(linestyle=3,linewidth=.75)
 
-    i=50
+    i=58
     for author in sorted(betadict[key]):
       Nn=removals[author]
       theta=basis[key]
@@ -449,9 +450,9 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
       dats=[(pseudov,i)]
 
       if author in redundants.keys():
-        ticklab='Aus'+str(i)+' ('+str(Nn)+')'
+        ticklab='authors '+str(i)+' ('+str(Nn)+')'
       else:
-        ticklab='Au'+str(i)+' ('+str(Nn)+')'
+        ticklab='author '+str(i)+' ('+str(Nn)+')'
       ticklabs.append(ticklab)
       ticklist.append(i)
       # dats=[(betadict[key][author][0],i,betadict[key][author][1]*1.96)]
@@ -466,7 +467,7 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
     redline.symbol.shape=0
     redline.line.configure(linestyle=3,linewidth=1,color='red')
 
-    graph.panel_label.configure(char_size=.5,placement='ouc',dy=0.01,dx=0,just=2)
+    graph.panel_label.configure(char_size=.7,placement='ouc',dy=0.01,dx=0,just=2)
 
     if key=='"(Intercept)"':
       specials=graph.yaxis.tick.set_spec_ticks(ticklist,[],tick_labels=ticklabs)
@@ -477,7 +478,7 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
       graph.yaxis.tick.configure(place='both',major_size=0,minor_ticks=0,minor_size=.4,major=200,major_linewidth=0,minor_linewidth=0)
       graph.yaxis.ticklabel.configure(char_size=0,angle=0)
 
-    graph.world.ymax=51
+    graph.world.ymax=59
     graph.world.ymin=0
 
     if prop in ['LS','Vul']:
@@ -556,20 +557,20 @@ def author_jackknife_plotter(directory,authorfiles,prop,datafile,removalfile,web
     graph.xaxis.tick.configure(place='both',major_size=.4,minor_ticks=0,minor_size=.4,major=major,major_linewidth=.5,minor_linewidth=.5)
     graph.xaxis.ticklabel.configure(char_size=.5,format='decimal',prec=0,angle=90)
 
-    graph.xaxis.label.configure(text=labtext,char_size=.5,just=2)
+    graph.xaxis.label.configure(text=labtext,char_size=.7,just=2)
 
     graph.frame.linewidth=.5
     graph.xaxis.bar.linewidth=.5
     graph.yaxis.bar.linewidth=.5
 
   if prop in ['LS','Vul']:
-    grace.multi(rows=1,cols=6,hgap=.04,width_to_height_ratio=0.08/1)
+    grace.multi(rows=1,cols=6,hgap=.06,width_to_height_ratio=0.08/1)
     cmax=5
-    grace.add_drawing_object(DrawText,text='Estimate of coefficient after removing webs with a common author',char_size=.75,x=.442,y=0.05,loctype='view',just=2)
+    grace.add_drawing_object(DrawText,text='estimate of coefficient after removing webs with a common author',char_size=1,x=.4928,y=0.04,loctype='view',just=2)
   else:
-    grace.multi(rows=1,cols=7,hgap=.04,width_to_height_ratio=0.08/1)
+    grace.multi(rows=1,cols=7,hgap=.06,width_to_height_ratio=0.08/1)
     cmax=6
-    grace.add_drawing_object(DrawText,text='Estimate of coefficient after removing webs with a common author',char_size=.75,x=.4945,y=0.05,loctype='view',just=2)
+    grace.add_drawing_object(DrawText,text='estimate of coefficient after removing webs with a common author',char_size=1,x=.5546,y=0.04,loctype='view',just=2)
   
   grace.hide_redundant_labels()
 

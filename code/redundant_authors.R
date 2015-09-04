@@ -1,59 +1,46 @@
   # Here are the redundant authors I'm removing
 
-# Redundant with Egloff:
-  data$X38_coauthors <- NULL
-  data$Richardson <- NULL
+# Redundant with Egloff
+	data$X38_coauthors <- NULL
+	data$Richardson <- NULL
 
 # Redundant with Abele
-  data$Simberloff <- NULL
+	data$Simberloff <- NULL
+
+# Redundant with Agostinho
+	data$Angelini <- NULL
+	data$Gomes <- NULL
+
+# Redundant with Ainley
+	data$Cattaneo.Vietti <- NULL
 
 # Redundant with Ali_Dawah
-  data$Ali_Dawah <- NULL
   data$Banasek.Richter <- NULL
   data$Berlow <- NULL
   data$Bersier <- NULL
   data$Blanchard <- NULL
-  data$Brey <- NULL
-  data$Brose <- NULL
-  data$Cushing <- NULL
-  data$Dell <- NULL
-  data$Harper.Smith <- NULL
-  data$Jacob <- NULL
-  data$Knapp <- NULL
-  data$Ledger <- NULL
-  data$Memmot <- NULL
-  data$Mintenbeck <-NULL
-  data$Pinnegar <- NULL
-  data$Rall <- NULL
-  data$Ruess <- NULL
-  data$Ulrich <- NULL
-  data$Yodzis <- NULL
-
-# Redundant with Aloisio
-  data$Carvalho <- NULL
-  data$Aloisio <- NULL # Only helped with one web, it had no intermediates or herbs.
-
-# Redundant with Althaus
-  data$Bax <- NULL
-  data$Bulman <- NULL
-  data$He <- NULL
-  data$Williams_A <- NULL
-  data$Althaus <- NULL # No intermediates here either.
+	data$Brey <- NULL
+	data$Brose <- NULL
+	data$Cushing <- NULL
+	data$Dell <- NULL
+	data$Harper.Smith <-NULL
+	data$Jacob <- NULL
+	data$Knapp <- NULL
+	data$Ledger <- NULL
+	data$Memmot <- NULL
+	data$Mintenbeck   <- NULL
+	data$Pinnegar <- NULL
+	data$Rall <- NULL
+	data$Rayner <- NULL
+	data$Ruess <- NULL
+	data$Ulrich   <- NULL    
+	data$Yodzis <- NULL
 
 # Redundant with Amundsen
-  data$Klemetsen <- NULL
-  data$Knudsen <- NULL
-  data$Kristoffersen <- NULL
-  data$ Primicerio <- NULL
-
-# Redundant with Antezana
-  data$Cornejo.Donoso <- NULL
-
-# Redundant with Arreguin_Sanchez
-	data$Zetina_Rejon <- NULL
-
-# Redundant with Baeta
-	data$Niquil <- NULL
+	data$Klemetsen <- NULL
+	data$Knudsen <- NULL
+	data$Kristoffersen <- NULL
+	data$Primicerio <- NULL
 
 # Redundant with Bailey.Watts
 	data$Bindloss <- NULL
@@ -64,6 +51,9 @@
 	data$Huxham <- NULL
 	data$Raffaelli <- NULL
 
+# Redundant with Boit
+	data$Gaedke <- NULL
+
 # Redundant with Bradstreet
 	data$Cross <- NULL
 
@@ -73,9 +63,6 @@
 	data$Pfeifer <- NULL
 	data$Tilzer <- NULL
 	data$Weissenbach <- NULL
-
-# Redundant with Briand
-	data$Newman <- NULL
 
 # Redundant with Brittain
 	data$Larsson <- NULL
@@ -104,21 +91,6 @@
 # Redundant with Castro
 	data$Filgueira <- NULL
 
-# Redundant with Catella
-	data$Resende <- NULL
-	data$de_Morais <- NULL
-
-# Redundant with Cattaneo.Vietti
-	data$Smith_WO <- NULL
-
-# Redundant with Chen
-  data$Chen_Y <- NULL
-  data$Li_J <- NULL
-  data$Liu <- NULL
-
-# Redundant with Christian
-	data$Luczkovich <- NULL
-
 # Redundant with Clarke_T
 	data$Flechsig <- NULL
 	data$Grigg <- NULL
@@ -127,33 +99,13 @@
 	data$Dayton <- NULL
 	data$Rosenthal <- NULL
 
-# Redundant with Closs
-	data$Lake <- NULL
-
 # Redundant with Coffman
 	data$Cummins <- NULL
 	data$Roff <- NULL
 
-# Redundant with Collins
-	data$Mitchell <- NULL
-	data$Wiegert <- NULL
-
 # Redundant with Conover
 	data$Edwards_D <- NULL
 	data$Sutter <- NULL
-
-# Redundant with Cummins
-	data$Coffman <- NULL
-	data$Roff <- NULL
-
-# Redundant with Dai
-	data$Fang <- NULL
-	data$Hsieh <- NULL
-	data$Hung <- NULL
-	data$Lin <- NULL
-	data$Lo <- NULL
-	data$Shao <- NULL
-	data$Su <- NULL
 
 # Redundant with Darlington
 	data$Moriarty_C <- NULL
@@ -178,10 +130,6 @@
 # Redundant with Feroz_Khan
 	data$Panikkar <- NULL
 
-# Redundant with Fetahi
-	data$Mengistou <- NULL
-	data$Schagerl <- NULL
-
 # Redundant with Fradkin
 	data$Hampton <- NULL
 	data$Leavitt <- NULL
@@ -191,10 +139,6 @@
 	data$Massana <- NULL
 	data$Pedros.Alio <- NULL
 
-# Redundant with Godfrey
-	data$Pearson <- NULL
-	data$Pusey <- NULL
-
 # Redundant with Goldwasser
 	data$Roughgarden <- NULL
 
@@ -203,33 +147,22 @@
 	data$Witte <- NULL
 	data$van_Oevelen <- NULL
 
+# Redundant with Hampton
+	data$Fradkin <- NULL
+	data$Leavitt <- NULL
+	data$Rosenberger <- NULL
+
 # Redundant with Harris
 	data$Paur <- NULL
 
 # Redundant with Hasham
 	data$Hildrew <- NULL
 
-# Redundant with Heald
-	data$Odum_W <- NULL
-
-# Redundant with Hildrew
-	data$Hasham  <- NULL
-
 # Redundant with Homer
 	data$Kemp  <- NULL
 	data$Lehman  <- NULL
 	data$McKellar  <- NULL
-	data$Odum_H  <- NULL
-	data$Smith_WH  <- NULL
 	data$Young  <- NULL
-
-# Redundant with Hopkins
-	data$Lancraft  <- NULL
-	data$Torres  <- NULL
-
-# Redundant with Huang
-	data$Li_X  <- NULL
-	data$Yan  <- NULL
 
 # Redundant with Hurlbert
 	data$Mulla  <- NULL
@@ -251,20 +184,8 @@
 # Redundant with Pattie
 	data$Verbeek <- NULL
 
-# Redundant with Price
-	data$Mayse <- NULL
-
-# Redundant with Ratsirarson 
-	data$Silander <- NULL
-
-# Redundant with Seifert_F
-	data$Seifert_R <- NULL
-
 # Redundant with Shushkina
 	data$Vinogradov <- NULL
-
-# Redundant with Sprules
-	data$Stewart <- NULL
 
 # Redundant with Stagliano
 	data$Whiles  <- NULL  
