@@ -368,26 +368,26 @@ def plotter(prop,TL,ecotype,graph,form):
   # Fancy-pants labelling
   if ecotype=='Estuary':
     if prop=='LS':
-      yax="Link density"
+      yax="link density"
     elif prop=='Gen':
-      yax="Generality"
+      yax="generality"
     elif prop=='Vul':
-      yax="Vulnerability"
+      yax="vulnerability"
     
-    graph.yaxis.label.configure(text=yax,place='normal',char_size=.75)
+    graph.yaxis.label.configure(text=yax,place='normal',char_size=.85)
 
   if prop=='LS':
     if ecotype=='Estuary':
-      typ='Estuarine'
+      typ='estuarine'
     elif ecotype=='Marine':
-      typ='Marine'
+      typ='marine'
     elif ecotype=='Lake':
-      typ='Lake'
+      typ='lake'
     elif ecotype=='Stream':
-      typ='Stream'
+      typ='stream'
     else:
-      typ='Terrestrial'
-    graph.xaxis.label.configure(text=typ,place='opposite',char_size=.75)  
+      typ='terrestrial'
+    graph.xaxis.label.configure(text=typ,place='opposite',char_size=.85)  
 
   return graph
 
@@ -416,7 +416,7 @@ def main():
       grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
       # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-      grace.set_row_xaxislabel(row=2,colspan=(0,4),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+      grace.set_row_xaxislabel(row=2,colspan=(0,4),label='absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
       grace.hide_redundant_xticklabels()
       grace.hide_redundant_yticklabels()
@@ -432,7 +432,7 @@ def main():
 
       print TL, troph
 
-      grace.add_drawing_object(DrawText,text='Scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
+      grace.add_drawing_object(DrawText,text='scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
 
       grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'.eps')
 

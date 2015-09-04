@@ -207,6 +207,8 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   ecotypes=['Lake','Marine','Stream','Terrestrial','Estuary']
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
+  grace.add_label_scheme("dummy",["(a)","(b)","(c)"])
+  grace.set_label_scheme("dummy")
 
   TL='S'
   for prop in ['LS','Gen','Vul']:
@@ -235,15 +237,15 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
       graph.legend.box_linestyle=0
 
     if prop=='Vul':
-      ytex='Species Richness'
-      graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
+      ytex='species richness'
+      graph.xaxis.label.configure(text=ytex,place='normal',char_size=1)
 
     if prop=='LS':
-      graph.yaxis.label.configure(text="Re-scaled link density",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="re-scaled link density",place='normal',char_size=1)
     elif prop=='Gen':
-      graph.yaxis.label.configure(text="Re-scaled generality",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="re-scaled generality",place='normal',char_size=1)
     elif prop=='Vul':
-      graph.yaxis.label.configure(text="Re-scaled vulnerability",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="re-scaled vulnerability",place='normal',char_size=1)
 
     graph.world.xmin=1
     graph.world.ymin=.1
@@ -267,9 +269,9 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
 
     graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
     graph.yaxis.ticklabel.configure(char_size=.75)
-    graph.panel_label.configure(char_size=0)
+    graph.panel_label.configure(char_size=.75,placement='iul',dy=.03,dx=.03)
 
-  grace.multi(rows=3,cols=1,vgap=.04,hgap=.04)
+  grace.multi(rows=3,cols=1,vgap=.05,hgap=.04)
 
   # grace.add_drawing_object(DrawText,text='Re-scaled value of:',x=0.06,y=.555,loctype='view',rot=90,char_size=1,just=2)
   # grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Re-scaled value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
@@ -287,6 +289,8 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
   # Lets make clear that these are the original, uncorrected points
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
+  grace.add_label_scheme("dummy",["(a)","(b)","(c)"])
+  grace.set_label_scheme("dummy")
 
   TL='S'
 
@@ -311,15 +315,15 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
     predline.line.configure(linestyle=1,color=1,linewidth=2.5)
 
     if prop=='Vul':
-      ytex='Species Richness'
-      graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
+      ytex='species richness'
+      graph.xaxis.label.configure(text=ytex,place='normal',char_size=1)
 
     if prop=='LS':
-      graph.yaxis.label.configure(text="Observed link density",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="observed link density",place='normal',char_size=1)
     elif prop=='Gen':
-      graph.yaxis.label.configure(text="Observed generality",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="observed generality",place='normal',char_size=1)
     elif prop=='Vul':
-      graph.yaxis.label.configure(text="Observed vulnerability",place='normal',char_size=.75)
+      graph.yaxis.label.configure(text="observed vulnerability",place='normal',char_size=1)
 
     graph.world.xmin=1
     graph.world.ymin=.1
@@ -346,9 +350,9 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
 
     graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
     graph.yaxis.ticklabel.configure(char_size=.75)
-    graph.panel_label.configure(char_size=0)
+    graph.panel_label.configure(char_size=.75,placement='iul',dy=.03,dx=.03)
 
-  grace.multi(rows=3,cols=1,vgap=.04,hgap=.04)
+  grace.multi(rows=3,cols=1,vgap=.05,hgap=.04)
 
   # grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
@@ -390,20 +394,20 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
 
       if prop=='Vul':
         if TL=='B':
-          ytex='% Basal resources'
+          ytex='% basal resources'
         elif TL=='I':
-          ytex='% Intermediate consumers'
+          ytex='% intermediate consumers'
         elif TL=='T':
-          ytex='% Top predators'
+          ytex='% top predators'
         graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
 
       if TL=='B':
         if prop=='LS':
-          graph.yaxis.label.configure(text="Re-scaled link density",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="re-scaled link density",place='normal',char_size=.75)
         elif prop=='Gen':
-          graph.yaxis.label.configure(text="Re-scaled generality",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="re-scaled generality",place='normal',char_size=.75)
         elif prop=='Vul':
-          graph.yaxis.label.configure(text="Re-scaled vulnerability",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="re-scaled vulnerability",place='normal',char_size=.75)
 
       graph.world.xmin=0.005
       graph.world.ymin=.1
@@ -478,11 +482,11 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
 
       if TL=='B':
         if prop=='LS':
-          graph.yaxis.label.configure(text="Observed link density",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="observed link density",place='normal',char_size=.75)
         elif prop=='Gen':
-          graph.yaxis.label.configure(text="Observed generality",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="observed generality",place='normal',char_size=.75)
         elif prop=='Vul':
-          graph.yaxis.label.configure(text="Observed vulnerability",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="observed vulnerability",place='normal',char_size=.75)
 
       graph.world.xmin=0.005
       graph.world.ymin=.1
