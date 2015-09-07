@@ -508,7 +508,7 @@ FUNCTION {format.doi}
     { "" }
     {
       new.block
-      "\doi{" doi * "}" *
+      "(\doi{" doi * "})" *
     }
   if$
 }
