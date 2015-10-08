@@ -173,17 +173,16 @@ when exploring gradients in food-web structure.
     feeding links in each web to calculate the mean link density (number of links per species), mean generality 
     (number of prey per species), and mean vulnerability (number of predators per species) of the web. 
     The version of the dataset used did not qualitatively change the results, suggesting that
-    the scaling relationships between species richness, other food-web properties, and latitude are very 
+    the scaling relationships between species richness and specialisation across ecosystem type and latitude are very 
     similar whether or not species with identical sets of predators and prey are included. For simplicity, 
-    here we present only the results for the original (un-aggregated, original species) webs.
+    here we present only the results for the original webs.
 
 
   \subsection*{Gradients over Latitude}
 
     To put our dataset in the context of other research on latitudinal gradients in species richness,
     we first examined simple linear relationships between latitude and each of 
-    species richness, links per species, generality, vulnerability, and proportions
-    of basal resources, intermediate consumers, and top predators. We fit models of the form
+    species richness, links per species, generality, and vulnerability. We fit models of the form
 
     \begin{equation}
     \label{Latfull}
@@ -286,7 +285,7 @@ when exploring gradients in food-web structure.
   vulnerability, and $R^2$=0.890 for generality and vulnerability). Contrary
   to the expected latitudinal gradient, the best-fit version of
   equation~(\ref{Latfull}) did not include a significant
-  effect of latitude for any ecosystem type. Further, there were no significant
+  effect of latitude on species richness for any ecosystem type. Further, there were no significant
   relationships between link density, generality, or vulnerability with
   latitude for any ecosystem type.
 
@@ -339,9 +338,9 @@ when exploring gradients in food-web structure.
   possible that these taxa are not well-represented in our food webs and that
   the dominant taxa that are represented do not have an underlying latitudinal
   gradient in richness. In either case, the lack of a strong association
-  between species richness and latitude in any ecosystem type means that any
-  effect of latitude on other scaling relationships is not being driven by an
-  underlying latitudinal gradient in species richness. This is fortunate since
+  between observed species richness and latitude in any ecosystem type in our dataset
+  means that any effect of latitude on other scaling relationships is not being driven by
+  the scaling of specialisation with species richness in our food webs. This is fortunate since
   the lack of confounding effects of latitude allows us to more clearly assess
   effects of latitude on scaling with species richness.
 
@@ -406,20 +405,21 @@ when exploring gradients in food-web structure.
   inputs~\cite{Nakano2001}, terrestrial consumers tend to be
   morphologically specialised for feeding on particular prey~\cite{Liem1990}.
   This means that primarily gape-limited aquatic consumers tend to be more
-  generalist across all types of aquatic habitats than terrestrial consumers~\cite{Liem1990,Shurin2006}. The
-  key to this explanation of the differences between freshwater and
-  marine and estuarine  ecosystems is whether the former experience more
-  severe seasonal variation. Although we are not aware of any study explicitly
-  comparing seasonal variation in freshwater and saltwater or brackish food
-  webs in a similar location, we believe that freshwater ecosystems are indeed
-  likely to  experience more severe changes because of their small size. While
-  oceans and estuaries certainly vary in terms of water temperature and
+  generalist across all types of aquatic habitats than terrestrial 
+  consumers~\cite{Liem1990,Shurin2006}. This trend also held in our data (
+  $\mu_Aquatic$>=5.47, $\mu_Terrestrial$=3.82; $p$=0.007 for $\mu_Aquatic$\textgreater$\mu_Terrestrial$). 
+  The key to this argument is therefore whether freshwater ecosystems experience
+  more severe seasonal variation than marine and estuarine ecosystems. Although
+  we are not aware of any study explicitly comparing seasonal variation in
+  fresh and saltwater ecosystems at similar latitudes, we believe that freshwater 
+  ecosystems are indeed likely to experience more severe changes because of their small size.
+  While oceans and estuaries certainly vary in terms of water temperature and
   nutrients over the course of a year~\cite{Baird1989}, these changes are likely to be slower
   and milder than in freshwaters because marine and estuarine communities are buffered 
-  by being open to the ocean rather than isolated
-  in the midst of a terrestrial matrix. Net primary productivity in particular is
-  much more variable over the course of a year in non-marine communities~\cite{Field1998},
-  suggesting that niche breadths may also be more variable over the course of the year.
+  by being open to the ocean rather than isolated in the midst of a terrestrial matrix. 
+  Supporting this hypothesis, net primary productivity is much more variable over the course of a year 
+  in non-marine communities~\cite{Field1998}. Thus suggests that niche breadths may also be 
+  more variable over the course of the year. 
 
 
 \section*{Conclusion}
@@ -429,9 +429,12 @@ when exploring gradients in food-web structure.
   with the hypothesis of greater specialisation in the tropics in stream and
   lake food webs. This suggests that different mechanisms may structure food
   webs in different habitat types and that freshwater food webs in particular
-  may be strongly affected by seasonal variation. In addition, different
+  may be strongly affected by seasonal variation. Freshwater food webs also
+  appear to have different predator-prey biomass ratios than other ecosystem
+  types~\cite{Riede2011}; although it is not clear whether these ratios are related
+  to seasonality, this could be a promising avenue for future research. In addition, different
   relationships between latitude and niche breadth in different habitat types
-  goes some way towards explaining the equivocal support for the opposing
+  go some way towards explaining the equivocal support for the opposing
   hypotheses of narrower niches in the tropics~\cite{Vazquez2004} and broader
   niche space in the tropics~\cite{Davies2007}. Our study indicates that both 
   have merit but would appear to apply to different systems.
@@ -459,7 +462,7 @@ when exploring gradients in food-web structure.
 \section*{Acknowledgements}
   
   We thank members of the Romanuk, Stouffer, and Tylianakis labs for their comments on
-  the manuscript. We also thank Angus McIntosh for valuable discussion on stream food webs.
+  the manuscript. We also thank Angus McIntosh for valuable discussion on stream food webs and Matthias Schleuning, Robby Stoks, and one anonymous reviewer for their insightful questions.
 
 \section*{Funding}
   This research was supported by an NSERC USRA undergraduate scholarship and NSERC PGS-D 
