@@ -285,10 +285,10 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
 
   predline.line.configure(linestyle=1,color=1,linewidth=2.5)
 
-  ytex='species richness'
+  ytex='Species richness'
   graph.xaxis.label.configure(text=ytex,place='normal',char_size=1)
 
-  graph.yaxis.label.configure(text="link density",place='normal',char_size=1)
+  graph.yaxis.label.configure(text="Link density",place='normal',char_size=1)
 
   graph.world.xmin=1
   graph.world.ymin=.1
