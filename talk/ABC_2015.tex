@@ -204,7 +204,7 @@
       Greater specialisation\\in the tropics
 
       \vspace{.25cm}
-      {\color{white}Fewer links per species\\in the tropics}
+      {\color{white}Fewer prey per species\\in the tropics}
 
       \end{center}
     \column{.5in}
@@ -215,7 +215,7 @@
       Similar specialisation\\at all latitudes
 
       \vspace{.25cm}
-      {\color{white}Equal links per species\\at all latitudes}
+      {\color{white}Equal prey per species\\at all latitudes}
 
       \end{center}
     \column{.5in}
@@ -234,7 +234,7 @@
       Greater specialisation\\in the tropics
 
       \vspace{.25cm}
-      Fewer links per species\\in the tropics
+      Fewer prey per species\\in the tropics
 
       \end{center}
     \column{.5in}
@@ -245,7 +245,7 @@
       Similar specialisation\\at all latitudes
 
       \vspace{.25cm}
-      Equal links per species\\at all latitudes
+      Equal prey per species\\at all latitudes
 
       \end{center}
     \column{.5in}
@@ -262,7 +262,7 @@
 
     195 food webs \\
     0-78$^\circ$ (absolute latitude) \\
-    Mean L/S, Generality, Vulnerability
+    {\color{white} Mean generality (\textbf{G})}
 
     \end{center}
 
@@ -277,7 +277,7 @@
 
     195 food webs \\
     0-78$^\circ$ (absolute latitude) \\
-    Mean \textbf{L/S}, Generality, Vulnerability
+    Mean generality (\textbf{G})
 
     \end{center}
 
@@ -288,7 +288,10 @@
   \begin{frame}{Does niche breadth vary with latitude?}
 
     \begin{center}
-      \includegraphics*[width=.8\textwidth]{Figures/results/ls_vs_lat_simulated.eps}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_lat_simulated.eps}
+
+    \vspace{.5cm}
+    {\color{white}... and species richness varies with latitude}
     \end{center}
 
   \end{frame}
@@ -297,7 +300,7 @@
   \begin{frame}{Niche breadth varies with species richness}
 
     \begin{center}
-      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_fitline_observed.eps}
 
     \vspace{.5cm}
     {\color{white}... and species richness varies with latitude}
@@ -310,7 +313,7 @@
   \begin{frame}{Niche breadth varies with species richness}
 
     \begin{center}
-      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_fitline_observed.eps}
 
       \vspace{.5cm}
     ... and species richness varies with latitude
@@ -319,53 +322,65 @@
   \end{frame}
 
 
-  \begin{frame}{Does latitude affect LS vs. S?}
+  \begin{frame}{Does latitude affect G vs. S?}
     \begin{center}
-      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_fitline_observed.eps}
 
       \vspace{.5cm}
     \end{center}
     \hspace{1in}
-      $B \approx aS^{\color{purple}b}$
+      $G \approx aS^{\color{purple}b}$
 
   \end{frame}
 
 
-  \begin{frame}{Does latitude affect LS vs. S?}
+  \begin{frame}{Does latitude affect G vs. S?}
     \begin{center}
       \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
 
       \vspace{.5cm}
     \end{center}
     \hspace{1in}
-      $B \approx aS^{\color{purple}b_0+b_1Latitude}$
+      $G \approx aS^{\color{purple}b_0+b_1Latitude}$
 
   \end{frame}
 
 
-  \begin{frame}{Does latitude affect LS vs. S?}
+  \begin{frame}{Does latitude affect G vs. S?}
     \begin{center}
       \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
 
       \vspace{.5cm}
     \end{center}
     \hspace{1in}
-      $B \approx aS^{\color{purple}b_0+b_1Latitude+b_2Ecotype+b_3Latitude:Ecotype}$
+      $G \approx aS^{\color{purple}b_0+b_1Latitude+b_2Ecotype+b_3Latitude:Ecotype}$
 
   \end{frame}
 
 \section*{Results}
-  \begin{frame}{Does latitude affect LS vs. S?}
+  \begin{frame}{Does latitude affect G vs. S?}
     \begin{center}
-      \includegraphics*[width=.8\textwidth]{Figures/results/marginals.eps}
-
-      I want: just LS, maybe 2 columns?
-      Maybe focus on Gen instead of LS? Easier to argue?
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_marginal_axis.eps}
 
     \end{center}
-
   \end{frame}
 
 
+  \begin{frame}{Does latitude affect G vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_marginal_one.eps}
+
+    \end{center}
+  \end{frame}
+
+
+  \begin{frame}{Does latitude affect G vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/Gen_vs_S_marginal.eps}
+
+    \end{center}
+  \end{frame}
+
+\section*{Discussion}
 
 \end{document}
