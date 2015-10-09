@@ -21,6 +21,8 @@
 \usepackage{soul}
 \usepackage{pdflscape}
 \usepackage{multirow}
+\usepackage{pgf}
+\usepackage{tikz}
 
 \beamertemplatenavigationsymbolsempty
 
@@ -79,7 +81,7 @@
 
       \vspace{1cm}
 
-    \textbf{Alyssa R. Cirtwill}, Daniel B. Stouffer, Tamara N. Romanuk
+    \textbf{Alyssa R. Cirtwill},\\ Daniel B. Stouffer \& Tamara N. Romanuk
 
     \vspace{1cm}
 
@@ -94,14 +96,18 @@
     \begin{center}
       \includegraphics*[width=.8\textwidth]{Figures/plant_richness.eps}
 
-      \vspace{1cm}
+      \vspace{.5cm}
+
+      {\color{white}{\Large Latitude-Niche Breadth Hypothesis}}
+
+      \vspace{.5cm}
 
       Envionmental stability? 
       Productivity? 
       Speciation rates?
 
       \vspace{1cm}
-      {\color{white} 23 October 2015 | ABC 2015}
+
     \end{center}
   \end{frame}
 
@@ -112,14 +118,16 @@
       \includegraphics*[width=.8\textwidth]{Figures/plant_richness.eps}
 
 
-      \vspace{1cm}
+      \vspace{.5cm}
 
-      \textbf{Envionmental stability?} 
-      \textbf{Productivity?} 
+      {\Large Latitude-Niche Breadth Hypothesis}
+
+      \vspace{.5cm}
+
+      {\color{purple}Envionmental stability? Productivity?}
       Speciation rates?
 
       \vspace{1cm}
-      {\color{white} 23 October 2015 | ABC 2015}
 
     \end{center}
   \end{frame}
@@ -131,7 +139,9 @@
       \includegraphics[width=.8\textwidth]{Figures/latitude_niche_breadth_1.eps}
     \end{center}
 
-    \footnotesize{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{The American Naturalist} \textbf{164}, E1-19.}
+    \vspace{1.5cm}
+
+    \tiny{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{Am. Nat.}}
   \end{frame}
 
 
@@ -141,7 +151,9 @@
       \includegraphics[width=.8\textwidth]{Figures/latitude_niche_breadth_2.eps}
     \end{center}
 
-    \footnotesize{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{The American Naturalist} \textbf{164}, E1-19.}
+    \vspace{1.5cm}
+
+    \tiny{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{Am. Nat.}}
   \end{frame}
 
 
@@ -151,7 +163,9 @@
       \includegraphics[width=.8\textwidth]{Figures/latitude_niche_breadth_3.eps}
     \end{center}
 
-    \footnotesize{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{The American Naturalist} \textbf{164}, E1-19.}
+    \vspace{1.5cm}
+
+    \tiny{Vazquez, D.P. \& Stevens, R.D. 2004. The latitudinal gradient in niche breadth: concepts and evidence. \emph{Am. Nat.}}
   \end{frame}
 
 
@@ -161,7 +175,9 @@
       \includegraphics[width=.8\textwidth]{Figures/latitude_niche_breadth_4.eps}
     \end{center}
 
-    \tiny{Davies \emph{et. al.} 2007. Productivity alters the scale dependence of the diversity-invasibility relationship. \emph{Ecology} \textbf{88}, 1940-1947.}
+    \vspace{1.5cm}
+
+    \tiny{Davies \emph{et. al.} 2007. Productivity alters the scale dependence of the diversity-invasibility relationship. \emph{Ecology.}}
   \end{frame}
 
 
@@ -171,59 +187,81 @@
       \includegraphics[width=.8\textwidth]{Figures/latitude_niche_breadth_5.eps}
     \end{center}
 
-    \tiny{Davies \emph{et. al.} 2007. Productivity alters the scale dependence of the diversity-invasibility relationship. \emph{Ecology} \textbf{88}, 1940-1947.}
+    \vspace{1.5cm}
+
+    \tiny{Davies \emph{et. al.} 2007. Productivity alters the scale dependence of the diversity-invasibility relationship. \emph{Ecology.}}
   \end{frame}
 
 
 \section*{Food Webs}
-  \begin{frame}{Testing The Hypotheses}
-
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{Figures/hypothesis_comparison.eps}
-
-    \end{center}
-
+  \begin{frame}{Does niche breadth vary with latitude?}
     \begin{columns}
     \column{.5in}
     \column{1.75in}
-      - Greater specialisation in the tropics
+      \begin{center}
+      \includegraphics[height=1in]{Figures/version1.eps}\\
+      \vspace{.5cm}
+      Greater specialisation\\in the tropics
+
+      \vspace{.25cm}
+      {\color{white}Fewer links per species\\in the tropics}
+
+      \end{center}
     \column{.5in}
     \column{1.75in}
-      - Similar specialisation at all latitudes
+      \begin{center}
+      \includegraphics[height=1in]{Figures/version1.eps}\\
+      \vspace{.5cm}
+      Similar specialisation\\at all latitudes
+
+      \vspace{.25cm}
+      {\color{white}Equal links per species\\at all latitudes}
+
+      \end{center}
     \column{.5in}
     \end{columns}
 
   \end{frame}
 
 
-  \begin{frame}{Testing The Hypotheses}
-
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{Figures/hypothesis_comparison.eps}
-
-    \end{center}
-
+  \begin{frame}{Does niche breadth vary with latitude?}
     \begin{columns}
     \column{.5in}
     \column{1.75in}
-      - More feeding links per species in tropics
+      \begin{center}
+      \includegraphics[height=1in]{Figures/version1.eps}\\
+      \vspace{.5cm}
+      Greater specialisation\\in the tropics
+
+      \vspace{.25cm}
+      Fewer links per species\\in the tropics
+
+      \end{center}
     \column{.5in}
     \column{1.75in}
-      - Similar feeding links per species at all latitudes
+      \begin{center}
+      \includegraphics[height=1in]{Figures/version1.eps}\\
+      \vspace{.5cm}
+      Similar specialisation\\at all latitudes
+
+      \vspace{.25cm}
+      Equal links per species\\at all latitudes
+
+      \end{center}
     \column{.5in}
     \end{columns}
 
   \end{frame}
 
 
-  \begin{frame}{Testing The Hypotheses}
+  \begin{frame}{Does niche breadth vary with latitude?}
 
     \begin{center}
       \includegraphics*[width=.8\textwidth]{Figures/LittleRockLake.eps}
 
 
     195 food webs \\
-    0-78 degrees (absolute latitude) \\
+    0-78$^\circ$ (absolute latitude) \\
     Mean L/S, Generality, Vulnerability
 
     \end{center}
@@ -231,19 +269,103 @@
   \end{frame}
 
 
-  \begin{frame}{Testing The Hypotheses}
+  \begin{frame}{Does niche breadth vary with latitude?}
 
     \begin{center}
       \includegraphics*[width=.8\textwidth]{Figures/LittleRockLake.eps}
 
 
     195 food webs \\
-    0-78 degrees (absolute latitude) \\
+    0-78$^\circ$ (absolute latitude) \\
     Mean \textbf{L/S}, Generality, Vulnerability
 
     \end{center}
 
   \end{frame}
+
+
+\section*{Scaling}
+  \begin{frame}{Does niche breadth vary with latitude?}
+
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/ls_vs_lat_simulated.eps}
+    \end{center}
+
+  \end{frame}
+
+
+  \begin{frame}{Niche breadth varies with species richness}
+
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+
+    \vspace{.5cm}
+    {\color{white}... and species richness varies with latitude}
+    \end{center}
+
+
+  \end{frame}
+
+
+  \begin{frame}{Niche breadth varies with species richness}
+
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+
+      \vspace{.5cm}
+    ... and species richness varies with latitude
+    \end{center}
+
+  \end{frame}
+
+
+  \begin{frame}{Does latitude affect LS vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+
+      \vspace{.5cm}
+    \end{center}
+    \hspace{1in}
+      $B \approx aS^{\color{purple}b}$
+
+  \end{frame}
+
+
+  \begin{frame}{Does latitude affect LS vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+
+      \vspace{.5cm}
+    \end{center}
+    \hspace{1in}
+      $B \approx aS^{\color{purple}b_0+b_1Latitude}$
+
+  \end{frame}
+
+
+  \begin{frame}{Does latitude affect LS vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/LS_vs_S_fitline_observed.eps}
+
+      \vspace{.5cm}
+    \end{center}
+    \hspace{1in}
+      $B \approx aS^{\color{purple}b_0+b_1Latitude+b_2Ecotype+b_3Latitude:Ecotype}$
+
+  \end{frame}
+
+\section*{Results}
+  \begin{frame}{Does latitude affect LS vs. S?}
+    \begin{center}
+      \includegraphics*[width=.8\textwidth]{Figures/results/marginals.eps}
+
+      I want: just LS, maybe 2 columns?
+      Maybe focus on Gen instead of LS? Easier to argue?
+
+    \end{center}
+
+  \end{frame}
+
 
 
 \end{document}
