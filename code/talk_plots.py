@@ -347,7 +347,6 @@ def marginal_plotter(prop,TL,ecotype,graph):
 
   return graph
 
-
 def dummy_marginal_plotter(plottype,ecotypes,prop):
   grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
@@ -455,6 +454,58 @@ def main():
  
   for plottype in ['axis','one']:
     dummy_marginal_plotter(plottype,ecotypes,'Gen')
+
+  prop="Gen" # Split the plot
+
+  Ngrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+
+  Nnames=['Estuarine','Marine','Terrestrial']
+
+  Ngrace.add_label_scheme('dummy',Nnames)
+  Ngrace.set_label_scheme('dummy')
+  
+  for ecotype in ecotypes[:3]:   
+
+    graph=Ngrace.add_graph(Panel)
+
+    marginal_plotter(prop,TL,ecotype,graph)
+    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+
+  Ngrace.multi(rows=1,cols=3,vgap=.04,hgap=.04)
+
+  Ngrace.hide_redundant_xticklabels()
+  Ngrace.hide_redundant_yticklabels()
+
+  Ngrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Ngrace.set_row_xaxislabel(row=0,colspan=(0,2),label='Absolute label',,place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+
+  Ngrace.write_file('../talk/Figures/results/no_effect.eps')
+
+
+  Egrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+
+  Nnames=['Lake','Stream']
+
+  Egrace.add_label_scheme('dummy',Nnames)
+  Egrace.set_label_scheme('dummy')
+  
+  for ecotype in ecotypes[3:]:   
+
+    graph=Egrace.add_graph(Panel)
+
+    marginal_plotter(prop,TL,ecotype,graph)
+    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+
+  Egrace.multi(rows=1,cols=2,vgap=.04,hgap=.04)
+
+  Egrace.hide_redundant_xticklabels()
+  Egrace.hide_redundant_yticklabels()
+
+  Egrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Egrace.set_row_xaxislabel(row=0,colspan=(0,1),label='Absolute label',,place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+
+  Egrace.write_file('../talk/Figures/results/effect.eps')
+
  
 if __name__ == '__main__':
   main()
