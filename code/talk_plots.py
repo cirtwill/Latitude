@@ -202,7 +202,6 @@ def S_rawplots(rawdatafile,outfile1,predfolder):
   TL='S'
   prop='Gen'
   outfile=outfile1+prop+'_vs_S_fitline_observed.eps'  
-  print outfile
 
   rawdata=datareader(rawdatafile,TL)
 
@@ -212,7 +211,7 @@ def S_rawplots(rawdatafile,outfile1,predfolder):
 
   obspoints=graph.add_dataset(rawdata[prop])
   obspoints.line.configure(linestyle=0)
-  obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
+  obspoints.symbol.configure(size=.75,shape=1,fill_color=3,fill_pattern=1,color=8)
 
   predictions=predictionlines(fixed,prop,TL)
   predline=graph.add_dataset(predictions)
