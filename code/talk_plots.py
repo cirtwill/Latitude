@@ -193,39 +193,43 @@ def predictionlines(fixed,prop,TL):
 
   return ecoline
 
-def S_rawplots(rawdatafile,outfile1,predfolder):
+def S_rawplots(rawdatafile,outfile1,predfolder,plottype):
 
   # Lets make clear that these are the original, uncorrected points
 
-  grace=Grace(colors=ColorBrewerScheme("Greys"))
+  grace=Grace(colors=ColorBrewerScheme("PRGn"))
 
   TL='S'
   prop='Gen'
-  outfile=outfile1+prop+'_vs_S_fitline_observed.eps'  
+  outfile=outfile1+prop+'_'+plottype+'_vs_S_fitline_observed.eps'  
 
   rawdata=datareader(rawdatafile,TL)
 
   fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
 
   graph=grace.add_graph()
-
-  obspoints=graph.add_dataset(rawdata[prop])
+  print plottype
+  if plottype=='dots':
+    obspoints=graph.add_dataset(rawdata[prop])
+  else:
+    obspoints=graph.add_dataset([])
+    graph.add_drawing_object(DrawText,text='Latitude effect on slope?',char_size=1,loc=(0,0),loctype='view')
   obspoints.line.configure(linestyle=0)
-  obspoints.symbol.configure(size=.75,shape=1,fill_color=3,fill_pattern=1,color=8)
+  obspoints.symbol.configure(size=.75,shape=1,fill_color=0,fill_pattern=1,color=2,linewidth=3)
 
   predictions=predictionlines(fixed,prop,TL)
   predline=graph.add_dataset(predictions)
   predline.symbol.shape=0
 
-  predline.line.configure(linestyle=1,color=1,linewidth=2.5)
+  predline.line.configure(linestyle=1,color=3,linewidth=5)
 
   ytex='Species richness'
-  graph.xaxis.label.configure(text=ytex,place='normal',char_size=1)
+  graph.xaxis.label.configure(text=ytex,place='normal',char_size=1.5)
 
   if prop=='LS':
-    graph.yaxis.label.configure(text="Link density",place='normal',char_size=1)
+    graph.yaxis.label.configure(text="Link density",place='normal',char_size=1.5)
   elif prop=='Gen':
-    graph.yaxis.label.configure(text="Generality",place='normal',char_size=1)
+    graph.yaxis.label.configure(text="Generality",place='normal',char_size=1.5)
 
   graph.world.xmin=1
   graph.world.ymin=.1
@@ -236,14 +240,14 @@ def S_rawplots(rawdatafile,outfile1,predfolder):
 
   graph.world.xmax=300
 
-  graph.xaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph.xaxis.ticklabel.configure(char_size=.75)
-  graph.frame.linewidth=1
-  graph.xaxis.bar.linewidth=1
-  graph.yaxis.bar.linewidth=1
+  graph.xaxis.tick.configure(minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.xaxis.ticklabel.configure(char_size=1.5)
+  graph.frame.linewidth=2
+  graph.xaxis.bar.linewidth=2
+  graph.yaxis.bar.linewidth=2
 
-  graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph.yaxis.ticklabel.configure(char_size=.75)
+  graph.yaxis.tick.configure(minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.yaxis.ticklabel.configure(char_size=1.5)
 
   print 'got a raw plot'
 
@@ -258,21 +262,21 @@ def S_rawplots(rawdatafile,outfile1,predfolder):
 
   narrowniches=graph.add_dataset([(0,1),(90,100)])
   narrowniches.symbol.shape=0
-  narrowniches.line.color=2
+  narrowniches.line.configure(color=2,linewidth=5)
   narrowniches.legend="Narrower niches in the tropics"
 
   sameniches=graph.add_dataset([(0,3),(90,3)])
   sameniches.symbol.shape=0
-  sameniches.line.color=11
+  sameniches.line.configure(color=11,linewidth=5)
   sameniches.legend="Similar niches everywhere"
 
   ytex='Absolute latitude'
-  graph.xaxis.label.configure(text=ytex,place='normal',char_size=1)
+  graph.xaxis.label.configure(text=ytex,place='normal',char_size=1.5)
 
   if prop=='LS':
-    graph.yaxis.label.configure(text="Link density",place='normal',char_size=1)
+    graph.yaxis.label.configure(text="Link density",place='normal',char_size=1.5)
   elif prop=='Gen':
-    graph.yaxis.label.configure(text="Generality",place='normal',char_size=1)
+    graph.yaxis.label.configure(text="Generality",place='normal',char_size=1.5)
 
   graph.legend.configure(char_size=.75,frame=0,loc=(5,.3),loctype='world',box_linestyle=0)
 
@@ -283,14 +287,14 @@ def S_rawplots(rawdatafile,outfile1,predfolder):
   graph.world.xmin=0
   graph.world.xmax=90
 
-  graph.xaxis.tick.configure(major=30,minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph.xaxis.ticklabel.configure(char_size=.75)
-  graph.frame.linewidth=1
-  graph.xaxis.bar.linewidth=1
-  graph.yaxis.bar.linewidth=1
+  graph.xaxis.tick.configure(major=30,minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.xaxis.ticklabel.configure(char_size=1.5)
+  graph.frame.linewidth=2
+  graph.xaxis.bar.linewidth=2
+  graph.yaxis.bar.linewidth=2
 
-  graph.yaxis.tick.configure(minor_ticks=1,major_size=.7,minor_size=.4,major_linewidth=1,minor_linewidth=1)
-  graph.yaxis.ticklabel.configure(char_size=.75)
+  graph.yaxis.tick.configure(minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.yaxis.ticklabel.configure(char_size=1.5)
 
 
   grace.write_file(outfile2)
@@ -322,11 +326,11 @@ def marginal_plotter(prop,TL,ecotype,graph):
   else:
     main=graph.add_dataset(dataset['Estuary']['main'])
   main.symbol.shape=0
-  main.line.configure(linestyle=1,color=1,linewidth=1)
+  main.line.configure(linestyle=1,color=1,linewidth=3)
 
-  graph.xaxis.bar.linewidth=1
-  graph.yaxis.bar.linewidth=1
-  graph.frame.linewidth=1
+  graph.xaxis.bar.linewidth=2
+  graph.yaxis.bar.linewidth=2
+  graph.frame.linewidth=2
 
   graph.world.xmin=0
   graph.world.xmax=90
@@ -336,19 +340,19 @@ def marginal_plotter(prop,TL,ecotype,graph):
   major=.5
   prec=1
 
-  graph.xaxis.ticklabel.configure(char_size=.75)
-  graph.xaxis.tick.configure(major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4,major=30)
+  graph.xaxis.ticklabel.configure(char_size=1.5)
+  graph.xaxis.tick.configure(major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7,major=30)
 
-  graph.yaxis.tick.configure(major=major,major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4)
-  graph.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=.75)
+  graph.yaxis.tick.configure(major=major,major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7)
+  graph.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=1.5)
 
   if ecotype=='Stream':
-    graph.xaxis.label.configure(text='Absolute latitude',place='normal',char_size=1,perpendicular_offset=0.05)  
+    graph.xaxis.label.configure(text='Absolute latitude',place='normal',char_size=1.5,perpendicular_offset=0.05)  
 
   return graph
 
 def dummy_marginal_plotter(plottype,ecotypes,prop):
-  grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  grace=MultiPanelGrace(colors=ColorBrewerScheme('PRGn'))
 
   names=['Estuarine','Marine','Terrestrial','Lake','Stream']
 
@@ -377,11 +381,11 @@ def dummy_marginal_plotter(plottype,ecotypes,prop):
 
       main=graph.add_dataset(dataset['Estuary']['main'])
       main.symbol.shape=0
-      main.line.configure(linestyle=1,color=1,linewidth=1)
+      main.line.configure(linestyle=1,color=1,linewidth=3)
 
-    graph.xaxis.bar.linewidth=1
-    graph.yaxis.bar.linewidth=1
-    graph.frame.linewidth=1
+    graph.xaxis.bar.linewidth=2
+    graph.yaxis.bar.linewidth=2
+    graph.frame.linewidth=2
 
     graph.world.xmin=0
     graph.world.xmax=90
@@ -391,22 +395,22 @@ def dummy_marginal_plotter(plottype,ecotypes,prop):
     major=.5
     prec=1
 
-    graph.xaxis.ticklabel.configure(char_size=.75)
-    graph.xaxis.tick.configure(major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4,major=30)
+    graph.xaxis.ticklabel.configure(char_size=1.5)
+    graph.xaxis.tick.configure(major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7,major=30)
 
-    graph.yaxis.tick.configure(major=major,major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4)
-    graph.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=.75)
+    graph.yaxis.tick.configure(major=major,major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7)
+    graph.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=1.5)
 
     if ecotype=='Stream':
-      graph.xaxis.label.configure(text='Absolute latitude',place='normal',char_size=1,perpendicular_offset=0.05)  
-    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+      graph.xaxis.label.configure(text='Absolute latitude',place='normal',char_size=1.5)  
+    graph.panel_label.configure(char_size=1.5,placement='ouc',dy=.01)
 
-  grace.multi(rows=2,cols=3,vgap=.04,hgap=.04)
+  grace.multi(rows=2,cols=3,vgap=.08,hgap=.08)
 
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   
-  grace.set_col_yaxislabel(col=0,rowspan=(0,1),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  grace.set_col_yaxislabel(col=0,rowspan=(0,1),label='Scaling exponent',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
   # Sgrace.set_row_xaxislabel(row=1,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
   grace.write_file('../talk/Figures/results/'+prop+'_vs_S_marginal_'+plottype+'.eps')
@@ -423,13 +427,14 @@ def main():
   outfile1='../talk/Figures/results/'
   predfolder='../non_TS/'+Bformat
 
-  S_rawplots(rawdatafile,outfile1,predfolder)
+  for plottype in ['dots','nodots']:
+    S_rawplots(rawdatafile,outfile1,predfolder,plottype)
 
   TL='S'
 
   for prop in ["LS","Gen"]:
 
-    Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+    Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('PRGn'))
 
     Snames=['Estuarine','Marine','Terrestrial','Lake','Stream']
 
@@ -441,14 +446,14 @@ def main():
       graph=Sgrace.add_graph(Panel)
 
       marginal_plotter(prop,TL,ecotype,graph)
-      graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+      graph.panel_label.configure(char_size=1.5,placement='ouc',dy=.01)
 
-    Sgrace.multi(rows=2,cols=3,vgap=.04,hgap=.04)
+    Sgrace.multi(rows=2,cols=3,vgap=.08,hgap=.08)
 
     Sgrace.hide_redundant_xticklabels()
     Sgrace.hide_redundant_yticklabels()
 
-    Sgrace.set_col_yaxislabel(col=0,rowspan=(0,1),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+    Sgrace.set_col_yaxislabel(col=0,rowspan=(0,1),label='Scaling exponent',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
 
     Sgrace.write_file('../talk/Figures/results/'+prop+'_vs_S_marginal.eps')
  
@@ -457,7 +462,7 @@ def main():
 
   prop="Gen" # Split the plot
 
-  Ngrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  Ngrace=MultiPanelGrace(colors=ColorBrewerScheme('PRGn'))
 
   Nnames=['Estuarine','Marine','Terrestrial']
 
@@ -469,22 +474,22 @@ def main():
     graph=Ngrace.add_graph(Panel)
 
     marginal_plotter(prop,TL,ecotype,graph)
-    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+    graph.panel_label.configure(char_size=1.5,placement='ouc',dy=.01)
 
-  Ngrace.multi(rows=1,cols=3,vgap=.04,hgap=.04)
+  Ngrace.multi(rows=1,cols=3,vgap=.08,hgap=.08)
 
   Ngrace.hide_redundant_xticklabels()
   Ngrace.hide_redundant_yticklabels()
 
-  Ngrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
-  Ngrace.set_row_xaxislabel(row=0,colspan=(0,2),label='Absolute label',,place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Ngrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Scaling exponent',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
+  Ngrace.set_row_xaxislabel(row=0,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
 
   Ngrace.write_file('../talk/Figures/results/no_effect.eps')
 
 
-  Egrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  Egrace=MultiPanelGrace(colors=ColorBrewerScheme('PRGn'))
 
-  Nnames=['Lake','Stream']
+  Nnames=['Lake','Stream','']
 
   Egrace.add_label_scheme('dummy',Nnames)
   Egrace.set_label_scheme('dummy')
@@ -494,15 +499,31 @@ def main():
     graph=Egrace.add_graph(Panel)
 
     marginal_plotter(prop,TL,ecotype,graph)
-    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+    graph.panel_label.configure(char_size=1.5,placement='ouc',dy=.01)
 
-  Egrace.multi(rows=1,cols=2,vgap=.04,hgap=.04)
+  blank=Egrace.add_graph(Panel)
+  blank.xaxis.bar.linestyle=0
+  blank.yaxis.bar.linestyle=0
+  blank.frame.linestyle=0
+  blank.world.xmin=0
+  blank.world.xmax=90
+  blank.world.ymin=0
+  blank.world.ymax=1.5
+  major=.5
+  prec=1
+
+  blank.xaxis.ticklabel.configure(char_size=1.5,color=0)
+  blank.xaxis.tick.configure(major_linewidth=0,minor_linewidth=0,major_size=0,minor_size=.0,major=30)
+  blank.yaxis.tick.configure(major=major,major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7)
+  blank.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=1.5)
+
+  Egrace.multi(rows=1,cols=3,vgap=.08,hgap=.08)
 
   Egrace.hide_redundant_xticklabels()
   Egrace.hide_redundant_yticklabels()
 
-  Egrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Marginal effect of latitude on scaling',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
-  Egrace.set_row_xaxislabel(row=0,colspan=(0,1),label='Absolute label',,place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  Egrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Scaling exponent',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
+  Egrace.set_row_xaxislabel(row=0,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
 
   Egrace.write_file('../talk/Figures/results/effect.eps')
 
