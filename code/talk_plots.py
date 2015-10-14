@@ -193,6 +193,50 @@ def predictionlines(fixed,prop,TL):
 
   return ecoline
 
+def Gen_vs_lat_sim(prop):
+  # Lets make clear that these are the original, uncorrected points
+  outfile='../talk/Figures/results/'+prop+'_vs_lat_negative.eps'
+
+  grace=Grace(colors=ColorBrewerScheme("PRGn"))
+
+  graph=grace.add_graph()
+
+  narrowniches=graph.add_dataset([(0,50),(90,2)])
+  narrowniches.symbol.shape=0
+  narrowniches.line.configure(color=2,linewidth=5)
+
+  ytex='Absolute latitude'
+  graph.xaxis.label.configure(text=ytex,place='normal',char_size=1.5)
+
+  if prop=='LS':
+    graph.yaxis.label.configure(text="Link density",place='normal',char_size=1.5)
+  elif prop=='Gen':
+    graph.yaxis.label.configure(text="Generality",place='normal',char_size=1.5)
+
+  graph.add_drawing_object(DrawText,text='?',x=45,y=2,just=2,loctype='world',char_size=6,color=11)
+
+
+  graph.legend.configure(char_size=.75,frame=0,loc=(5,.3),loctype='world',box_linestyle=0)
+
+  graph.world.ymin=.1
+  graph.world.ymax=100
+  graph.yaxis.set_log()
+
+  graph.world.xmin=0
+  graph.world.xmax=90
+
+  graph.xaxis.tick.configure(major=30,minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.xaxis.ticklabel.configure(char_size=1.5)
+  graph.frame.linewidth=2
+  graph.xaxis.bar.linewidth=2
+  graph.yaxis.bar.linewidth=2
+
+  graph.yaxis.tick.configure(minor_ticks=1,major_size=1,minor_size=.7,major_linewidth=1.5,minor_linewidth=1.5)
+  graph.yaxis.ticklabel.configure(char_size=1.5)
+
+
+  grace.write_file(outfile)
+
 def S_rawplots(rawdatafile,outfile1,predfolder,plottype):
 
   # Lets make clear that these are the original, uncorrected points
@@ -501,32 +545,33 @@ def main():
     marginal_plotter(prop,TL,ecotype,graph)
     graph.panel_label.configure(char_size=1.5,placement='ouc',dy=.01)
 
-  blank=Egrace.add_graph(Panel)
-  blank.xaxis.bar.linestyle=0
-  blank.yaxis.bar.linestyle=0
-  blank.frame.linestyle=0
-  blank.world.xmin=0
-  blank.world.xmax=90
-  blank.world.ymin=0
-  blank.world.ymax=1.5
-  major=.5
-  prec=1
+  # blank=Egrace.add_graph(Panel)
+  # blank.xaxis.bar.linestyle=0
+  # blank.yaxis.bar.linestyle=0
+  # blank.frame.linestyle=0
+  # blank.world.xmin=0
+  # blank.world.xmax=90
+  # blank.world.ymin=0
+  # blank.world.ymax=1.5
+  # major=.5
+  # prec=1
 
-  blank.xaxis.ticklabel.configure(char_size=1.5,color=0)
-  blank.xaxis.tick.configure(major_linewidth=0,minor_linewidth=0,major_size=0,minor_size=.0,major=30)
-  blank.yaxis.tick.configure(major=major,major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7)
-  blank.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=1.5)
+  # blank.xaxis.ticklabel.configure(char_size=1.5,color=0)
+  # blank.xaxis.tick.configure(major_linewidth=0,minor_linewidth=0,major_size=0,minor_size=.0,major=30)
+  # blank.yaxis.tick.configure(major=major,major_linewidth=1.5,minor_linewidth=1.5,major_size=1,minor_size=.7)
+  # blank.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=1.5)
 
-  Egrace.multi(rows=1,cols=3,vgap=.08,hgap=.08)
+  Egrace.multi(rows=1,cols=2,vgap=.08,hgap=.08)
 
   Egrace.hide_redundant_xticklabels()
   Egrace.hide_redundant_yticklabels()
 
   Egrace.set_col_yaxislabel(col=0,rowspan=(0,0),label='Scaling exponent',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
-  Egrace.set_row_xaxislabel(row=0,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
+  Egrace.set_row_xaxislabel(row=0,colspan=(0,1),label='Absolute latitude',place='normal',just=2,char_size=1.5,perpendicular_offset=0.1)
 
   Egrace.write_file('../talk/Figures/results/effect.eps')
 
+  Gen_vs_lat_sim('Gen')
  
 if __name__ == '__main__':
   main()
