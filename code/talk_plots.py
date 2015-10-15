@@ -201,9 +201,9 @@ def Gen_vs_lat_sim(prop):
 
   graph=grace.add_graph()
 
-  narrowniches=graph.add_dataset([(0,50),(90,2)])
-  narrowniches.symbol.shape=0
-  narrowniches.line.configure(color=2,linewidth=5)
+  # narrowniches=graph.add_dataset([(0,50),(90,2)])
+  # narrowniches.symbol.shape=0
+  # narrowniches.line.configure(color=2,linewidth=5)
 
   ytex='Absolute latitude'
   graph.xaxis.label.configure(text=ytex,place='normal',char_size=1.5)
@@ -213,10 +213,20 @@ def Gen_vs_lat_sim(prop):
   elif prop=='Gen':
     graph.yaxis.label.configure(text="Generality",place='normal',char_size=1.5)
 
-  graph.add_drawing_object(DrawText,text='?',x=45,y=2,just=2,loctype='world',char_size=6,color=11)
+  graph.add_drawing_object(DrawText,text='?',x=25,y=8,just=2,loctype='world',char_size=6,color=11)
+  graph.add_drawing_object(DrawText,text='?',x=65,y=.5,just=2,loctype='world',char_size=6,color=2)
 
+  narrowniches=graph.add_dataset([(100,1),(100,100)])
+  narrowniches.symbol.shape=0
+  narrowniches.line.configure(color=2,linewidth=5)
+  narrowniches.legend="Narrower niches in the tropics"
 
-  graph.legend.configure(char_size=.75,frame=0,loc=(5,.3),loctype='world',box_linestyle=0)
+  sameniches=graph.add_dataset([(100,2),(190,3)])
+  sameniches.symbol.shape=0
+  sameniches.line.configure(color=11,linewidth=5)
+  sameniches.legend="Similar niches everywhere"
+
+  graph.legend.configure(char_size=1.25,frame=0,loc=(5,.4),loctype='world',box_linestyle=0)
 
   graph.world.ymin=.1
   graph.world.ymax=100
@@ -322,7 +332,7 @@ def S_rawplots(rawdatafile,outfile1,predfolder,plottype):
   elif prop=='Gen':
     graph.yaxis.label.configure(text="Generality",place='normal',char_size=1.5)
 
-  graph.legend.configure(char_size=.75,frame=0,loc=(5,.3),loctype='world',box_linestyle=0)
+  graph.legend.configure(char_size=1.25,frame=0,loc=(5,.4),loctype='world',box_linestyle=0)
 
   graph.world.ymin=.1
   graph.world.ymax=100
