@@ -149,26 +149,77 @@ def TLs(web):
   return TLdict8
 
 
-def chains(web):
+def readweb(lake):
+  f=open('../Lakefiles/'+lake+'/links.web','r')
+  ints=[]
+  nodes=set()
 
-  
+  for line in f:
+    [pred,prey]=line.split()
+    ints.append((pred,prey))
+    nodes.add(pred)
+    nodes.add(prey)
+  f.close()
+  return ints,nodes
+
+def readdata(lake):
+  # Need to break out column names, row names, ints.
+  # I'm sure I have done this before. See listcreator.py
+  f=open('../Lakefiles/'+lake+'.csv','r')
+  for oldline in f:
+    line=oldline.split('\n')[0]
+    print line.split(',')
+  f.close()
+  sys.exit()  
 
 def main():
 
-  lakes=['Alford.web','AmundsenFL.web','Bridge.web','Connery.web','LittleRock.web','PrestonFL.web','Sierra.web','Skipwith.web','Stink.web','WEB114.web','WEB116.web','WEB117.web','WEB118.web','WEB120.web','WEB126.web','WEB131.web','WEB132.web','WEB133.web','WEB134.web','WEB135.web','WEB137.web','WEB143.web','WEB204.web','WEB251.web','WEB272.web','WEB277.web','WEB278.web','WEB279.web','WEB310.web','WEB33.web','WEB334.web','WEB335.web','WEB336.web','WEB337.web','WEB343.web','WEB345.web','WEB356.web','WEB38.web','WEB39.web','WEB46.web','WEB58.web','WEB71.web','WEB72.web','WEB75.web','WEB76.web','WEB78.web','WEB84.web']  
+  lakes=['Alford.web','WEBAmundsenFL.web','Bridge.web','Connery.web','LittleRock.web','WEBPrestonFL.web','Sierra.web','Skipwith.web','Stink.web','WEB114.web','WEB116.web','WEB117.web','WEB118.web','WEB120.web','WEB126.web','WEB131.web','WEB132.web','WEB133.web','WEB134.web','WEB135.web','WEB137.web','WEB143.web','WEB204.web','WEB251.web','WEB272.web','WEB277.web','WEB278.web','WEB279.web','WEB310.web','WEB33.web','WEB334.web','WEB335.web','WEB336.web','WEB337.web','WEB343.web','WEB345.web','WEB356.web','WEB38.web','WEB39.web','WEB46.web','WEB58.web','WEB71.web','WEB72.web','WEB75.web','WEB76.web','WEB78.web','WEB84.web']  
   directory = '../mod_data/lists/pred-prey-lists-to-use/'
 
-  for lake in lakes:
+  # trophic.links.csv, a list of resource consumer lin
+  # nodes.csv is a list of nodes, and/or other info
+  # properties.csv is one row of data, with 
+  # title   (M.units)   (N.units)
+  # [Name]  (e.g., kg)  (e.g., m^-2)
+  weblakes=['Alford.web','Bridge.web','Connery.web','LittleRock.web','Sierra.web','Skipwith.web','Stink.web']
+
+  for lake in weblakes:
+    lac=lake.split('.web')[0]
+    titlef=open('../Lakefiles/'+lac+'/properties.csv','w')
+    titlef.write('title,\n')
+    titlef.write(lac+',\n')
+    titlef.close()
+
+    ints, nodes = readweb(lac)    
+
+    nodefile=open('../Lakefiles/'+lac+'/nodes.csv','w')
+    nodefile.write('nodes,\n')
+    for node in sorted(nodes):
+      nodefile.write(node+',\n')
+    nodefile.close()
+
+    linkfile=open('../Lakefiles/'+lac+'/trophic.links.csv','w')
+    linkfile.write('resource,consumer\n')
+    for (pred,prey) in ints:
+      linkfile.write(pred+','+prey+'\n')
+    linkfile.close()
+
     print lake
-    web=directory+lake
-    TLs(web)
+    # web=directory+lake
+    # TLs(web)
+
+  for lake in lakes:
+    lac=lake.split('.web')[0]
+    if lake not in weblakes:
+      readdata(lac)
 
   metafile = '../mod_data/sup_data/food_web_notes_updated.csv'
   motifdir = '../mod_data/Roles/'
   bibfile = '../manuscript/noISN.bib'  
   webkeys = '../manuscript/webs_and_keys.csv'
 
-  websorter(metafile,directory,bibfile,webkeys)
+  # websorter(metafile,directory,bibfile,webkeys)
 
 if __name__ == '__main__':
   main()

@@ -1,0 +1,20 @@
+,epiphytic algae,detritus and benthic algae,phytoplankton,macrophytes,terrestrial insects,zooplankton,dipteran larvae and pupae (and other aquatic insects),gastropods,oligochaetes,Labeo altivelis (cyprinid fish),Sarortherdon macrochir (cichlid fish),Clarias gariepinus (clarid fish),Alestes imberi (characid fish),Marcusenios macrolepidotus (mormyrid fish),Mormyrus longirostris (mormyrid fish),Haplochromis codringtoni (cichlid fish),Haplochromis darlingi (cichlid fish),Tilapia rendalli (cichlid fish),Hydrocynus vittatus (characid fish)
+epiphytic algae,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,1,0
+detritus and benthic algae,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,0
+phytoplankton,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+macrophytes,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+terrestrial insects,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1
+zooplankton,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0
+dipteran larvae and pupae (and other aquatic insects),0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1
+gastropods,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0
+oligochaetes,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Labeo altivelis (cyprinid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Sarortherdon macrochir (cichlid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Clarias gariepinus (clarid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Alestes imberi (characid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Marcusenios macrolepidotus (mormyrid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Mormyrus longirostris (mormyrid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Haplochromis codringtoni (cichlid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Haplochromis darlingi (cichlid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Tilapia rendalli (cichlid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Hydrocynus vittatus (characid fish),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
