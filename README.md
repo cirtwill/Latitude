@@ -24,3 +24,5 @@ Looks like property_plots so far.
 Data files:
 
 mod_data/summary-properties.tsv - values of food-web properties for each web
+
+It turns out that 9 webs had inaccurate headers and 1 (WEB294) was flipped. Updated property file with these webs corrected, mean SWTL and mean shortest parth is mod_data/summary-properties_extended_connected.tsv

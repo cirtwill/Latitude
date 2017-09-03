@@ -224,7 +224,8 @@ GrandeSc*wetland*terrestrial*~\citep{CattinBlandenier2004}*46,47,09 N*46.7858333
 39*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi
 38*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi
 204*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi
-294*Europe*lake*~\citep{Gaedke1994}*47,37,30 N*47.625*Lake Constance, European Alps***Use*Constance
+294*Europe*lake*~\citep{Gaedke1994}*47,37,30 N*47.625*Lake Constance, European Alps***Do not use*Constance
+WEB294_rotated*Europe*lake*~\citep{Gaedke1994}*47,37,30 N*47.625*Lake Constance, European Alps***Use*Constance
 354*St. Martin*terrestrial*~\citep{Goldwasser1993}*18,03 N*18.05*St. Martin***use*
 309*Atlantic Ocean*marine*~\citep{Gontikaki2011}*61,13,88 N*61.24111111*Faroe-Shetland deep sea trench*likely to be an outlier just because it's a weird habitat**Use*Faroe
 272*USA*lake*~\citep{Hampton2011}*48,03,29 N*48.05805556*Lake Crescent, Olympic National Park, Washington***use*LakeCrescent

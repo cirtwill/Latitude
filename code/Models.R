@@ -1,12 +1,14 @@
 
 ## Power analysis function from http://www.esapubs.org/archive/ecol/E092/160/Sup_2_Guidelines.r
 ## Loading required packages. May need to be installed from CRAN.
-library(nlrwr)
+# library(nlrwr) ## Not available for 3.3.1
 library(lmerTest)
 library(boot)
 library(MuMIn)
 
-for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properties.tsv')){
+# Need to re-run with the corrected matrices...
+# for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properties.tsv')){
+for(infile in c('../mod_data/summary-properties_extended_connected.tsv','../non_TS/summary-properties_extended_connected.tsv')){
 
   data=read.delim(infile,sep='\t',header=TRUE,stringsAsFactors=FALSE)
   data$Connectance=as.numeric(as.character(data$Connectance))
@@ -14,8 +16,8 @@ for(infile in c('../mod_data/summary-properties.tsv','../non_TS/summary-properti
   data$Gen=as.numeric(as.character(data$Gen))
   data$Vul=as.numeric(as.character(data$Vul))
   data$Ecotype=as.factor(data$Ecotype)
-  data$Ecotype2=as.factor(data$Ecotype2)
-  data$Humans=as.factor(data$Humans)
+  # data$Ecotype2=as.factor(data$Ecotype2)
+  # data$Humans=as.factor(data$Humans)
   data$Site=as.factor(data$Site)
   data$Basal=as.numeric(as.character(data$Basal))
   data$Herbivores=as.numeric(as.character(data$Herbivores))

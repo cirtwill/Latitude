@@ -98,6 +98,7 @@ def clustering(directory,item):
   Clus=float(sum(ratios)/len(ratios))
   return Clus
 
+ 
 def food_web_properties(directory,item,G):
 
   Clus=clustering(directory,item)
@@ -142,6 +143,32 @@ def food_web_properties(directory,item,G):
   herbs=float(float(len(H))/N)
   basal=float(float(len(B))/N)
 
+  TLdict={} # This isn't working so well...
+  for node in B:
+    TLdict[node]=1
+  for node in G.nodes():
+    if node not in B:
+      paths=[]
+      for res in B:
+        try:
+          short=nx.shortest_path_length(G,source=res,target=node)
+          paths.append(short)
+        except nx.exception.NetworkXNoPath:
+          try:
+            short=nx.shortest_path_length(G,source=node,target=res)
+            paths.append(short)
+          except:
+            pass
+      if len(paths)>0:
+        TLdict[node]=sorted(paths)[0] # The shortest path
+      else:
+        pass # Ignoring unconnected nodes
+  if len(TLdict.values())>0:
+    SWTL=sum(TLdict.values())/len(TLdict.values())
+  else:
+    print B, I, T
+    print item, ' has no connected nodes?'
+
   for node in G.nodes():
     pred=len(G.predecessors(node))
     number_predators.append(pred)
@@ -175,17 +202,17 @@ def food_web_properties(directory,item,G):
   try:
     Path=nx.average_shortest_path_length(G,weight=None) #average shortest path length
   except nx.exception.NetworkXError:
+    paths=[]
     for g in nx.connected_component_subgraphs(G.to_undirected()):
-      paths=[]
       try:
         paths.append(nx.average_shortest_path_length(g,weight=None))
       except:
-        paths.append(0)
+        pass
     print item, 'not connected'
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [int(N),int(sum(LinksperS)),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Clus),basal,herbs,inter,top] 
+  outputs = [int(N),int(sum(LinksperS)),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(SWTL),float(Clus),basal,herbs,inter,top] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
@@ -237,6 +264,7 @@ def websorter(metafile,directory,bibfile,webkeys):
           'Vul',
           'VulSD',
           'Path',
+          'SWTL',
           'Clus',
           'Basal',
           'Herbivores',
@@ -249,7 +277,7 @@ def websorter(metafile,directory,bibfile,webkeys):
   bigheader=header+list(sorted(authorset))
   # Header is expanded with a list of authors... now I need to fill those columns.
 
-  outfile=open('../mod_data/summary-properties.tsv','w')
+  outfile=open('../mod_data/summary-properties_extended_connected.tsv','w')
   outfile.write(u'\t'.join(header).encode('utf-8').strip())
   outfile.write('\n')
 
@@ -265,7 +293,7 @@ def websorter(metafile,directory,bibfile,webkeys):
   outfile.close()
            # extfile.write('\t'.join(map(str,[eval(item) for item in extheader])))
 
-  out2=open('../non_TS/summary-properties.tsv','w')
+  out2=open('../non_TS/summary-properties_extended_connected.tsv','w')
   out2.write(u'\t'.join(bigheader).encode('utf-8').strip())
   out2.write('\n')
 
@@ -281,7 +309,8 @@ def websorter(metafile,directory,bibfile,webkeys):
       shortitem=item.split('.web')[0].split('WEB')[1]
     except IndexError:
       shortitem=item.split('.web')[0]
-    print shortitem
+    if item=='WEB294_rotated.web':
+      shortitem='294'
 
     for author in sorted(authorset):
       if author in web_to_authors[shortitem]:
@@ -297,7 +326,7 @@ def websorter(metafile,directory,bibfile,webkeys):
 def main():
   
   metafile = '../mod_data/sup_data/food_web_notes_updated.csv'
-  directory = '../mod_data/lists/pred-prey-lists-to-use/'
+  directory = '../mod_data/lists/pred-prey-lists-2017/'
   motifdir = '../mod_data/Roles/'
   bibfile = '../manuscript/noISN.bib'  
   webkeys = '../manuscript/webs_and_keys.csv'
