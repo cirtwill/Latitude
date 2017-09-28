@@ -5,24 +5,33 @@ import random
 from decimal import *
 from math import *
 
-backwards_webs=['../mod_data/webs/WEB294.csv']
+backwards_webs=['../mod_data/webs/WEB263.csv','../mod_data/webs/WEB294.csv','../mod_data/webs/WEB333.csv','../mod_data/webs/carpinteria2006.csv']
 # WEB269, WEB296, WEB320 had commas in the headers. Fixed it.
 # And WEB321. And WEB322. And WEB323. And WEB324. And WEB222.
-
+# WEB23, WEB39, WEB296, WEB320, WEB321, WEB322, WEB323, WEB324 had commas in a row name. Fixed it.
+# Removed Sum and (1-Sum) rows from WEB320, WEB321, WEB322, WEB324
+# WEB60 species names don't all make sense (seventeen?) and one is missing. Added an X to facilitate.
+# WEB333 is + or - or +/- or 0 AND rotated. 
 def create_predprey_list(webfile):
   # print webfile
   rowdict={}
 
   f=open(webfile,'r')
   for line in f:
-    if webfile!='../mod_data/webs/WEB294_rotated.csv':
+    if webfile not in ['../mod_data/webs/WEB294_rotated.csv']:
       newline=line.split('\n')[0] #Trims off extraneous newline
       items=newline.split(',')
       if '' not in items[1:]:
-        if '0' in items[1:] or '1' in items[1:]:
-          rowdict[items[0]]=items[1:]
+        if webfile!='../mod_data/webs/WEB333.csv':
+          if '0' in items[1:] or '1' in items[1:]:
+            rowdict[items[0]]=items[1:]
+          else:
+            predators=items[1:]
         else:
-          predators=items[1:]
+          if '0' in items[1:] or '+' in items[1:] or '-' in items[1:]: # Some webs just gotta be special
+            rowdict[items[0]]=items[1:]
+          else:
+            predators=items[1:]
     else:
       mush=line.split('\r')
       for newline in mush:
@@ -33,7 +42,6 @@ def create_predprey_list(webfile):
           else:
             predators=items[1:]
   f.close()
-
   predpreydict={}
   specieslist=set()
 
@@ -45,13 +53,26 @@ def create_predprey_list(webfile):
     position = predators.index(pred)
     for prey in rowdict:
       specieslist.add(prey)
-      try:
-        if rowdict[prey][position]!='0':
-          # print pred, prey
-          preylist.append(prey)
-      except:
-        print webfile, pred, 'error'
+      if webfile!='../mod_data/webs/WEB333.csv':
+        try:
+          if float(rowdict[prey][position])>0:
+            # print pred, prey
+            preylist.append(prey)
+        except:
+          try:
+            if float(rowdict[prey][position][1:])>0: # One web has <0.01
+              preylist.append(prey)
+          except:
+            try:
+              if float(rowdict[prey][position][0])>0: # Another web has letters to indicate life stages.
+                preylist.append(prey)
+            except:
+              print webfile, pred, 'error'
+      else:
+        if '-' in rowdict[prey][position]:
+          preylist.append(prey)    
     predpreydict[pred]=preylist
+
 
   numberdict={}
   i = 1
@@ -78,8 +99,11 @@ def create_predprey_list(webfile):
     for prey in predpreydict[pred]:
       links.append((pred,prey))
   if webfile not in backwards_webs:
-    if ['phytoplankton'] in eaters or ['detritus'] in eaters or ['Detritus'] in eaters or ['Phytoplankton'] in eaters:
+    if set(eaters)&set(['phytoplankton','Phytoplankton','detritus','Detritus'])!=set():
+      print "Error: basal resources are eating things"
+      print predpreydict['detritus']
       print sorted(eaters)
+      print webfile
       sys.exit()
   g=open('../mod_data/lists/pred-prey-lists-2017/'+webname,'w')
   for pred in predators:
@@ -89,6 +113,9 @@ def create_predprey_list(webfile):
       else:
         g.write(str(numberdict[prey])+'\t'+str(numberdict[pred])+'\n')        
   g.close()
+  # if webfile=='../mod_data/webs/WEB333.csv':
+  #   print sorted(eaters)
+  #   print predpreydict['Detritus']
 
 def weblister(directory):
   filelist=os.listdir(directory)
