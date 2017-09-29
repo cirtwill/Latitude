@@ -73,7 +73,6 @@ def create_predprey_list(webfile):
           preylist.append(prey)    
     predpreydict[pred]=preylist
 
-
   numberdict={}
   i = 1
   for species in specieslist:
@@ -85,12 +84,10 @@ def create_predprey_list(webfile):
   except:
     webname=webfile.split('/')[-1].split('.')[0] 
     # print webname
-
   decodefile=open('../mod_data/species-keys/2017/'+webname,'w')
   for species in specieslist:
     decodefile.write(species+'\t'+str(numberdict[species])+'\n')
   decodefile.close()  
-
   eaters=[]
   links=[]
   for pred in predpreydict:
@@ -113,9 +110,6 @@ def create_predprey_list(webfile):
       else:
         g.write(str(numberdict[prey])+'\t'+str(numberdict[pred])+'\n')        
   g.close()
-  # if webfile=='../mod_data/webs/WEB333.csv':
-  #   print sorted(eaters)
-  #   print predpreydict['Detritus']
 
 def weblister(directory):
   filelist=os.listdir(directory)
