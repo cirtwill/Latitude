@@ -5,7 +5,7 @@ import random
 from decimal import *
 from math import *
 
-backwards_webs=['../mod_data/webs/WEB263.csv','../mod_data/webs/WEB294.csv','../mod_data/webs/WEB333.csv','../mod_data/webs/carpinteria2006.csv']
+backwards_webs=['../mod_data/webs/WEB294.csv','../mod_data/webs/WEB333.csv','../mod_data/webs/carpinteria2006.csv']
 # WEB269, WEB296, WEB320 had commas in the headers. Fixed it.
 # And WEB321. And WEB322. And WEB323. And WEB324. And WEB222.
 # WEB23, WEB39, WEB296, WEB320, WEB321, WEB322, WEB323, WEB324 had commas in a row name. Fixed it.

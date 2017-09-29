@@ -74,8 +74,10 @@ def clustering(directory,item):
   G=trophic_species_web(directory,item)
   N=len(G.nodes())
   L=len(G.edges())
-  LS=Decimal(L)/Decimal(N)
-
+  try:
+    LS=Decimal(L)/Decimal(N)
+  except:
+    print item, L, N
   ratios=[]   # List of % of pairs connected to a third node that are also connected
   for kingnode in G.nodes():
     connected=G.predecessors(kingnode)+G.successors(kingnode)
@@ -143,7 +145,7 @@ def food_web_properties(directory,item,G):
   herbs=float(float(len(H))/N)
   basal=float(float(len(B))/N)
 
-  TLdict={} # This isn't working so well...
+  TLdict={} 
   for node in B:
     TLdict[node]=1
   for node in G.nodes():
@@ -160,14 +162,15 @@ def food_web_properties(directory,item,G):
           except:
             pass
       if len(paths)>0:
-        TLdict[node]=sorted(paths)[0] # The shortest path
+        TLdict[node]=float(sorted(paths)[0]+1) # The shortest path, plus one
       else:
         pass # Ignoring unconnected nodes
   if len(TLdict.values())>0:
-    SWTL=sum(TLdict.values())/len(TLdict.values())
+    SWTL=float(sum(TLdict.values()))/float(len(TLdict.values()))
   else:
     print B, I, T
     print item, ' has no connected nodes?'
+    print G.edges()
 
   for node in G.nodes():
     pred=len(G.predecessors(node))
