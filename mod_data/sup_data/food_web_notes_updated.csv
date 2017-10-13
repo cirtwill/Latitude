@@ -1,9 +1,9 @@
 Thompson Number*Location*Ecotype*Reference*Latitude(degrees)*Latitude(decimal)*Described_Location*Notes**Verdict*Sitename*Checked?
 PrestonFL*USA*lake*~\citep{Preson2012}*37.66 N*37.66*Quick Pond, N. California*parasites (removed)**use (FL version of 295)*Quick*Yes
-AmundsenFL*Norway*lake*~\citep{Amundsen2013}*69,07 N*6.911.666.667*Takvatn, Norway*parasites (removed)**use (FL version of 271)*Takvatn*Yes
-ThompsonFL*New Zealand*estuary*~\citep{Thompson2004}*45,51,28 S*4.585.777.778*Company Bay, Otago Harbour*parasites (removed)**use (FL version of 248)*Otago*Yes
-3*USA*estuary*~\citep{Woodwell1967}*41,03,11 N*4.105.305.556*Long Island***use*Woodwell*Yes
-5*USA*estuary*~\citep{Teal1962}*31,28,38 N*3.147.722.222*Sapelo Island, Georgia***use*Sapelo*Yes
+AmundsenFL*Norway*lake*~\citep{Amundsen2013}*69,07 N*69.11666667*Takvatn, Norway*parasites (removed)**use (FL version of 271)*Takvatn*Yes
+ThompsonFL*New Zealand*estuary*~\citep{Thompson2004}*45,51,28 S*45.85777778*Company Bay, Otago Harbour*parasites (removed)**use (FL version of 248)*Otago*Yes
+3*USA*estuary*~\citep{Woodwell1967}*41,03,11 N*41.05305556*Long Island***use*Woodwell*Yes
+5*USA*estuary*~\citep{Teal1962}*31,28,38 N*31.47722222*Sapelo Island, Georgia***use*Sapelo*Yes
 6*USA*estuary*~\citep{MacGintie1935}*36,48,18 N*36.805*Elkhorn Slough, Monterey Bay, California*sounds excellent**use*Elkhorn*Yes
 7*USA*marine*~\citep{Kremer1978} *41,45-41,30 N*41.625*Narragansett Bay, NY/Mass***use*Narragansett*Yes
 8*USA*estuary*~\citep{Nixon1973}*41,33,00 N*41.55*Bissel Cove, Narragansett Bay, Rhode Island***use*Bissel*Yes
@@ -11,101 +11,101 @@ ThompsonFL*New Zealand*estuary*~\citep{Thompson2004}*45,51,28 S*4.585.777.778*Co
 11*USA*marine*~\citep{Menge1976}*41-47 N*44*New England***Use*NewEnglandshore*Yes
 12*USA*marine*~\citep{Menge1976}*45,45 - 49 N*47.375*Washington***Use*Washingtonshore*Yes
 13*USA*marine*~\citep{Menge1976}*45,45 - 49 N*47.375*Washington***Use*Washingtonshore*Yes
-18*Polynesia*terrestrial*~\citep{Niering1963a}*1,01,29 -1,06,23 N*1.065.555.556**Modified over thousands of years is probably still equilibrium.**use*Kapingamarangi*Yes
+18*Polynesia*terrestrial*~\citep{Niering1963a}*1,01,29 -1,06,23 N*1.065555556**Modified over thousands of years is probably still equilibrium.**use*Kapingamarangi*Yes
 21*Antarctica*marine*~\citep{Patten1979} *70-85 S*77.5*Ross Sea continental shelf***use*RossSea*Yes
 22*Norway*terrestrial*~\citep{Summerhayes1923}*74,27,54 N*74.465*Bear Island***use*BearIsland*Yes
-23*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*5.042.138.889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
-24*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*5.042.138.889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
-25*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*5.042.138.889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
-26*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*5.042.138.889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
-28*New Zealand*estuary*~\citep{Paviour-Smith1956}*45,51,30 S*4.585.833.333*Hooper's Inlet, NZ***use*Hoopers*Yes
-33*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*1.161.083.333*South Bay, Nkata Bay, Nyasaland *Crocodile creek - inlet to lake**use*LakeMalawi*Yes
+23*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*50.42138889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
+24*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*50.42138889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
+25*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*50.42138889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
+26*Canada*terrestrial*~\citep{Bird1930}*50,25,17 N*50.42138889*Birtle, Manitoba*seasonal webs, includes man**use*Aspen*Yes
+28*New Zealand*estuary*~\citep{Paviour-Smith1956}*45,51,30 S*45.85833333*Hooper's Inlet, NZ***use*Hoopers*Yes
+33*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland *Crocodile creek - inlet to lake**use*LakeMalawi*Yes
 34*UK*stream*~\citep{Jones1949}*51,41-51,55 N*51.8*Rivers Sawdde and Clydach, Wales***use*Sawdde*Yes
-35*USA*stream*~\citep{Minsall1967}*37,18,26 N*3.730.722.222*Morgan's Creek, Kentucky***Use*Morgans*Yes
-37*USA*marine*~\citep{Clarke1967}*41,02,49 N*4.104.694.444*Long Island Sound*focuses on species attracted to artificial Sealab structure. In addition, uneven resolution.**use*Sealab*Yes
-38*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*1.161.083.333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
-39*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*1.161.083.333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
+35*USA*stream*~\citep{Minsall1967}*37,18,26 N*37.30722222*Morgan's Creek, Kentucky***Use*Morgans*Yes
+37*USA*marine*~\citep{Clarke1967}*41,02,49 N*41.04694444*Long Island Sound*focuses on species attracted to artificial Sealab structure. In addition, uneven resolution.**use*Sealab*Yes
+38*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
+39*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
 43*USA*marine*~\citep{Rosenthal1974} *32, 57 N*32.95*Del Mar, California*source available through citebank**use*DelMar*Yes
-44*Mexico*marine*~\citep{Yanez1978}*17,26,21 N*1.743.916.667*Guerrero, Mexico***Use*Guerrero*Yes
-45*USA*stream*~\citep{Tilly1968}*41,22,55 N*4.138.194.444*Conesville, Iowa***use*Conesville*Yes
+44*Mexico*marine*~\citep{Yanez1978}*17,26,21 N*17.43916667*Guerrero, Mexico***Use*Guerrero*Yes
+45*USA*stream*~\citep{Tilly1968}*41,22,55 N*41.38194444*Conesville, Iowa***use*Conesville*Yes
 46*USA*lake*~\citep{Patten1975}*33,54 N*33.9****Use*Texoma*Yes
-51*USA*marine*~\citep{Dexter1947} *42,38,56 N*4.264.888.889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
+51*USA*marine*~\citep{Dexter1947} *42,38,56 N*42.64888889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
 52*USA*marine*~\citep{Paine1980}*58,27 N*58.45*Torch Bay, Alaska***use*TorchBay*Yes
-53*USA*marine*~\citep{Paine1980}*48,19-48,37 N*4.893.333.333*Cape Flattery, Washington***use*CapeFlattery*Yes
-57*Mexico*marine*~\citep{Yanez1978}*17,26,21 N*1.743.916.667*Guerrero, Mexico***Use*Guerrero*Yes
-58*Russia*lake*~\citep{Smirnov1961} *51,46 N*5.176.666.667*Northern shore Lake Poletskoye, Russia, 73 km W from Moscow***Use*LakePoletskoye*Yes
-59*USA*terrestrial*~\citep{Twomey1945}*40,09,47 N*4.016.305.556*William Trelease Woods, 5mi NE Urbana***use*Trelease*Yes
-60*USA*terrestrial*~\citep{Rasmussen1941}*36,5-37 N*3.654.166.667*Kaibab Plateau, Arizona***use*Kaibab*Yes
+53*USA*marine*~\citep{Paine1980}*48,19-48,37 N*48.93333333*Cape Flattery, Washington***use*CapeFlattery*Yes
+57*Mexico*marine*~\citep{Yanez1978}*17,26,21 N*17.43916667*Guerrero, Mexico***Use*Guerrero*Yes
+58*Russia*lake*~\citep{Smirnov1961} *51,46 N*51.76666667*Northern shore Lake Poletskoye, Russia, 73 km W from Moscow***Use*LakePoletskoye*Yes
+59*USA*terrestrial*~\citep{Twomey1945}*40,09,47 N*40.16305556*William Trelease Woods, 5mi NE Urbana***use*Trelease*Yes
+60*USA*terrestrial*~\citep{Rasmussen1941}*36,5-37 N*36.54166667*Kaibab Plateau, Arizona***use*Kaibab*Yes
 61*Norway*terrestrial*~\citep{Summerhayes1928}*77,52,30 N*77.875*Spitsbergen***use*Spitsbergen*Yes
 62*Norway*terrestrial*~\citep{Summerhayes1928}*77,52,30 N*77.875*Spitsbergen***use*Spitsbergen*Yes
-63*UK*stream*~\citep{Jones1950}*52, 25, 08 N*5.241.888.889*River Rheidol***use*Rheidol*Yes
-64*USA*stream*~\citep{Cummins1966} *41,39, 33 N*4.165.916.667*Linesville Creek, Crawford County, Pennsylvania***use*Linesville*Yes
-65*Japan*stream*~\citep{Tsuda1972}*34,21,20 N- 34,23,21 N*3.437.236.111*Yoshino River, roughly between Gajo and Kamiichi***use*Yoshino*Yes
+63*UK*stream*~\citep{Jones1950}*52, 25, 08 N*52.41888889*River Rheidol***use*Rheidol*Yes
+64*USA*stream*~\citep{Cummins1966} *41,39, 33 N*41.65916667*Linesville Creek, Crawford County, Pennsylvania***use*Linesville*Yes
+65*Japan*stream*~\citep{Tsuda1972}*34,21,20 N- 34,23,21 N*34.37236111*Yoshino River, roughly between Gajo and Kamiichi***use*Yoshino*Yes
 66*England*stream*~\citep{Mann1972}*51,30 N*51.5*Rivers Thames***use*Thames*Yes
-67*USA*stream*~\citep{Carlson1968}*40,24,16 N*4.040.444.444*Keokuk, Iowa***use*Keokuk*Yes
-70*USA*estuary*~\citep{Kemp1977}*28,54,08 N*2.890.222.222*Crystal River, Florida***Use*Crystal*Yes
+67*USA*stream*~\citep{Carlson1968}*40,24,16 N*40.40444444*Keokuk, Iowa***use*Keokuk*Yes
+70*USA*estuary*~\citep{Kemp1977}*28,54,08 N*28.90222222*Crystal River, Florida***Use*Crystal*Yes
 71*Russia*lake*~\citep{Sorokin1972}*48,00 N*48*Rybinsk reservoir***use*Rybinsk*Yes
-72*Canada*lake*~\citep{Baril1983}*46, 02 N*4.603.333.333*Heney Lake, Quebec*pelagic zone of lake**use*Heney*Yes
+72*Canada*lake*~\citep{Baril1983}*46, 02 N*46.03333333*Heney Lake, Quebec*pelagic zone of lake**use*Heney*Yes
 74*South Africa*marine*~\citep{Brown1964}*34, 15, 00 S*34.25*Cape Peninsula, South Africa***use*CapePeninsula*Yes
-75*Austria*lake*~\citep{Pechlaner1972}*47, 11 N*4.718.333.333*Vorderer and Hinterer Finstertaler See, Kuhtai, Austria***use*Kuhtai*Yes
+75*Austria*lake*~\citep{Pechlaner1972}*47, 11 N*47.18333333*Vorderer and Hinterer Finstertaler See, Kuhtai, Austria***use*Kuhtai*Yes
 76*Austria*lake*~\citep{Schiemer1979}*47,42 - 47,54 N*47.8*Neusiedlersee, Austria***use*Neusiedlersee*Yes
 78*Uganda*lake*~\citep{Burgis1972}*0*0*Lake George, Uganda***use*LakeGeorge*Yes
-84*USA*lake*~\citep{Wilbur1972}*42,28,42 N*4.247.833.333*Edwin S. George Reserve, U Michigan***use*UMichigan*Yes
-86*Japan*marine*~\citep{Hogetsu1979} *34,36 - 35,38 N*3.511.666.667*Suruga Bay, Japan***use*Suruga*Yes
-87*Canada*terrestrial*~\citep{Bradstreet1982}*72, 46, 34.95 N*72.776.375*Pond Inlet***use*PondInlet*Yes
-89*England*stream*~\citep{Hartley1948} *52,13 N*5.221.666.667*Shepreth Brook and River Cam, Cambridgeshire, near Bulbeck Mill***use*Shepreth*Yes
+84*USA*lake*~\citep{Wilbur1972}*42,28,42 N*42.47833333*Edwin S. George Reserve, U Michigan***use*UMichigan*Yes
+86*Japan*marine*~\citep{Hogetsu1979} *34,36 - 35,38 N*35.11666667*Suruga Bay, Japan***use*Suruga*Yes
+87*Canada*terrestrial*~\citep{Bradstreet1982}*72, 46, 34.95 N*72.776375*Pond Inlet***use*PondInlet*Yes
+89*England*stream*~\citep{Hartley1948} *52,13 N*52.21666667*Shepreth Brook and River Cam, Cambridgeshire, near Bulbeck Mill***use*Shepreth*Yes
 93*USA*terrestrial*~\citep{Pattie1966} *45 N*45*Beartooth Plateau, Yellowstone National Park***use*Beartooth*Yes
-95*USA*terrestrial*~\citep{Brown1975}*70,11,14.18 N*7.018.727.222*Prudhoe Bay, Alaska***Use*Prudhow*Yes
+95*USA*terrestrial*~\citep{Brown1975}*70,11,14.18 N*70.18727222*Prudhoe Bay, Alaska***Use*Prudhow*Yes
 99*USA*terrestrial*~\citep{Howes1954} *32,36 N*32.6*Sonoran Desert***use*Cactus*Yes
 102*Pacific Ocean*marine*~\citep{Shushkina1973}*10 S - 15 N*2.5*western equatorial portion of the Pacific Ocean***use*Pacific*Yes
-104*Panama*marine*~\citep{Menge1976}*4,48,04 N*4.801.111.111*Taboguilla Island, Bay of Panama, S shore***use*Taboguilla*Yes
-105*USA*marine*~\citep{Edwards1982} *42, 40 N*4.266.666.667*Gulf of Maine***use*Maine*Yes
-107*USA*marine*~\citep{Peterson1979} *39,52,02 N*3.986.722.222*Barnegat Bay, New Jersey***use*Barnegat*Yes
-108*USA*marine*~\citep{Hewatt1937}*36,37 N*3.661.666.667*Monterey Bay, California***use*Monterey*Yes
-110*USA*marine*~\citep{Dexter1947} *42,38,56 N*4.264.888.889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
-111*USA*marine*~\citep{Dexter1947} *42,38,56 N*4.264.888.889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
-112*USA*marine*~\citep{Dexter1947} *42,38,56 N*4.264.888.889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
-113*USA*marine*~\citep{Dexter1947} *42,38,56 N*4.264.888.889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
-114*Zimbabwe*lake*~\citep{Marshall1982}*17, 54, 11.90 S*1.790.330.556*Lake McIlwaine aka Lake Chivero***use*McIlwaine*Yes
-116*U.S.A.*lake*~\citep{Hurlbert1972} *35, 09, 19 S*3.515.527.778*15 mi S. of Bakersfield, California***use*Bakersfield*Yes
-117*Panama*lake*~\citep{Zaret1973}*9,11,31.50N*9.192.083.333*Gatun Lake, Panama***Use*Gatun*Yes
-118*UK*lake*~\citep{Bindloss1972}*56,41,18.71 N*5.668.853.056*Loch Leven, Scotland***use*Leven*Yes
+104*Panama*marine*~\citep{Menge1976}*4,48,04 N*48.01111111*Taboguilla Island, Bay of Panama, S shore***use*Taboguilla*Yes
+105*USA*marine*~\citep{Edwards1982} *42, 40 N*42.66666667*Gulf of Maine***use*Maine*Yes
+107*USA*marine*~\citep{Peterson1979} *39,52,02 N*39.86722222*Barnegat Bay, New Jersey***use*Barnegat*Yes
+108*USA*marine*~\citep{Hewatt1937}*36,37 N*36.61666667*Monterey Bay, California***use*Monterey*Yes
+110*USA*marine*~\citep{Dexter1947} *42,38,56 N*42.64888889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
+111*USA*marine*~\citep{Dexter1947} *42,38,56 N*42.64888889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
+112*USA*marine*~\citep{Dexter1947} *42,38,56 N*42.64888889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
+113*USA*marine*~\citep{Dexter1947} *42,38,56 N*42.64888889*Cape Ann, Massachusetts Bay***Use*CapeAnn*Yes
+114*Zimbabwe*lake*~\citep{Marshall1982}*17, 54, 11.90 S*17.90330556*Lake McIlwaine aka Lake Chivero***use*McIlwaine*Yes
+116*U.S.A.*lake*~\citep{Hurlbert1972} *35, 09, 19 S*35.15527778*15 mi S. of Bakersfield, California***use*Bakersfield*Yes
+117*Panama*lake*~\citep{Zaret1973}*9,11,31.50N*9.192083333*Gatun Lake, Panama***Use*Gatun*Yes
+118*UK*lake*~\citep{Bindloss1972}*56,41,18.71 N*56.68853056*Loch Leven, Scotland***use*Leven*Yes
 119*UK*stream*~\citep{Mann1972}*51,27 N*51.45*Thames, near junction with River Kennet***Use*Thames*Yes
 120*Uganda*lake*~\citep{Moriarty1973}*0,00,58 N*0.016111111*Lake George, Uganda*humands**use*LakeGeorge*Yes
-121*Germany*estuary*~\citep{VanEs1977}*53,20 - 53,15 N*5.329.166.667*Ems estuary, Wadden Sea***use*Wadden*Yes
-122*USA*estuary*~\citep{Nixon1973}*41, 33, 04 N*4.155.111.111*Bissel Cove, Narragansett Bay, Rhode Island***use*Narragansett*Yes
-123*USA*terrestrial*~\citep{Harris1972}*40,45,28 N*4.075.777.778*Pawnee National Grassland***Use*Pawnee*Yes
-124*USA*stream*~\citep{Collins1976}*44, 34 N*4.456.666.667*Nez Perce Spring, Yellowstone National Park***Use*Yellowstone*Yes
-126*Norway*lake*~\citep{Larsson1978} *61,26,00 N*6.143.333.333*Ovre Heimdalsvatn, Norway***use*Ovre*Yes
+121*Germany*estuary*~\citep{VanEs1977}*53,20 - 53,15 N*53.29166667*Ems estuary, Wadden Sea***use*Wadden*Yes
+122*USA*estuary*~\citep{Nixon1973}*41, 33, 04 N*41.55111111*Bissel Cove, Narragansett Bay, Rhode Island***use*Narragansett*Yes
+123*USA*terrestrial*~\citep{Harris1972}*40,45,28 N*40.75777778*Pawnee National Grassland***Use*Pawnee*Yes
+124*USA*stream*~\citep{Collins1976}*44, 34 N*44.56666667*Nez Perce Spring, Yellowstone National Park***Use*Yellowstone*Yes
+126*Norway*lake*~\citep{Larsson1978} *61,26,00 N*61.43333333*Ovre Heimdalsvatn, Norway***use*Ovre*Yes
 130*USA*estuary*~\citep{Odum1975} *27,12 N*27.2*North River Basin, Gulf of Mexico***use*NorthRiver*Yes
-131*Malaysia*lake*~\citep{Beaver1985} *4, 12, 37 N*4.210.277.778*W. Malaysia***Use*WMalaysia*Yes
-132*Malaysia*lake*~\citep{Beaver1985} *4, 12, 37 N*4.210.277.778*W. Malaysia***Use*WMalaysia*Yes
-133*Sri Lanka*lake*~\citep{Beaver1985} *7,52,22 N*7.872.777.778*Sri Lanka***Use*Sri Lanka*Yes
+131*Malaysia*lake*~\citep{Beaver1985} *4, 12, 37 N*42.10277778*W. Malaysia***Use*WMalaysia*Yes
+132*Malaysia*lake*~\citep{Beaver1985} *4, 12, 37 N*42.10277778*W. Malaysia***Use*WMalaysia*Yes
+133*Sri Lanka*lake*~\citep{Beaver1985} *7,52,22 N*78.72777778*Sri Lanka***Use*Sri Lanka*Yes
 134*Madagascar*lake*~\citep{Beaver1985} *19 S*19*Madagascar***Use*Madagascar*Yes
-135*Seychelles*lake*~\citep{Beaver1985} *4,40,46 S*4.679.444.444*Seychelles***Use*Seychelles*Yes
-137*Hong Kong*lake*~\citep{Corker1984} *22,14-22,17 N*2.225.833.333*lots of sites around Hong Kong***use*HongKong*Yes
+135*Seychelles*lake*~\citep{Beaver1985} *4,40,46 S*46.79444444*Seychelles***Use*Seychelles*Yes
+137*Hong Kong*lake*~\citep{Corker1984} *22,14-22,17 N*22.25833333*lots of sites around Hong Kong***use*HongKong*Yes
 140*Venezuela*terrestrial*~\citep{Siefert1979}*10,21 N*10.35*Rancho Grande, Parque Nacional Henri Pittier, Aragua, Venezuela***use*RanchoGranda*Yes
-143*USA*lake*~\citep{Snow1958}*34,41,45 N*3.469.583.333*1 mile N of Town Creek, Alabama (Meadow Pond)***use*TownCreek*Yes
-151*UK*terrestrial*~\citep{Richards1926} *51, 20, 04 N*2.133.444.444*Oxshott Heath, UK*during succession**use*Oxshott*Yes
-153*USA*terrestrial*~\citep{Mayse1978}*40, 06, 38 N*4.011.055.556*3km E of Urbana, Illinois (in Champaign county)***use*Urbana*Yes
-154*USA*terrestrial*~\citep{Mayse1978}*39,56,41 N*3.994.472.222*19km S of Chapaign, Illinois (in Champaign county)***use*Champaign*Yes
-180*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*3.601.722.222*Duke Forest, N. Carolina***Use*DukeForest*Yes
-181*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*3.601.722.222*Duke Forest, N. Carolina***Use*DukeForest*Yes
-182*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*3.601.722.222*Duke Forest, N. Carolina***Use*DukeForest*Yes
-183*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*3.601.722.222*Duke Forest, N. Carolina***Use*DukeForest*Yes
-202*USA*stream*~\citep{Allan1982} *38,50,21 N*3.883.916.667*Cement Creek, Gunnison County, Coorado***use*Cement*Yes
+143*USA*lake*~\citep{Snow1958}*34,41,45 N*34.69583333*1 mile N of Town Creek, Alabama (Meadow Pond)***use*TownCreek*Yes
+151*UK*terrestrial*~\citep{Richards1926} *51, 20, 04 N*21.33444444*Oxshott Heath, UK*during succession**use*Oxshott*Yes
+153*USA*terrestrial*~\citep{Mayse1978}*40, 06, 38 N*40.11055556*3km E of Urbana, Illinois (in Champaign county)***use*Urbana*Yes
+154*USA*terrestrial*~\citep{Mayse1978}*39,56,41 N*39.94472222*19km S of Chapaign, Illinois (in Champaign county)***use*Champaign*Yes
+180*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*36.01722222*Duke Forest, N. Carolina***Use*DukeForest*Yes
+181*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*36.01722222*Duke Forest, N. Carolina***Use*DukeForest*Yes
+182*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*36.01722222*Duke Forest, N. Carolina***Use*DukeForest*Yes
+183*USA*terrestrial*~\citep{Savely1939}*36, 01, 02 N*36.01722222*Duke Forest, N. Carolina***Use*DukeForest*Yes
+202*USA*stream*~\citep{Allan1982} *38,50,21 N*38.83916667*Cement Creek, Gunnison County, Coorado***use*Cement*Yes
 203*USA*stream*~\citep{Collins1976}*44,24 N*44.4*Nez Perce Spring, Yellowstone National Park***use*Yellowstone*Yes
-204*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*1.161.083.333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
-205*UK*stream*~\citep{Hildrew1985}*51,01,05 N*5.101.805.556*Broadstone stream, River Medway (see Hildrew & Townsend 1976)***use*Broadstone*Yes
+204*Malawi*lake*~\citep{Fryer1959}*11, 36, 39 S*11.61083333*South Bay, Nkata Bay, Nyasaland ***Use*LakeMalawi*Yes
+205*UK*stream*~\citep{Hildrew1985}*51,01,05 N*51.01805556*Broadstone stream, River Medway (see Hildrew & Townsend 1976)***use*Broadstone*Yes
 206*UK*stream*~\citep{Jones1949}*51,41-51,55 N*51.8*Rivers Sawdde and Clydach, Wales***use*Sawdde*Yes
-207*USA*stream*~\citep{Koslucher1973} *41, 57- 42, 14 N*4.209.166.667*Deep Creek, near Great Salt Lake***use*DeepCreek*Yes
-208*USA*stream*~\citep{Minckley1963}*37,56 N*3.793.333.333*Doe Run, near Ekron Kentucky***use*DoeRun*Yes
-209*USA*stream*~\citep{Minsall1967}*37,18,26 N*3.730.722.222*Morgan's Creek, Meade County, Kentucky. Source at Morgan's Cave, Otter Creek Park***use*Morgans*Yes
+207*USA*stream*~\citep{Koslucher1973} *41, 57- 42, 14 N*42.09166667*Deep Creek, near Great Salt Lake***use*DeepCreek*Yes
+208*USA*stream*~\citep{Minckley1963}*37,56 N*37.93333333*Doe Run, near Ekron Kentucky***use*DoeRun*Yes
+209*USA*stream*~\citep{Minsall1967}*37,18,26 N*37.30722222*Morgan's Creek, Meade County, Kentucky. Source at Morgan's Cave, Otter Creek Park***use*Morgans*Yes
 213*UK*stream*~\citep{Badcock1949}*~53 N*53*Dinmael, Wales (5 miles west of Corwen)***use*Dinmael*Yes
-214*USA*stream*~\citep{Thompson2003}*44,40,44 N*4.467.888.889*Martins stream - Troy site*pine forest stream**use*Martins*Yes
-215*USA*stream*~\citep{Thompson2003}*40,40,52 N*4.068.111.111*Martins stream - Martins site*pine forest stream**use*Martins*Yes
-216*USA*stream*~\citep{Thompson2003}*35,02,50 N*3.504.722.222*Coweeta catchment - Herlzler stream*pine forest stream**use*Coweeta*Yes
-217*USA*stream*~\citep{Thompson2003}*35,03,50 N*3.504.722.222*Coweeta catchment - Cooper stream*pine forest stream**use*Coweeta*Yes
+214*USA*stream*~\citep{Thompson2003}*44,40,44 N*44.67888889*Martins stream - Troy site*pine forest stream**use*Martins*Yes
+215*USA*stream*~\citep{Thompson2003}*40,40,52 N*40.68111111*Martins stream - Martins site*pine forest stream**use*Martins*Yes
+216*USA*stream*~\citep{Thompson2003}*35,02,50 N*35.04722222*Coweeta catchment - Herlzler stream*pine forest stream**use*Coweeta*Yes
+217*USA*stream*~\citep{Thompson2003}*35,03,50 N*35.04722222*Coweeta catchment - Cooper stream*pine forest stream**use*Coweeta*Yes
 218*New Zealand*stream*~\citep{Thompson2004c}*45.79 S*45.79*Powder Creek, NZ***use*Powder*Yes
 219*New Zealand*stream*~\citep{Thompson2004c}*44.64 S*44.64*North Col Stream, NZ***use*NorthCol*Yes
 220*New Zealand*stream*~\citep{Thompson2004c}*46.29 S*46.29*Venlaw***use*Venlaw*Yes
@@ -137,132 +137,132 @@ ThompsonFL*New Zealand*estuary*~\citep{Thompson2004}*45,51,28 S*4.585.777.778*Co
 246*New Zealand*stream*~\citep{Thompson2004c}*46.08 S*46.08*Akatore B*2 yr post-harvest**use*AkatoreB*Yes
 247*New Zealand*stream*~\citep{Thompson2004c}*46.115 S*46.115*control site'*2 yr post-harvest**use*Control*Yes
 249*Brazil*stream*~\citep{Angelini2005}*24,30 S*24.5*Parana River, Brazil***use*Parana*Yes
-250*Brazil*lake*~\citep{Angelini2006}*22,57,38 S*2.296.055.556*Itaipu Reservoir, Brazil***Use*Itaipu*Yes
-251*Brazil*lake*~\citep{Angelini2006}*22,57,38 S*2.296.055.556*Itaipu Reservoir, Brazil***use*Itaipu*Yes
-252*Brazil*stream*~\citep{Angelini2010}*18,40 S*1.866.666.667*Corrente River, Parana River Basin*Combined from 3 habitats within river**use*Corrente*Yes
+250*Brazil*lake*~\citep{Angelini2006}*22,57,38 S*22.96055556*Itaipu Reservoir, Brazil***Use*Itaipu*Yes
+251*Brazil*lake*~\citep{Angelini2006}*22,57,38 S*22.96055556*Itaipu Reservoir, Brazil***use*Itaipu*Yes
+252*Brazil*stream*~\citep{Angelini2010}*18,40 S*18.66666667*Corrente River, Parana River Basin*Combined from 3 habitats within river**use*Corrente*Yes
 253*Angola*marine*~\citep{Angelini2011}*5 -17,15 S*11.125****Use*Angola*Yes
 254*Brazil*stream*~\citep{Angelini2013}*21 S*21*Pantanal Plain, Braco Morto Abaixo, Paraguay river basin *three separate lakes**use*Pantanal*Yes
 255*Brazil*stream*~\citep{Angelini2013}*21 S*21*Pantanal Plain, Bran Braco Morto Acima, Paraguay river basin *three separate lakes**use*Pantanal*Yes
-257*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
-258*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
-259*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
-260*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*bare sediment**use*Mondego*Yes
-261*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*bare sediment**Use*Mondego*Yes
-262*Portugal*estuary*~\citep{Baeta2011} *40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal*bare sediment**use*Mondego*Yes
-263*USA*lake*~\citep{Schneider1997}*45,58,50 N*4.598.055.556*Vilnas County, N Wisconsin*aggregated over 6 years, several ponds**use*Vilnas*Yes
-264*USA*terrestrial*~\citep{Stagliano2002} *39, 06, 27 N*391.075*Konza Prairie biological station***Use*Konza*Yes
+257*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
+258*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
+259*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*Zostera garden**use*Mondego*Yes
+260*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*bare sediment**use*Mondego*Yes
+261*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*bare sediment**Use*Mondego*Yes
+262*Portugal*estuary*~\citep{Baeta2011} *40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal*bare sediment**use*Mondego*Yes
+263*USA*lake*~\citep{Schneider1997}*45,58,50 N*45.98055556*Vilnas County, N Wisconsin*aggregated over 6 years, several ponds**use*Vilnas*Yes
+264*USA*terrestrial*~\citep{Stagliano2002} *39, 06, 27 N*39.1075*Konza Prairie biological station***Use*Konza*Yes
 265*Taiwan*marine*~\citep{Lin2006} *22,27 N*22.45*Tapong Bay, SW Taiwan***use*Tapong*Yes
 266*Antarctica*marine*~\citep{Cornejo-Donoso2008}*60 - 69 S*64.5*Antarctic Peninsula*Aggregates species to funcitonal groups**Use*Antarctica*Yes
 267*Mexico*marine*~\citep{Zetina-Rejon2003}*23.15- 22.9N,*23.025*Huizache-Caimanero lagoon system, Sinaloa, Mexico***Use*Huizache*Yes
-268*Mexico*marine*~\citep{Cruz-Escalona2007} *18, 45- 18, 50 N*1.879.166.667*Laguna Alvarado, Gulf of Mexico***use*Alvarado*Yes
-269*China*lake*~\citep{Liu2007} *29,32,35 N*2.954.305.556*Lake Qiandaohu, Zhejiang Province, China***use*Qiandaohu*Yes
-270*Spain*marine*~\citep{Filgueira2011} *42,17,37- 42,19,29 N*4.230.916.667*San Simon Bay, Ria de Vigo, NW Spain***Use*SanSimon*Yes
-272*USA*lake*~\citep{Hampton2011}*48,03,29 N*4.805.805.556*Lake Crescent, Olympic National Park, Washington***use*LakeCrescent*Yes
-273*Alaska*stream*~\citep{Parker2006} *69,1 N*6.901.666.667*Ivishak River, arctic Alaska*Spring**Use*Ivishak*Yes
-274*Alaska*stream*~\citep{Parker2006} *69,1 N*6.901.666.667*Ivishak River, arctic Alaska*Stream**Use*Ivishak*Yes
-275*Alaska*stream*~\citep{Parker2006} *69,1 N*6.901.666.667*Ivishak River, arctic Alaska*Spring**Use*Ivishak*Yes
-276*Alaska*stream*~\citep{Parker2006} *69,1 N*6.901.666.667*Ivishak River, arctic Alaska*stream**Use*Ivishak*Yes
-277*Spain*lake*~\citep{Massana1996}*42,08,6-42,07 N*4.212.583.333*Lake Ciso, Girona, Spain***use*Ciso*Yes
+268*Mexico*marine*~\citep{Cruz-Escalona2007} *18, 45- 18, 50 N*18.79166667*Laguna Alvarado, Gulf of Mexico***use*Alvarado*Yes
+269*China*lake*~\citep{Liu2007} *29,32,35 N*29.54305556*Lake Qiandaohu, Zhejiang Province, China***use*Qiandaohu*Yes
+270*Spain*marine*~\citep{Filgueira2011} *42,17,37- 42,19,29 N*42.30916667*San Simon Bay, Ria de Vigo, NW Spain***Use*SanSimon*Yes
+272*USA*lake*~\citep{Hampton2011}*48,03,29 N*48.05805556*Lake Crescent, Olympic National Park, Washington***use*LakeCrescent*Yes
+273*Alaska*stream*~\citep{Parker2006} *69,1 N*69.01666667*Ivishak River, arctic Alaska*Spring**Use*Ivishak*Yes
+274*Alaska*stream*~\citep{Parker2006} *69,1 N*69.01666667*Ivishak River, arctic Alaska*Stream**Use*Ivishak*Yes
+275*Alaska*stream*~\citep{Parker2006} *69,1 N*69.01666667*Ivishak River, arctic Alaska*Spring**Use*Ivishak*Yes
+276*Alaska*stream*~\citep{Parker2006} *69,1 N*69.01666667*Ivishak River, arctic Alaska*stream**Use*Ivishak*Yes
+277*Spain*lake*~\citep{Massana1996}*42,08,6-42,07 N*42.12583333*Lake Ciso, Girona, Spain***use*Ciso*Yes
 278*USA*lake*~\citep{Stewart2011}*43.7 N*43.7*Lake Ontario***use*Ontario*Yes
 279*USA*lake*~\citep{Stewart2011}*43.7 N*43.7*Lake Ontario***use*Ontario*Yes
-280*Canada*stream*~\citep{Cromar1996}*43,58 N*4.396.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-281*Canada*stream*~\citep{Cromar1996}*44,58 N*4.496.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-282*Canada*stream*~\citep{Cromar1996}*45,58 N*4.596.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-283*Canada*stream*~\citep{Cromar1996}*46,58 N*4.696.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-284*Canada*stream*~\citep{Cromar1996}*47,58 N*4.796.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-285*Canada*stream*~\citep{Cromar1996}*48,58 N*4.896.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
-286*Canada*stream*~\citep{Cromar1996}*49,58 N*4.996.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**Use*Duffin*Yes
-287*Canada*stream*~\citep{Cromar1996}*50,58 N*5.096.666.667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**Use*Duffin*Yes
-288*USA*estuary*~\citep{Christian1999}*30,05,39 N*3.009.416.667*Goose Creek Bay, St. Marks National Wildlife Refuge, Florida***use*Goose*Yes
+280*Canada*stream*~\citep{Cromar1996}*43,58 N*43.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+281*Canada*stream*~\citep{Cromar1996}*44,58 N*44.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+282*Canada*stream*~\citep{Cromar1996}*45,58 N*45.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+283*Canada*stream*~\citep{Cromar1996}*46,58 N*46.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+284*Canada*stream*~\citep{Cromar1996}*47,58 N*47.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+285*Canada*stream*~\citep{Cromar1996}*48,58 N*48.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**use*Duffin*Yes
+286*Canada*stream*~\citep{Cromar1996}*49,58 N*49.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**Use*Duffin*Yes
+287*Canada*stream*~\citep{Cromar1996}*50,58 N*50.96666667*Duffin Creek, Durham ON*Bimonthly samples on same web ?ﾾ- use summary**Use*Duffin*Yes
+288*USA*estuary*~\citep{Christian1999}*30,05,39 N*30.09416667*Goose Creek Bay, St. Marks National Wildlife Refuge, Florida***use*Goose*Yes
 289*Ethiopia*lake*~\citep{Fetahi2011}*11,15 N*11.25*Lake Hayq, Ethiopia***use*Hayq*Yes
 290*USA*marine*~\citep{Brodeur1992}*43-48 N*45.5*Oregon to Washington coast*aggregate across years**use*NWCoast*Yes
 291*USA*marine*~\citep{Brodeur1992}*43-48 N*45.5*Oregon to Washington coast*aggregate across years**use*NWCoast*Yes
 292*USA*marine*~\citep{Brodeur1992}*43-48 N*45.5*Oregon to Washington coast*aggregate across years**use*NWCoast*Yes
 293*USA*marine*~\citep{Brodeur1992}*43-48 N*45.5*Oregon to Washington coast*aggregate across years**use*NWCoast*Yes
-296*Madagascar*lake*~\citep{Ratsirarson1996}*24,55 S*2.491.666.667*Mandena, 12 km N of Taolanaro, Madagascar***use*Mandena*Yes
-297*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site A***use*LerderdergA*Yes
-298*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site B***use*LerderdergB*Yes
-299*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site C***use*LerderdergC*Yes
-300*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site A***use*LerderdergA*Yes
-301*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site B***use*LerderdergB*Yes
-302*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site C***use*LerderdergC*Yes
-303*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site A***use*LerderdergA*Yes
-304*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site B***use*LerderdergB*Yes
-305*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site C***use*LerderdergC*Yes
-306*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site A***use*LerderdergA*Yes
-307*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site B***use*LerderdergB*Yes
-308*Australia*stream*~\citep{Closs1994}*37,40 S*3.766.666.667*Lerderderg site C***use*LerderdergC*Yes
-309*Atlantic Ocean*marine*~\citep{Gontikaki2011}*61,13,88 N*6.124.111.111*Faroe-Shetland deep sea trench*likely to be an outlier just because it's a weird habitat**Use*Faroe*Yes
-310*India*lake*~\citep{Khan2009}*12, 45, 25 N*1.275.694.444*Kelavarapalli reservoir, Hosur Taluk, Krishnagiri, Tamil Nadu, India***use*Kelavarapalli*Yes
+296*Madagascar*lake*~\citep{Ratsirarson1996}*24,55 S*24.91666667*Mandena, 12 km N of Taolanaro, Madagascar***use*Mandena*Yes
+297*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site A***use*LerderdergA*Yes
+298*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site B***use*LerderdergB*Yes
+299*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site C***use*LerderdergC*Yes
+300*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site A***use*LerderdergA*Yes
+301*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site B***use*LerderdergB*Yes
+302*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site C***use*LerderdergC*Yes
+303*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site A***use*LerderdergA*Yes
+304*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site B***use*LerderdergB*Yes
+305*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site C***use*LerderdergC*Yes
+306*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site A***use*LerderdergA*Yes
+307*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site B***use*LerderdergB*Yes
+308*Australia*stream*~\citep{Closs1994}*37,40 S*37.66666667*Lerderderg site C***use*LerderdergC*Yes
+309*Atlantic Ocean*marine*~\citep{Gontikaki2011}*61,13,88 N*61.24111111*Faroe-Shetland deep sea trench*likely to be an outlier just because it's a weird habitat**Use*Faroe*Yes
+310*India*lake*~\citep{Khan2009}*12, 45, 25 N*12.75694444*Kelavarapalli reservoir, Hosur Taluk, Krishnagiri, Tamil Nadu, India***use*Kelavarapalli*Yes
 320*USA*marine*~\citep{Ruzicka2012}*42- 49 N*45.5*Northern California Current*aggregate over years**use*NCC*Yes
 321*USA*marine*~\citep{Ruzicka2012}*42- 49 N*45.5*Northern California Current*aggregate over years**use*NCC*Yes
 322*USA*marine*~\citep{Ruzicka2012}*42- 49 N*45.5*Northern California Current*aggregate over years**use*NCC*Yes
 323*USA*marine*~\citep{Ruzicka2012}*42- 49 N*45.5*Northern California Current*aggregate over years**use*NCC*Yes
 324*USA*marine*~\citep{Ruzicka2012}*42- 49 N*45.5*Northern California Current*aggregate over years**use*NCC*Yes
-327*Australia*stream*~\citep{Kelleway2010}*29,13 S*2.921.666.667*Gingham watercourse, Gwydir Wetlands, NSW*March**Use*Gingham*Yes
-328*Australia*stream*~\citep{Kelleway2010}*29,20,0 S*2.933.333.333*Lower Gwydir watercourse, Gwydir Wetlands, NSW***Use*Gwydir*Yes
-329*Australia*stream*~\citep{Kelleway2010} *29,35 S*2.958.333.333*Mehi River, Gwydir Wetlands, NSW***use*Mehi*Yes
-330*Australia*stream*~\citep{Kelleway2010}*29,13 S*2.921.666.667*Gingham watercourse, Gwydir Wetlands, NSW*May**Use*Gingham*Yes
-331*Australia*stream*~\citep{Kelleway2010}*29,20,0 S*2.933.333.333*Lower Gwydir watercourse, Gwydir Wetlands, NSW***Use*Gwydir*Yes
+327*Australia*stream*~\citep{Kelleway2010}*29,13 S*29.21666667*Gingham watercourse, Gwydir Wetlands, NSW*March**Use*Gingham*Yes
+328*Australia*stream*~\citep{Kelleway2010}*29,20,0 S*29.33333333*Lower Gwydir watercourse, Gwydir Wetlands, NSW***Use*Gwydir*Yes
+329*Australia*stream*~\citep{Kelleway2010} *29,35 S*29.58333333*Mehi River, Gwydir Wetlands, NSW***use*Mehi*Yes
+330*Australia*stream*~\citep{Kelleway2010}*29,13 S*29.21666667*Gingham watercourse, Gwydir Wetlands, NSW*May**Use*Gingham*Yes
+331*Australia*stream*~\citep{Kelleway2010}*29,20,0 S*29.33333333*Lower Gwydir watercourse, Gwydir Wetlands, NSW***Use*Gwydir*Yes
 332*China*stream*~\citep{Huang2008} *31.70 N*31.7*Heizhuchong Stream, Hubei Province, China***use*Heizhuchong*Yes
-333*USA*marine*~\citep{Link2002}*33,51 N - 44,49 N*3.933.333.333*Northeast US Shelf - North Carolina to Maine***use*NEShelf*Yes
-334*Spain*lake*~\citep{Alcorlo2001} *41,26,36 N*4.144.333.333*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosA*Yes
-335*Spain*lake*~\citep{Alcorlo2001} *41,26,05 N*4.143.472.222*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosB*Yes
-336*Spain*lake*~\citep{Alcorlo2001} *41,26,36 N*4.144.333.333*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosA*Yes
-337*Spain*lake*~\citep{Alcorlo2001} *41,26,05 N*4.143.472.222*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosB*Yes
+333*USA*marine*~\citep{Link2002}*33,51 N - 44,49 N*39.33333333*Northeast US Shelf - North Carolina to Maine***use*NEShelf*Yes
+334*Spain*lake*~\citep{Alcorlo2001} *41,26,36 N*41.44333333*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosA*Yes
+335*Spain*lake*~\citep{Alcorlo2001} *41,26,05 N*41.43472222*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosB*Yes
+336*Spain*lake*~\citep{Alcorlo2001} *41,26,36 N*41.44333333*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosA*Yes
+337*Spain*lake*~\citep{Alcorlo2001} *41,26,05 N*41.43472222*Los Monegros, Spain*Two years each for two lakes, aggregate by lake**Use*MonegrosB*Yes
 339*Australia*marine*~\citep{Bulman2001}*37-39 S*38*Australian Shelf off Victoria and New South Wales***use*AustraliaShelf*Yes
 340*Antarctica*marine*~\citep{Smith2007}*74-78 S*76*Ross Sea continental shelf***use*RossSea*Yes
 341*Antarctica*marine*~\citep{Lancraft1991} *58,20.8 - 60,10.4 S*59.26*Weddell-Scotia Confluence***use*Weddel*Yes
 342*Antarctica*marine*~\citep{Hopkins1993} *57,00 - 60,45 S*58.875*Scotia-Weddell confluence region*may replace other Scotia-Weddell web**use*Weddel*Yes
 343*Australia*lake*~\citep{Kitching1987}*28,12 S*28.2*south-east Queensland***use*Queensland*Yes
-345*Europe*lake*~\citep{Boit2012}*47,38,10 N*4.763.611.111*Lake Constance, European Alps***use*Constance*Yes
-346*Australia*stream*~\citep{Rayner2010} *17,7 S*1.711.666.667*Mulgrave River*see http://www.publish.csiro.au/view/journals/dsp_journal_fulltext.cfm?nid=126&f=MF07129**use*Mulgrave*Yes
+345*Europe*lake*~\citep{Boit2012}*47,38,10 N*47.63611111*Lake Constance, European Alps***use*Constance*Yes
+346*Australia*stream*~\citep{Rayner2010} *17,7 S*17.11666667*Mulgrave River*see http://www.publish.csiro.au/view/journals/dsp_journal_fulltext.cfm?nid=126&f=MF07129**use*Mulgrave*Yes
 347*Brazil*stream*~\citep{Motta2005} *23,03 S*23.05*Itatinga, Brazil***use*Itatinga*Yes
-348*USA*marine*~\citep{Douglass2011}*37,13 N*3.721.666.667*Chesapeake Bay***use*Chesapeake*Yes
-349*USA*marine*~\citep{Douglass2011}*37,13 N*3.721.666.667*Chesapeake Bay***use*Chesapeake*Yes
-350*USA*marine*~\citep{Douglass2011}*37,13 N*3.721.666.667*Chesapeake Bay***use*Chesapeake*Yes
+348*USA*marine*~\citep{Douglass2011}*37,13 N*37.21666667*Chesapeake Bay***use*Chesapeake*Yes
+349*USA*marine*~\citep{Douglass2011}*37,13 N*37.21666667*Chesapeake Bay***use*Chesapeake*Yes
+350*USA*marine*~\citep{Douglass2011}*37,13 N*37.21666667*Chesapeake Bay***use*Chesapeake*Yes
 354*St. Martin*terrestrial*~\citep{Goldwasser1993}*18,03 N*18.05*St. Martin***use**Yes
-355*USA*lake*~\citep{Cohen2003}*46,13 N*4.621.666.667*Tuesday Lake, Michigan 1984*fish, lake fauna**use*Tuesday*Yes
-356*USA*lake*~\citep{Cohen2003}*46,13 N*4.621.666.667*Tuesday Lake, Michigan - 1988***use*Tuesday*Yes
-Alamitos*USA*stream*~\citep{Harrison1995}*37,12,25 N*3.720.694.444*Alamitos Creek, San Jose, Santa Clara Valley, California***use*Alamitos*
-Alford*USA*lake*~\citep{Havens1992}*44,15,41.59 N*4.426.155.278*Alford Pond, North Elba, NY***use*Alford*
+355*USA*lake*~\citep{Cohen2003}*46,13 N*46.21666667*Tuesday Lake, Michigan 1984*fish, lake fauna**use*Tuesday*Yes
+356*USA*lake*~\citep{Cohen2003}*46,13 N*46.21666667*Tuesday Lake, Michigan - 1988***use*Tuesday*Yes
+Alamitos*USA*stream*~\citep{Harrison1995}*37,12,25 N*37.20694444*Alamitos Creek, San Jose, Santa Clara Valley, California***use*Alamitos*
+Alford*USA*lake*~\citep{Havens1992}*44,15,41.59 N*44.26155278*Alford Pond, North Elba, NY***use*Alford*
 BahiaDunne*Mexico*estuary*~\citep{Hechinger2011}*30.43-30.46 N*30.445****use*Bahia*
-Beaver*USA*lake*~\citep{Havens1992}*44,18,58.13 N*4.431.614.722*Beaver Pond, Saranak Lake, NY***use*Beaver*
-Bere*England*stream*~\citep{Woodward2008}*50,45,7 N*5.075.194.444*Bere Stream, River Piddle, S. England***use*Bere*
-Bridge*USA*lake*~\citep{Havens1992}*44,09,42.66 N*4.416.185*Bridge Brook Pond, Piercefield, NY***use*Bridge*
-Broad*New Zealand*stream*~\citep{Townsend1998}*45.896938 S*45.896.938*Broad Stream, just south of Black Rock Stream***use*Broad*
-Broadstone*stream*stream*~\citep{Woodward2005}*51,01,05 N*5.101.805.556*Broadstone Stream, Ashford Forest, SW England***use*Broadstone*
-Calero*USA*stream*~\citep{Harrison1995}*37,11,09-20 N*3.718.736.111*Calero Creek, San Jose, California***use*Calero*
+Beaver*USA*lake*~\citep{Havens1992}*44,18,58.13 N*44.31614722*Beaver Pond, Saranak Lake, NY***use*Beaver*
+Bere*England*stream*~\citep{Woodward2008}*50,45,7 N*50.75194444*Bere Stream, River Piddle, S. England***use*Bere*
+Bridge*USA*lake*~\citep{Havens1992}*44,09,42.66 N*44.16185*Bridge Brook Pond, Piercefield, NY***use*Bridge*
+Broad*New Zealand*stream*~\citep{Townsend1998}*45.896938 S*45.896938*Broad Stream, just south of Black Rock Stream***use*Broad*
+Broadstone*stream*stream*~\citep{Woodward2005}*51,01,05 N*51.01805556*Broadstone Stream, Ashford Forest, SW England***use*Broadstone*
+Calero*USA*stream*~\citep{Harrison1995}*37,11,09-20 N*37.18736111*Calero Creek, San Jose, California***use*Calero*
 Carpinteria2006*USA*estuary*~\citep{Lafferty2006}*34.41-34.40 N*34.405****use*Carpinteria*
 CarpinteriaDunne*USA*estuary*~\citep{Hechinger2011}*34.41-34.40 N*34.405****use*Carpinteria*
-Chub*USA*lake*~\citep{Havens1992}*43,31,39.36 N*435.276*Chub Pond, Ohio, NY***use*Chub*
+Chub*USA*lake*~\citep{Havens1992}*43,31,39.36 N*43.5276*Chub Pond, Ohio, NY***use*Chub*
 Coachella*desert*terrestrial*~\citep{Polis1991a}*33,54 N*33.9*Coachella Valley, Riverside County, California***use*Coachella*
-Connery*USA*lake*~\citep{Havens1992}*44,18,42.10 N*4.431.169.444*Connery Pond, North Elba, NY***use*Connery*
-Corte*USA*stream*~\citep{Harrison1995}*37, 56, 28 N -37, 57, 39 N*3.795.097.222*Corte Madera Creek, San Quentin, California***use*Corte*
-Coyote*USA*stream*~\citep{Harrison1995}*37,53,11.66 -37,53,17.06 N*3.788.732.222*Coyote Creek, Bothin Marsh Preserve, Mill Valley, California***use*Coyote*
+Connery*USA*lake*~\citep{Havens1992}*44,18,42.10 N*44.31169444*Connery Pond, North Elba, NY***use*Connery*
+Corte*USA*stream*~\citep{Harrison1995}*37, 56, 28 N -37, 57, 39 N*37.95097222*Corte Madera Creek, San Quentin, California***use*Corte*
+Coyote*USA*stream*~\citep{Harrison1995}*37,53,11.66 -37,53,17.06 N*37.88732222*Coyote Creek, Bothin Marsh Preserve, Mill Valley, California***use*Coyote*
 EsteroDunne*Mexico*estuary*~\citep{Hechinger2011}*31.78-31.69 N*31.735****use*Estero*
 FjordDunne*Germany*estuary*~\citep{Zander2011}*54.92-54.75 N*54.835****use*Fjord*
-GrandeCl*wetland*terrestrial*~\citep{CattinBlandenier2004}*46,47,09 N*4.678.583.333*Grande Caricaie, south shore Lake Neuchatel, Switzerland***use*Grande*
-GrandeSc*wetland*terrestrial*~\citep{CattinBlandenier2004}*46,47,09 N*4.678.583.333*Grande Caricaie, south shore Lake Neuchatel, Switzerland***use*Grande*
-Guadalupe*USA*stream*~\citep{Harrison1995}*37,27,54 - 37, 21, 17 N*3.740.986.111*Guadalupe River, San Jose, California***use*Guadalupe*
-LittleRock*USA*lake*~\citep{Martinez1991}*45,44,07.94 N*4.573.553.889****use*LittleRock*
-Mondego*Portugal*estuary*~\citep{Patricio2006}*40,08 N*4.013.333.333*Mondego estuary, West Atlantic Portugal***use*Mondego*
+GrandeCl*wetland*terrestrial*~\citep{CattinBlandenier2004}*46,47,09 N*46.78583333*Grande Caricaie, south shore Lake Neuchatel, Switzerland***use*Grande*
+GrandeSc*wetland*terrestrial*~\citep{CattinBlandenier2004}*46,47,09 N*46.78583333*Grande Caricaie, south shore Lake Neuchatel, Switzerland***use*Grande*
+Guadalupe*USA*stream*~\citep{Harrison1995}*37,27,54 - 37, 21, 17 N*37.40986111*Guadalupe River, San Jose, California***use*Guadalupe*
+LittleRock*USA*lake*~\citep{Martinez1991}*45,44,07.94 N*45.73553889****use*LittleRock*
+Mondego*Portugal*estuary*~\citep{Patricio2006}*40,08 N*40.13333333*Mondego estuary, West Atlantic Portugal***use*Mondego*
 OtagoDunne*New Zealand*estuary*~\citep{Mouritsen2011}*45.78-45.88S*45.83*Company Bay, Otago Harbour***use*Otago*
-Reef*Caribbean*marine*~\citep{Opitz1996}*18, 29 N - 17, 53 N*1.818.333.333*Caribbean Sea, focus on Puerto Rico, Virgin Islands, ***use*Reef*
-Sierra*USA*lake*~\citep{Brose2006}*36,50 - 37,02 N (approx)*3.693.333.333*John Muir Wilderness and Kings Canyon National ParkSierra Nevada, California***use*Sierra*
-SimberloffE1*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,40,37.29 N*24.677.025*Squirrel Key***use*SimberloffE1*
-SimberloffE2*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,40,33 N*2.467.583.333*Snipe Keys***use*SimberloffE2*
-SimberloffE3*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,41,23.82 N*2.468.995*Rattlesnake Lumps***use*SimberloffE3*
+Reef*Caribbean*marine*~\citep{Opitz1996}*18, 29 N - 17, 53 N*18.18333333*Caribbean Sea, focus on Puerto Rico, Virgin Islands, ***use*Reef*
+Sierra*USA*lake*~\citep{Brose2006}*36,50 - 37,02 N (approx)*36.93333333*John Muir Wilderness and Kings Canyon National ParkSierra Nevada, California***use*Sierra*
+SimberloffE1*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,40,37.29 N*24.677025*Squirrel Key***use*SimberloffE1*
+SimberloffE2*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,40,33 N*24.67583333*Snipe Keys***use*SimberloffE2*
+SimberloffE3*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,41,23.82 N*24.68995*Rattlesnake Lumps***use*SimberloffE3*
 SimberloffE7*Mangrove islands*terrestrial*~\citep{Simberloff1976}*25,15 N*25.25*Manatee Creek***use*SimberloffE7*
-SimberloffE9*Mangrove islands*terrestrial*~\citep{Simberloff1976}*25,01,59.64 N - 25,02,55.44 N*2.504.098.333*between Calusa Keys, Bob Allen Keys***use*SimberloffE9*
-SimberloffST2*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,36,16 N*2.460.444.444*Saddlebunch Key***use*SimberloffST2*
-Skipwith*England*lake*~\citep{Warren1989}*53,40 N*5.366.666.667*Skipwith Common, North Yorkshire, England***use*Skipwith*
-Stink*USA*lake*~\citep{Havens1992}*43,37,55.88 N*4.363.218.889*Stink Lake, Ohio, NY***use*Stink*
+SimberloffE9*Mangrove islands*terrestrial*~\citep{Simberloff1976}*25,01,59.64 N - 25,02,55.44 N*25.04098333*between Calusa Keys, Bob Allen Keys***use*SimberloffE9*
+SimberloffST2*Mangrove islands*terrestrial*~\citep{Simberloff1976}*24,36,16 N*24.60444444*Saddlebunch Key***use*SimberloffST2*
+Skipwith*England*lake*~\citep{Warren1989}*53,40 N*53.66666667*Skipwith Common, North Yorkshire, England***use*Skipwith*
+Stink*USA*lake*~\citep{Havens1992}*43,37,55.88 N*43.63218889*Stink Lake, Ohio, NY***use*Stink*
 SyltDunne*Denmark*estuary*~\citep{Thieltges2011}*54.83-55.12 N*54.975****use*Sylt*
-Tuesday*USA*lake*~\citep{Jonsson2005}*46,13 N*4.621.666.667*Tuesday Lake, Michigan***use*Tuesday*
+Tuesday*USA*lake*~\citep{Jonsson2005}*46,13 N*46.21666667*Tuesday Lake, Michigan***use*Tuesday*
 WEB294_rotated*Europe*lake*~\citep{Gaedke1994}*47,37,30 N*47.625*Lake Constance, European Alps***Use*Constance*
-YthanDunne*Scotland*estuary*~\citep{Huxham1996}*57,18,32 N*5.730.888.889*Ythan estuary, Scotland***use*Ythan*
-StMarks*USA*estuary*(Christian & Luczkovich 1999)*30,05 N*3.008.333.333*St. Marks National Wildlife Refuge***do not use -duplicates web 288*StMarks*
+YthanDunne*Scotland*estuary*~\citep{Huxham1996}*57,18,32 N*57.30888889*Ythan estuary, Scotland***use*Ythan*
+StMarks*USA*estuary*(Christian & Luczkovich 1999)*30,05 N*30.08333333*St. Marks National Wildlife Refuge***do not use -duplicates web 288*StMarks*
 129*Unspecified*terrestrial*Unpublished observations. C. Morley, Personal communication (1981) A.W. King and S. Pimm (1983). Source: ECOWeB1.1******do not use � unpublished**
 54*Barbados*marine*Unpublished observations. F. Briand (1985). Source: ECOWeB1.1******do not use - unpublished**
 42*Pacific Ocean*marine*M.E. Vinogradov and E.A, Shushkina. (1978). Some Development Patterns of Plankton Communities in the Upwelling Areas of the  Pacific Ocean. Marine Biology, 48, pp. 357-366. *0, -8*****do not use - two sweeps in widely separated areas**
@@ -339,12 +339,12 @@ StMarks*USA*estuary*(Christian & Luczkovich 1999)*30,05 N*3.008.333.333*St. Mark
 352*Germany*stream*Poepperl, R. (2003). A Quantitative Food Web Model for the Macroinvertebrate Community of a Northern German Lowland  Stream. Internat. Rev. Hydrobiol. 88, pp. 433-452. *54,06 N*54.1****do not use - generalized scheme**
 353*Germany*stream*Poepperl, R. (2003). A Quantitative Food Web Model for the Macroinvertebrate Community of a Northern German Lowland  Stream. Internat. Rev. Hydrobiol. 88, pp. 433-452. *54,06 N*54.1****do not use - generalized scheme**
 358*Europe*terrestrial*Schroter, D., Wolters, V., and De Ruiter, P.C. (2003). C and N Mineralisation in the Decomposer Food Webs of a European Forest  Transect. Oikos. 102, pp. 294-308. ******do not use - generalized scheme**
-Ythan*UK*marine*(Cohen et al. 2009)*57,18,32 N*5.730.888.889*Ythan estuary, Scotland***do not use - duplicates YthanDunne**
-Montane Forest, Arizona*USA*terrestrial*(Cohen 1989)*36,5-37 N*3.654.166.667*Kaibab Plateau, Arizona***do not use - duplicates web 60*Kaibab*
+Ythan*UK*marine*(Cohen et al. 2009)*57,18,32 N*57.30888889*Ythan estuary, Scotland***do not use - duplicates YthanDunne**
+Montane Forest, Arizona*USA*terrestrial*(Cohen 1989)*36,5-37 N*36.54166667*Kaibab Plateau, Arizona***do not use - duplicates web 60*Kaibab*
 Weddell Sea*Antarctica*marine*(Brose et al. 2006)*58,20.8 - 60,10.4 S*59.26*Weddell-Scotia Confluence***do not use - duplicates web 341**
 LittleKyeBurn*New Zealand*stream*(Townsend et al. 1998)*45 S*45*Little Kye Burn***do not use - duplicates web 236*LittleKye*
 Stony�*New Zealand*stream*(Townsend et al. 1998)*45.58 S*45.58*Stony Creek***do not use - duplicates web 231**
-TreleaseWoods*USA*terrestrial*(Cohen 1989)*40,09,47 N*4.016.305.556*William Trelease Woods, 5mi NE Urbana***do not use - duplicated in web 59**
+TreleaseWoods*USA*terrestrial*(Cohen 1989)*40,09,47 N*40.16305556*William Trelease Woods, 5mi NE Urbana***do not use - duplicated in web 59**
 Canton*New Zealand*stream*(Townsend et al. 1998)*45.752 S*45.752*Canton Stream***do not use - duplicate of web 235**
 German*New Zealand*stream*(Townsend et al. 1998)*44.97 S*44.97*German Creek***do not use - duplicate of web 227**
 351*UK*lake*Warren, P.H. (1989) Spatial and Temporal Variation in the Structure of a Freshwater Food Web. Oikos. 55, pp. 299-311.***unknown***do not use - could not locate original source**
@@ -403,8 +403,8 @@ Hainich �*Germany*terrestrial*Digel unpublished******do not use - could not loca
 211*Canada*stream*Ricker, W.E. (1934). An ecological classification of certain Ontario streams. Univ. Toronto Studies, Biol. Serv. 37, (Publ. Ontario  Fish. Res. Lab.), 49:7-114. ******do not use - cannot find original source**
 212*Canada*stream*Ricker, W.E. (1934). An ecological classification of certain Ontario streams. Univ. Toronto Studies, Biol. Serv. 37, (Publ. Ontario  Fish. Res. Lab.), 49:7-114. ******do not use - cannot find original source**
 256*Brazil*stream*Angelini, R., Morais, R.J., Cattella, A.C., Resende, E.K., and Libralato, S. (2013). Aquatic food webs of the oxbow lakes in the  Pantanal: A new site for fisheries guaranteed by alternated control?. Ecological Modelling, 253, pp. 82-96. *21 S*21*Pantanal Plain, Baia da Onca, Paraguay river basin *three separate lakes**do not use - cannot find original source**
-14*Hawaii*estuary*Walsh, G.E. (1967). An ecological study of a Hawaiian mangrove swamp, in: Lauff, G.H. (Ed.) (1967). Estuaries. American  Association for the Advancement of Science, Publication 83, Washington, DC: pp. 420-431. *21,26,09 N*2.143.583.333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
-15*Hawaii*estuary*Walsh, G.E. (1967). An ecological study of a Hawaiian mangrove swamp, in: Lauff, G.H. (Ed.) (1967). Estuaries. American  Association for the Advancement of Science, Publication 83, Washington, DC: pp. 420-431. *21,26,09 N*2.143.583.333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
+14*Hawaii*estuary*Walsh, G.E. (1967). An ecological study of a Hawaiian mangrove swamp, in: Lauff, G.H. (Ed.) (1967). Estuaries. American  Association for the Advancement of Science, Publication 83, Washington, DC: pp. 420-431. *21,26,09 N*21.43583333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
+15*Hawaii*estuary*Walsh, G.E. (1967). An ecological study of a Hawaiian mangrove swamp, in: Lauff, G.H. (Ed.) (1967). Estuaries. American  Association for the Advancement of Science, Publication 83, Washington, DC: pp. 420-431. *21,26,09 N*21.43583333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
 17*Marshall Islands - Pacific Ocean*marine*R.W. Hiatt and D.W. Strasburg. (1960). Ecological Relationships of the Fish Fauna on Coral Reefs of the Marshall Islands. Ecological  Monographs, 30(1), pp. 65-127. *4,30 - 15 N*9.75**Admittedly only includes only about half the fish in the area.**do not use*Marshall*
-36*Hawaii*estuary*Walsh, G. E. (1967) An ecological study of a Hawaiian mangrove swamp. In: G.H. Lauff (ed) (1967) Estuaries (AAAS Publication 83,  Washington, DC, 1967), pp. 420-431, from p. 429. *21,26,09 N*2.143.583.333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
+36*Hawaii*estuary*Walsh, G. E. (1967) An ecological study of a Hawaiian mangrove swamp. In: G.H. Lauff (ed) (1967) Estuaries (AAAS Publication 83,  Washington, DC, 1967), pp. 420-431, from p. 429. *21,26,09 N*21.43583333*Heeia Mangrove Swamp, near Heeia stream***do not use*Heeia*
 294*Europe*lake*~\citep{Gaedke1994}*47,37,30 N*47.625*Lake Constance, European Alps***Do not use*Constance*
