@@ -164,12 +164,15 @@ def food_web_properties(directory,item,G):
         TLdict[node]=float(sorted(paths)[0]+1) # The shortest path, plus one
       else:
         pass # Ignoring unconnected nodes
+  maxTL=sorted(TLdict.values())[-1]
   if len(TLdict.values())>0:
     SWTL=float(sum(TLdict.values()))/float(len(TLdict.values()))
+    TLdict={}
   else:
     print B, I, T
     print item, ' has no connected nodes?'
     print G.edges()
+
 
   for node in G.nodes():
     pred=len(G.predecessors(node))
@@ -201,6 +204,42 @@ def food_web_properties(directory,item,G):
     linkSDconts.append((Decimal(link)-Decimal(LS))**2)
   LinkSD=sqrt(sum(linkSDconts)/len(linkSDconts))
 
+  genSDconts=[]
+  vulSDconts=[]
+  linkSDconts=[]
+  chains=[]
+  print 'beginning chains'
+  chains2=[]
+  for pred in G.nodes():
+    if pred not in B:
+      # print pred
+      for resource in B:
+        paths=nx.all_simple_paths(G,source=resource,target=pred)
+        paths2=nx.all_simple_paths(G,source=pred,target=resource,cutoff=2*maxTL)
+        # print list(paths2)
+        for path in paths:
+          chains.append(len(path))
+        for path in paths2:
+          chains2.append(len(path))
+  #       if len(list(paths2))!=0:
+  #         print "This is not the way I thought it worked"
+  #       if len(list(paths))==0 and len(list(paths2))==0:
+  #         print "No paths"
+  # sys.exit()
+  if chains==[] and chains2!=[]:
+    Chain=float(sum(chains2))/float(len(chains2))
+    chains2=[]
+  elif chains2==[] and chains!=[]:
+    Chain=float(sum(chains))/float(len(chains))
+  elif chains==[] and chains2==[]:
+    print 'No chains'
+    Chain=0
+  else:
+    print 'Too many chains'
+    print len(chains2), len(chains)
+    Chain=1000
+
+  print 'chains done', Chain
   try:
     Path=nx.average_shortest_path_length(G,weight=None) #average shortest path length
   except nx.exception.NetworkXError:
@@ -214,7 +253,7 @@ def food_web_properties(directory,item,G):
     Path=sum(paths)/len(paths)
 
   stroutput=[]
-  outputs = [int(N),int(sum(LinksperS)),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(SWTL),float(Clus),basal,herbs,inter,top] 
+  outputs = [int(N),int(sum(LinksperS)),float(C),float(LS),float(LinkSD),float(Gen),float(GenSD),float(Vul),float(VulSD),float(Path),float(Chain),float(SWTL),float(Clus),basal,herbs,inter,top] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 
@@ -266,6 +305,7 @@ def websorter(metafile,directory,bibfile,webkeys):
           'Vul',
           'VulSD',
           'Path',
+          'Chain',
           'SWTL',
           'Clus',
           'Basal',
@@ -285,6 +325,7 @@ def websorter(metafile,directory,bibfile,webkeys):
   outfile.write('\n')
 
   for item in uselist:
+    print item
     outputs=food_web_properties(directory,item,trophic_species_web(directory,item))
     info=infodict[item]
     outfile.write(item+'\t')
@@ -292,7 +333,7 @@ def websorter(metafile,directory,bibfile,webkeys):
     outfile.write('\t')
     outfile.write('\t'.join(outputs))
     outfile.write('\n')
-
+    # sys.exit()
     # try:
     #   shortitem=item.split('.web')[0].split('WEB')[1]
     # except IndexError:
