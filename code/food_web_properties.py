@@ -207,18 +207,17 @@ def food_web_properties(directory,item,G):
   genSDconts=[]
   vulSDconts=[]
   linkSDconts=[]
-  chains=[]
+  # chains=[]
   print 'beginning chains'
   chains2=[]
   for pred in G.nodes():
     if pred not in B:
       # print pred
       for resource in B:
-        paths=nx.all_simple_paths(G,source=resource,target=pred)
-        paths2=nx.all_simple_paths(G,source=pred,target=resource,cutoff=2*maxTL)
+        paths2=nx.all_simple_paths(G,source=pred,target=resource,cutoff=5*maxTL)
         # print list(paths2)
-        for path in paths:
-          chains.append(len(path))
+        # for path in paths:
+        #   chains.append(len(path))
         for path in paths2:
           chains2.append(len(path))
   #       if len(list(paths2))!=0:
@@ -226,14 +225,14 @@ def food_web_properties(directory,item,G):
   #       if len(list(paths))==0 and len(list(paths2))==0:
   #         print "No paths"
   # sys.exit()
-  if chains==[] and chains2!=[]:
+  if  chains2!=[]:
     Chain=float(sum(chains2))/float(len(chains2))
     chains2=[]
-  elif chains2==[] and chains!=[]:
-    Chain=float(sum(chains))/float(len(chains))
-  elif chains==[] and chains2==[]:
-    print 'No chains'
-    Chain=0
+  # elif chains2==[] and chains!=[]:
+  #   Chain=float(sum(chains))/float(len(chains))
+  # elif chains==[] and chains2==[]:
+  #   print 'No chains'
+  #   Chain=0
   else:
     print 'Too many chains'
     print len(chains2), len(chains)
