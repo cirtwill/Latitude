@@ -17,6 +17,8 @@ from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 
 # Think I want plots of the raw data (S, LS, G, V vs. lat) with slope lines
 # Plus predictions for LS, G, V vs S (with corrected obs.)
+[[Redoing this with the new data, as soon as I can find the updated coeffs]]
+
 
 def datareader(rawdatafile,TL,Bformat):
 
@@ -38,11 +40,21 @@ def datareader(rawdatafile,TL,Bformat):
       GenSD=float(line.split('\t')[10])
       Vul=float(line.split('\t')[11])
       VulSD=float(line.split('\t')[12])
-      B=float(line.split('\t')[15])
-      H=float(line.split('\t')[16])
-      I=float(line.split('\t')[17])
+      Path=line.split('\t')[13]
+      Chain=line.split('\t')[14]
+      SWTL=line.split('\t')[15]
+      Clus=line.split('\t')[16]
+      B=float(line.split('\t')[17])
+      H=float(line.split('\t')[18])
+      I=float(line.split('\t')[19])
       I=I+H # Include the herbivores as intermediates
-      T=float(line.split('\t')[18])
+      T=float(line.split('\t')[20])
+
+      # B=float(line.split('\t')[15])
+      # H=float(line.split('\t')[16])
+      # I=float(line.split('\t')[17])
+      # I=I+H # Include the herbivores as intermediates
+      # T=float(line.split('\t')[18])
 
       for response in ['LS','Gen','Vul']:
         points[response].append((eval(TL),eval(response)))
@@ -526,14 +538,15 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
 def main():
 
   for Bformat in ['proportions']:#['numbers','proportions']:
-    for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
-      if rawdatafile=='../non_TS/summary-properties.tsv':
-        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts.eps'
-        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts.eps'
+    # for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
+    for rawdatafile in ['../non_TS/summary-properties_extended_connected.tsv','../mod_data/summary-properties_extended_connected.tsv']:
+      if rawdatafile=='../non_TS/summary-properties_connected_extended.tsv':
+        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_new.eps'
+        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_new.eps'
         predfolder='../non_TS/'+Bformat
       else:
-        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts.eps'
-        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts.eps'
+        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts_new.eps'
+        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts_new.eps'
         predfolder='../mod_data/'+Bformat
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
