@@ -17,7 +17,7 @@ from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 
 # Think I want plots of the raw data (S, LS, G, V vs. lat) with slope lines
 # Plus predictions for LS, G, V vs S (with corrected obs.)
-[[Redoing this with the new data, as soon as I can find the updated coeffs]]
+# [[Redoing this with the new data, old files called are in comments]]
 
 
 def datareader(rawdatafile,TL,Bformat):
@@ -136,54 +136,54 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
 
   return obs
 
-def predictionreader(predfile,TL,Bformat):
-  predpoints={'Lake':{0:[],30:[],60:[]},
-            'Marine':{0:[],30:[],60:[]},
-            'Stream':{0:[],30:[],60:[]},
-            'Terrestrial':{0:[],30:[],60:[]},
-            'Estuary':{0:[],30:[],60:[]}}
-  f=open(predfile,'r')
-  for line in f:
-    if line.split()[0]!='"Latitude"':
-      Lat=int(line.split()[0])
-      pred=float(line.split()[-1])
-      if line.split()[1]=='1':
-        ecotype='Lake'
-      elif line.split()[2]=='1':
-        ecotype='Marine'
-      elif line.split()[3]=='1':
-        ecotype='Stream'
-      elif line.split()[4]=='1':
-        ecotype='Terrestrial'
-      else:
-        ecotype='Estuary'
-      B=float(line.split()[5])
-      S=float(line.split()[6])
-      I=float(line.split()[7])
-      T=float(line.split()[8])
+# def predictionreader(predfile,TL,Bformat):
+#   predpoints={'Lake':{0:[],30:[],60:[]},
+#             'Marine':{0:[],30:[],60:[]},
+#             'Stream':{0:[],30:[],60:[]},
+#             'Terrestrial':{0:[],30:[],60:[]},
+#             'Estuary':{0:[],30:[],60:[]}}
+#   f=open(predfile,'r')
+#   for line in f:
+#     if line.split()[0]!='"Latitude"':
+#       Lat=int(line.split()[0])
+#       pred=float(line.split()[-1])
+#       if line.split()[1]=='1':
+#         ecotype='Lake'
+#       elif line.split()[2]=='1':
+#         ecotype='Marine'
+#       elif line.split()[3]=='1':
+#         ecotype='Stream'
+#       elif line.split()[4]=='1':
+#         ecotype='Terrestrial'
+#       else:
+#         ecotype='Estuary'
+#       B=float(line.split()[5])
+#       S=float(line.split()[6])
+#       I=float(line.split()[7])
+#       T=float(line.split()[8])
 
-      if Bformat=='proportions':
-        if TL=='B':
-          predpoints[ecotype][Lat].append((B,math.exp(pred)))
-        elif TL=='I':
-          predpoints[ecotype][Lat].append((I,math.exp(pred)))
-        elif TL=='T':
-          predpoints[ecotype][Lat].append((T,math.exp(pred)))
-        elif TL=='S':
-          predpoints[ecotype][Lat].append((S,math.exp(pred)))
-      else:
-        if TL=='B':
-          predpoints[ecotype][Lat].append((B*S,math.exp(pred)))
-        elif TL=='I':
-          predpoints[ecotype][Lat].append((I*S,math.exp(pred)))
-        elif TL=='T':
-          predpoints[ecotype][Lat].append((T*S,math.exp(pred)))
-        elif TL=='S':
-          predpoints[ecotype][Lat].append((S*S,math.exp(pred)))
+#       if Bformat=='proportions':
+#         if TL=='B':
+#           predpoints[ecotype][Lat].append((B,math.exp(pred)))
+#         elif TL=='I':
+#           predpoints[ecotype][Lat].append((I,math.exp(pred)))
+#         elif TL=='T':
+#           predpoints[ecotype][Lat].append((T,math.exp(pred)))
+#         elif TL=='S':
+#           predpoints[ecotype][Lat].append((S,math.exp(pred)))
+#       else:
+#         if TL=='B':
+#           predpoints[ecotype][Lat].append((B*S,math.exp(pred)))
+#         elif TL=='I':
+#           predpoints[ecotype][Lat].append((I*S,math.exp(pred)))
+#         elif TL=='T':
+#           predpoints[ecotype][Lat].append((T*S,math.exp(pred)))
+#         elif TL=='S':
+#           predpoints[ecotype][Lat].append((S*S,math.exp(pred)))
 
 
-  f.close()
-  return predpoints
+#   f.close()
+#   return predpoints
 
 def predictionlines(fixed,prop,TL):
   ecoline=[]
@@ -199,8 +199,7 @@ def predictionlines(fixed,prop,TL):
 
   alpha=math.exp(fixed['(Intercept)'])
 
-  delta=fixed['log('+key+')']
-
+  delta=fixed['log10('+key+')']
   if TL=='S':
     for S in range(1,350):
       predy=alpha*(S**delta)
@@ -225,10 +224,13 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   TL='S'
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
-    if rawdatafile=='../non_TS/summary-properties.tsv':
-      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+    # if rawdatafile=='../non_TS/summary-properties.tsv':
+    if rawdatafile=='../non_TS/summary-properties_extended_connected.tsv':
+      # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
-      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+      # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_co.tsv')
 
     graph=grace.add_graph(Panel)
     for ecotype in ecotypes:
@@ -309,10 +311,13 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
 
-    if rawdatafile=='../non_TS/summary-properties.tsv':
-      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
+    if rawdatafile=='../non_TS/summary-properties_extended_connected.tsv':
+    # if rawdatafile=='../non_TS/summary-properties.tsv':
+      # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
     else:
-      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
+      # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_obs.tsv')
 
     graph=grace.add_graph(Panel)
 
@@ -543,11 +548,13 @@ def main():
       if rawdatafile=='../non_TS/summary-properties_connected_extended.tsv':
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_new.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_new.eps'
-        predfolder='../non_TS/'+Bformat
+        # predfolder='../non_TS/'+Bformat
+        predfolder='../updated/non_TS/'+Bformat
       else:
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts_new.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts_new.eps'
-        predfolder='../mod_data/'+Bformat
+        # predfolder='../mod_data/'+Bformat
+        predfolder='../updated/mod_data/'+Bformat
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
