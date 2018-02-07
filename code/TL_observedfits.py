@@ -187,7 +187,8 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
 
 def predictionlines(fixed,prop,TL):
   ecoline=[]
-
+  # print prop, TL
+  # print fixed
   if TL=='B':
     key='Basal'
   elif TL=='I':
@@ -199,7 +200,13 @@ def predictionlines(fixed,prop,TL):
 
   alpha=math.exp(fixed['(Intercept)'])
 
-  delta=fixed['log10('+key+')']
+  try:
+    delta=fixed['log10('+key+')']
+  except KeyError:
+    try:
+      delta=fixed['log('+key+')']
+    except:
+      sys.exit()
   if TL=='S':
     for S in range(1,350):
       predy=alpha*(S**delta)
@@ -560,9 +567,10 @@ def main():
 
       S_rawplots(rawdatafile,outfile1,Bformat,predfolder)
 
-      TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
+      # # Didn't use these in the final MS, didn't update the TL-specific models.
+      # TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
 
-      TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
+      # TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
 
 
 
