@@ -4,7 +4,9 @@ import re
 import random
 from decimal import *
 from math import *
+import numpy as np
 
+# # Just going to remove all webs flagged in Bernat's longer list when making the summary file.
 backwards_webs=['../mod_data/webs/WEB294.csv','../mod_data/webs/WEB333.csv','../mod_data/webs/carpinteria2006.csv']
 # WEB269, WEB296, WEB320 had commas in the headers. Fixed it.
 # And WEB321. And WEB322. And WEB323. And WEB324. And WEB222.
@@ -12,10 +14,11 @@ backwards_webs=['../mod_data/webs/WEB294.csv','../mod_data/webs/WEB333.csv','../
 # Removed Sum and (1-Sum) rows from WEB320, WEB321, WEB322, WEB324
 # WEB60 species names don't all make sense (seventeen?) and one is missing. Added an X to facilitate.
 # WEB333 is + or - or +/- or 0 AND rotated. 
+# Some species predator and prey names don't match, giving fake bipartite networks. Eg, 214.
+# Did it matter?
 def create_predprey_list(webfile):
   # print webfile
   rowdict={}
-
   f=open(webfile,'r')
   for line in f:
     if webfile not in ['../mod_data/webs/WEB294_rotated.csv']:
@@ -46,13 +49,14 @@ def create_predprey_list(webfile):
   specieslist=set()
 
   # print webfile
-
   for pred in predators:
     specieslist.add(pred)
     preylist=[]
     position = predators.index(pred)
     for prey in rowdict:
       specieslist.add(prey)
+      if prey in preylist:
+        print web, ' has duplicate species'
       if webfile!='../mod_data/webs/WEB333.csv':
         try:
           if float(rowdict[prey][position])>0:
@@ -72,9 +76,9 @@ def create_predprey_list(webfile):
         if '-' in rowdict[prey][position]:
           preylist.append(prey)    
     predpreydict[pred]=preylist
-
   numberdict={}
   i = 1
+
   for species in specieslist:
     numberdict[species]=i
     i=i+1
