@@ -23,8 +23,9 @@ prey_gen_max=10
 
 ecotypes=['Estuary','Lake','Marine','Stream','Terrestrial']
 
-def linereader(prop,TL):
-  linefile=open('../non_TS/proportions/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+def linereader(prop,TL,form):
+  # linefile=open('../non_TS/proportions/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../updated/'+form+'/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -150,7 +151,8 @@ def linereader(prop,TL):
   return lines  # This is un-scaled, un-logged weight but was scaled and logged before calculating the y's
 
 def num_linereader(prop,TL):
-  linefile=open('../non_TS/numbers/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  # linefile=open('../non_TS/numbers/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../updated/non_TS/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -256,10 +258,12 @@ def num_linereader(prop,TL):
 
 def plotter(prop,TL,ecotype,graph,form):
 
-  if form=='proportions':
-    dataset=linereader(prop,TL)
-  else:
-    dataset=num_linereader(prop,TL)
+  dataset=linereader(prop,TL,form)
+
+  # if form=='proportions':
+  #   dataset=linereader(prop,TL)
+  # else:
+  #   dataset=num_linereader(prop,TL)
 
   up1=[]  # Greater than 0
   up2=[]  # Less than 0
@@ -394,11 +398,12 @@ def plotter(prop,TL,ecotype,graph,form):
 def main():
 
   properties=['LS','Gen','Vul']
-  TLs=['S','B','I','T']
-
+  # TLs=['S','B','I','T']
+  TLs=['S']
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
-  for form in ['proportions']:#,'numbers']:
+  # for form in ['proportions']:#,'numbers']: # Always using proportions but want to have updated figs for TS and non-TS
+  for form in ['mod_data','non_TS']:
     for TL in TLs:
       # Make a separate graph for each TL
       grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
@@ -434,121 +439,123 @@ def main():
 
       grace.add_drawing_object(DrawText,text='scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
 
-      grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'.eps')
+      grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'_updated.eps')
 
 
-  ######### Let's try also making condensed figures
+  # All below refer to figs not used in the final MS and not updated
 
-  form="proportions"
-  TL='S'
-  prop="LS"
+  # ######### Let's try also making condensed figures
 
-  Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  # form="proportions"
+  # TL='S'
+  # prop="LS"
 
-  Snames=['Estuarine','Lake','Marine','Stream','Terrestrial']
+  # Sgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
-  Sgrace.add_label_scheme('dummy',Snames)
-  Sgrace.set_label_scheme('dummy')
+  # Snames=['Estuarine','Lake','Marine','Stream','Terrestrial']
+
+  # Sgrace.add_label_scheme('dummy',Snames)
+  # Sgrace.set_label_scheme('dummy')
   
-  for ecotype in ecotypes:   
-    if ecotype=='Estuary':
-      typ='Estuarine'
-    elif ecotype=='Marine':
-      typ='Marine'
-    elif ecotype=='Lake':
-      typ='Lake'
-    elif ecotype=='Stream':
-      typ='Stream'
-    else:
-      typ='Terrestrial'
+  # for ecotype in ecotypes:   
+  #   if ecotype=='Estuary':
+  #     typ='Estuarine'
+  #   elif ecotype=='Marine':
+  #     typ='Marine'
+  #   elif ecotype=='Lake':
+  #     typ='Lake'
+  #   elif ecotype=='Stream':
+  #     typ='Stream'
+  #   else:
+  #     typ='Terrestrial'
 
-    graph=Sgrace.add_graph(Panel)
+  #   graph=Sgrace.add_graph(Panel)
 
-    plotter(prop,TL,ecotype,graph,form)
-    graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
-    graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
+  #   plotter(prop,TL,ecotype,graph,form)
+  #   graph.xaxis.label.configure(text='Absolute latitude',place='opposite',just=2,char_size=.65)
+  #   graph.panel_label.configure(char_size=.75,placement='iul',dy=.02,dx=.03)
 
-  Sgrace.multi(rows=5,cols=1,vgap=.04,hgap=.04)
+  # Sgrace.multi(rows=5,cols=1,vgap=.04,hgap=.04)
 
-  Sgrace.hide_redundant_xticklabels()
-  Sgrace.hide_redundant_yticklabels()
-  Sgrace.hide_redundant_labels()
+  # Sgrace.hide_redundant_xticklabels()
+  # Sgrace.hide_redundant_yticklabels()
+  # Sgrace.hide_redundant_labels()
 
-  Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
-  Sgrace.set_row_xaxislabel(row=4,colspan=(0,0),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  # Sgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  # Sgrace.set_row_xaxislabel(row=4,colspan=(0,0),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-  Sgrace.write_file('../manuscript/Figures/by_TL/marginal/justS_marginal_latitude.eps')
+  # Sgrace.write_file('../manuscript/Figures/by_TL/marginal/justS_marginal_latitude.eps')
  
-  Tgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
-  Tgrace.add_label_scheme('dummy',names)
-  Tgrace.set_label_scheme('dummy')
+  # Tgrace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  # Tgrace.add_label_scheme('dummy',names)
+  # Tgrace.set_label_scheme('dummy')
 
-  for ecotype in ecotypes:   
-    if ecotype=='Estuary':
-      typ='Estuarine'
-    elif ecotype=='Marine':
-      typ='Marine'
-    elif ecotype=='Lake':
-      typ='Lake'
-    elif ecotype=='Stream':
-      typ='Stream'
-    else:
-      typ='Terrestrial'
+  # for ecotype in ecotypes:   
+  #   if ecotype=='Estuary':
+  #     typ='Estuarine'
+  #   elif ecotype=='Marine':
+  #     typ='Marine'
+  #   elif ecotype=='Lake':
+  #     typ='Lake'
+  #   elif ecotype=='Stream':
+  #     typ='Stream'
+  #   else:
+  #     typ='Terrestrial'
 
-    for TL in ['B','I','T']:      
-      if TL=='B':
-        troph="Basal resources"
-        yarg=1.1875
-      elif TL=='I':
-        troph="Intermediate consumers"
-        yarg=3.33333333333333333
-      elif TL=='T':
-        troph="Top predators"
-        yarg=1.25
+  #   for TL in ['B','I','T']:      
+  #     if TL=='B':
+  #       troph="Basal resources"
+  #       yarg=1.1875
+  #     elif TL=='I':
+  #       troph="Intermediate consumers"
+  #       yarg=3.33333333333333333
+  #     elif TL=='T':
+  #       troph="Top predators"
+  #       yarg=1.25
 
 
-        # if prop=='LS':
-        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Link density ",place='opposite',char_size=.75)
-        # elif prop=='Gen':
-        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Generality ",place='opposite',char_size=.75)
-        # elif prop=='Vul':
-        #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
+  #       # if prop=='LS':
+  #       #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Link density ",place='opposite',char_size=.75)
+  #       # elif prop=='Gen':
+  #       #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Generality ",place='opposite',char_size=.75)
+  #       # elif prop=='Vul':
+  #       #   graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Vulnerability ",place='opposite',char_size=.75)
 
-      graph=Tgrace.add_graph(Panel)
+  #     graph=Tgrace.add_graph(Panel)
 
-      plotter(prop,TL,ecotype,graph,form)
+  #     plotter(prop,TL,ecotype,graph,form)
 
-      if ecotype=='Estuary':
-        graph.add_drawing_object(DrawText,text=troph,x=45,y=yarg,loctype='world',char_size=.65,just=2)
-      graph.xaxis.label.text=''
+  #     if ecotype=='Estuary':
+  #       graph.add_drawing_object(DrawText,text=troph,x=45,y=yarg,loctype='world',char_size=.65,just=2)
+  #     graph.xaxis.label.text=''
 
-      if TL=='T':
-        if ecotype=='Estuary':
-          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Estuarine",place='opposite',char_size=.75)
-        elif ecotype=='Marine':
-          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Marine",place='opposite',char_size=.75)
-        elif ecotype=='Lake':
-          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Lake",place='opposite',char_size=.75)
-        elif ecotype=='Stream':
-          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Stream",place='opposite',char_size=.75)
-        else:
-          graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Terrestrial",place='opposite',char_size=.75)
+  #     if TL=='T':
+  #       if ecotype=='Estuary':
+  #         graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Estuarine",place='opposite',char_size=.75)
+  #       elif ecotype=='Marine':
+  #         graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Marine",place='opposite',char_size=.75)
+  #       elif ecotype=='Lake':
+  #         graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Lake",place='opposite',char_size=.75)
+  #       elif ecotype=='Stream':
+  #         graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Stream",place='opposite',char_size=.75)
+  #       else:
+  #         graph.yaxis.label.configure(text=r"\t{-1 0 0 -1} Terrestrial",place='opposite',char_size=.75)
   
-      else:
-        graph.yaxis.label.text=''
+  #     else:
+  #       graph.yaxis.label.text=''
 
-      # graph.xaxis.label.configure(text='',place='opposite',char_size=.65)
+  #     # graph.xaxis.label.configure(text='',place='opposite',char_size=.65)
 
-  Tgrace.multi(rows=5,cols=3,vgap=.04,hgap=.04)
+  # Tgrace.multi(rows=5,cols=3,vgap=.04,hgap=.04)
 
-  Tgrace.hide_redundant_xticklabels()
-  Tgrace.hide_redundant_yticklabels()
-  # Tgrace.hide_redundant_labels()
+  # Tgrace.hide_redundant_xticklabels()
+  # Tgrace.hide_redundant_yticklabels()
+  # # Tgrace.hide_redundant_labels()
 
-  Tgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with proportion',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
-  Tgrace.set_row_xaxislabel(row=4,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  # Tgrace.set_col_yaxislabel(col=0,rowspan=(0,4),label='Scaling exponent of link density with proportion',place='normal',just=2,char_size=1,perpendicular_offset=0.07)
+  # Tgrace.set_row_xaxislabel(row=4,colspan=(0,2),label='Absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-  Tgrace.write_file('../manuscript/Figures/by_TL/marginal/BIT_marginal_latitude.eps')
+  # Tgrace.write_file('../manuscript/Figures/by_TL/marginal/BIT_marginal_latitude.eps')
 
 
 
