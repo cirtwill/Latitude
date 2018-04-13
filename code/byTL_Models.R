@@ -1,10 +1,10 @@
 ## Power analysis function from http://www.esapubs.org/archive/ecol/E092/160/Sup_2_Guidelines.r
-library(nlrwr)
+# library(nlrwr)
 library(lmerTest)
 library(MuMIn)
 
-infile='../non_TS/summary-properties.tsv' # Versions of webs with species, not trophic species
-# infile='../mod_data/summary-properties.tsv'
+infile='../non_TS/summary-properties_trimmed.tsv' # Versions of webs with species, not trophic species
+# infile='../mod_data/summary-properties_trimmed.tsv'
 
 format='proportions' # e.g. Basal is %Basal rather than # of basal resources
 # format='numbers' # I tried both ways initially.
@@ -68,7 +68,7 @@ olddata=data
 data=olddata
 source('recreate_with_subset.R')
 
-if(infile=='../mod_data/summary-properties.tsv'){
+if(infile=='../mod_data/summary-properties_trimmed.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
 
@@ -110,31 +110,31 @@ for(i in 1:nrow(olddata)){
 }
 
 
-# If an author is only on one web, then I've already checked that in the webwise version :)
-# Now remove all webs associated with each of the other authors.
-j=1
-for(i in 20:222){
-  if(sum(olddata[,i])>1){
-    newdata=olddata[which(olddata[,i]==0),]
-    name=colnames(olddata)[i]
+# # If an author is only on one web, then I've already checked that in the webwise version :)
+# # Now remove all webs associated with each of the other authors.
+# j=1
+# for(i in 20:222){
+#   if(sum(olddata[,i])>1){
+#     newdata=olddata[which(olddata[,i]==0),]
+#     name=colnames(olddata)[i]
 
-    removed=dim(olddata)[1]-dim(newdata)[1]
-    removals[j,1]=name
-    removals[j,2]=removed
+#     removed=dim(olddata)[1]-dim(newdata)[1]
+#     removals[j,1]=name
+#     removals[j,2]=removed
 
-    print(c(name,removed,j))
-    j=j+1
+#     print(c(name,removed,j))
+#     j=j+1
 
-    data=newdata
-    source('recreate_with_subset.R')
+#     data=newdata
+#     source('recreate_with_subset.R')
 
-    write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-    write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-    write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  }
-}
+#     write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+#     write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+#     write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+#   }
+# }
 
-write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
+# write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
 
 # TS and non-TS webs, logarithmic models are always better.
 # Not even sure if I care about TS webs for this.
@@ -190,7 +190,7 @@ colnames(LS_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species"
 colnames(Gen_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 colnames(Vul_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 
-if(infile=='../mod_data/summary-properties.tsv'){
+if(infile=='../mod_data/summary-properties_trimmed.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
 # Data
@@ -210,7 +210,7 @@ write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'coefficients/Vul_ob
 ########################################################################################################
 ####################   Calculate marginal effect of latitude in each ecotype
 
-if(infile=='../mod_data/summary-properties.tsv'){
+if(infile=='../mod_data/summary-properties_trimmed.tsv'){
   outdir='../mod_data/'  } else {
     outdir=paste('../non_TS/',format,'/',sep='')     }
 
@@ -221,7 +221,7 @@ if(format=='proportions'){
 }
 
 # Not going to bother working out the marginals for TS models.
-if(infile=='../non_TS/summary-properties.tsv'){
+if(infile=='../non_TS/summary-properties_trimmed.tsv'){
 
   LS_marg=S_CIs("LS_min")
   write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
