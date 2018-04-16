@@ -3,8 +3,7 @@
 library(lmerTest)
 library(MuMIn)
 
-infile='../non_TS/summary-properties_trimmed.tsv' # Versions of webs with species, not trophic species
-# infile='../mod_data/summary-properties_trimmed.tsv'
+for(infile in c('../mod_data/summary-properties_trimmed.tsv','../non_TS/summary-properties_trimmed.tsv')){
 
 format='proportions' # e.g. Basal is %Basal rather than # of basal resources
 # format='numbers' # I tried both ways initially.
@@ -88,6 +87,12 @@ if(format=='proportions'){
 if(power_analysis==TRUE){
   source('power_analyses.R')
 }
+
+if(infile=='../non_TS/summary-properties_trimmed.tsv'){
+  save.image('nonTS_models.Rdata') } else {
+    save.image('TS_models.Rdata')
+  }
+
 
 # Eliminate the redundant authors (those that always and only occur with another author) prior to jackknifing.
 source('redundant_authors.R')
@@ -232,3 +237,4 @@ if(infile=='../non_TS/summary-properties_trimmed.tsv'){
 }
 
 ######### And we're done!!!!!! ###########
+}
