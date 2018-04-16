@@ -10,17 +10,37 @@ dubious_webs=['WEB218.web','WEB220.web','WEB225.web','WEB236.web','WEB238.web','
 # # Taking too long to recalculate. Will be better to just
 # # read in the datafile and trim these.
 
-def removewebs(infile,outfile):
+def read_in_authors(oldfile):
+  authors={}
+  f=open(oldfile,'r')
+  for line in f:
+    web=line.split('\t')[0]
+    auths=line.split('\t')[19:]
+    if web!='Web':
+      authors[web]=auths
+    else:
+      authors['HEAD']=auths
+  return authors
+
+def removewebs(infile,outfile,oldfile):
+  authors=read_in_authors(oldfile)
+
   goodlines=[]
   f=open(infile,'r')
   for line in f:
     if line.split()[0] not in dubious_webs:
-      goodlines.append(line)
+      goodlines.append(line.split('\n')[0])
   f.close()
 
   g=open(outfile,'w')
-  for line in goodlines:
-    g.write(line)
+  g.write(goodlines[0]+'\t'+'\t'.join(authors['HEAD']))
+  for line in goodlines[1:]:
+    web=line.split()[0]
+    if web!='WEB294_rotated.web':
+      g.write(line+'\t'+'\t'.join(authors[web]))
+    else:
+      g.write(line+'\t'+'\t'.join(authors['WEB294.web']))
+
   g.close()
 
 def main():
@@ -29,8 +49,9 @@ def main():
   for indir in ['../mod_data/', '../non_TS/']:
     infile=indir+suffix
     outfile=indir+'summary-properties_trimmed.tsv'
+    oldfile='../non_TS/summary-properties.tsv'
 
-    removewebs(infile,outfile)
+    removewebs(infile,outfile,oldfile)
     print infile, ' done'
 
 if __name__ == '__main__':

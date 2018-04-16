@@ -25,8 +25,9 @@ def datareader(rawdatafile,TL,Bformat):
   points={'LS':[],'Gen':[],'Vul':[]}
 
   f=open(rawdatafile,'r')
+  i=1
   for line in f:
-    if line.split()[0]!='Web':
+    if line.split('\t')[0]!='Web':
       ecotype=line.split('\t')[1]
       ecotype=ecotype.capitalize()
       site=line.split('\t')[2]
@@ -552,7 +553,7 @@ def main():
   for Bformat in ['proportions']:#['numbers','proportions']:
     # for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
     for rawdatafile in ['../non_TS/summary-properties_trimmed.tsv','../mod_data/summary-properties_trimmed.tsv']:
-      if rawdatafile=='../non_TS/summary-properties_connected_extended.tsv':
+      if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_new.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_new.eps'
         # predfolder='../non_TS/'+Bformat
@@ -565,8 +566,10 @@ def main():
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
+      print 'S okay'
       S_rawplots(rawdatafile,outfile1,Bformat,predfolder)
 
+      print 'Raw okay'
       # # Didn't use these in the final MS, didn't update the TL-specific models.
       # TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
 

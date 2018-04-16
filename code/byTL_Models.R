@@ -26,6 +26,19 @@ data$Intermediate=as.numeric(as.character(data$Intermediate))
 data$Intermediate=data$Intermediate+data$Herbivores   # Role herbivores into intermediates
 data$Toppreds=as.numeric(as.character(data$Toppreds))
 
+# Remove authors that are no longer relevant
+dead_authors=c("A","Agostinho","Allan","Aloisio","Althaus","Angelini","Antezana","Arreguin_Sanchez","Badcock","Baeta",
+  "Bax","Boit","Briand","Brodeur","Bulman","Carvalho","Catella","Chavez","Chen","Chen_Y","Christian","Cornejo.Donoso",
+  "Cruz.Escalona", "Dai","Darlington","Elton","Emmett","Fang","Fetahi","Flechsig","Gomes","Grigg","He","Hsieh","Hung",
+  "Li_J","Libralato","Lin","Link","Liu","Lo","Luczkovich","Mann","Marshall","Mayse","Mengistou","Morgan","Moriarty_C",
+  "Moriarty_D","Newman","Niering","Niquil","Pearcy","Price","Rasmussen","Ratsirarson","Resende","Ruzicka","Savely",
+  "Schagerl","Shao","Silander","Steele","Su","Tevlin","Thomas","Vaz.Velho","Wainwright","Zamon","Zaret","Zetina_Rejon","de_Morais")
+for(auth in dead_authors){
+  data[,auth]<-NULL
+}
+
+
+
 # Add dummy variables for ecosystem types
 data$Estuary=0
 data$Lakeweb=0
@@ -59,6 +72,7 @@ data=subset(data,data$Basal>0)
 data=subset(data,data$Intermediate>0)
 data=subset(data,data$Toppreds>0)
 data$Latitude = as.numeric(as.character(data$Latitude))
+
 
 # Save the original data to prevent accidents with jackknifing subsets.
 olddata=data
@@ -115,31 +129,31 @@ for(i in 1:nrow(olddata)){
 }
 
 
-# # If an author is only on one web, then I've already checked that in the webwise version :)
-# # Now remove all webs associated with each of the other authors.
-# j=1
-# for(i in 20:222){
-#   if(sum(olddata[,i])>1){
-#     newdata=olddata[which(olddata[,i]==0),]
-#     name=colnames(olddata)[i]
+# If an author is only on one web, then I've already checked that in the webwise version :)
+# Now remove all webs associated with each of the other authors.
+j=1
+for(i in 22:261){
+  if(sum(olddata[,i])>1){
+    newdata=olddata[which(olddata[,i]==0),]
+    name=colnames(olddata)[i]
 
-#     removed=dim(olddata)[1]-dim(newdata)[1]
-#     removals[j,1]=name
-#     removals[j,2]=removed
+    removed=dim(olddata)[1]-dim(newdata)[1]
+    removals[j,1]=name
+    removals[j,2]=removed
 
-#     print(c(name,removed,j))
-#     j=j+1
+    print(c(name,removed,j))
+    j=j+1
 
-#     data=newdata
-#     source('recreate_with_subset.R')
+    data=newdata
+    source('recreate_with_subset.R')
 
-#     write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#     write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#     write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#   }
-# }
+    write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  }
+}
 
-# write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
+write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
 
 # TS and non-TS webs, logarithmic models are always better.
 # Not even sure if I care about TS webs for this.
@@ -162,7 +176,7 @@ for(j in c("Lakeweb","Marine","Stream","Terr","Other")){
       newdata[k,3]=0 # Marine
       newdata[k,4]=0 # Stream
       newdata[k,5]=0 # Terrestrial
-      if(j=="Lake"){
+      if(j=="Lakeweb"){
         newdata[k,2]=1 }
       if(j=="Marine"){
         newdata[k,3]=1 }
@@ -216,18 +230,17 @@ write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'coefficients/Vul_ob
 ####################   Calculate marginal effect of latitude in each ecotype
 
 if(infile=='../mod_data/summary-properties_trimmed.tsv'){
-  outdir='../mod_data/'  } else {
-    outdir=paste('../non_TS/',format,'/',sep='')     }
+  outdir='../updated/mod_data/'  } else {
+    outdir=paste('../updated/non_TS/',format,'/',sep='')     }
 
 if(format=='proportions'){
-  source('marginal_CIs.R')
+  source("updated_marginal_CIs_nonTS.R") # Same best-fit models for both web forms 
 } else {
   source('number_marginal_CIs.R')
 }
 
 # Not going to bother working out the marginals for TS models.
 if(infile=='../non_TS/summary-properties_trimmed.tsv'){
-
   LS_marg=S_CIs("LS_min")
   write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
   Gen_marg=S_CIs("Gen_min")
