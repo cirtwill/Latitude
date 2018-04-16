@@ -232,7 +232,7 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
     # if rawdatafile=='../non_TS/summary-properties.tsv':
-    if rawdatafile=='../non_TS/summary-properties_extended_connected.tsv':
+    if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
       # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
       fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
@@ -318,7 +318,7 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
 
-    if rawdatafile=='../non_TS/summary-properties_extended_connected.tsv':
+    if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
     # if rawdatafile=='../non_TS/summary-properties.tsv':
       # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
       fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
@@ -551,7 +551,7 @@ def main():
 
   for Bformat in ['proportions']:#['numbers','proportions']:
     # for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
-    for rawdatafile in ['../non_TS/summary-properties_extended_connected.tsv','../mod_data/summary-properties_extended_connected.tsv']:
+    for rawdatafile in ['../non_TS/summary-properties_trimmed.tsv','../mod_data/summary-properties_trimmed.tsv']:
       if rawdatafile=='../non_TS/summary-properties_connected_extended.tsv':
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_new.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_new.eps'
