@@ -64,6 +64,7 @@ def datareader(rawdatafile,TL,Bformat):
   return points
 
 def fixed_reader(coefffile):
+  print coefffile
   fixed_effects={}
   f=open(coefffile,'r')
   for line in f:
@@ -234,11 +235,11 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
     rawdata=datareader(rawdatafile,TL,Bformat)
     # if rawdatafile=='../non_TS/summary-properties.tsv':
     if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
-      # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
-      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+      # fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
-      # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
-      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+      # fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_co.tsv')
 
     graph=grace.add_graph(Panel)
     for ecotype in ecotypes:

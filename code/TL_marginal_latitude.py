@@ -25,7 +25,8 @@ ecotypes=['Estuary','Lake','Marine','Stream','Terrestrial']
 
 def linereader(prop,TL,form):
   # linefile=open('../non_TS/proportions/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
-  linefile=open('../updated/'+form+'/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  linefile=open('../updated/'+form+'/proportions/marginals/'+prop+'_'+TL+'_marginal.tsv','r')
+  # ../updated/non_TS/proportions/marginals/LS_S_marginal.tsv  
   lines={}
   for ecotype in ecotypes:
     lines[ecotype]={'main':[],'upper':[],'lower':[]}
@@ -39,17 +40,11 @@ def linereader(prop,TL,form):
 
       if TL=='S':
         if prop!='Gen':
-          terr_m=float(line.split()[5])
-          terr_u=float(line.split()[6])
-          terr_l=float(line.split()[7])
 
-          lake_m=float(line.split()[8])
-          lake_u=float(line.split()[9])
-          lake_l=float(line.split()[10])
+          lake_m=float(line.split()[5])
+          lake_u=float(line.split()[6])
+          lake_l=float(line.split()[7])
 
-          lines['Terrestrial']['main'].append((s0,terr_m))
-          lines['Terrestrial']['upper'].append((s0,terr_u))
-          lines['Terrestrial']['lower'].append((s0,terr_l))
           lines['Lake']['main'].append((s0,lake_m))
           lines['Lake']['upper'].append((s0,lake_u))
           lines['Lake']['lower'].append((s0,lake_l))
@@ -403,7 +398,8 @@ def main():
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
   # for form in ['proportions']:#,'numbers']: # Always using proportions but want to have updated figs for TS and non-TS
-  for form in ['mod_data','non_TS']:
+  for form in ['non_TS']:
+  # for form in ['mod_data','non_TS']:
     for TL in TLs:
       # Make a separate graph for each TL
       grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
