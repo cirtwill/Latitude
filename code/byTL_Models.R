@@ -85,17 +85,17 @@ if(infile=='../mod_data/summary-properties_trimmed.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
 
-# Calculate the by-TL models
-if(by_TL==TRUE){
-if(format=='proportions'){
-  source('property_models_proportions.R')
-  save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
+# # Calculate the by-TL models # Has not been updated.
+# if(by_TL==TRUE){
+# if(format=='proportions'){
+#   source('property_models_proportions.R')
+#   save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
 
-} else {
-  source('property_models_numbers.R')
-  save.image(file=paste(outdir,'number_Models.RData',sep=''))
-}
-}
+# } else {
+#   source('property_models_numbers.R')
+#   save.image(file=paste(outdir,'number_Models.RData',sep=''))
+# }
+# }
 
 # Do the power analyses
 if(power_analysis==TRUE){
