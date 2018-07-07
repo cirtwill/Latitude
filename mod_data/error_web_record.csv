@@ -1,0 +1,354 @@
+webs,correct,Correctable,Issue
+WEB114.web,FALSE,Yes,-1 link should be 1 (fish to gastropods)
+WEB117.web,FALSE,Yes,-1 link should be 1 (insects to primary producers)
+WEB119.web,FALSE,Yes,"-1 links should be 1 (filter feeders to zooplankton, invertebrate predators to browsers and grazers, invertebrate predators to young chironomids)"
+WEB120.web,FALSE,Yes,"-1 links should be 1 (Thermocyclops to phytoplankton, Cladocera to phytoplankton, Chaoborous to Cladocera)"
+WEB153.web,FALSE,Yes,"-1 links should be 1 (predatory mite to Empoasca fabae, predatory mite to black alate aphid)"
+WEB154.web,FALSE,Yes,"-1 links should be 1 (8, predatory mites, spiders, etc. to small insects)"
+WEB18.web,FALSE,Yes,-1 link should be 1 (heron to fish reef)
+WEB180.web,FALSE,Yes,-1 links where phloem is a predator should be 0
+WEB181.web,FALSE,Yes,"-1 links should be 1 (various larvae to rotting wood, various larvae to fungi)"
+WEB182.web,FALSE,Yes,"-1 links should be 1 (various larvae to phloem, various larvae to sapwood, various larvae to fungi)"
+WEB183.web,FALSE,Yes,"-1 links should be 1 (various larvae to rotting wood, various larvae to fungi)"
+WEB202.web,FALSE,Yes,-1 link should be 1 (Salvelinus fontinalis to trout eggs)
+WEB213.web,FALSE,Yes,"-1 links should be 1 (Entomostraca to protozoa, Entomostraca to plant tissue, Entomostraca to pulverized masses, Entomostraca to filamentous algae, Entomostraca to other encrusting algae, Entomostraca to diatoms & desmids)"
+WEB214.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), Eukieffidriella 'naonella' type in column changed to Eukiefferiella 'naonella' type to match row"
+WEB215.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched Endochironomous to Endochironomous sp.,"
+WEB216.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched  Aelosoma to Aelosoma spp.,"
+WEB217.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched  Fatigia pele to Fattigia pele, "
+WEB218.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched  Austrosimulium australense to Austrosimulium astranse, Eukiefidrella brundini, to Eukieflidrella brundini, "
+WEB219.web,FALSE,Yes,Row and column names do not match (sample sizes in column names) Eukieffidriella 'naonella' type in column changed to Eukiefferiella 'naonella' type to match row
+WEB22.web,FALSE,Yes,"-1 links should be 1 (13 links), -2 links should be 0"
+WEB220.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched Aphrophila neozelandica to Aphrophila neozelandicus, 'Eukieffidriella brundini' to 'Eukieflidriella brundini"
+WEB221.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched Austrosimulium to Austrosimulium  australense, Cristaperla to Cristaperla  fimbriae, Naonella to Naonella forsythii, Paralimnophila to Paralimnophila skuseii, Pycnocentria to Pycnocentria evecta, Psilachorema to Psilachorema bidens, Spaniocerca to Spaniocerca zelandia,  "
+WEB222.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names) matched Naonella to Naonella forsythii, "
+WEB223.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names) matched Aoteapsyche raruraru to Aoteapsyche, Austrocsilumlium to Austrosimulium australense, Coloburiscus to Coloburiscus humeralis,Costachorema to Costachorema xanthoptera, Helicopsyche to Helicopsyche albescens, Polyplectropus to Polyplectropus puerilis, Scirtid to Scirtid broad spp., Zelandoperla to Zelandoperla fenestrata, "
+WEB224.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names) Cristaperla to Cristaperla fimbriae, Naonella to Naonella forysthii, "
+WEB225.web,FALSE,Yes,"Row and column names do not match (sample sizes in column names), matched Austroperla to Austroperla cyrene, Cristaperla to Cristaperla fimbriae, Nannochorista  to Nannochorista philpotti, Naonella to Naonella forsythii, Neozephlebia to Neozephlebia spectabilis, Paralimnophila  to Paralimnophila skusei, Paucispinigera to Paucispinigera approximata, Polyplectropus to Polyplectropus puerilis, Potamopyrgus to Potamopyrgus antipodarum, Stenoperla to Stenoperla prasinia, Zelandobius to Zelandobius confusus"
+WEB23.web,FALSE,Yes,"-1 links should be 1 (Agropygon to meadowlark etc., Agropygon to crow)"
+WEB236.web,FALSE,Yes?,"Assuming all values 1-5 indicate trophic links. Also matched Eukiefidrella to Eukiefiriella fragilaria vacheriae, Naonella to Naonella forsythii, "
+WEB238.web,FALSE,Yes?,Assuming all values 1-5 indicate trophic links. 
+WEB24.web,FALSE,Yes,"-1 links should be 1 (birds to insects, insects to Salix petiolaris, insects to Salix discolor, Rana pipiens to spiders)"
+WEB240.web,FALSE,Yes?,Assuming all values 1-5 indicate trophic links. 
+WEB244.web,FALSE,Yes? ,Assuming all values 1-5 indicate trophic links. 
+WEB246.web,FALSE,Yes?,Assuming all values 1-5 indicate trophic links. 
+WEB249.web,FALSE,Yes,Converting decimal links to 1
+WEB250.web,FALSE,Yes,Converting decimal links to 1
+WEB251.web,FALSE,Yes,Converting decimal links to 1
+WEB252.web,FALSE,Yes,Converting decimal links to 1
+WEB253.web,FALSE,Yes,Converting decimal links to 1
+WEB254.web,FALSE,Yes,Converting decimal links to 1
+WEB255.web,FALSE,Yes,Converting decimal links to 1
+WEB256.web,FALSE,Yes,Converting decimal links to 1
+WEB257.web,FALSE,Yes,Converting decimal links to 1
+WEB258.web,FALSE,Yes,Converting decimal links to 1
+WEB259.web,FALSE,Yes,Converting decimal links to 1
+WEB26.web,FALSE,Yes,Converting decimal links to 1
+WEB260.web,FALSE,Yes,Converting decimal links to 1
+WEB261.web,FALSE,Yes,Converting decimal links to 1
+WEB262.web,FALSE,Yes,Converting decimal links to 1
+WEB265.web,FALSE,Yes,Converting decimal links to 1
+WEB266.web,FALSE,Yes,Converting decimal links to 1
+WEB267.web,FALSE,Yes,Converting decimal links to 1
+WEB268.web,FALSE,Yes,Converting decimal links to 1
+WEB269.web,FALSE,Yes,Converting decimal links to 1
+WEB288.web,FALSE,Yes,Converting decimal links to 1
+WEB289.web,FALSE,Yes,Converting decimal links to 1
+WEB290.web,FALSE,Yes,Converting quantitative links to 1
+WEB291.web,FALSE,Yes,Converting quantitative links to 1
+WEB292.web,FALSE,Yes,Converting quantitative links to 1
+WEB293.web,FALSE,Yes,Converting quantitative links to 1
+WEB294.web,FALSE,Yes,Converting decimal links to 1
+WEB296.web,FALSE,Yes,Converting decimal links to 1
+WEB307.web,FALSE,Yes,Converting decimal links to 1
+WEB320.web,FALSE,Yes,Converting decimal links to 1
+WEB321.web,FALSE,Yes,Converting decimal links to 1
+WEB322.web,FALSE,Yes,Converting decimal links to 1
+WEB323.web,FALSE,Yes,Converting decimal links to 1
+WEB324.web,FALSE,Yes,Converting decimal links to 1
+WEB33.web,FALSE,Yes,Converting decimal links to 1
+WEB333.web,FALSE,Yes,"Converting – interactions to 1, + to 0, +/- interactions to 1"
+WEB339.web,FALSE,Yes,Converting decimal links to 1
+WEB342.web,FALSE,Yes,Converting quantitative links to 1
+WEB345.web,FALSE,Yes,Converting quantitative links to 1
+WEB350.web,FALSE,Yes,Converting quantitative links to 1
+WEB351.web,FALSE,Yes,Converting quantitative links to 1
+WEB357.web,FALSE,Yes,Converting quantitative links to 1
+WEB359.web,FALSE,Yes,"Distinguishing between unknown protozoa, bacteria sp. (assuming same order in rows and columns)"
+WEB37.web,FALSE,Yes,Converting -1 links to 1 (9 links)
+WEB38.web,FALSE,Yes,Converting -1 links to 1 (Pseudotropheus fuscoides to terrestrial insects)
+WEB39.web,FALSE,Yes,No obvious errors? Malanoides tuberculata & other gastropods match to Malanoides tuberculata_other gastropods
+WEB41.web,FALSE,Yes,Gave two tuna species separate names
+WEB60.web,FALSE,Yes,Renamed an empty column “chipmunks – ground squirrels” based on row name order
+WEB80.web,FALSE,Yes,Renamed an empty column “Nematoda (Ironus - Tobrilus) - Oligochaeta (Limnodrilus - Psammoryctes - Peloscolex - Lumbriculidae – Naididae)”
+WEB211.web,TRUE,,
+WEB309.web,TRUE,,
+WEB286.web,TRUE,,
+WEB99.web,TRUE,,
+WEB289.web,TRUE,,
+WEB275.web,TRUE,,
+WEB304.web,TRUE,,
+WEB349.web,TRUE,,
+WEB104.web,TRUE,,
+WEB24.web,TRUE,,
+WEB279.web,TRUE,,
+WEB299.web,TRUE,,
+WEB272.web,TRUE,,
+WEB102.web,TRUE,,
+WEB332.web,TRUE,,
+WEB8.web,TRUE,,
+WEB65.web,TRUE,,
+WEB285.web,TRUE,,
+WEB112.web,TRUE,,
+WEB47.web,TRUE,,
+WEB12.web,TRUE,,
+WEB133.web,TRUE,,
+WEB118.web,TRUE,,
+WEB330.web,TRUE,,
+WEB28.web,TRUE,,
+WEB139.web,TRUE,,
+WEB5.web,TRUE,,
+WEB11.web,TRUE,,
+WEB108.web,TRUE,,
+WEB192.web,TRUE,,
+WEB13.web,TRUE,,
+WEB204.web,TRUE,,
+WEB36.web,TRUE,,
+WEB16.web,TRUE,,
+WEB55.web,TRUE,,
+WEB130.web,TRUE,,
+WEB283.web,TRUE,,
+WEB128.web,TRUE,,
+WEB124.web,TRUE,,
+WEB53.web,TRUE,,
+WEB6.web,TRUE,,
+WEB191.web,TRUE,,
+WEB282.web,TRUE,,
+WEB21.web,TRUE,,
+WEB276.web,TRUE,,
+WEB303.web,TRUE,,
+WEB126.web,TRUE,,
+WEB237.web,TRUE,,
+WEB98.web,TRUE,,
+WEB69.web,TRUE,,
+WEB105.web,TRUE,,
+WEB129.web,TRUE,,
+WEB253.web,TRUE,,
+WEB15.web,TRUE,,
+SimberloffE7.web,TRUE,,
+WEB61.web,TRUE,,
+WEB42.web,TRUE,,
+WEB154.web,TRUE,,
+WEB202.web,TRUE,,
+WEB153.web,TRUE,,
+WEB18.web,TRUE,,
+WEB356.web,TRUE,,
+Connery.web,TRUE,,
+WEB95.web,TRUE,,
+WEB203.web,TRUE,,
+WEB71.web,TRUE,,
+WEB94.web,TRUE,,
+WEB138.web,TRUE,,
+WEB194.web,TRUE,,
+WEB328.web,TRUE,,
+WEB232.web,TRUE,,
+WEB136.web,TRUE,,
+WEB228.web,TRUE,,
+Alford.web,TRUE,,
+WEB268.web,TRUE,,
+WEB205.web,TRUE,,
+Sierra.web,TRUE,,
+WEB109.web,TRUE,,
+WEB97.web,TRUE,,
+Broadstone.web,TRUE,,
+WEB341.web,TRUE,,
+WEB229.web,TRUE,,
+WEB250.web,TRUE,,
+WEB143.web,TRUE,,
+WEB241.web,TRUE,,
+WEB91.web,TRUE,,
+WEB54.web,TRUE,,
+WEB113.web,TRUE,,
+WEB34.web,TRUE,,
+WEB245.web,TRUE,,
+WEB52.web,TRUE,,
+WEB327.web,TRUE,,
+WEB180.web,TRUE,,
+Skipwith.web,TRUE,,
+WEB111.web,TRUE,,
+WEB140.web,TRUE,,
+WEB59.web,TRUE,,
+WEB22.web,TRUE,,
+SimberloffE1.web,TRUE,,
+WEB308.web,TRUE,,
+WEB273.web,TRUE,,
+WEB1.web,TRUE,,
+WEB3.web,TRUE,,
+WEB78.web,TRUE,,
+WEB19.web,TRUE,,
+WEB68.web,TRUE,,
+WEB26.web,TRUE,,
+WEB190.web,TRUE,,
+WEB343.web,TRUE,,
+WEB249.web,TRUE,,
+WEB96.web,TRUE,,
+WEB336.web,TRUE,,
+WEB64.web,TRUE,,
+WEB31.web,TRUE,,
+WEB193.web,TRUE,,
+WEB306.web,TRUE,,
+WEB183.web,TRUE,,
+SimberloffE3.web,TRUE,,
+WEB131.web,TRUE,,
+WEB10.web,TRUE,,
+WEB117.web,TRUE,,
+WEB45.web,TRUE,,
+WEB151.web,TRUE,,
+WEB334.web,TRUE,,
+WEB206.web,TRUE,,
+WEB62.web,TRUE,,
+WEB278.web,TRUE,,
+WEB110.web,TRUE,,
+WEB337.web,TRUE,,
+WEB106.web,TRUE,,
+WEB298.web,TRUE,,
+WEB305.web,TRUE,,
+WEB76.web,TRUE,,
+WEB239.web,TRUE,,
+WEB38.web,TRUE,,
+WEB79.web,TRUE,,
+WEB44.web,TRUE,,
+WEB264.web,TRUE,,
+WEB63.web,TRUE,,
+WEB120.web,TRUE,,
+WEB20.web,TRUE,,
+SimberloffE9.web,TRUE,,
+WEB88.web,TRUE,,
+WEB310.web,TRUE,,
+WEB107.web,TRUE,,
+WEB85.web,TRUE,,
+WEB14.web,TRUE,,
+WEB84.web,TRUE,,
+FjordDunne.web,TRUE,,
+WEB137.web,TRUE,,
+WEB233.web,TRUE,,
+YthanDunne.web,TRUE,,
+WEB277.web,TRUE,,
+WEB267.web,TRUE,,
+Broad.web,TRUE,,
+WEB57.web,TRUE,,
+WEB115.web,TRUE,,
+Mondego.web,TRUE,,
+WEB127.web,TRUE,,
+WEB227.web,TRUE,,
+WEB122.web,TRUE,,
+WEB212.web,TRUE,,
+WEB25.web,TRUE,,
+WEB354.web,TRUE,,
+WEB81.web,TRUE,,
+SimberloffE2.web,TRUE,,
+WEB114.web,TRUE,,
+WEB121.web,TRUE,,
+WEB74.web,TRUE,,
+WEB83.web,TRUE,,
+WEB281.web,TRUE,,
+WEB347.web,TRUE,,
+WEB93.web,TRUE,,
+WEB51.web,TRUE,,
+WEB242.web,TRUE,,
+Reef.web,TRUE,,
+Bridge.web,TRUE,,
+WEB70.web,TRUE,,
+WEB86.web,TRUE,,
+WEB100.web,TRUE,,
+Coachella.web,TRUE,,
+SimberloffST2.web,TRUE,,
+WEB209.web,TRUE,,
+WEB144.web,TRUE,,
+WEB207.web,TRUE,,
+WEB101.web,TRUE,,
+WEB243.web,TRUE,,
+Chub.web,TRUE,,
+WEB56.web,TRUE,,
+WEB58.web,TRUE,,
+WEB181.web,TRUE,,
+WEB346.web,TRUE,,
+WEB67.web,TRUE,,
+WEB294.web,TRUE,,
+WEB82.web,TRUE,,
+WEB329.web,TRUE,,
+WEB116.web,TRUE,,
+WEB73.web,TRUE,,
+WEB182.web,TRUE,,
+WEB66.web,TRUE,,
+WEB46.web,TRUE,,
+WEB340.web,TRUE,,
+WEB72.web,TRUE,,
+WEB75.web,TRUE,,
+WEB300.web,TRUE,,
+WEB274.web,TRUE,,
+WEB132.web,TRUE,,
+WEB35.web,TRUE,,
+WEB335.web,TRUE,,
+WEB9.web,TRUE,,
+WEB247.web,TRUE,,
+Tuesday.web,TRUE,,
+WEB48.web,TRUE,,
+WEB297.web,TRUE,,
+WEB49.web,TRUE,,
+WEB302.web,TRUE,,
+Stink.web,TRUE,,
+WEB355.web,TRUE,,
+WEB7.web,TRUE,,
+WEB196.web,TRUE,,
+WEB119.web,TRUE,,
+WEB87.web,TRUE,,
+WEB301.web,TRUE,,
+WEB135.web,TRUE,,
+WEB280.web,TRUE,,
+WEB230.web,TRUE,,
+Beaver.web,TRUE,,
+WEB270.web,TRUE,,
+WEB189.web,TRUE,,
+WEB43.web,TRUE,,
+WEB331.web,TRUE,,
+WEB27.web,TRUE,,
+WEB234.web,TRUE,,
+WEB348.web,TRUE,,
+WEB37.web,TRUE,,
+WEB208.web,TRUE,,
+WEB134.web,TRUE,,
+WEB288.web,TRUE,,
+WEB123.web,TRUE,,
+WEB284.web,TRUE,,
+WEB89.web,TRUE,,
+WEB32.web,TRUE,,
+Carpinteria2006.web,TRUE,,
+WEB252.web,TRUE,,
+WEB77.web,TRUE,,
+WEB195.web,TRUE,,
+WEB287.web,TRUE,,
+WEB266.web,TRUE,,
+WEB2.web,TRUE,,
+WEB17.web,TRUE,,
+ThompsonFL.web,TRUE,,
+AmundsenFL.web,TRUE,,
+PrestonFL.web,TRUE,,
+GrandeCl.web,TRUE,,
+GrandeSc.web,TRUE,,
+Guadalupe.web,TRUE,,
+Alamitos.web,TRUE,,
+Calero.web,TRUE,,
+Corte.web,TRUE,,
+Coyote.web,TRUE,,
+BahiaDunne.web,TRUE,,
+CarpinteriaDunne.web,TRUE,,
+EsteroDunne.web,TRUE,,
+LittleRock.web,TRUE,,
+OtagoDunne.web,TRUE,,
+WEB263.web,TRUE,,
+SyltDunne.web,TRUE,,
+WEB235.web,TRUE,,
+WEB226.web,TRUE,,
+WEB231.web,TRUE,,
+Bere.web,TRUE,,

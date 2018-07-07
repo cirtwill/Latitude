@@ -1,0 +1,24 @@
+"Bulman, C., Althaus, F., He, X., Bax, N.J., and Williams, A. (2001). Diets and trophic guilds of demersal fishes of the south-eastern Australian shelf. Marine and Freshwater Research. 52, pp. 537-48.",,,,,,,,,,,,,,,
+Demersal fish diets - south-eastern Australia continental shelf ,dogfish (demersal shark),rays,Jackass morwong,Warehous,other large fish,ling,redfish,flathead,ocean perch,redbait,jack mackerel,cardinal fish,cucumberfish,school whiting,Small fish
+dogfish (demersal shark),1,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+rays,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Jackass morwong,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Warehous,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+large fish,1,0,1,0,1,0,1,1,1,0,1,0,0,0,1
+ling,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+redfish,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+flathead,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ocean perch,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0
+redbait,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+jack mackerel,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0
+cardinal fish,1,0,1,1,1,0,1,1,1,0,1,0,0,0,1
+cucumberfish,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0
+school whiting,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0
+Small fish,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+mesopelagic,1,0,1,0,1,1,1,1,1,0,1,1,0,0,0
+megabenthos,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+macrobenthos,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+pelagic invertebrates (inc squid),1,1,1,1,1,0,1,1,1,1,1,1,1,1,1
+pelagic crustacean,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+polychaeta,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1
+Primary producers,0,0,1,1,1,0,0,0,1,0,1,0,0,0,1
