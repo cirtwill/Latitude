@@ -14,14 +14,21 @@ def create_predprey_list(webfile):
   for line in f:
     if webfile not in ['../mod_data/Error_webs_corrected/WEB294.csv','../mod_data/Error_webs_corrected/WEB333.csv']:
       newline=line.split('\n')[0] #Trims off extraneous newline
+      items=newline.split(',')
+      if '' not in items[1:]:
+        if '0' in items[1:] or '1' in items[1:]:
+          rowdict[items[0]]=items[1:]
+        else:
+          predators=items[1:]
     else:
-      newline=line.split('\r')[0]
-    items=newline.split(',')
-    if '' not in items[1:]:
-      if '0' in items[1:] or '1' in items[1:]:
-        rowdict[items[0]]=items[1:]
-      else:
-        predators=items[1:]
+      newline=line.split('\r')
+      for item in newline:
+        items=item.split(',')
+        if '' not in items[1:]:
+            if '0' in items[1:] or '1' in items[1:]:
+              rowdict[items[0]]=items[1:]
+            else:
+              predators=items[1:]
   f.close()
   predpreydict={}
   specieslist=set()
