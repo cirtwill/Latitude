@@ -12,28 +12,16 @@ def create_predprey_list(webfile):
   rowdict={}
   f=open(webfile,'r')
   for line in f:
-    if webfile not in ['../mod_data/Error_webs_corrected/WEB294.csv','../mod_data/Error_webs_corrected/WEB333.csv']:
-      newline=line.split('\n')[0] #Trims off extraneous newline
-      items=newline.split(',')
-      if '' not in items[1:]:
-        if '0' in items[1:] or '1' in items[1:]:
-          rowdict[items[0]]=items[1:]
-        else:
-          predators=items[1:]
-    else:
-      newline=line.split('\r')
-      for item in newline:
-        items=item.split(',')
-        if '' not in items[1:]:
-            if '0' in items[1:] or '1' in items[1:]:
-              rowdict[items[0]]=items[1:]
-            else:
-              predators=items[1:]
+    newline=line.split('\n')[0] #Trims off extraneous newline
+    items=newline.split(',')
+    if '' not in items[1:]:
+      if '0' in items[1:] or '1' in items[1:]:
+        rowdict[items[0]]=items[1:]
+      else:
+        predators=items[1:]
   f.close()
   predpreydict={}
   specieslist=set()
-
-  # print webfile
   for pred in predators:
     specieslist.add(pred)
     preylist=[]
@@ -55,11 +43,23 @@ def create_predprey_list(webfile):
             if float(rowdict[prey][position][0])>0: # Another web has letters to indicate life stages.
               preylist.append(prey)
           except:
-            print webfile, pred, 'error'
+            print rowdict[prey], prey, len(rowdict[prey])            
+            print webfile, pred, 'error', position
     predpreydict[pred]=preylist
   numberdict={}
   i = 1
-
+  # Gotta finish checking these, check them the other way.
+  if set(rowdict.keys())&set(predators)!=set(rowdict.keys()):
+  # if set(predators)&set(rowdict.keys())!=set(predators):
+    web=webfile.split('WEB')[-1].split('.')[0]
+    # Some webs are known to by asymmetric. That's fine.
+    # Webs with extra resources:
+    if web not in ['114','117','119','120','153','154','18','180','181','182','183','202','213','214','215','216','217','218','219','22','220','221','222','223','224','225','23','236','238','24','240','244','246','249','250','251','252','253','254','255','256','257','258','259','26','260','261','262','265','266','267','268','269','288','289','290','291','292','293','307','320','321','322','323','324','33','339','342','350','351','37','38','39','41','60','80']:
+    # Webs with extra predators:
+    # if web not in ['114','117','119','120','153','154','18','180','181','182','183','202','213','22','220','221','23','236','238','24','26','290','291','292','293','307','33','342','350','37','38','39','41','60','80']:
+      print sorted(set(predators)-set(rowdict.keys())), sorted(set(rowdict.keys())-set(predators))
+      print webfile
+      sys.exit()
   for species in specieslist:
     numberdict[species]=i
     i=i+1
@@ -96,6 +96,7 @@ def main():
 
   directory='../mod_data/Error_webs_corrected/'
   filelist=os.listdir(directory)
+  # for fil in ['WEB265.csv']:
   for fil in filelist:
     print fil
     # if fil not in os.listdir('../mod_data/lists/pred-prey-lists-to-use'):
