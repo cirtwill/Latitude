@@ -196,6 +196,7 @@ def food_web_properties(directory,item,G,predprey,spp,preddict,preydict,linkdict
     # prey=len(G.successors(node))
     # print prey, len(G.edges(node))
     number_prey.append(prey)
+    altlinks=len(preddict[node]+preydict[node])
     links=len(set(preddict[node]).union(set(preydict[node])))
     LperS.append(links)
 
