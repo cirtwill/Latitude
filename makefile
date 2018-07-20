@@ -30,7 +30,6 @@ manuscript/Figures/Jackknife/&.eps : code/jackknife_display_figure.py Jackknifed
 manuscript/Figures/by_TL/marginal/%.eps : code/TL_marginal_latitude.py non_TS/proportions/marginals/*.tsv non_TS/summary-properties.tsv
 	cd code && \
 	python TL_marginal_latitude.py && \
-	python TL_scaling_justlines.py && \
 	cd ../
 
 # Figures depend on the figure making code, datafiles
