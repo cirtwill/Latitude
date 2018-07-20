@@ -1,84 +1,78 @@
 PlnkF1c: sardine	1
-PlnkF2bi: Chinook subyearling	2
-"BnthF4: Gadidae (cod & haddock & pollock)"	3
+P2: small phytoplankton	2
+CrnB2: Tanner crab	3
 PiscF5: dogfish aggregate	4
 PlnkF1e: anchovy	5
 Z2f: large jellyfish 	6
 BnthF3: benthivorous rockfish	7
-PlnkF1b: shad	8
-Z1b: small invertebrate larvae	9
-CrnB3: misc. epifauna (carnivorous)	10
+PlnkF1d: herring	8
+PlnkF1b: shad	9
+Z1b: small invertebrate larvae	10
 PiscF6: hake	11
 CrnB1: Dungeness crab	12
 Z1c: invertebrate eggs	13
 PlnkF2bii: Chinook yearling	14
-SspB2: bivalves	15
+Import	15
 DepB2a: Pandalus spp.	16
 PlnkF4: planktivorous rockfish	17
 DepB3: mysids	18
 PiscF9: flatfish (water-column feeders)	19
 BnthF2: misc. small benthic fishes	20
-SB3: gulls & terns	21
-PlnkF2a: coho yearling	22
-"PiscF8: Hexagrammidae (lingcod & greenling)"	23
-Import	24
-BnthF1: skates & rays	25
-Z2d: fish eggs	26
-CrnB2: Tanner crab	27
-D3: benthic detritus	28
-SB6: other pelagic seabirds	29
-DepB2b: other epibenthic shrimp (Caridea)	30
-PiscF3a: jack mackerel	31
-PiscF2: shark aggregate	32
-"BnthF4: Gadidae (cod; haddock; pollock)"	33
-PiscF4: piscivorous rockfish	34
-"Z2b: pelagic shrimp (Sergestidae; Panaeidae)"	35
-PlnkF1a: smelt aggregate	36
-JuvF1: juvenile rockfish	37
-"DepB5: benthic amphipods; isopods; and cumaceans"	38
-DepB1: infauna	39
-PlnkF2c: other juvenile salmon	40
-DepB4: echinoderms	41
-Z2a: pelagic amphipods	42
-PiscMM1: small pinnipeds	43
-Z3a: E. pacifica (adult & juveniles) 	44
-MZ: micro-zooplankton	45
-D2: fishery offal	46
-PlnkF1f: saury	47
+Z3b: T. spinifera (adult; juveniles) 	21
+Z1d: pteropods	22
+Z1ai: copepods (large >= 0.025mg C)	23
+SB8: storm-petrels	24
+BnthF7: grenadier	25
+D3: benthic detritus	26
+SB6: other pelagic seabirds	27
+DepB2b: other epibenthic shrimp (Caridea)	28
+PlnkF3: mesopelagic fish aggregate	29
+PiscF2: shark aggregate	30
+DepB5: benthic amphipods; isopods; and cumaceans	31
+D2: fishery offal	32
+BnthF1: skates; rays	33
+PlnkF1a: smelt aggregate	34
+PiscF8: Hexagrammidae (lingcod; greenling)	35
+DepB1: infauna	36
+PlnkF2c: other juvenile salmon	37
+DepB4: echinoderms	38
+Z2a: pelagic amphipods	39
+Z2b: pelagic shrimp (Sergestidae; Panaeidae)	40
+PiscMM1: small pinnipeds	41
+PlnkMM2: baleen whales	42
+PiscF3a: jack mackerel	43
+MZ: micro-zooplankton	44
+BnthF4: Gadidae (cod; haddock; pollock)	45
+PlnkF1f: saury	46
+SB3: gulls; terns	47
 PiscF7: sablefish	48
-SB4: alcids	49
+Z3a: E. pacifica (adult; juveniles) 	49
 D1: pelagic detritus	50
 PiscF1c: other salmon aggregate	51
-"DepB5: benthic amphipods & isopods & and cumaceans"	52
+SB4: alcids	52
 Z2e: small jellyfish 	53
-Z3b: T. spinifera (adult & juveniles) 	54
-PlnkMM1: gray whales	55
-PiscMM2: large pinnipeds	56
-PlnkF3: mesopelagic fish aggregate	57
-PlnkF1d: herring	58
-PlnkMM2: baleen whales	59
-BnthF7: grenadier	60
-Z2c: other macro-zooplankton 	61
-SB8: storm-petrels	62
-PiscF3b: Pacific mackerel	63
-SB7: coastal seabirds (divers)	64
-PiscF1a: coho	65
-JuvF2: juvenile fish (other)	66
-SspB3: misc. epifauna (suspension feeders)	67
-"Z1ai: copepods (large >= 0.025mg C)"	68
-"Z1ai: copepods (large; >= 0.025mg C)"	69
-P1: large phytoplankton	70
-SB5: large pelagic seabirds	71
-C: cephalopod aggregate	72
-"Z1aii: copepods (small < 0.025mg C)"	73
-BnthF6: flatfish (small)	74
-PiscMM4: toothed whales	75
-"Z1aii: copepods (small; < 0.025mg C)"	76
-SB2: common murre	77
-"Z2b: pelagic shrimp (Sergestidae & Panaeidae)"	78
-"PiscF8: Hexagrammidae (lingcod; greenling)"	79
-BnthF5: flatfish (benthic feeders)	80
-P2: small phytoplankton	81
-SB1: sooty shearwaters	82
-PiscF1b: Chinook	83
-Z1d: pteropods	84
+PlnkMM1: gray whales	54
+PiscMM2: large pinnipeds	55
+JuvF1: juvenile rockfish	56
+PlnkF2bi: Chinook subyearling	57
+Z2c: other macro-zooplankton 	58
+Z2d: fish eggs	59
+SB7: coastal seabirds (divers)	60
+PiscF1a: coho	61
+JuvF2: juvenile fish (other)	62
+SspB3: misc. epifauna (suspension feeders)	63
+CrnB3: misc. epifauna (carnivorous)	64
+P1: large phytoplankton	65
+SB5: large pelagic seabirds	66
+C: cephalopod aggregate	67
+BnthF6: flatfish (small)	68
+PiscMM4: toothed whales	69
+SB2: common murre	70
+PlnkF2a: coho yearling	71
+SspB2: bivalves	72
+BnthF5: flatfish (benthic feeders)	73
+PiscF3b: Pacific mackerel	74
+SB1: sooty shearwaters	75
+PiscF4: piscivorous rockfish	76
+PiscF1b: Chinook	77
+Z1aii: copepods (small < 0.025mg C)	78

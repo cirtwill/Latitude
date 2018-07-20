@@ -320,8 +320,8 @@ def websorter(metafile,directory,Edir,bibfile,webkeys):
   outfile.write(u'\t'.join(header).encode('utf-8').strip())
   outfile.write('\n')
 
-  # for item in uselist:
-  for item in ['WEB333.web']:
+  for item in uselist:
+  # for item in ['WEB333.web']:
     print item
     if item.split('.')[0] in dubious_webs:
       outputs=food_web_properties(Edir,item,trophic_species_web(Edir,item))
