@@ -6,18 +6,13 @@
 \usepackage{multirow}
 \usepackage{geometry}
 \usepackage{pdflscape}
-%\usepackage{rotating}
-% make Figure 1 etc bold
 \usepackage[labelfont=bf]{caption}
 \usepackage{setspace}
 
 \usepackage[running]{lineno}
 
-% let's get some nature formatted citations
-%\usepackage{overcite}
-\usepackage[round]{natbib}
+\usepackage[numbers,sort&compress]{natbib}
 
-% some cheats to reduce the need to type complicated bits and pieces
 \newcommand{\expect}[1]{\left\langle #1 \right\rangle}
 \newcommand{\etal}{\textit{et al.\ }}
 
@@ -28,13 +23,11 @@
         \renewcommand{\thefigure}{S\arabic{figure}}%
      }
 
-% the abstract formatting
 \newenvironment{sciabstract}{%
 \begin{quote} \bf}
 {\end{quote}}
 \renewcommand\refname{References}
 
-% margin sizes`
 \topmargin 0.0cm
 \oddsidemargin 0.2cm
 
@@ -44,15 +37,13 @@
 \begin{document}
 
 
-\title{Specialisation in food webs scales with species richness but not with latitude}
-\author{Alyssa R. Cirtwill$^{1,2}$, Daniel B. Stouffer$^{1,3}$, Tamara N. Romanuk$^{2}$}
-\date{\small$^1$School of Biological Sciences\\University of Canterbury\\
+\title{Latitudinal gradients in biotic niche breadth vary across ecosystem types.}
+\author{Alyssa R. Cirtwill$^{1,2}$, Daniel B. Stouffer$^{1}$, Tamara N. Romanuk$^{2}$}
+\date{\small$^1$Centre for Integrative Ecology\\School of Biological Sciences\\University of Canterbury\\
 Private Bag 4800\\Christchurch 8140, New Zealand \\
 \medskip$^2$Department of Biology\\
 Life Science Centre, Dalhousie University\\1355 Oxford St., P0 BOX 15000\\
-Halifax NS, B3H 4R2, Canada\\
-\medskip$^3$Centre for Integrative Ecology\\School of Biological Sciences\\University of Canterbury\\
-Private Bag 4800\\Christchurch 8140, New Zealand \\}
+Halifax NS, B3H 4R2, Canada\\}
 
 \maketitle
 \baselineskip=8.5mm
@@ -63,115 +54,160 @@ Private Bag 4800\\Christchurch 8140, New Zealand \\}
 \section*{Abstract}
 
 Several properties of food webs---the networks of feeding links between
-species---are known to vary systematically with the species richness of the underlying
-community.  Under the ``latitude-niche breadth hypothesis'', which predicts
-that species in the tropics will tend to evolve narrower niches, one might
-expect that these scaling relationships could also be affected by latitude. To
-test this hypothesis, we analysed the scaling relationships between species
-richness and average generality, vulnerability, and links per species across a
-set of 163 empirical food webs.  We also investigated scaling relationships
-between the three food-web properties and the proportions of the web made up
-by basal resources, intermediate consumers, and top predators. While we
-observed no effect of latitude on scaling relationships with species richness
-in the estuarine, marine, and terrestrial food webs, there were strong effects
-of latitude on scaling relationships in the freshwater food webs. In these
-communities, the latitude-niche breadth hypothesis appears to hold true while
-in other habitat types niche breadth appears to vary little. These contrasting
-findings indicate that it may be more important to account for habitat than
-latitude when exploring gradients in food-web structure.
+species---are known to vary systematically with the species richness of the
+underlying community.  Under the ``latitude-niche breadth hypothesis'', which
+predicts that species in the tropics will tend to evolve narrower niches, one
+might expect that these scaling relationships could also be affected by
+latitude. To test this hypothesis, we analysed the scaling relationships
+between species richness and average generality, vulnerability, and links per
+species across a set of 196 empirical food webs. In estuarine, marine, and 
+terrestrial food webs there was no effect of latitude on any scaling relationship,
+suggesting constant niche breadth in these habitats. In freshwater communities,
+on the other hand, there were strong effects of latitude on scaling relationships,
+supporting the latitude-niche breadth hypothesis. These contrasting findings
+indicate that it may be more important to account for habitat than latitude
+when exploring gradients in food-web structure.
 
 \end{spacing}
 
-\linenumbers
+% \linenumbers
 
 \section*{Introduction} 
 
-  %Food webs are a thing. (Mention gen, vul, LS.) %Food webs have strong scaling structure.
-
   Food webs --networks of feeding links between species-- have been used for
   several decades to summarise the structure of  ecological
-  communities~\citep{Paine1966,Williams2000,Petchey2008} and to understand how
+  communities~\cite{Paine1966,Williams2000,Petchey2008} and to understand how
   that structure relates to environmental variables  such as habitat
-  type~\citep{Briand1983,Shurin2006}, primary
-  productivity~\citep{Townsend1998,Thompson2005a,Vermaat2009}, and
-  climate~\citep{Petchey2010,Baiser2012}. The latter variables in turn have
+  type~\cite{Briand1983,Shurin2006}, primary
+  productivity~\cite{Townsend1998,Thompson2005a,Vermaat2009}, and
+  climate~\cite{Petchey2010,Baiser2012}. The latter variables in turn have
   strong gradients over latitude, with productivity and temperature both being
   higher in the tropics while  climate is more variable at high
-  latitudes~\citep{Field1998}. These variables affect both the resources
+  latitudes~\cite{Field1998}. These variables affect both the resources
   available and species'
-  metabolisms~\citep{White2007,OConnor2009,Hechinger2011,White2011}, and have
+  metabolisms~\cite{White2007,OConnor2009,Hechinger2011,White2011}, and have
   been proposed as determinants of the strength of  interspecific
-  interactions~\citep{Schemske2009,Lang2012,Schleuning2012}.  By modulating
+  interactions~\cite{Schemske2009,Lang2012,Schleuning2012}.  By modulating
   interactions between species, latitudinal gradients may also shape food-web
   structure. Indeed, these latitudinal environmental gradients have been put
   forward as potential drivers for the  latitudinal gradient in species
   richness, one of the most general and robust patterns in
-  ecology~\citep{Kaufman1995,Macpherson2002,Schemske2009}.
-
-  % These gradients, together with the strength and generality of associations between biological processes and environmental variables, suggest that variation in network structure 
-  % may also be explained by ecological gradients \citep{Baiser2012}. 
+  ecology~\cite{Kaufman1995,Macpherson2002,Schemske2009}.
 
 
-  One proposed link between species richness and latitude is the ``latitude-niche breadth hypothesis''~\citep{Vazquez2004}. 
-  This hypothesis predicts that decreased seasonality in the tropics should lead to more stable populations, which in
-  turn should evolve smaller niches~\citep{Vazquez2004}. These narrow niches should therefore allow more species to 
-  coexist in the tropics than at higher latitudes. Alternatively, the higher productivity of the tropics~\citep{Brown2004}
-  may result in a broader niche space~\citep{Davies2007} which could also sustain greater biodiversity even if niche 
-  sizes are globally similar. Although the assumptions of the latitude-niche breadth hypothesis are only equivocally 
-  supported~\citep{Vazquez2004}, it remains a compelling potential mechanism for the latitudinal gradient in species 
-  richness~\citep{Lappalainen2006,Krasnov2008,Slove2010}. 
+  One proposed link between species richness and latitude is the 
+  ``latitude-niche breadth hypothesis''~\cite{Vazquez2004}.  This hypothesis 
+  predicts that decreased seasonality in the tropics should lead to more stable
+  populations, which in turn should evolve smaller niches~\cite{Vazquez2004}.
+  These narrow niches should therefore allow more species to  coexist in the
+  tropics than at higher latitudes. Alternatively, the higher productivity of
+  the tropics~\cite{Brown2004} may result in a broader niche
+  space~\cite{Davies2007} which could also sustain greater biodiversity even
+  if niche  sizes are globally similar. Although the assumptions of the
+  latitude-niche breadth hypothesis are only equivocally
+  supported~\cite{Vazquez2004}, it remains a compelling potential mechanism
+  for the latitudinal gradient in species
+  richness~\cite{Lappalainen2006,Krasnov2008,Slove2010}.
 
 
-  If the latitude-niche breadth hypothesis is correct, there should also be direct relationships between latitude and the
-  degree of specialisation (i.e., the breadth of the Eltonian niche; ~\citealp{Elton1927}) of species within food webs.
-  Attempts to unravel these effects, however,
-  are complicated by known relationships between species richness and many other network properties~\citep{Riede2010}. 
-  For example,
-  narrower niches imply fewer links per species (i.e., greater specialisation) in the tropics (\citealp{Marra1997,Dyer2007};
-  but see~\citealp{Schleuning2012}). However,
-  average numbers of links per species tend to increase in larger food webs~\citep{Dunne2006,Riede2010}. This means
-  that a latitudinal effect on specialisation may be obscured by a latitudinal gradient in species richness. If this is
-  the case, it may still be possible to uncover effects of latitude on specialisation by examining the shape of the scaling 
-  relationship between specialisation and species richness over changing latitude. Here, we use three measures of specialisation:
-  mean links per species, mean generality (number of prey), and mean vulnerability (number of predators). By testing whether
-  latitude affects the scaling of each property with species richness, we test effects of latitude on specialisation implied by
-  the ``latitude-niche breadth hypothesis''.
+  If the latitude-niche breadth hypothesis is correct, there should also be
+  direct relationships between latitude and the degree of specialisation
+  (i.e., the breadth of the Eltonian niche; ~\cite{Elton1927,Leibold2010}) of
+  species within food webs. Specifically, narrower niches in the tropics would
+  equate to greater specialisation (narrower niches) while constant niche
+  sizes but greater productivity would translate to constant specialisation
+  and niche width across latitude (Fig.~\ref{concept}). Attempts to unravel
+  these effects, however, are complicated by known relationships between
+  species richness and many other network properties~\cite{Riede2010}.  For
+  example, narrower niches imply fewer links per species (i.e., greater
+  specialisation) in the tropics (\cite{Marra1997,Dyer2007}; but
+  see~\cite{Schleuning2012}). However, average numbers of links per species
+  tend to increase in larger food webs~\cite{Dunne2006,Riede2010}. This means
+  that a latitudinal effect on specialisation may be obscured by a latitudinal
+  gradient in species richness.
+
+
+  If this is the case, it may still be possible to uncover effects of latitude
+  on specialisation by examining the shape of the scaling relationship between
+  specialisation and species richness over changing latitude.  By testing
+  whether latitude affects the scaling of each property with species richness,
+  we test for the effects of latitude on specialisation predicted by the
+  ``latitude-niche breadth hypothesis'' (Fig.~\ref{concept}).  If the scaling
+  of specialisation with species richness is weaker in the  tropics (i.e., if
+  species gain fewer links, predators, or prey as the size  of the network
+  increases), this will indicate narrower niches at the tropics.  If, however,
+  the scaling of specialisation with species richness does not  vary over
+  latitude, this will indicate that niches are similarly-sized worldwide but
+  that there is a broader niche space in the tropics. Additionally, as food
+  webs describing different ecosystem types may differ in their
+  topology~\cite{Dunne2004,Shurin2006}, we also explored the differences in
+  scaling relationships across ecosystem types. Here, we use three measures of
+  specialisation; mean links per species, mean generality (number of prey),
+  and mean vulnerability (number of predators).
 
 
 \section*{Methods}
 
   \subsection*{Data Set} 
 
-    We compiled a list of 166 empirical food webs from
+    We compiled a list of 196 empirical food webs from
     multiple sources (see \emph{Appendix S1} for web origins and selection
     criteria). We recorded study site latitude from the original source where
     possible or, where study sites were described but exact coordinates were not
-    given, obtained estimated coordinates using Google Earth~\citep{GoogleEarth}.
-    We then divided the species in each web into basal resources (those species with
-    consumers but no prey), top predators (those species with prey but no predators),
-    and intermediate consumers (species with both predators and prey, including cannibalistic
-    species). 
+    given, obtained estimated coordinates using Google Earth~\cite{GoogleEarth}.
+    If a range of latitudes (e.g. $42-49^{\circ}N$) was provided, we used the midpoint
+    of this range. We grouped food webs by ecosystem type (stream, N=71; lake, N=47; marine, 
+    N=28; estuarine, N=18; and terrestrial, N=31) according to their designation in 
+    previous aggregations of food webs (i.e.,~\cite{GlobalWeb,Riede2011,Dunne2013}).
 
 
     As the food webs in this dataset are derived from a variety of sources and were compiled over many decades, it
     is likely that they vary in their resolution and in the amount of sampling effort invested in their assembly.
-    Many analyses of food-web structure attempt to reduce this variation by aggregating species with identical predator and prey
-    sets to form ``trophic species'' webs ~\citep{Martinez1991,Dunne2004,Vermaat2009,Dunne2013}. As our study
+    Many analyses of food-web structure attempt to reduce this variation by using food webs comprised of ``trophic
+    species'' --aggregations of species with identical sets of predators and prey-- rather than  
+    species \emph{per se}~\cite{Martinez1991,Dunne2004,Vermaat2009,Dunne2013}. As our study
     is concerned directly with the number of species at a particular latitude, however, we did not wish to ignore 
-    species with identical sets of interactions. We therefore analysed both original and trophic-species versions
+    species with identical sets of interactions. We therefore analysed both original (i.e., without aggregating 
+    any species) and trophic-species (i.e., after aggregating species with identical predators and prey) versions
     of the dataset; in each case using the number of species and 
-    links in each web to calculate the mean link density (number of links per species), mean generality 
+    feeding links in each web to calculate the mean link density (number of links per species), mean generality 
     (number of prey per species), and mean vulnerability (number of predators per species) of the web. 
     The version of the dataset used did not qualitatively change the results, suggesting that
-    the scaling relationships between species richness, other food-web properties, and latitude are very 
-    similar whether or not redundant species are included. For simplicity, here we present only
-    the results for the original webs.
+    the scaling relationships between species richness and specialisation across ecosystem type and latitude are very 
+    similar whether or not species with identical sets of predators and prey are included. For simplicity, 
+    here we present only the results for the original webs.
 
 
-  \subsection*{Scaling Relationships with S}
+  \subsection*{Gradients over Latitude}
+
+    To put our dataset in the context of other research on latitudinal gradients in species richness,
+    we first examined simple linear relationships between latitude and each of 
+    species richness, links per species, generality, and vulnerability. We fit models of the form
+
+    \begin{equation}
+    \label{Latfull}
+    S_{i} = \alpha_{0} + \alpha_{1} L_{i} + \alpha_{2} E_{i} + \alpha_{3} L_{i} E_{i} + \epsilon_{i} ,
+    \end{equation}
+
+    \noindent where $S_{i}$ is the species richness of web $i$, $L_{i}$ its absolute
+    latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
+    variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
+    marine, lake, and terrestrial networks with estuarine
+    networks corresponding to $E_{i}=0$) and $\epsilon_{i}$ is a residual error term. 
+    We next calculated the AIC
+    of the maximal model as well as the AIC's of a suite of candidate simplified models identified
+    using the R~\cite{R} function dredge from package MuMIn~\cite{MuMIn}. 
+    Simplified models were obtained by
+    systematically removing all possible combinations of terms from the full model.
+    The best-fitting model was then determined to be the model with the fewest terms 
+    where $\Delta$AIC\textless2, as this model is the least likely to suffer from over-fitting. 
+    
+
+
+  \subsection*{Scaling Relationships with Species Richness}
 
     The scaling relationship between link density ($Z$) and species richness ($S$)
-    has been shown to be a power law~\citep{Riede2010} of the form 
+    has been shown to be a power law~\cite{Riede2010} of the form 
 
     \begin{equation}
     \label{Power}
@@ -185,22 +221,21 @@ latitude when exploring gradients in food-web structure.
     \log{Z_{i}} \sim \log{\alpha} + \beta\log{S_{i}}  .
     \end{equation}
 
-    \noindent As the two forms imply a statistical fit to the data to different error 
+    \noindent As the two forms imply a statistical fit of the data to different error 
     distributions, neither of which has strong
-    \emph{a priori} justification in our dataset, we followed the recommendations in~\citet{Xiao2011}
+    \emph{a priori} justification in our dataset, we followed the recommendations in~\cite{Xiao2011}
     to compare the two model formulations explicitly (see \emph{Appendix S2} for details). 
     The logarithmic form (equation~\ref{Loglog}) provided the better fit to the data,
     as did the logarithmic forms of similar models for the scaling of generality and vulnerability. 
-    We therefore used and present logarithmic models throughout the rest of the study.
+    We therefore used and present logarithmic models throughout the rest of the analyses.
 
 
   \subsection*{Effect of Latitude on Scaling}
 
-    % Logarithm of a sum is awful:   log(a+c) = log(a) + log(1+b^[log(c)-log(a)]) But can probably feed that into R...
 
     After determining the appropriate form of the scaling relationship, we
     then assessed the impact of latitude on the scaling relationships between
-    species richness and  link density, generality, vulnerability. In the
+    species richness and link density, generality, vulnerability. In the
     context of the scaling relationships above, note  that this implies that
     we wished to determine the effect of latitude on the scaling exponent
     $\beta$. We included a categorical variable for
@@ -219,7 +254,7 @@ latitude when exploring gradients in food-web structure.
     latitude (degrees north or south  regardless of direction), $E_{i}$ is a categorical
     variable indicating the ecosystem type of network $i$ (comprising terms for stream, 
     marine, lake, and terrestrial networks with estuarine
-    networks providing the intercept) and $\epsilon_{i}$ is a residual error term.
+    networks corresponding to $E_{i}=0$) and $\epsilon_{i}$ is a residual error term.
     The logarithmic formulation of this model is
 
     \begin{equation}
@@ -227,35 +262,38 @@ latitude when exploring gradients in food-web structure.
     \log{Z_{i}} = \log{\alpha}+\beta_{0}\log{S_{i}} + \beta_{1}L\log{S_{i}} +\beta_{2}E\log{S_{i}} +\beta_{3}LE\log{S_{i}} +\epsilon_{i} .
     \end{equation}
 
-    We then simplified each model. To do this, we calculated the AIC of the
-    maximal model as well as the AIC's of a suite of candidate simplified
-    models identified using the R~\citep{R} function dredge from package
-    MuMIn~\citep{MuMIn}.  Simplified models were obtained by systematically
-    removing all possible combinations  of terms from the full model with the
-    restriction that species richness was retained in all reduced models. The
-    best-fitting model was then determined to be the model with the fewest
-    terms  where $\Delta$AIC\textless2. If several models shared the fewest
-    number of terms  and had $\Delta$AIC\textless2, the model with the lowest
-    AIC in that set was chosen as the best-fit model.
-
-
-  \section*{Scaling by Trophic Levels}
-
-    We were also interested in the ways that scaling relationships with species richness might
-    be affected by changes to the distribution of species among trophic levels. To
-    that end, we repeated all of the above analyses replacing species richness by
-    proportion of basal resources, proportion of intermediate consumers,
-    or proportion of top predators. All model fitting and model
-    simplification procedures were identical to those described for species
-    richness.
+    We then simplified versions of model~\ref{LogLat} for link density, generality, and vulnerability following the procedure described above.
+    As a supplemental check to ensure that variation in sampling effort
+    across food webs was not responsible for the trends we observed, we then
+    repeated our analyses using jackknifed data sets in which we 1) sequentially
+    removed each food web in the dataset and 2) sequentially removed sets of food webs
+    that shared a common author. The first jackknife essentially controls for the
+    influence of any single outlier, while the second controls for the influence
+    of particular research groups, some of which contributed large numbers of food
+    webs (up to 27) to the dataset. Parameter estimates for the simplified models 
+    varied very little across either jackknife test (see \emph{Appendix S3} for details),
+    indicating that the trends we observed were not due to either strong outliers or
+    to substantial differences in sampling effort across research groups.
 
 
 \section*{Results}
 
-  Link density, generality, and vulnerability each increased with increasing
+  Link density (mean number of feeding links per species), generality (mean
+  number of prey per species), and vulnerability (mean number of predators per
+  species) were strongly and positively correlated ($R^2$=0.891 for link
+  density and generality, $R^2$\textgreater0.999 for link density and
+  vulnerability, and $R^2$=0.890 for generality and vulnerability). Contrary
+  to the expected latitudinal gradient, the best-fit version of
+  equation~(\ref{Latfull}) did not include a significant
+  effect of latitude on species richness for any ecosystem type. Further, there were no significant
+  relationships between link density, generality, or vulnerability with
+  latitude for any ecosystem type.
+
+
+  Each measure of specialisation increased with increasing
   species richness ($\beta_0$=0.637, $p$\textless0.001; $\beta_0$=0.553,
   $p$\textless0.001; and $\beta_0$=0.637, $p$\textless0.001, respectively;
-  Fig~\ref{props_v_lat}).For estuarine, marine, and terrestrial food webs the
+  Fig.~\ref{props_v_lat}). For estuarine, marine, and terrestrial food webs the
   strength of this scaling did not vary with latitude
   ($\beta_{Latitude}$=-0.001, $p$=0.365 for link density;
   $\beta_{Latitude}$=-0.001, $p$=0.535 for generality; and
@@ -266,98 +304,45 @@ latitude when exploring gradients in food-web structure.
   $\beta_{Latitude:Lake}$=0.004, $p$=0.018, respectively). In stream food
   webs, generality increased more rapidly towards the poles
   ($\beta_{Latitude:Stream}$=0.007, $p$=0.001) while link density and
-  vulnerability did not vary with latitude.
-
-
-  Unlike species richness, only generality showed an overall increase with
-  increasing proportions of basal resources in a web ($\beta_0$=0.019,
-  $p$=0.859; $\beta_0$=0.383, $p$=0.001; and $\beta_0$=0.019, $p$=0.855 for
-  link density, generality, and vulnerability, respectively;
-  Fig.~\ref{props_v_lat}). In each case, however, there were substantial
-  effects of latitude on the scaling relationships. Thus, the scaling
-  exponents for link density and vulnerability were negative for estuarine,
-  lake, and stream communities and became more negative towards the poles
-  ($\beta_{Latitude}$=-0.008, $p$\textless0.001 and $\beta_{Latitude}$=-0.008,
-  $p$\textless0.001, respectively; Fig.~\ref{BIT}). For the scaling of link
-  density and vulnerability in marine and terrestrial communities, the overall
-  effect of latitude on scaling was positive ($\beta_{Latitude:Marine}$=0.011,
-  $p$=0.020; $\beta_{Latitude:Terrestrial}$=0.016, $p$\textless0.001 and
-  $\beta_{Latitude:Marine}$=0.011, $p$=0.020;
-  $\beta_{Latitude:Terrestrial}$=0.016, $p$\textless0.001, respectively) such
-  that there was weak scaling at most latitudes. In contrast, the scaling
-  exponent of generality with the proportion of basal resources was positive
-  near the equator and negative near the poles in estuarine, lake, and stream
-  communities ($\beta_{Latitude}$=-0.010, $p$\textless0.001) while there was
-  very little change in the scaling exponents for marine and terrestrial
-  communities ($\beta_{Latitude:Marine}$=0.013, $p$=0.010;
-  $\beta_{Latitude:Terrestrial}$=0.019, $p$\textless0.001).
-
-
-  As with species richness, link density, generality, and vulnerability
-  generally increased with the proportion of intermediate consumers in a web
-  ($\beta_0$=0.771, $p$\textless0.001; $\beta_0$=0.349, $p$=0.235; and
-  $\beta_0$=0.771, $p$\textless0.001 respectively; Fig.~\ref{props_v_lat}). 
-  The best-fit models for link density and vulnerability did not include
-  any effect of latitude. In contrast, the strength of the scaling relationship
-  for generality increased weakly towards the poles in estuarine, marine, and
-  terrestrial food webs ($\beta_{Latitude}$=0.008, $p$=0.204) but decreased 
-  towards the poles in lakes and streams ($\beta_{Latitude:Lake}$=-0.021, $p$=0.018
-  and $\beta_{Latitude:Stream}$=-0.035, $p$=0.001; Fig~\ref{BIT}).
-
-
-  In contrast to the generally positive scaling relationships above, link
-  density, generality, and vulnerability decreased as the proportion of top
-  predators increased ($\beta_0$=-0.532, $p$\textless0.001; $\beta_0$=-0.454,
-  $p$\textless0.001; and $\beta_0$=-0.532, $p$\textless0.001 respectively;
-  Fig~\ref{props_v_lat}). For estuarine, lake, and marine food webs the
-  strength of this scaling did not vary significantly with latitude
-  ($\beta_{Latitude}$=-0.001, $p$=0.481 for link density;
-  $\beta_{Latitude}$=-0.001, $p$=0.472 for vulnerability).
-  In stream and terrestrial food webs, however, scaling was more strongly negative in the 
-  tropics and near zero near the poles ($\beta_{Latitude:Stream}$=0.012, $p$=0.001 
-  and $\beta_{Latitude:Terrestrial}$=0.009, $p$=0.015 for link density;
-  $\beta_{Latitude:Stream}$=0.012, $p$=0.001 and $\beta_{Latitude:Terrestrial}$=0.009, $p$=0.015
-  for vulnerability; Fig.~\ref{BIT}. The best-fit model for generality did not include any terms
-  for latitude in any ecosystem type.
+  vulnerability did not vary with latitude (i.e., the interaction term 
+  $\beta_{Latitude:Stream}$ was not retained in the best-fit models).
 
 
 \section*{Discussion}
 
   The tendency of food-web structure to exhibit scaling relationships with
-  species richness has been well-established~\citep{Dunne2004,Riede2010}. As
+  species richness has been well-established~\cite{Dunne2004,Riede2010}. As
   species richness in particular is also known to vary systematically over
-  latitude~\citep{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009},
+  latitude~\cite{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009},
   intuitively one might suspect that any relationship between food-web
   properties such as generality might be due to the latitudinal gradient in
-  species richness. In this dataset, however, we did not find overall
-  latitudinal gradients in species richness, links per species,generality,
-  vulnerability, or the proportions of food webs accounted for by basal
-  resources, intermediate consumers, and top predators, except in lake and
-  stream food webs where the proportions of top predators tended to decrease
-  towards the poles  (see \emph{Appendix S3} for details).
+  species richness. In this dataset, however, we found no evidence to support
+  latitudinal gradients in species richness, links per species, generality, or
+  vulnerability.
 
 
   The lack of a latitudinal gradient in species richness in this dataset
   contrasts strongly with other
-  studies~\citep{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009}. As
+  studies~\cite{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009}. As
   numbers of species and links included in a food web vary strongly with
   sampling effort as well as with the underlying diversity of the study area,
   it is possible that the lack of latitudinal trends here is a result of
   researchers tending to expend similar amounts of sampling effort across
   studies. This could result in food webs describing species-rich tropical
-  communities omitting more species and links than species-poor arctic
-  communities. In addition, it is worth noting that gradients in species
-  richness are generally measured for a single taxonomic group at a
-  time~\citep{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009}. It is possible
-  that these taxa are not well-represented in our food webs and that the
-  dominant taxa in them do not have an underlying latitudinal gradient in
-  richness.In either case, the lack of a strong association between species
-  richness and latitude in any ecosystem type means that any effect of
-  latitude on other scaling relationships is not being driven by an underlying
-  latitudinal gradient in species richness. The lack of confounding effects of
-  latitude allows us to more clearly assess effects of latitude on scaling
-  with species richness and proportions of species in different trophic
-  levels.
+  communities omitting more species and links than studies of species-poor
+  arctic communities if research groups spend similar person-hours assembling
+  webs and can observe similar numbers of species and links per person-hour.
+  In addition, it is worth noting that gradients in species richness are
+  generally measured for a single taxonomic group at a
+  time~\cite{Kaufman1995,Macpherson2002,Hillebrand2004,Schemske2009}. It is
+  possible that these taxa are not well-represented in our food webs and that
+  the dominant taxa that are represented do not have an underlying latitudinal
+  gradient in richness. In either case, the lack of a strong association
+  between observed species richness and latitude in any ecosystem type in our dataset
+  means that any effect of latitude on other scaling relationships is not being driven by
+  the scaling of specialisation with species richness in our food webs. This is fortunate since
+  the lack of confounding effects of latitude allows us to more clearly assess
+  effects of latitude on scaling with species richness.
 
 
   Scaling of links per species, generality, and vulnerability with species
@@ -365,45 +350,77 @@ latitude when exploring gradients in food-web structure.
   terrestrial food webs scaling of each property varied little with latitude.
   This is consistent with the idea that species' niche breadths do not vary
   systematically with temperature and productivity but that the niche space
-  might be larger in species-rich communities~\citep{Davies2007}. Rather than
+  might be larger in species-rich communities~\cite{Davies2007}. Rather than
   niche space depending on temperature and productivity, it may be that species
-  diversity itself affects the niche space available to species (although climate
-  may affect speciation rates and therefore the diversity in a region~\citep{Currie2004}). 
+  diversity itself affects the biotic niche space available to species (although climate
+  may affect speciation rates and therefore the diversity in a region~\cite{Currie2004}). 
   For example, as the plant diversity of a community increases both the 
   variety of food available to herbivores and the structural variety of the habitat will also increase.
 
 
   Unlike other ecosystem types, the scaling of generality in lake and stream
-  food webs was stronger (i.e.,generality increased more steeply with
+  food webs was stronger (i.e., generality increased more steeply with
   increasing species richness) in higher-latitude food webs. In lake food webs,
   this trend was echoed in the scaling relationships between species richness
-  and links per species and vulnerability. This means that species in tropical
+  and vulnerability and links per species. This means that species in tropical
   freshwater communities gain fewer additional feeding links per additional
   species in the web and that species in tropical lakes also gain fewer
   predators, and fewer links in general, per additional species than species
   in high-latitude lakes. These trends are consistent with the hypothesis that
-  greater stability in the tropics leads to narrower niches~\citep{Vazquez2004}
-  and a higher proportion of specialists. This may be partly due to high-latitude 
-  species tending to switch between different seasonally-available 
-  prey~\citep{Magalhaes1993,Wilhelm1999,Isaac2012} while tropical
-  freshwater ecosystems may have more stable composition. 
+  greater stability in the tropics leads to narrower niches~\cite{Vazquez2004}
+  and a higher proportion of specialists. 
 
 
-  The scaling of link density, generality and vulnerability with proportions
-  of species at different trophic levels, however, did not differ between
-  lakes and most other food webs. Indeed, there was comparatively little
-  variation in scaling with the trophic-level breakdown of a web across
-  ecosystem types. Nevertheless, the negative relationships between the
-  proportion of top predators in a web and link density and vulnerability were
-  weaker (i.e., the scaling exponent was more strongly negative) in low-latitude 
-  stream ecosystems. This may imply that top predators in high-latitude 
-  streams tend to be more generalist than their low-latitude
-  equivalents~\citep{Winemiller2008}, perhaps due to prey-switching during
-  seasonal food shortages~\citep{Magalhaes1993}. More generally, the lack of
-  correspondence between the scaling of food-web properties with species
-  richness and with proportions of species at each trophic level suggests that
-  the size and trophic breakdowns of a community can each provide different
-  information~\citep{Downing2002}.
+  That freshwater food webs supported the hypothesis of narrower niches in the
+  tropics --while other ecosystem types did not-- is noteworthy given that
+  these ecosystems (especially streams) are known for being highly variable
+  and that seasonal variability is one of the proposed drivers of the
+  latitude-niche breadth hypothesis~\cite{Vazquez2004}. Both streams and lakes
+  can experience severe changes in water temperature and volume (e.g., floods,
+  drying, freezing) that remove food or other resources (notably oxygen during
+  freezing events)~\cite{Winterbourn1997,Meding2001}. These events are often
+  linked to seasonal events such as snowmelts or summer
+  drought~\cite{Winterbourn1997}). Further, both temperate streams and lakes
+  tend to experience seasonal strong pulses of allochthonous inputs (e.g.,
+  fallen leaves, terrestrial
+  invertebrates~\cite{Nakano2001,Lennon2004,Zeng2008}. These trends combined
+  mean that, relative to estuarine and marine communities, freshwater food 
+  webs may experience high turnover in both community composition and 
+  productivity~\cite{Tilzer1988,Magalhaes1993,Baird1989}. Notable exceptions from the above
+  trends are New Zealand stream communities (representing 31 of the 71 stream
+  food webs in our dataset), which experience unpredictable flooding and
+  drying throughout the year and do not receive seasonally pulsed
+  subsidies~\cite{Winterbourn1997,Winterbourn1981}. However, as this subset of
+  webs is very tightly grouped in latitude ($44.64-46.41^{\circ}$S, within an
+  overall range of $23.00-69.02^{\circ}$ for stream communities), it is unlikely that they have greatly
+  influenced our results (see also \emph{Appendix S3}). Moreover, just as in
+  highly-variable communities where said variation is more seasonal, New
+  Zealand communities are dominated by ecological
+  generalists~\cite{Winterbourn1997,Winterbourn1981} implying that they appear
+  to fit the general pattern of streams worldwide.
+
+
+  Importantly, while terrestrial communities are also strongly seasonal at
+  high latitudes and can receive significant allochthonous
+  inputs~\cite{Nakano2001}, terrestrial consumers tend to be
+  morphologically specialised for feeding on particular prey~\cite{Liem1990}.
+  This means that primarily gape-limited aquatic consumers tend to be more
+  generalist across all types of aquatic habitats than terrestrial 
+  consumers~\cite{Liem1990,Shurin2006}. This trend also held in our data (
+  $\mu_Aquatic$>=5.47, $\mu_Terrestrial$=3.82; $p$=0.007 for $\mu_Aquatic$\textgreater$\mu_Terrestrial$). 
+  The key to this argument is therefore whether freshwater ecosystems experience
+  more severe seasonal variation than marine and estuarine ecosystems. Although
+  we are not aware of any study explicitly comparing seasonal variation in
+  fresh and saltwater ecosystems at similar latitudes, we believe that freshwater 
+  ecosystems are indeed likely to experience more severe changes because of their small size.
+  While oceans and estuaries certainly vary in terms of water temperature and
+  nutrients over the course of a year~\cite{Baird1989}, these changes are likely to be slower
+  and milder than in freshwaters because marine and estuarine communities are buffered 
+  by being open to the ocean rather than isolated in the midst of a terrestrial matrix. 
+  Supporting this hypothesis, net primary productivity is much more variable over the course of a year 
+  in non-marine communities~\cite{Field1998}. Thus suggests that niche breadths may also be 
+  more variable over the course of the year. 
+
 
 \section*{Conclusion}
 
@@ -412,81 +429,100 @@ latitude when exploring gradients in food-web structure.
   with the hypothesis of greater specialisation in the tropics in stream and
   lake food webs. This suggests that different mechanisms may structure food
   webs in different habitat types and that freshwater food webs in particular
-  may be strongly affected by seasonal variation. In addition, different
+  may be strongly affected by seasonal variation. Freshwater food webs also
+  appear to have different predator-prey biomass ratios than other ecosystem
+  types~\cite{Riede2011}; although it is not clear whether these ratios are related
+  to seasonality, this could be a promising avenue for future research. In addition, different
   relationships between latitude and niche breadth in different habitat types
-  goes some way towards explaining the equivocal support for the opposing
-  hypotheses of narrower niches in the tropics~\citep{Vazquez2004} and broader
-  niche space in the tropics~\citep{Davies2007}; both have merit but appear to
-  apply to different systems.
+  go some way towards explaining the equivocal support for the opposing
+  hypotheses of narrower niches in the tropics~\cite{Vazquez2004} and broader
+  niche space in the tropics~\cite{Davies2007}. Our study indicates that both 
+  have merit but would appear to apply to different systems.
 
 \section*{Data Accessibility}
 
   Food webs used in this study were retrieved from the University of Canberra's 
-  GlobalWeb database (\citealp{GlobalWeb}; \emph{www.globalwebdb.com}) and from
-  two papers (\citealp{Riede2011}; \emph{http://dx.doi.org/10.1111/j.1461-0248.2010.01568.x}
-  and \citealp{Dunne2013}; \emph{http://dx.doi.org/10.1371/journal.pbio.1001579}). Original sources for the
+  GlobalWeb database (\cite{GlobalWeb}; \emph{www.globalwebdb.com}) and from
+  two papers (\cite{Riede2011}; \emph{http://dx.doi.org/10.1111/j.1461-0248.2010.01568.x}
+  and \cite{Dunne2013}; \emph{http://dx.doi.org/10.1371/journal.pbio.1001579}). Original sources for the
   food webs are given in \emph{Appendix S1}.
+
+\section*{Competing interests}
+  
+  We have no competing interests.
+
+\section*{Authors' contributions}
+  
+  ARC, DBS, and TNR designed the study, ARC collected
+  published data, performed the analyses, and wrote the
+  first draft. DBS and TNR substantially revised the article;
+  all authors approved the final version.
+
 
 \section*{Acknowledgements}
   
   We thank members of the Romanuk, Stouffer, and Tylianakis labs for their comments on
-  the manuscript.
+  the manuscript. We also thank Angus McIntosh for valuable discussion on stream food webs and Matthias Schleuning, Robby Stoks, and one anonymous reviewer for their insightful questions.
+
+\section*{Funding}
   This research was supported by an NSERC USRA undergraduate scholarship and NSERC PGS-D 
-  graduate scholarship (to ARC).
+  graduate scholarship (to ARC), a Marsden Fund Fast-Start grant (UOC-1101) and a 
+  Rutherford Discovery Fellowship, both administered by the Royal Society of New Zealand 
+  (to DBS), and an NSERC Discovery Grant (to TNR).
+
 
 \newpage
-\bibliographystyle{jae}%Compile with jae.bst style file
-\bibliography{noISN}% your .bib file(s)
+\bibliographystyle{prsb}
+\bibliography{abbreviated}
 
-% \end{spacing}
 \newpage
 
 \section*{Figure Captions}
 
 \begin{figure}[h]
-\centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/scaling_with_S/proportions/fitlines_nonts.eps}}
+% \centerline{\includegraphics*[height=.5\textheight]{Figures/Other/conceptual_figure.eps}}
+\caption{In A) we show the known scaling relationship between link density (links per species) and 
+species richness. This scaling relationship is a power law and therefore linear in a log-log plot.
+In B) we show two versions of the latitudinal-niche breadth hypothesis that have been proposed to
+explain this gradient. Hypothesis 1 posits that greater environmental stability in the tropics will 
+allow species to evolve narrower niches (indicated by parabolas) than those at the poles. Hypothesis 2 
+suggests that species will have constant niche sizes over latitude but that greater primary productivity 
+in the tropics creates a larger niche space such that each species still occupies a smaller proportion 
+of the total niche space. These two hypotheses have different implications for the scaling of food-web 
+properties such as the number of feeding links per species with species richness. C) If hypothesis 1 is 
+true, then the exponent of the scaling relationship between link density and species richness should 
+be larger towards the poles, where each additional species in the food-web will have a larger niche 
+(i.e., more feeding links). If hypothesis 2 is true, then the exponent of this distribution should 
+not vary significantly over latitude.}
+\label{concept}
+\end{figure}
+
+
+\begin{figure}[h]
+% \centerline{\includegraphics*[height=.5\textheight]{Figures/by_TL/scaling_with_S/proportions/S_fitlines_nonts.eps}}
 \caption{Scaling relationships for re-scaled link density, generality, and vulnerability 
-relative to species richness and the proportions of basal resources (\% Basal), intermediate 
-consumers (\% Intermediate), or top predators (\% Top) in a food web. Link density, generality,
+relative to the species richness of a food web. Link density, generality,
 and vulnerability were each re-scaled to remove the effects of latitude and ecosystem
 type. As these relationships take the form of power laws, we did this by dividing the food-web
-property (e.g. link density) by the predictor (e.g. \% Basal) raised to an exponent including the 
+property (e.g. link density) by species richness raised to an exponent including the 
 effects of latitude and, where applicable, ecosystem type and the interaction between ecosystem
-type and latitude. Note that in all cases estuarine food webs were used as the baseline 
+type and latitude. Note that in all cases estuarine food webs were treated as the baseline 
 ecosystem type, but that at most two ecosystem types had interactions between ecosystem type and
-latitude retained in the best-fit model (see \emph{results} for specifics). For each relationship, 
+latitude retained in the best-fit model (see \emph{Results} for specifics). For each relationship, 
 we show the re-scaled values (white circles) as well as the overall scaling relationship using estuarine
-ecosystems as a baseline (black line, N=166 food webs). For a figure with the uncorrected values,
-see Fig.~\emph{S1}, \emph{Appendix S4}.}
+ecosystems as a baseline (black line, N=196 food webs). For a figure with the uncorrected values,
+see Fig.~\emph{S7}, \emph{Appendix S4}.}
 \label{props_v_lat}
 \end{figure}
 
 
 \begin{figure}[h]
-\centerline{\includegraphics*[height=.65\textheight]{Figures/by_TL/marginal/justS_marginal_latitude.eps}}
-\caption{Changes to the scaling of link density with species richness across ecosystem
+% \centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_proportions.eps}}
+\caption{Changes to the scaling of link density, generality, and vulnerability with species richness across ecosystem
 types and over latitude. We show the estimated scaling exponent for species richness (black
-line) with its 95\% confidence interval (in grey), based on N=166 empirical food webs.
-Latitude is given in degrees from the equator regardless of direction. The
-behaviour of exponents for the scaling of generality and vulnerability with
-species richness was very  similar to those for link density, except for the
-scaling of generality in streams where  the size of the exponent increased
-towards the poles. See Fig.~\emph{S2, Appendix 5} for  all scaling
-relationships.} \label{S} \end{figure}
+line) with its 95\% confidence interval (in grey), based on N=196 empirical food webs.
+Latitude is given in degrees from the equator regardless of direction.} \label{S} \end{figure}
 
-
-\begin{figure}[h]
-\centerline{\includegraphics*[height=.65\textheight]{Figures/by_TL/marginal/BIT_marginal_latitude.eps}}
-\caption{Changes to the scaling of link density with the proportions of basal resources, intermediate
-consumers, or top predators in a food web across ecosystem types and over latitude. For each proportion
-we show the estimated scaling exponent (black line) with its 95\% confidence interval (in grey), based
-on N=166 empirical food webs. Latitude is given in degrees from the equator regardless of direction. 
-The behaviour of exponents for the scaling relationships of generality and vulnerability with each 
-proportion was very similar to those of the scaling relationships with link density, except for the 
-scaling of generality with the proportion of top predators where there was no effect of latitude on the 
-size of the exponent in any ecosystem type. See Figs.~\emph{S3-S5, Appendix 5} for all scaling relationships.}
-\label{BIT}
-\end{figure}
 
 
 \end{document}

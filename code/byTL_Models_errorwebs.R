@@ -231,8 +231,8 @@ write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'coefficients/Vul_ob
 ####################   Calculate marginal effect of latitude in each ecotype
 
 if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
-  outdir='../updated/mod_data/'  } else {
-    outdir=paste('../updated/non_TS/',format,'/',sep='')     }
+  outdir='../mod_data/'  } else {
+    outdir=paste('../non_TS/',format,'/',sep='')     }
 
 source("marginal_CIs_nonTS_errorwebs.R") # Same best-fit models for both web forms 
 

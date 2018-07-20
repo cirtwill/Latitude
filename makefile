@@ -30,16 +30,21 @@ manuscript/Figures/Jackknife/&.eps : code/jackknife_display_figure.py Jackknifed
 manuscript/Figures/by_TL/marginal/%.eps : code/TL_marginal_latitude.py non_TS/proportions/marginals/*.tsv non_TS/summary-properties.tsv
 	cd code && \
 	python TL_marginal_latitude.py && \
+	python TL_marginal_latitude_corrected.py && \
 	cd ../
+
+# Calculate marginal CI's
+non_TS/proportions/marginals/%.tsv : code/updated_marginal_CIs_TS.R code/updated_marginal_CIs_nonTS.R 
 
 # Figures depend on the figure making code, datafiles
 manuscript/Figures/scaling_with_S/fitlines%.eps : code/TL_observedfits.py non_TS/proportions/coefficients/*.tsv non_TS/summary-properties.tsv
 	cd code && \
 	python TL_observedfits.py && \
+	python TL_observedfits_corrected.py && \
 	cd ../
 
 # Output files depend on the master R script and the datafile
-non_TS/proportions/marginals/%.tsv : code/byTL_Models.R non_TS/summary-properties.tsv
+non_TS/proportions/marginals/%.tsv : code/byTL_Models.R non_TS/summary-properties.tsv code/updated_marginal_CIs_TS.R code/updated_marginal_CIs_nonTS.R code/marginal_CIs_TS_errorwebs.R code/marginal_CIs_nonTS_errorwebs.R
 	cd code && \
 	Rscript byTL_Models.R && \
 	Rscript byTL_Models_errorwebs.R && \
