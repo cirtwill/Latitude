@@ -234,11 +234,7 @@ if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
   outdir='../updated/mod_data/'  } else {
     outdir=paste('../updated/non_TS/',format,'/',sep='')     }
 
-if(format=='proportions'){
-  source("updated_marginal_CIs_nonTS.R") # Same best-fit models for both web forms 
-} else {
-  source('number_marginal_CIs.R')
-}
+source("marginal_CIs_nonTS_errorwebs.R") # Same best-fit models for both web forms 
 
 # Not going to bother working out the marginals for TS models.
 if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
