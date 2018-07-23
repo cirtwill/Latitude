@@ -126,57 +126,22 @@ def plotter(prop,TL,ecotype,graph,form):
   main.symbol.shape=0
   main.line.configure(linestyle=1,color=1,linewidth=1)
 
+  return graph
+
+def format_graph(graph,prop,ecotype):
   graph.xaxis.bar.linewidth=1
   graph.yaxis.bar.linewidth=1
   graph.frame.linewidth=1
-
-  # graph.autoscale()
   graph.world.xmin=0
   graph.world.xmax=90
+  graph.world.ymin=0
+  graph.world.ymax=1.5
 
-  if TL=='S':
-    graph.world.ymin=0
-    graph.world.ymax=1.5
-    major=.5
-    prec=1
-  elif TL=='B':
-    prec=0
-    if form=='proportions':
-      graph.world.ymin=-1.25
-      graph.world.ymax=1
-      major=1
-    else:
-      graph.world.ymin=0
-      graph.world.ymax=.60000001
-      major=.2
-  elif TL=='I':
-    if form=='proportions':
-      graph.world.ymin=-1
-      graph.world.ymax=3
-      major=1
-      prec=0
-    else:
-      graph.world.ymin=-.4
-      graph.world.ymax=.80000001
-      major=.4
-      prec=1
-  else:
-    if form=='proportions':
-      graph.world.ymin=-2
-      graph.world.ymax=1
-      major=1
-      prec=0
-    else:
-      graph.world.ymin=-1
-      graph.world.ymax=1
-      major=.5
-      prec=1
-
-  graph.xaxis.ticklabel.configure(char_size=.75)
+  graph.xaxis.ticklabel.configure(char_size=.75,font='Times-Roman')
   graph.xaxis.tick.configure(major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4,major=30)
 
-  graph.yaxis.tick.configure(major=major,major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4)
-  graph.yaxis.ticklabel.configure(format='decimal',prec=prec,char_size=.75)
+  graph.yaxis.tick.configure(major=.5,major_linewidth=.5,minor_linewidth=.5,major_size=.6,minor_size=.4)
+  graph.yaxis.ticklabel.configure(format='decimal',prec=1,char_size=.75,font='Times-Roman')
 
   # Fancy-pants labelling
   if ecotype=='Estuary':
@@ -187,7 +152,7 @@ def plotter(prop,TL,ecotype,graph,form):
     elif prop=='Vul':
       yax="vulnerability"
     
-    graph.yaxis.label.configure(text=yax,place='normal',char_size=.85)
+    graph.yaxis.label.configure(text=yax,place='normal',char_size=.85,font='Times-Roman')
 
   if prop=='LS':
     if ecotype=='Estuary':
@@ -200,7 +165,7 @@ def plotter(prop,TL,ecotype,graph,form):
       typ='stream'
     else:
       typ='terrestrial'
-    graph.xaxis.label.configure(text=typ,place='opposite',char_size=.85)  
+    graph.xaxis.label.configure(text=typ,place='opposite',char_size=.85,font='Times-Roman')  
 
   return graph
 
@@ -210,45 +175,32 @@ def main():
   # TLs=['S','B','I','T']
   TLs=['S']
   names=['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
+  form='non_TS'
+  TL='S'
+  grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
 
-  for form in ['non_TS']:
-  # for form in ['mod_data','non_TS']:
-    for TL in TLs:
-      # Make a separate graph for each TL
-      grace=MultiPanelGrace(colors=ColorBrewerScheme('Greys'))
+  grace.add_label_scheme('dummy',names)
+  grace.set_label_scheme('dummy')
+  for prop in properties:
+    for ecotype in ecotypes:
+      graph=grace.add_graph(Panel)
+      graph=format_graph(graph,prop,ecotype)
 
-      grace.add_label_scheme('dummy',names)
-      grace.set_label_scheme('dummy')
-      for prop in properties:
-        print prop
-        for ecotype in ecotypes:
-          graph=grace.add_graph(Panel)
+      plotter(prop,TL,ecotype,graph,form)
+      # graph.remove_extraworld_drawing_objects()
 
-          plotter(prop,TL,ecotype,graph,form)
-          # graph.remove_extraworld_drawing_objects()
+  grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
+  # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
 
-      grace.multi(rows=3,cols=5,vgap=.04,hgap=.04)
-      # grace.set_row_xaxislabel(row=2,colspan=(0,2),label='Species richness',place='normal',just=2,char_size=1,perpendicular_offset=0.05)
+  grace.set_row_xaxislabel(row=2,colspan=(0,4),label='absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06,font='Times-Roman')
 
-      grace.set_row_xaxislabel(row=2,colspan=(0,4),label='absolute latitude',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
+  grace.hide_redundant_xticklabels()
+  grace.hide_redundant_yticklabels()
 
-      grace.hide_redundant_xticklabels()
-      grace.hide_redundant_yticklabels()
 
-      if TL=='S':
-        troph="species richness"
-      elif TL=='B':
-        troph="basal resources"
-      elif TL=='I':
-        troph="intermediate consumers"
-      elif TL=='T':
-        troph="top predators"
+  grace.add_drawing_object(DrawText,text='scaling with species richness', x=0.045, y=.7137, rot=90,char_size=1,just=2,font='Times-Roman')
 
-      print TL, troph
-
-      grace.add_drawing_object(DrawText,text='scaling with '+troph, x=0.045, y=.7137, rot=90,char_size=1,just=2)
-
-      grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'_corrected.eps')
+  grace.write_file('../manuscript/Figures/by_TL/marginal/'+TL+'_marginal_latitude_'+form+'_corrected.eps')
 
 
 

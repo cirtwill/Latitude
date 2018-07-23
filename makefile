@@ -31,8 +31,8 @@ manuscript/Figures/Jackknife/&.eps : code/jackknife_display_figure.py Jackknifed
 # Figures depend on the figure making code, datafiles
 manuscript/Figures/by_TL/marginal/%.eps : code/TL_marginal_latitude.py non_TS/proportions/marginals/*.tsv non_TS/summary-properties.tsv
 	cd code && \
-	python TL_marginal_latitude.py && \
 	python TL_marginal_latitude_corrected.py && \
+	# used to be TL_marginal_latitude.py
 	cd ../
 
 # Calculate marginal CI's
@@ -41,8 +41,8 @@ non_TS/proportions/marginals/%.tsv : code/updated_marginal_CIs_TS.R code/updated
 # Figures depend on the figure making code, datafiles
 manuscript/Figures/scaling_with_S/fitlines%.eps : code/TL_observedfits.py non_TS/proportions/coefficients/*.tsv non_TS/summary-properties.tsv
 	cd code && \
-	python TL_observedfits.py && \
-	python TL_observedfits_corrected.py && \
+	python combined_linedot_plot.py && \
+	# Used to be TL_observedfits.py
 	cd ../
 
 # Output files depend on the master R script and the datafile

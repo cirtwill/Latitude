@@ -95,21 +95,18 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
     key='Species'
   f=open(rawdatafile,'r')
   for line in f:
-    # print line.split()
-    # sys.exit()
     if line.split()[0]!='Web':
       ecotype=line.split('\t')[1]
       ecotype=ecotype.capitalize()
       Latitude=float(line.split('\t')[3])
       S=float(line.split('\t')[4])
       LS=float(line.split('\t')[7])
-      Gen=float(line.split('\t')[9])
-      Vul=float(line.split('\t')[11])
-      B=float(line.split('\t')[15])
-      H=float(line.split('\t')[16])
-      I=float(line.split('\t')[17])
-      I=H+I
-      T=float(line.split('\t')[18])
+      Gen=float(line.split('\t')[8])
+      Vul=float(line.split('\t')[9])
+      B=float(line.split('\t')[10])
+      H=float(line.split('\t')[11])
+      I=float(line.split('\t')[12])
+      T=float(line.split('\t')[13])
 
       # Correct the observed property based on latitude and ecotype effects
 
@@ -235,10 +232,10 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
     rawdata=datareader(rawdatafile,TL,Bformat)
     # if rawdatafile=='../non_TS/summary-properties.tsv':
     if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
-      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co_corrected.tsv')
       # fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
-      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co_corrected.tsv')
       # fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_co.tsv')
 
     graph=grace.add_graph(Panel)
@@ -308,7 +305,7 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
 
 def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
 
-  outfile=outfile1.split('.eps')[0]+'_observed.eps'  
+  outfile=outfile1.split('.eps')[0]+'_observed_corrected.eps'  
   # Lets make clear that these are the original, uncorrected points
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
@@ -323,10 +320,10 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
     if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
     # if rawdatafile=='../non_TS/summary-properties.tsv':
       # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
-      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs_corrected.tsv')
     else:
       # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
-      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs_corrected.tsv')
 
     graph=grace.add_graph(Panel)
 
@@ -404,6 +401,7 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
       for ecotype in ecotypes:
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
+        print datadict
         obspoints=graph.add_dataset(datadict)
         obspoints.line.configure(linestyle=0)
         obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
@@ -474,7 +472,7 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
 
 def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
 
-  outfile=outfile2.split('.eps')[0]+'_observed.eps'  
+  outfile=outfile2.split('.eps')[0]+'_observed_corrected.eps'  
   # Lets make clear that these are the original, uncorrected points
 
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
@@ -553,17 +551,17 @@ def main():
 
   for Bformat in ['proportions']:#['numbers','proportions']:
     # for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
-    for rawdatafile in ['../non_TS/summary-properties_corrected_webs.tsv','../mod_data/summary-properties_corrected_webs.tsv']:
+    for rawdatafile in ['../non_TS/summary-properties_corrected_webs.tsv']:#,'../mod_data/summary-properties_corrected_webs.tsv']:
       if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_corrected.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_corrected.eps'
-        # predfolder='../non_TS/'+Bformat
-        predfolder='../updated/non_TS/'+Bformat
+        predfolder='../non_TS/'+Bformat
+        # predfolder='../updated/non_TS/'+Bformat
       else:
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts_corrected.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts_corrected.eps'
-        # predfolder='../mod_data/'+Bformat
-        predfolder='../updated/mod_data/'+Bformat
+        predfolder='../mod_data/'+Bformat
+        # predfolder='../updated/mod_data/'+Bformat
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
@@ -571,10 +569,10 @@ def main():
       S_rawplots(rawdatafile,outfile1,Bformat,predfolder)
 
       print 'Raw okay'
-      # # Didn't use these in the final MS, didn't update the TL-specific models.
-      # TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
+      # Didn't use these in the final MS, didn't update the TL-specific models.
+      TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
 
-      # TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
+      TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
 
 
 
