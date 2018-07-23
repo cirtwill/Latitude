@@ -24,6 +24,8 @@ manuscript/latitudepaper.pdf : manuscript/Figures/by_TL/marginal/*.eps manuscrip
 manuscript/Figures/Jackknife/&.eps : code/jackknife_display_figure.py Jackknifed/main/coefficients/*.tsv 
 	cd code && \
 	python jackknife_display_figure.py && \
+	# Doesn't seem to be working quite right... something puzzles me about pseudovalues
+	# python jackknife_display_figure_corrected.py && \
 	cd ../
 
 # Figures depend on the figure making code, datafiles

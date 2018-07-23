@@ -281,45 +281,32 @@ when exploring gradients in food-web structure.
 
   Link density (mean number of feeding links per species), generality (mean
   number of prey per species), and vulnerability (mean number of predators per
-  species) were strongly and positively correlated ($R^2$=\st{0.891}\textbf{0.890} for link
+  species) were strongly and positively correlated ($R^2$=\st{0.891}0.915 for link
   density and generality, $R^2$\textgreater0.999 for link density and
-  vulnerability, and $R^2$=\st{0.890}\textbf{0.889} for generality and vulnerability). Contrary
+  vulnerability, and $R^2$=\st{0.890}0.912 for generality and vulnerability). Contrary
   to the expected latitudinal gradient, the best-fit version of
   equation~(\ref{Latfull}) did not include a significant
   effect of latitude on species richness for any ecosystem type. Further, there were no significant
   relationships between link density, generality, or vulnerability with
   latitude for any ecosystem type.
-  % [[After correction: $R^2$=0.890 for link density and generality, $R^2$\textgreater0.999 for link density and vulnerability, and $R^2$=0.889 for generality and vulnerability.]]
 
-
-  % [[Coefficients are from LS_min, etc. Need to re-run for non_TS and TS webs, update with new minimum models.]]
 
   Each measure of specialisation increased with increasing
-  species richness ($\beta_0$=\st{0.637}\textbf{0.668}, $p$\textless0.001; $\beta_0$=\st{0.553}\textbf{0.689},
-  $p$\textless0.001; and $\beta_0$=\st{0.637}\textbf{0.668}, $p$\textless0.001, respectively;
-  Fig.~\ref{props_v_lat}). 
-  % [[After correction: ($\beta_0$=0.668, $p$\textless0.001; $\beta_0$=0.689, $p$\textless0.001; and $\beta_0$=0.668, $p$\textless0.001, respectively).]]
-  For estuarine, marine, and terrestrial food webs the
+  species richness ($\beta_0$=\st{0.637}0.691, $p$\textless0.001; $\beta_0$=\st{0.553}0.663,
+  $p$\textless0.001; and $\beta_0$=\st{0.637}0.698, $p$\textless0.001, respectively;
+  Fig.~\ref{props_v_lat}). For estuarine, marine, and terrestrial food webs the
   strength of this scaling did not vary with latitude
-  (\st{$\beta_{Latitude}$=-0.001, $p$=0.365 for link density;}
-  $\beta_{Latitude}$=\st{-0.001}\textbf{-0.002}, $p$=\st{0.535}\textbf{0.101 for generality; 
-  latitude was not retained in the best-fit models for link density or vulnerability}\st{and
-  $\beta_{Latitude}$=-0.001, $p$=0.366 for vulnerability}; Fig.~\ref{S}). 
-  % [[After correction: latitude not included in LS_min or Vul_min. $\beta_{Latitude}$=-0.002, $p$=0.101 for generality]]
-  \st{In lake food webs, however, the scaling of each property was stronger towards
-  the poles ($\beta_{Latitude:Lake}$=0.004, $p$=0.019;
-  $\beta_{Latitude:Lake}$=0.005, $p$=0.004; and
-  $\beta_{Latitude:Lake}$=0.004, $p$=0.018, respectively). In stream food
+  ($\beta_{Latitude}$=-0.001, $p$=\st{0.365}0.212 for link density;
+  $\beta_{Latitude}$=-0.001, $p$=\st{0.535}0.320 for generality; and
+  $\beta_{Latitude}$=-0.001, $p$=\st{0.366}0.207 for vulnerability; Fig.~\ref{S}). In
+  lake food webs, however, the scaling of each property was stronger towards
+  the poles ($\beta_{Latitude:Lake}$=\st{0.004, $p$=0.019}0.003, $p$=0.037;
+  $\beta_{Latitude:Lake}$=0.005, $p$=\st{0.004}0.007; and
+  $\beta_{Latitude:Lake}$=\st{0.004, $p$=0.018}0.003, $p$=0.036, respectively). In stream food
   webs, generality increased more rapidly towards the poles
-  ($\beta_{Latitude:Stream}$=0.007, $p$=0.001) while link density and
+  ($\beta_{Latitude:Stream}$=\st{0.007, $p$=0.001}0.005, $p$=0.008) while link density and
   vulnerability did not vary with latitude (i.e., the interaction term 
-  $\beta_{Latitude:Stream}$ was not retained in the best-fit models).}
-  In \textbf{lake and} stream food webs, however, the scaling of generality was stronger
-  towards the poles. This change in scaling was significant for streams but not for
-  lakes ($\beta_{Latitude:Stream}$=0.008, $p$\textless0.001\textbf{ and $\beta_{Latitude:Lake}$=0.003, $p$=0.100, respectively}).
-  % [[After correction: Link density and vulnerability scaled more strongly with species richness in lake food webs ($\beta_{Lake}$=0.057, $p$=0.024 and $\beta_{Lake}$=0.059, $p$=0.020, respectively). Generality scaled significantly more strongly towards the poles in streams and slightly (not significantly) more strongly towards the poles in lake food webs ($\beta_{Latitude:Stream}$=0.008, $p$\textless0.001 and $\beta_{Latitude:Lake}$=0.003, $p$=0.100, respectively). ]]
-
-  % [[Very small changes with trophic species versions.]]
+  $\beta_{Latitude:Stream}$ was not retained in the best-fit models).
 
 
 \section*{Discussion}
@@ -513,8 +500,11 @@ not vary significantly over latitude.}
 
 
 \begin{figure}[h]
-\centerline{\includegraphics*[height=.5\textheight]{Figures/by_TL/scaling_with_S/proportions/S_fitlines_nonts_new.eps}}
-\caption{Scaling relationships for re-scaled link density, generality, and vulnerability 
+% \centerline{\includegraphics*[height=.5\textheight]{Figures/by_TL/scaling_with_S/proportions/S_fitlines_nonts_new.eps}}
+\centerline{\includegraphics*[height=.5\textheight]{Figures/by_TL/scaling_with_S/proportions/S_fitlines_nonts_corrected.eps}}
+% # Zis vun is not korrekt.
+\caption{[[Should have cols for S, B, I, T and rows for LS/Gen/Vul; re-scaled values.]]
+Scaling relationships for re-scaled link density, generality, and vulnerability 
 relative to the species richness of a food web. Link density, generality,
 and vulnerability were each re-scaled to remove the effects of latitude and ecosystem
 type. As these relationships take the form of power laws, we did this by dividing the food-web
@@ -532,8 +522,9 @@ see Fig.~\emph{S7}, \emph{Appendix S4}.}
 
 \begin{figure}[h]
 %\centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_proportions.eps}}
-\centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_non_TS_updated.eps}}
-\caption{Changes to the scaling of link density, generality, and vulnerability with species richness across ecosystem
+% \centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_non_TS_updated.eps}}
+\centerline{\includegraphics*[width=.85\textwidth]{Figures/by_TL/marginal/S_marginal_latitude_non_TS_corrected.eps}}
+\caption{[[Also not correct. Should have cols for each env. type, rows for LS/Gen/Vul]]Changes to the scaling of link density, generality, and vulnerability with species richness across ecosystem
 types and over latitude. We show the estimated scaling exponent for species richness (black
 line) with its 95\% confidence interval (in grey), based on N=196 empirical food webs.
 Latitude is given in degrees from the equator regardless of direction.} \label{S} \end{figure}
