@@ -543,23 +543,24 @@ def main():
 
   weblist=set()
   for fil in files:
-    if 'web' in fil and 'Lakeweb' not in fil:
-      weblist.add(fil.split('.web')[0])
-      webfiles.append(fil)
-      if 'LS' in fil:
-        LS_webfiles.append(fil)
-      elif 'Gen' in fil:
-        Gen_webfiles.append(fil)
+    if '_corrected' not in fil: # Originals only, please
+      if 'web' in fil and 'Lakeweb' not in fil:
+        weblist.add(fil.split('.web')[0])
+        webfiles.append(fil)
+        if 'LS' in fil:
+          LS_webfiles.append(fil)
+        elif 'Gen' in fil:
+          Gen_webfiles.append(fil)
+        else:
+          Vul_webfiles.append(fil)
       else:
-        Vul_webfiles.append(fil)
-    else:
-      authorfiles.append(fil)
-      if 'LS' in fil:
-        LS_authorfiles.append(fil)
-      elif 'Gen' in fil:
-        Gen_authorfiles.append(fil)
-      else:
-        Vul_authorfiles.append(fil)
+        authorfiles.append(fil)
+        if 'LS' in fil:
+          LS_authorfiles.append(fil)
+        elif 'Gen' in fil:
+          Gen_authorfiles.append(fil)
+        else:
+          Vul_authorfiles.append(fil)
 
   # print sorted(weblist)
   for prop in ['Vul','Gen','LS']:

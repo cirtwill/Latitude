@@ -141,7 +141,7 @@ def food_web_properties(directory,item,G,predprey,spp,preddict,preydict,linkdict
   I=[]
 
   # Simplest way to get LS
-  LS=Decimal(L)/Decimal(N)
+  LS=2*Decimal(L)/Decimal(N)
   C=Decimal(L)/Decimal(N**2)
 
   a=0
@@ -215,7 +215,7 @@ def food_web_properties(directory,item,G,predprey,spp,preddict,preydict,linkdict
     sys.exit()
 
   stroutput=[]
-  outputs = [int(N),int(L),float(C),float(LS),float(Gen),float(Vul),basal,herbs,inter,top] 
+  outputs = [int(N),int(L),float(C),float(meanL),float(Gen),float(Vul),basal,herbs,inter,top] 
   for thing in outputs:
     stroutput.append(str(thing))
   return stroutput 

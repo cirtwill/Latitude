@@ -41,12 +41,21 @@ def datareader(rawdatafile,TL,Bformat):
       GenSD=float(line.split('\t')[10])
       Vul=float(line.split('\t')[11])
       VulSD=float(line.split('\t')[12])
-      SWTL=line.split('\t')[13]
-      B=float(line.split('\t')[14])
-      H=float(line.split('\t')[15])
-      I=float(line.split('\t')[16])
+      Path=line.split('\t')[13]
+      Chain=line.split('\t')[14]
+      SWTL=line.split('\t')[15]
+      Clus=line.split('\t')[16]
+      B=float(line.split('\t')[17])
+      H=float(line.split('\t')[18])
+      I=float(line.split('\t')[19])
       I=I+H # Include the herbivores as intermediates
-      T=float(line.split('\t')[17])
+      T=float(line.split('\t')[20])
+
+      # B=float(line.split('\t')[15])
+      # H=float(line.split('\t')[16])
+      # I=float(line.split('\t')[17])
+      # I=I+H # Include the herbivores as intermediates
+      # T=float(line.split('\t')[18])
 
       for response in ['LS','Gen','Vul']:
         points[response].append((eval(TL),eval(response)))
@@ -55,7 +64,7 @@ def datareader(rawdatafile,TL,Bformat):
   return points
 
 def fixed_reader(coefffile):
-  # print coefffile
+  print coefffile
   fixed_effects={}
   f=open(coefffile,'r')
   for line in f:
@@ -96,11 +105,11 @@ def heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat):
       LS=float(line.split('\t')[7])
       Gen=float(line.split('\t')[9])
       Vul=float(line.split('\t')[11])
-      B=float(line.split('\t')[14])
-      H=float(line.split('\t')[15])
-      I=float(line.split('\t')[16])
+      B=float(line.split('\t')[15])
+      H=float(line.split('\t')[16])
+      I=float(line.split('\t')[17])
       I=H+I
-      T=float(line.split('\t')[17])
+      T=float(line.split('\t')[18])
 
       # Correct the observed property based on latitude and ecotype effects
 
@@ -224,10 +233,13 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   TL='S'
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
+    # if rawdatafile=='../non_TS/summary-properties.tsv':
     if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
-      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co_corrected.tsv')
+      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+      # fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
-      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co_corrected.tsv')
+      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+      # fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_co.tsv')
 
     graph=grace.add_graph(Panel)
     for ecotype in ecotypes:
@@ -290,7 +302,7 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   print 'changed'
-  print outfile1
+
   grace.write_file(outfile1)
 
 
@@ -309,9 +321,12 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
     rawdata=datareader(rawdatafile,TL,Bformat)
 
     if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
-      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs_corrected.tsv')
+    # if rawdatafile=='../non_TS/summary-properties.tsv':
+      # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
     else:
-      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs_corrected.tsv')
+      # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_obs.tsv')
 
     graph=grace.add_graph(Panel)
 
@@ -383,7 +398,7 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
   for prop in ['LS','Gen','Vul']:
     for TL in ['B','I','T']:
       rawdata=datareader(rawdatafile,TL,Bformat)
-      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co_corrected.tsv')
+      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
 
       graph=grace.add_graph(Panel)
       for ecotype in ecotypes:
@@ -468,7 +483,7 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
     for TL in ['B','I','T']:
       rawdata=datareader(rawdatafile,TL,Bformat)
 
-      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_obs_corrected.tsv')
+      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_obs.tsv')
 
       graph=grace.add_graph(Panel)
 
@@ -530,7 +545,7 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   print 'got a raw plot'
-  print outfile
+
   grace.write_file(outfile)
 
 
@@ -542,11 +557,13 @@ def main():
       if rawdatafile=='../non_TS/summary-properties_corrected_webs.tsv':
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_corrected.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_corrected.eps'
-        predfolder='../non_TS/'+Bformat
+        # predfolder='../non_TS/'+Bformat
+        predfolder='../updated/non_TS/'+Bformat
       else:
         outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts_corrected.eps'
         outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts_corrected.eps'
-        predfolder='../mod_data/'+Bformat
+        # predfolder='../mod_data/'+Bformat
+        predfolder='../updated/mod_data/'+Bformat
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
