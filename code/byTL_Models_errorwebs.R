@@ -86,11 +86,6 @@ if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
 
-# Calculate the by-TL models # Has not been updated.
-if(by_TL==TRUE){
-  source('property_models_proportions.R')
-  save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
-}
 
 # Do the power analyses - all same as previous files
 if(power_analysis==TRUE){
@@ -209,6 +204,12 @@ Vul_fake=cbind(newdata,Vul_preds)
 colnames(LS_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 colnames(Gen_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 colnames(Vul_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
+
+# Calculate the by-TL models # Has not been updated.
+if(by_TL==TRUE){
+  source('property_models_proportions.R')
+  save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
+}
 
 if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
   outdir='../mod_data/'  } else {

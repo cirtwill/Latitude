@@ -367,6 +367,7 @@
   }
 
   if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+    source('marginal_CIs_nonTS_errorwebs.R')
 # Haven't updated these yet.
     LS_B_marg=B_CIs("LS_B_min")
     write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
