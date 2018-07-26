@@ -23,7 +23,6 @@ from PyGrace.Styles.el import ElGraph, ElLinColorBar, ElLogColorBar
 def datareader(rawdatafile,TL,Bformat):
 
   points={'LS':[],'Gen':[],'Vul':[]}
-
   f=open(rawdatafile,'r')
   i=1
   for line in f:
@@ -36,27 +35,12 @@ def datareader(rawdatafile,TL,Bformat):
       L=line.split('\t')[5]
       C=line.split('\t')[6]
       LS=float(line.split('\t')[7])
-      LSsd=line.split('\t')[8]
-      Gen=float(line.split('\t')[9])
-      GenSD=float(line.split('\t')[10])
-      Vul=float(line.split('\t')[11])
-      VulSD=float(line.split('\t')[12])
-      Path=line.split('\t')[13]
-      Chain=line.split('\t')[14]
-      SWTL=line.split('\t')[15]
-      Clus=line.split('\t')[16]
-      B=float(line.split('\t')[17])
-      H=float(line.split('\t')[18])
-      I=float(line.split('\t')[19])
-      I=I+H # Include the herbivores as intermediates
-      T=float(line.split('\t')[20])
-
-      # B=float(line.split('\t')[15])
-      # H=float(line.split('\t')[16])
-      # I=float(line.split('\t')[17])
-      # I=I+H # Include the herbivores as intermediates
-      # T=float(line.split('\t')[18])
-
+      Gen=float(line.split('\t')[8])
+      Vul=float(line.split('\t')[9])
+      B=float(line.split('\t')[10])
+      H=float(line.split('\t')[11])
+      I=float(line.split('\t')[12])
+      T=float(line.split('\t')[13])
       for response in ['LS','Gen','Vul']:
         points[response].append((eval(TL),eval(response)))
 
@@ -346,6 +330,8 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
     elif prop=='Gen':
       graph.yaxis.label.configure(text="observed generality",place='normal',char_size=1)
     elif prop=='Vul':
+      print sorted(predictions)[0:5], sorted(predictions)[-5:]
+      print sorted(rawdata[prop])[0:5],sorted(rawdata[prop])[-5:]
       graph.yaxis.label.configure(text="observed vulnerability",place='normal',char_size=1)
 
     graph.world.xmin=1
@@ -382,7 +368,7 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
   grace.hide_redundant_xticklabels()
   grace.hide_redundant_yticklabels()
   print 'got a raw plot'
-
+  print outfile
   grace.write_file(outfile)
 
 
@@ -401,7 +387,6 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
       for ecotype in ecotypes:
         heatpoints=heatmappoints(rawdatafile,fixed,prop,ecotype,TL,Bformat)
         datadict=heatpoints[ecotype]
-        print datadict
         obspoints=graph.add_dataset(datadict)
         obspoints.line.configure(linestyle=0)
         obspoints.symbol.configure(size=.5,shape=1,fill_color=0,fill_pattern=1,color=8)
@@ -563,16 +548,16 @@ def main():
         predfolder='../mod_data/'+Bformat
         # predfolder='../updated/mod_data/'+Bformat
 
-      S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
+      # S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
-      print 'S okay'
+      # print 'S okay'
       S_rawplots(rawdatafile,outfile1,Bformat,predfolder)
 
-      print 'Raw okay'
-      # Didn't use these in the final MS, didn't update the TL-specific models.
-      TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
+      # print 'Raw okay'
+      # # Didn't use these in the final MS, didn't update the TL-specific models.
+      # TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
 
-      TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
+      # TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
 
 
 
