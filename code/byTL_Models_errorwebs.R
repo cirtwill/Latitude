@@ -3,13 +3,13 @@
 library(lmerTest)
 library(MuMIn)
 
-for(infile in c('../mod_data/summary-properties_corrected_webs.tsv','../non_TS/summary-properties_corrected_webs.tsv')){
+for(infile in c('../non_TS/summary-properties_corrected_webs.tsv','../mod_data/summary-properties_corrected_webs.tsv')){
 
 format='proportions' # e.g. Basal is %Basal rather than # of basal resources
 # format='numbers' # I tried both ways initially.
 
 power_analysis=FALSE
-by_TL=FALSE
+by_TL=TRUE
 # For proportions and numbers, everything is log-normal.
 
 # Format the data file
@@ -86,17 +86,6 @@ if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
 
-# # Calculate the by-TL models # Has not been updated.
-# if(by_TL==TRUE){
-# if(format=='proportions'){
-#   source('property_models_proportions.R')
-#   save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
-
-# } else {
-#   source('property_models_numbers.R')
-#   save.image(file=paste(outdir,'number_Models.RData',sep=''))
-# }
-# }
 
 # Do the power analyses - all same as previous files
 if(power_analysis==TRUE){
@@ -112,49 +101,55 @@ if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
 # Eliminate the redundant authors (those that always and only occur with another author) prior to jackknifing.
 source('redundant_authors.R')
 
-# Jackknifing by authors (slightly harder)
-removals=matrix(nrow=58,ncol=2,data=NA)
+# Only jackknife the non-TS version.
+if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+  # Jackknifing by webs (easy)
+  for(i in 1:nrow(olddata)){
+    newdata=olddata[-i,]
+    name=olddata$Web[i]
 
-# Jackknifing by webs (easy)
-for(i in 1:nrow(olddata)){
-  newdata=olddata[-i,]
-  name=olddata$Web[i]
-  print(name)
+    data=newdata
+    source('recreate_with_subset_corrected.R')
 
-  data=newdata
-  source('recreate_with_subset_corrected.R')
+    write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')    
 
-  write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-  write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
 }
 
+# Jackknifing by authors (slightly harder)
+removals=matrix(nrow=65,ncol=2,data=NA)
 
-# # If an author is only on one web, then I've already checked that in the webwise version :)
-# # Now remove all webs associated with each of the other authors.
-# j=1
-# for(i in 22:261){
-#   if(sum(olddata[,i])>1){
-#     newdata=olddata[which(olddata[,i]==0),]
-#     name=colnames(olddata)[i]
+# If an author is only on one web, then I've already checked that in the webwise version :)
+# Now remove all webs associated with each of the other authors.
+j=1
+for(i in 15:259){
+  if(sum(olddata[,i])>1){
+    newdata=olddata[which(olddata[,i]==0),]
+    name=colnames(olddata)[i]
 
-#     removed=dim(olddata)[1]-dim(newdata)[1]
-#     removals[j,1]=name
-#     removals[j,2]=removed
+    removed=dim(olddata)[1]-dim(newdata)[1]
+    removals[j,1]=name
+    removals[j,2]=removed
 
-#     print(c(name,removed,j))
-#     j=j+1
+    print(c(name,removed,j))
+    j=j+1
 
-#     data=newdata
-#     source('recreate_with_subset.R')
+    data=newdata
+    source('recreate_with_subset_corrected.R')
 
-#     write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#     write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#     write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
-#   }
-# }
-
-# write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
+    write.table(summary(LS_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'LS_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Gen_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Gen_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+    write.table(summary(Vul_min)$coefficients,file=paste('../Jackknifed/main/coefficients/',name,'Vul_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
+  }
+  }
+  write.table(removals,file='../Jackknifed/webs_per_author.tsv',sep='\t')
+  print(j)
+}
+print(infile)
+# We may need to run this one. more. time to make sure the right models are used for predicting
+data=olddata
+source('recreate_with_subset_corrected.R')
 
 # TS and non-TS webs, logarithmic models are always better.
 # Not even sure if I care about TS webs for this.
@@ -210,14 +205,20 @@ colnames(LS_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species"
 colnames(Gen_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 colnames(Vul_fake)=c("Latitude","Lake","Marine","Stream","Terr","Basal","Species","Intermediate","Toppreds","pred")
 
+# Calculate the by-TL models # Has not been updated.
+if(by_TL==TRUE){
+  source('property_models_proportions.R')
+  save.image(file=paste(outdir,'proportion_Models.RData',sep=''))
+}
+
 if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
   outdir='../mod_data/'  } else {
     outdir='../non_TS/'     }
-# Data
+# Predictions
 write.table(LS_fake,file=paste(outdir,'predictions/LS_corrected.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
 write.table(Gen_fake,file=paste(outdir,'predictions/Gen_corrected.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
 write.table(Vul_fake,file=paste(outdir,'predictions/Vul_corrected.tsv',sep=''),col.names=TRUE,row.names=FALSE,sep='\t')
-# Predictions
+# Data
 write.table(summary(LS_min)$coefficients,file=paste(outdir,'coefficients/LS_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
 write.table(summary(Gen_min)$coefficients,file=paste(outdir,'coefficients/Gen_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
 write.table(summary(Vul_min)$coefficients,file=paste(outdir,'coefficients/Vul_co_corrected.tsv',sep=''),col.names=TRUE,row.names=TRUE,sep='\t')
@@ -231,17 +232,12 @@ write.table(summary(obs_Vul)$coefficients,file=paste(outdir,'coefficients/Vul_ob
 ####################   Calculate marginal effect of latitude in each ecotype
 
 if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
-  outdir='../updated/mod_data/'  } else {
-    outdir=paste('../updated/non_TS/',format,'/',sep='')     }
-
-if(format=='proportions'){
-  source("updated_marginal_CIs_nonTS.R") # Same best-fit models for both web forms 
-} else {
-  source('number_marginal_CIs.R')
-}
+  outdir='../mod_data/'  } else {
+    outdir=paste('../non_TS/',format,'/',sep='')     }
 
 # Not going to bother working out the marginals for TS models.
 if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+  source("marginal_CIs_nonTS_errorwebs.R") # Same best-fit models for both web forms 
   LS_marg=S_CIs("LS_min")
   write.table(LS_marg,file=paste(outdir,'marginals/LS_S_marginal_corrected.tsv',sep=''),sep='\t',col.names=TRUE)
   Gen_marg=S_CIs("Gen_min")

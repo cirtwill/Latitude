@@ -13,12 +13,12 @@
     ,na.action=na.fail))
     lbdredge=dredge(LS_B_full,rank=AIC)
     # Same in both infiles :)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # non-TS - updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # Updated 22/07/2018
       LS_B_min=with(data,lm(log(LS)~log(Basal)
         +log(Basal):Latitude
-        +log(Basal):(Marine+Stream+Terr)
-        +log(Basal):Latitude:(Marine+Terr)
+        +log(Basal):(Stream+Terr)
+        +log(Basal):Latitude:Terr
         , na.action=na.fail   ))
       } else {       ### Probably wrong
       # TS - updated 29/06/2015
@@ -37,11 +37,11 @@
     +log(Intermediate):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     lidredge=dredge(LS_I_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # TS, updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # Updated 22/07/2018
       # The only major change so far.
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
-        +log(Intermediate):Stream, na.action=na.fail   ))
+        +log(Intermediate):(Stream*Latitude), na.action=na.fail   ))
       } else {  #updated 29/06/2015
       LS_I_min=with(data,lm(log(LS)~log(Intermediate)
         +log(Intermediate):Latitude
@@ -58,10 +58,10 @@
     +log(Toppreds):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     ltdredge=dredge(LS_T_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # Updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # Updated 22/07/2018
       LS_T_min=with(data,lm(log(LS)~log(Toppreds)
-        +log(Toppreds):(Lakeweb+Marine+Stream+Terr)
+        +log(Toppreds):(Lakeweb+Stream+Terr)
         +log(Toppreds):Latitude
         +log(Toppreds):Latitude:(Stream+Terr)
       , na.action=na.fail   ))
@@ -90,12 +90,12 @@
     ,na.action=na.fail))
     gbdredge=dredge(Gen_B_full,rank=AIC)
     # Same for both infiles :)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # updated 22/07/2018
       Gen_B_min=with(data,lm(log(Gen)~log(Basal)
         +log(Basal):Latitude
-        +log(Basal):(Marine+Stream+Terr)
-        +log(Basal):Latitude:(Marine+Terr)
+        +log(Basal):(Stream+Terr)
+        +log(Basal):Latitude:Terr
         , na.action=na.fail   ))
     } else {  #updated 29/06/2015
       Gen_B_min=with(data,lm(log(Gen)~log(Basal)
@@ -113,8 +113,8 @@
     +log(Intermediate):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     gidredge=dredge(Gen_I_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # updated 22/07/2018
       Gen_I_min=with(data,lm(log(Gen)~log(Intermediate)
         +log(Intermediate):Latitude
         +log(Intermediate):(Lakeweb+Stream)
@@ -135,10 +135,12 @@
     +log(Toppreds):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     gtdredge=dredge(Gen_T_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # updated 29/06/2015
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # updated 22/07/2018
       Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
-        +log(Toppreds):(Lakeweb+Marine+Stream)
+        +log(Toppreds):(Lakeweb+Stream+Terr)
+        +log(Toppreds):Latitude
+        +log(Toppreds):Latitude:Terr
         , na.action=na.fail   ))
     } else {  # TS - updated 29/06/2015
       Gen_T_min=with(data,lm(log(Gen)~log(Toppreds)
@@ -161,12 +163,12 @@
     +log(Basal):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     vbdredge=dredge(Vul_B_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
-      # updated 29/06/2015, same in both infiles
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+      # updated 22/07/2018
       Vul_B_min=with(data,lm(log(Vul)~log(Basal)
         +log(Basal):Latitude
-        +log(Basal):(Marine+Stream+Terr)
-        +log(Basal):Latitude:(Marine+Terr)
+        +log(Basal):(Stream+Terr)
+        +log(Basal):Latitude:Terr
         , na.action=na.fail   ))
     } else {  # TS - updated 29/06/2015
       Vul_B_min=with(data,lm(log(Vul)~log(Basal)
@@ -184,7 +186,7 @@
     +log(Intermediate):Latitude:(Stream+Lakeweb+Marine+Terr)
     ,na.action=na.fail))
     vidredge=dredge(Vul_I_full,rank=AIC)
-    if(infile=='../non_TS/summary-properties.tsv'){
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
       # updated 29/06/2015
       Vul_I_min=with(data,lm(log(Vul)~log(Intermediate)
         +log(Intermediate):Stream
@@ -206,7 +208,7 @@
     ,na.action=na.fail))
     vtdredge=dredge(Vul_T_full,rank=AIC)
     # Same for both infiles :)
-    if(infile=='../non_TS/summary-properties.tsv'){
+    if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
       # updated 29/06/2015
       Vul_T_min=with(data,lm(log(Vul)~log(Toppreds)
         +log(Toppreds):(Lakeweb+Marine+Stream+Terr)
@@ -239,23 +241,23 @@
   ild=dredge(I_latdirect_full,rank=AIC)
   tld=dredge(T_latdirect_full,rank=AIC)
 
-  if(infile=='../non_TS/summary-properties.tsv'){
-    # non-TS, updated 29/06/2015
-    B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lakeweb+Marine),na.action=na.fail))
+  if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+    # non-TS, updated 22/07/2018
+    B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lakeweb),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     B_latdirect=(with(data,lm(Basal~Latitude*Stream+Lakeweb+Marine),na.action=na.fail))
     }
 
-  if(infile=='../non_TS/summary-properties.tsv'){
-    # non-TS, updated 29/06/2015
-    I_latdirect=(with(data,lm(Intermediate~Latitude*Lakeweb+Stream),na.action=na.fail))
+  if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+    # non-TS, updated 22/07/2018
+    I_latdirect=(with(data,lm(Intermediate~Latitude*Stream+Lakeweb),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     I_latdirect=(with(data,lm(Intermediate~Latitude*Lakeweb+Stream),na.action=na.fail))
     }
 
-  if(infile=='../non_TS/summary-properties.tsv'){
-    # non-TS, updated 29/06/2015
-    T_latdirect=(with(data,lm(Toppreds~Latitude*Lakeweb+Stream+Latitude:Stream),na.action=na.fail))
+  if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+    # non-TS, updated 22/07/2018
+    T_latdirect=(with(data,lm(Toppreds~Lakeweb+Marine),na.action=na.fail))
     } else { # TS, updated 29/06/2015
     T_latdirect=(with(data,lm(Toppreds~Latitude*Lakeweb+Stream+Latitude:Stream),na.action=na.fail))
     }
@@ -364,8 +366,9 @@
     write.table(summary(T_latdirect)$coefficients,file=paste(outdir,'coefficients/T_lat.tsv',sep=''))
   }
 
-  if(infile=='../non_TS/summary-properties.tsv'){
-
+  if(infile=='../non_TS/summary-properties_corrected_webs.tsv'){
+    source('marginal_CIs_nonTS_errorwebs.R')
+# Haven't updated these yet.
     LS_B_marg=B_CIs("LS_B_min")
     write.table(LS_B_marg,file=paste(outdir,'marginals/LS_B_marginal.tsv',sep=''),sep='\t',col.names=TRUE)
     Gen_B_marg=B_CIs("Gen_B_min")

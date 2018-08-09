@@ -1,5 +1,6 @@
   #Let's look at the same old regressions with the subset of data...
   # For proportions, regressions are similar but vary slightly over ecotype.
+  # All min models are correct for mod_data.
   LS_full=with(data,lm(log(LS)~log(Species)
     +log(Species):Latitude
     +log(Species):(Stream+Lakeweb+Marine+Terr)
@@ -139,12 +140,7 @@
   Sp_latdirect=(with(data,lm(Species~Lakeweb+Marine+Terr),na.action=na.fail)) 
   LS_latdirect=(with(data,lm(LS~Lakeweb+Terr),na.action=na.fail))
   Vul_latdirect=(with(data,lm(Vul~Lakeweb+Terr),na.action=na.fail))
-
-  if(infile=='../mod_data/summary-properties_corrected_webs.tsv'){
-    Gen_latdirect=(with(data,lm(Gen~Marine+Stream),na.action=na.fail))
-    } else {
-    Gen_latdirect=(with(data,lm(Gen~Stream),na.action=na.fail))
-    }
+  Gen_latdirect=(with(data,lm(Gen~Marine+Stream),na.action=na.fail))
 
 
 
