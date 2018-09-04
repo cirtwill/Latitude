@@ -233,8 +233,8 @@ def S_scaleplots(rawdatafile,outfile1,Bformat,predfolder):
   TL='S'
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
-    # if rawdatafile=='../non_TS/summary-properties.tsv':
-    if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
+    if rawdatafile=='../non_TS/summary-properties.tsv':
+    # if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
       fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
       # fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_co.tsv')
     else:
@@ -320,13 +320,13 @@ def S_rawplots(rawdatafile,outfile1,Bformat,predfolder):
   for prop in ['LS','Gen','Vul']:
     rawdata=datareader(rawdatafile,TL,Bformat)
 
-    if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
-    # if rawdatafile=='../non_TS/summary-properties.tsv':
-      # fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
-      fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
+    # if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
+    if rawdatafile=='../non_TS/summary-properties.tsv':
+      fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
+      # fixed=fixed_reader('../updated/non_TS/coefficients/'+prop+'_obs.tsv')
     else:
-      # fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
-      fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_obs.tsv')
+      fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
+      # fixed=fixed_reader('../updated/mod_data/coefficients/'+prop+'_obs.tsv')
 
     graph=grace.add_graph(Panel)
 
@@ -396,9 +396,16 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
 
   for prop in ['LS','Gen','Vul']:
-    for TL in ['B','I','T']:
+    for TL in ['S','B','I','T']:
       rawdata=datareader(rawdatafile,TL,Bformat)
-      fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
+      if TL!='S':
+        fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_co.tsv')
+      else:
+        if rawdatafile=='../non_TS/summary-properties.tsv':
+          fixed=fixed_reader('../non_TS/coefficients/'+prop+'_co.tsv')
+        else:
+          fixed=fixed_reader('../mod_data/coefficients/'+prop+'_co.tsv')
+
 
       graph=grace.add_graph(Panel)
       for ecotype in ecotypes:
@@ -414,26 +421,30 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
 
         predline.line.configure(linestyle=1,color=1,linewidth=2.5)
 
-      if TL=='B':
+      if TL=='S':
         graph.legend.configure(loc=(110,1),loctype='world',char_size=.75)
         graph.legend.box_linestyle=0
 
       if prop=='Vul':
         if TL=='B':
-          ytex='% basal resources'
+          ytex='% basal'
         elif TL=='I':
-          ytex='% intermediate consumers'
+          ytex='% intermediate'
         elif TL=='T':
-          ytex='% top predators'
+          ytex='% top'
+        else:
+          ytex='species richness'
         graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
 
-      if TL=='B':
+      if TL=='S':
+        graph.yaxis.label.configure(text="re-scaled value",place='normal',char_size=.75)
+      elif TL=='T':
         if prop=='LS':
-          graph.yaxis.label.configure(text="re-scaled link density",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="link density",place='normal',char_size=.75)
         elif prop=='Gen':
-          graph.yaxis.label.configure(text="re-scaled generality",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="generality",place='normal',char_size=.75)
         elif prop=='Vul':
-          graph.yaxis.label.configure(text="re-scaled vulnerability",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="vulnerability",place='normal',char_size=.75)
 
       graph.world.xmin=0.005
       graph.world.ymin=.1
@@ -460,7 +471,7 @@ def TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder):
       graph.yaxis.ticklabel.configure(char_size=.75)
       graph.panel_label.configure(char_size=0)
 
-  grace.multi(rows=3,cols=3,vgap=.04,hgap=.04)
+  grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
 
   # grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Re-scaled value of:',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
   # grace.add_drawing_object(DrawText,text='Re-scaled value of:',x=0.06,y=.555,loctype='view',rot=90,char_size=.85,just=2)
@@ -480,10 +491,16 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
   grace=MultiPanelGrace(colors=ColorBrewerScheme("Greys"))
 
   for prop in ['LS','Gen','Vul']:
-    for TL in ['B','I','T']:
+    for TL in ['S','B','I','T']:
       rawdata=datareader(rawdatafile,TL,Bformat)
 
+    if TL!='S':
       fixed=fixed_reader(predfolder+'/coefficients/'+prop[0]+TL+'_obs.tsv')
+    else:
+      if rawdatafile=='../non_TS/summary-properties.tsv':
+        fixed=fixed_reader('../non_TS/coefficients/'+prop+'_obs.tsv')
+      else:
+        fixed=fixed_reader('../mod_data/coefficients/'+prop+'_obs.tsv')
 
       graph=grace.add_graph(Panel)
 
@@ -499,20 +516,24 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
 
       if prop=='Vul':
         if TL=='B':
-          ytex='% Basal resources'
+          ytex='% basal'
         elif TL=='I':
-          ytex='% Intermediate consumers'
+          ytex='% intermediate'
         elif TL=='T':
-          ytex='% Top predators'
+          ytex='% top'
+        else:
+          ytex='species richness'
         graph.xaxis.label.configure(text=ytex,place='normal',char_size=.75)
 
-      if TL=='B':
+      if TL=='S':
+        graph.yaxis.label.configure(text="observed value",place='normal',char_size=.75)
+      elif TL=='T':
         if prop=='LS':
-          graph.yaxis.label.configure(text="observed link density",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="link density",place='normal',char_size=.75)
         elif prop=='Gen':
-          graph.yaxis.label.configure(text="observed generality",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="generality",place='normal',char_size=.75)
         elif prop=='Vul':
-          graph.yaxis.label.configure(text="observed vulnerability",place='normal',char_size=.75)
+          graph.yaxis.label.configure(text="vulnerability",place='normal',char_size=.75)
 
       graph.world.xmin=0.005
       graph.world.ymin=.1
@@ -538,13 +559,12 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
       graph.yaxis.ticklabel.configure(char_size=.75)
       graph.panel_label.configure(char_size=0)
 
-  grace.multi(rows=3,cols=3,vgap=.04,hgap=.04)
+  print 'got a raw plot'
+
+  grace.multi(rows=3,cols=4,vgap=.04,hgap=.04)
 
   # grace.set_col_yaxislabel(col=0,rowspan=(0,2),label='Observed value',place='normal',just=2,char_size=1,perpendicular_offset=0.06)
 
-  grace.hide_redundant_xticklabels()
-  grace.hide_redundant_yticklabels()
-  print 'got a raw plot'
 
   grace.write_file(outfile)
 
@@ -552,18 +572,18 @@ def TL_rawplots(rawdatafile,outfile2,Bformat,predfolder):
 def main():
 
   for Bformat in ['proportions']:#['numbers','proportions']:
-    # for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
-    for rawdatafile in ['../non_TS/summary-properties_trimmed.tsv','../mod_data/summary-properties_trimmed.tsv']:
-      if rawdatafile=='../non_TS/summary-properties_trimmed.tsv':
-        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts_new.eps'
-        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts_new.eps'
-        # predfolder='../non_TS/'+Bformat
-        predfolder='../updated/non_TS/'+Bformat
+    for rawdatafile in ['../non_TS/summary-properties.tsv']:#,'../mod_data/summary-properties.tsv']:
+    # for rawdatafile in ['../non_TS/summary-properties_trimmed.tsv','../mod_data/summary-properties_trimmed.tsv']:
+      if rawdatafile=='../non_TS/summary-properties.tsv':
+        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_nonts.eps'
+        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_nonts.eps'
+        predfolder='../non_TS/'+Bformat
+        # predfolder='../updated/non_TS/'+Bformat
       else:
-        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts_new.eps'
-        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts_new.eps'
-        # predfolder='../mod_data/'+Bformat
-        predfolder='../updated/mod_data/'+Bformat
+        outfile1='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/S_fitlines_ts.eps'
+        outfile2='../manuscript/Figures/by_TL/scaling_with_S/'+Bformat+'/TL_fitlines_ts.eps'
+        predfolder='../mod_data/'+Bformat
+        # predfolder='../updated/mod_data/'+Bformat
 
       S_scaleplots(rawdatafile,outfile1,Bformat,predfolder)
 
@@ -572,9 +592,9 @@ def main():
 
       print 'Raw okay'
       # # Didn't use these in the final MS, didn't update the TL-specific models.
-      # TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
+      TL_rawplots(rawdatafile,outfile2,Bformat,predfolder)
 
-      # TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
+      TL_scaleplots(rawdatafile,outfile2,Bformat,predfolder)
 
 
 
